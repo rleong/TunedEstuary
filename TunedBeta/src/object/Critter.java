@@ -106,16 +106,16 @@ public class Critter extends GameObject {
 		x += velX;
 		y += velY;
 
-		if (x > xbounds * 3 / 4 - 64) {
+		if (x > xbounds/2 * 5 / 6 - 64) {
 			onLand = false;
 			falling = true;
 		}
 
-		if (falling || (falling && x > xbounds * 3 / 4)) {
+		if (falling || (falling && x > xbounds * 5 / 6)) {
 			velY += gravity;
 		}
 
-		if (y < ybounds * 3 / 5 - 48 && x > xbounds * 3 / 4 - 32) {
+		if (y < ybounds * 3 / 5 - 48 && x > xbounds * 5 / 6 - 32) {
 			setY(ybounds * 3 / 5 - 48);
 			setVelY(0);
 			jump = true;
@@ -435,7 +435,7 @@ public class Critter extends GameObject {
 			}
 			if (temp.getId() == ObjectId.wall) {
 				if (getBoundsLeft().intersects(temp.getBounds())) {
-					setX(xbounds * 3 / 4);
+					//setX(xbounds * 5 / 6);
 					setVelX(0);
 				}
 			}

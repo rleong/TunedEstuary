@@ -106,16 +106,16 @@ public class Handler {
 
 	public void creatSurface(Dimension dm) {
 		int i = 0;
-		for (; i < dm.getWidth() * 3 / 4; i += 32) {
+		for (; i < dm.getWidth() * 5/6; i += 32) {
 			for (double j = dm.getHeight() * 3 / 5; j < dm.getHeight(); j += 32) {
 				addObject(new LandSurface(i, j, ObjectId.landSurface, null, game));
 			}
 
 		}
 		for (double j = dm.getHeight() * 3 / 5; j < dm.getHeight(); j += 32) {
-			addObject(new LandSurface(i - 32, j, ObjectId.wall, null, game));
+			addObject(new LandSurface(i-32, j, ObjectId.wall, null, game));
 		}
-		for (; i <= dm.getWidth(); i += 32) {
+		for (; i <= dm.getWidth()*3/2; i += 32) {
 			for (double j = dm.getHeight() * 3 / 5; j < dm.getHeight() - 64; j += 32) {
 				addObject(new LandSurface(i, j, ObjectId.seaLevel, null, game));
 			}
@@ -123,13 +123,25 @@ public class Handler {
 				addObject(new LandSurface(i, j, ObjectId.sand, null, game));
 			}
 		}
+		for (double j = dm.getHeight()-96; j < dm.getHeight()*6/5; j += 32) {
+			addObject(new LandSurface(i-32, j, ObjectId.wall, null, game));
+		}
+		for (; i <= dm.getWidth()*2; i += 32) {
+			for (double j = dm.getHeight() * 3 / 5; j < dm.getHeight()*6/5; j += 32) {
+				addObject(new LandSurface(i, j, ObjectId.seaLevel, null, game));
+			}
+			for (double j = dm.getHeight()*6/5 - 96; j < dm.getHeight()*6/5; j += 32) {
+				addObject(new LandSurface(i, j, ObjectId.sand, null, game));
+			}
+		}
+		
 	}
 
 	public double[] spawnLocations(Dimension dm) {
 		// 0 1 2 3 4
 		// Width, Height, Water Start Width, Water Bottom Height, Water Surface
 		// Height
-		double[] loc = { dm.getWidth(), dm.getHeight(), dm.getWidth() * 3 / 4, dm.getHeight() - 96,
+		double[] loc = { dm.getWidth()*2, dm.getHeight(), dm.getWidth() * 5 / 6, dm.getHeight() - 96,
 				dm.getHeight() * 3 / 5 };
 		return loc;
 	}
