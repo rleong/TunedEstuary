@@ -107,9 +107,9 @@ public class Handler {
 	public void creatSurface(Dimension dm) {
 		int i = 0;
 		for (; i < dm.getWidth() * 5/6; i += 32) {
-			for (double j = dm.getHeight() * 3 / 5; j < dm.getHeight(); j += 32) {
-				addObject(new LandSurface(i, j, ObjectId.landSurface, null, game));
-			}
+//			for (double j = dm.getHeight() * 3 / 5; j < dm.getHeight(); j += 32) {
+				addObject(new LandSurface(i, dm.getHeight() * 3 / 5, ObjectId.landSurface, null, game));
+//			}
 
 		}
 		for (double j = dm.getHeight() * 3 / 5; j < dm.getHeight(); j += 32) {
@@ -119,9 +119,9 @@ public class Handler {
 			for (double j = dm.getHeight() * 3 / 5; j < dm.getHeight() - 64; j += 32) {
 				addObject(new LandSurface(i, j, ObjectId.seaLevel, null, game));
 			}
-			for (double j = dm.getHeight() - 96; j < dm.getHeight(); j += 32) {
-				addObject(new LandSurface(i, j, ObjectId.sand, null, game));
-			}
+//			for (double j = dm.getHeight() - 96; j < dm.getHeight(); j += 32) {
+				addObject(new LandSurface(i, dm.getHeight() - 96, ObjectId.sand, null, game));
+//			}
 		}
 		for (double j = dm.getHeight()-96; j < dm.getHeight()*6/5; j += 32) {
 			addObject(new LandSurface(i-32, j, ObjectId.wall, null, game));
@@ -130,9 +130,9 @@ public class Handler {
 			for (double j = dm.getHeight() * 3 / 5; j < dm.getHeight()*6/5; j += 32) {
 				addObject(new LandSurface(i, j, ObjectId.seaLevel, null, game));
 			}
-			for (double j = dm.getHeight()*6/5 - 96; j < dm.getHeight()*6/5; j += 32) {
-				addObject(new LandSurface(i, j, ObjectId.sand, null, game));
-			}
+//			for (double j = dm.getHeight()*6/5 - 96; j < dm.getHeight()*6/5; j += 32) {
+				addObject(new LandSurface(i, dm.getHeight()*6/5 - 96, ObjectId.sand, null, game));
+//			}
 		}
 		
 	}
