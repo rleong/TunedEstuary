@@ -47,11 +47,11 @@ public class RofFactory extends GameObject {
 		handler.addObject(new Runoff(x, y-32,dm,handler, ObjectId.runOff, type, game));
 	}
 	public void prodT(Handler handler, Dimension dm){
-		
+		for(int i=0; i<3; i++){
 			Random random = new Random();
-			int xx=random.nextInt((int) (dm.getWidth()-(dm.getWidth()*3/4)));
-			handler.addObject(new WaterTree(dm.getWidth()*3/4 + xx, dm.getHeight()-192, ObjectId.waterTree, handler, dm));
-		
+			int xx=random.nextInt((int) (dm.getWidth()*3/2-(dm.getWidth()*5/6)));
+			handler.addObject(new WaterTree(dm.getWidth() + xx, dm.getHeight()-192,ObjectId.waterTree ,0, handler, dm));
+		}
 	}
 
 }

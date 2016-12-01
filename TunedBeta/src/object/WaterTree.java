@@ -16,14 +16,16 @@ public class WaterTree extends GameObject {
 	public boolean canAttack;
 	public int hp;
 	int type;
+	private long timer0=System.currentTimeMillis();
+	private long timer1=System.currentTimeMillis();
+	private long timer2=System.currentTimeMillis();
 
-	public WaterTree(double x, double y, ObjectId id, Handler handler, Dimension dm) {
+	public WaterTree(double x, double y, ObjectId id,int type, Handler handler, Dimension dm) {
 		super(x, y, id, handler);
 		this.dm=dm;
 		hp=20;
-		Random random =  new Random();
 		
-		type=random.nextInt(10)%2;
+		this.type=type;
 	}
 //	public void change(){
 //		type+=1;
@@ -33,11 +35,17 @@ public class WaterTree extends GameObject {
 	public void dead(){
 			
 		canAttack=false;
-		drop();
+		dropCompost();
+		
 		
 	}
-	public void drop(){
-		handler.addObject(new Seed(x,y-64,ObjectId.seed, handler, type));
+	public void dropCompost() {
+	// TODO Auto-generated method stub
+	
+}
+	public void dropSeed(){
+		handler.addObject(new Seed(x,y+64,ObjectId.seed, handler, type));
+		
 	}
 	
 
@@ -49,6 +57,20 @@ public class WaterTree extends GameObject {
 //		if(hp<=0){
 //			velY+=gravity*10;
 //		}
+		
+		if (System.currentTimeMillis() - timer0 > 5000) {
+			timer0+=5000;
+			dropCompost();
+			
+		}
+		if(System.currentTimeMillis()-timer1 >10000){
+			timer1+=10000;
+			dropSeed();
+		}
+		if(System.currentTimeMillis()-timer2>15000){
+			timer2+=15000;
+			dead();
+		}
 	}
 
 	@Override
