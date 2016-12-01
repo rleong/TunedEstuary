@@ -439,15 +439,29 @@ public class Critter extends GameObject {
 					setVelX(0);
 				}
 			}
-			if (temp.getId() == ObjectId.seed) {
-				Seed seed = (Seed) temp;
+//			if (temp.getId() == ObjectId.seed) {
+//				Seed seed = (Seed) temp;
+//				if (getBoundsSelf().intersects(temp.getBounds())) {
+//					switch (seed.type) {
+//					case 0:
+//						inventory.addSmallSeed();
+//						break;
+//					case 1:
+//						inventory.addBigSeed();
+//						break;
+//					}
+//					object.remove(temp);
+//				}
+//			}
+			if (temp.getId() == ObjectId.compost1) {
+				Compost comp = (Compost) temp;
 				if (getBoundsSelf().intersects(temp.getBounds())) {
-					switch (seed.type) {
+					switch (comp.type) {
 					case 0:
-						inventory.addSmallSeed();
+//						inventory.addSmallSeed();
 						break;
 					case 1:
-						inventory.addBigSeed();
+//						inventory.addBigSeed();
 						break;
 					}
 					object.remove(temp);

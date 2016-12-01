@@ -31,20 +31,25 @@ public class WaterTree extends GameObject {
 //		type+=1;
 //		type=type%2;
 //	}
-
+	public void chopDown(){
+		handler.addObject(new Compost(x,y,ObjectId.compost1, handler, type));
+		handler.addObject(new Compost(x,y,ObjectId.compost1, handler, type));
+		handler.addObject(new Compost(x,y,ObjectId.compost1, handler, type));
+		dead();
+	}
 	public void dead(){
 			
 		canAttack=false;
-		dropCompost();
-		
+		handler.removeObject(this);
 		
 	}
 	public void dropCompost() {
 	// TODO Auto-generated method stub
-	
-}
+		handler.addObject(new Compost(x, y, ObjectId.compost1, handler, type));
+		
+	}
 	public void dropSeed(){
-		handler.addObject(new Seed(x,y+64,ObjectId.seed, handler, type));
+		handler.addObject(new Seed(x,y,ObjectId.seed, handler, type));
 		
 	}
 	
