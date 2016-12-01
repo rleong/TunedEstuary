@@ -53,9 +53,6 @@ public class Handler {
 					object.remove(temp);
 				}
 			}
-			if (temp.getId() == ObjectId.critter && i != object.size()-1) {
-				Collections.swap(object, i, object.size()-1);
-			}
 		}
 	}
 	
@@ -98,6 +95,12 @@ public class Handler {
 
 	public void addObject(GameObject object) {
 		this.object.add(object);
+		for (int i = 0; i < this.object.size(); i++) {
+			temp = this.object.get(i);
+			if (temp.getId() == ObjectId.critter && i != this.object.size()-1) {
+				Collections.swap(this.object, i, this.object.size()-1);
+			}
+		}
 	}
 
 	public void removeObject(GameObject object) {
