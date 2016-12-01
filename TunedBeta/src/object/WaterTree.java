@@ -38,7 +38,7 @@ public class WaterTree extends GameObject {
 		dead();
 	}
 	public void dead(){
-			
+		dropSeed();
 		canAttack=false;
 		handler.removeObject(this);
 		
@@ -71,7 +71,7 @@ public class WaterTree extends GameObject {
 		
 		if(System.currentTimeMillis()-timer2>15000){
 			timer2+=15000;
-			dropSeed();
+			
 			dead();
 		}
 	}
