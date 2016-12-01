@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.util.LinkedList;
+import java.util.Random;
 
 import framework.GameObject;
 import framework.ObjectId;
@@ -13,13 +14,25 @@ import window.Handler;
 
 public class Seed extends GameObject {
 	int type;
+	int dir;
 	Dimension dm;
+	
 	static Toolkit tk = Toolkit.getDefaultToolkit();
 	public Seed(double x, double y, ObjectId id, Handler handler, int type) {
 		super(x, y, id, handler);
 		this.type=type;
 		setVelY(-3);
 		dm=tk.getScreenSize();
+		Random random = new Random();
+		dir=random.nextInt(100)%2;
+		switch(dir){
+		case 0:
+			setVelX(-0.5);
+			break;
+		case 1:
+			setVelX(0.5);
+			break;
+		}
 	}
 
 	@Override

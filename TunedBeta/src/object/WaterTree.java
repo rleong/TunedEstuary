@@ -68,12 +68,10 @@ public class WaterTree extends GameObject {
 			dropCompost();
 			
 		}
-		if(System.currentTimeMillis()-timer1 >10000){
-			timer1+=10000;
-			dropSeed();
-		}
+		
 		if(System.currentTimeMillis()-timer2>15000){
 			timer2+=15000;
+			dropSeed();
 			dead();
 		}
 	}
