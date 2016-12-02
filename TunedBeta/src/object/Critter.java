@@ -86,12 +86,6 @@ public class Critter extends GameObject {
 		this.xbounds = xbounds;
 		this.ybounds = ybounds;
 
-		// Health Bar & Name Locations
-		nameXLocation = (int) (xbounds - (xbounds * 18 / 100));
-		nameYLocation = (int) (ybounds - (ybounds * 94 / 100));
-		healthBarXLocation = (int) (xbounds - (xbounds * 1 / 8));
-		healthBarYLocation = (int) (ybounds - (ybounds * 95 / 100));
-
 		// GFX & Animations
 		this.images = images;
 	}
@@ -186,6 +180,38 @@ public class Critter extends GameObject {
 			g.drawString("Debug Godmode", (int) x - 24, (int) y - 10);
 			break;
 		}
+		
+		// Health Bars
+		drawHealthBars(g, (int) x, (int) y);
+
+		// Animations
+		drawWateringPlantAction(g);
+
+		// Debugging Purposes Only
+		if (debugging) {
+			g.setColor(Color.red);
+			switch (character) {
+			case 0:
+				g.drawString(health0 + " | " + sp0 + "/" + SPRECHARGE, (int) xbounds / 2, (int) ybounds / 2);
+				break;
+			case 1:
+				g.drawString(health1 + " | " + sp1 + "/" + SPRECHARGE, (int) xbounds / 2, (int) ybounds / 2);
+				break;
+			case 2:
+				g.drawString(health2 + " | " + sp2 + "/" + SPRECHARGE, (int) xbounds / 2, (int) ybounds / 2);
+				break;
+			}
+			// test(g);
+		}
+
+	}
+
+	public void drawHealthBars(Graphics g, int xx, int yy) {
+		// Health Bar & Name Locations
+		nameXLocation = (int) (xx + 512);
+		nameYLocation = (int) (yy - 512);
+		healthBarXLocation = (int) (xx + 612);
+		healthBarYLocation = (int) (yy - 512);
 
 		// Crab Health & SP Display
 		g.setColor(Color.BLACK);
@@ -231,27 +257,6 @@ public class Critter extends GameObject {
 		g.fillRect(healthBarXLocation + 1, healthBarYLocation + 142, (int) (health2 * 2) - 1, 7);
 		g.setColor(Color.YELLOW);
 		g.fillRect(healthBarXLocation + 1, healthBarYLocation + 2 + 160, (int) sp2 * 2 / 3 - 1, 7);
-
-		// Animations
-		drawWateringPlantAction(g);
-
-		// Debugging Purposes Only
-		if (debugging) {
-			g.setColor(Color.red);
-			switch (character) {
-			case 0:
-				g.drawString(health0 + " | " + sp0 + "/" + SPRECHARGE, (int) xbounds / 2, (int) ybounds / 2);
-				break;
-			case 1:
-				g.drawString(health1 + " | " + sp1 + "/" + SPRECHARGE, (int) xbounds / 2, (int) ybounds / 2);
-				break;
-			case 2:
-				g.drawString(health2 + " | " + sp2 + "/" + SPRECHARGE, (int) xbounds / 2, (int) ybounds / 2);
-				break;
-			}
-			// test(g);
-		}
-
 	}
 
 	// Animations & GFX
