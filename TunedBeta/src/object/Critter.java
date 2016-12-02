@@ -379,7 +379,6 @@ public class Critter extends GameObject {
 	 */
 	// Collision
 	private void collision(LinkedList<GameObject> object) {
-		
 		for (int i = 0; i < handler.object.size(); i++) {
 			GameObject temp = handler.object.get(i);
 			if (temp.getId() == ObjectId.landSurface) {
