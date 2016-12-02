@@ -48,6 +48,9 @@ public class Seed extends GameObject {
 		x+=velX;
 		y+=velY;
 		velY+=gravity;
+		if(x<dm.getWidth()*5/6||x>dm.getWidth()*3/2-32)
+			velX*=-1;
+		
 		collision();
 	}
 
