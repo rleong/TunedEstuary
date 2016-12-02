@@ -53,7 +53,7 @@ public class SchoolFish extends GameObject {
 		}
 
 		x += velX;
-		if (x <= 1600 || x >= 2400 ) {
+		if (x < game.dm.getWidth() || x > game.dm.getWidth()*3/2 ) {
 			velX *= -1;
 		}
 
