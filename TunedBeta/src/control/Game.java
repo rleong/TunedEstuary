@@ -35,7 +35,7 @@ public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = -6771508490304664935L;
 
 	static Toolkit tk = Toolkit.getDefaultToolkit();
-	static Dimension dm = new Dimension(tk.getScreenSize());
+	public static Dimension dm = new Dimension(tk.getScreenSize());
 	private boolean running = false;
 	private Thread thread;
 	public int count = 0;
@@ -75,7 +75,7 @@ public class Game extends Canvas implements Runnable {
 		handler.creatSurface(dm);
 		dmBoundaries = handler.spawnLocations(dm);
 		factory = new RofFactory(0, dm.getHeight() * 3 / 5 - 32, ObjectId.RofFactory, handler, this);
-		school = new SchoolFish(1600, 800, ObjectId.school, handler, this);
+		school = new SchoolFish(dm.getWidth(), dm.getHeight()*4/5, ObjectId.school, handler, this);
 		trashBin = new WasteBin(dm.getWidth() - 50, dm.getHeight() - 70, ObjectId.wasteBin, handler, 0);
 		recyclebin = new WasteBin(dm.getWidth() - 100, dm.getHeight() - 70, ObjectId.wasteBin, handler, 1);
 		inventory = new Inventory(10, 10, ObjectId.inventory, handler);
