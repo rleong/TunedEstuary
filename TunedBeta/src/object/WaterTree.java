@@ -40,7 +40,7 @@ public class WaterTree extends GameObject {
 	public void dead(){
 		dropSeed();
 		canAttack=false;
-		handler.removeObject(this);
+		handler.object.remove(this);
 		
 	}
 	public void dropCompost() {
@@ -69,8 +69,8 @@ public class WaterTree extends GameObject {
 			
 		}
 		
-		if(System.currentTimeMillis()-timer2>15000){
-			timer2+=15000;
+		if(System.currentTimeMillis()-timer2>23000){
+			timer2+=23000;
 			
 			dead();
 		}
