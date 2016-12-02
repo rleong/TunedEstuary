@@ -125,7 +125,7 @@ public class Inventory extends GameObject {
 	@Override
 	public Rectangle getBounds() {
 		return null;
-	}
+	}//
 
 	public Rectangle getWeakGrass() {
 		return new Rectangle((int) x + 10, (int) y + 10, 16, 16);
