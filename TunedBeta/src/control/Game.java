@@ -96,7 +96,7 @@ public class Game extends Canvas implements Runnable {
 		this.addMouseListener(new MouseInput(handler, this));
 
 		// Game Timer
-		gameTime = new Timer(5000, gameTimeListener);
+		gameTime = new Timer(50000, gameTimeListener);
 		gameTime.start();
 	}
 

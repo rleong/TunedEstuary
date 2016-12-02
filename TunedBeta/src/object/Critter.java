@@ -93,7 +93,8 @@ public class Critter extends GameObject {
 
 		// Character Physics
 		x += velX;
-		y += velY;
+		if(!game.isPause())
+			y += velY;
 
 		if (x > dm.getWidth() / 2 * 5 / 6 - 64) {
 			onLand = false;

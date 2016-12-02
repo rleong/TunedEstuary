@@ -17,6 +17,8 @@ public class Inventory extends GameObject {
 	private int countConcrete = 0;
 	private int countSmallSeed = 0;
 	private int countBigSeed = 0;
+	private int xx;
+	private int yy;
 	Critter critter;
 
 	// Menu
@@ -28,10 +30,16 @@ public class Inventory extends GameObject {
 
 	public void setCritter(Critter critter) {
 		this.critter = critter;
+		xx = (int) critter.getX() - 64;
+		yy = (int) critter.getY() - 144;
 	}
 
 	@Override
 	public void tick(LinkedList<GameObject> object) {
+		
+		xx = (int) critter.getX() - 64;
+		yy = (int) critter.getY() - 144;
+		
 	}
 
 	// Compost
@@ -79,20 +87,22 @@ public class Inventory extends GameObject {
 		}
 	}
 
-	public void build(double xx, double yy, Game gm) {
-		if (new Rectangle((int) xx, (int) yy, (int) xx + 1, (int) yy + 1).intersects(getWeakGrass())) {
-			critter.planT(0);
-			gm.setPause(3000);
+	public void build(double mx, double my, Game gm) {
+		if(menuActivation){
+			if (new Rectangle((int) mx, (int) my, (int) mx + 1, (int) my + 1).intersects(getWeakGrass())) {
+				critter.planT(0);
+				gm.setPause(3000);
+			}
 		}
 	}
 
 	@Override
 	public Rectangle getBounds() {
 		return null;
-	}//
+	}
 
 	public Rectangle getWeakGrass() {
-		return new Rectangle((int) x + 10, (int) y + 10, 16, 16);
+		return new Rectangle((int) xx + 10, (int) yy + 10, 16, 16);
 	}
 
 	// Menu (Currently not using)
@@ -101,46 +111,43 @@ public class Inventory extends GameObject {
 		
 		// Borders
 		g.setColor(Color.WHITE);
-		g.drawRect((int) critter.getX() - 48, (int) critter.getY() - 128, 128, 80);
+		g.drawRect((int) critter.getX() - 64, (int) critter.getY() - 144, 148, 115);
 
 		// Compost
-		String output0 = "x" + countCompost + " Compost";
+		String output0 = "x" + countCompost + " Plant 1";
 		g.setColor(Color.white);
-		g.drawString(output0, (int) x + 31, (int) y + 23);
+		g.drawString(output0, (int) xx + 31, (int) yy + 23);
 		g.setColor(Color.orange);
-		g.fillRect((int) x + 10, (int) y + 10, 16, 16);
+		g.fillRect((int) xx + 10, (int) yy + 10, 16, 16);
 
 		// Oyster Shells
-		String output1 = "x" + countOyster + " Oyster Shells";
+		String output1 = "x" + countOyster + " Plant 2";
 		g.setColor(Color.white);
-		g.drawString(output1, (int) x + 31, (int) y + 43);
+		g.drawString(output1, (int) xx + 31, (int) yy + 43);
 		g.setColor(Color.blue);
-		g.fillRect((int) x + 10, (int) y + 30, 16, 16);
+		g.fillRect((int) xx + 10, (int) yy + 30, 16, 16);
 
 		// Concrete
-		String output2 = "x" + countConcrete + " Concrete Material";
+		String output2 = "x" + countConcrete + " Plant 3";
 		g.setColor(Color.white);
-		g.drawString(output2, (int) x + 31, (int) y + 63);
+		g.drawString(output2, (int) xx + 31, (int) yy + 63);
 		g.setColor(Color.red);
-		g.fillRect((int) x + 10, (int) y + 50, 16, 16);
+		g.fillRect((int) xx + 10, (int) yy + 50, 16, 16);
 
 		// Concrete
-		String output3 = "x" + countSmallSeed + " Small Seeds";
+		String output3 = "x" + countSmallSeed + " Plant 4";
 		g.setColor(Color.white);
-		g.drawString(output3, (int) x + 31, (int) y + 83);
+		g.drawString(output3, (int) xx + 31, (int) yy + 83);
 		g.setColor(Color.gray);
-		g.fillRect((int) x + 10, (int) y + 70, 16, 16);
+		g.fillRect((int) xx + 10, (int) yy + 70, 16, 16);
 
 		// Concrete
-		String output4 = "x" + countBigSeed + " Big Seeds";
+		String output4 = "x" + countBigSeed + " Oyster Gabion";
 		g.setColor(Color.white);
-		g.drawString(output4, (int) x + 31, (int) y + 103);
+		g.drawString(output4, (int) xx + 31, (int) yy + 103);
 		g.setColor(Color.green);
-		g.fillRect((int) x + 10, (int) y + 90, 16, 16);
-
-		// Menu Box
-		g.setColor(Color.green);
-		g.drawRect((int) x - 5, (int) y - 3, 200, 120);
+		g.fillRect((int) xx + 10, (int) yy + 90, 16, 16);
+		
 	}
 
 	public void toggleMenu() {
