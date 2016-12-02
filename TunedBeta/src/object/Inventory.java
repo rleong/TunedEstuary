@@ -105,7 +105,7 @@ public class Inventory extends GameObject {
 		return new Rectangle((int) xx + 10, (int) yy + 10, 16, 16);
 	}
 
-	// Menu (Currently not using)
+	// Menu (Currently not using) 
 
 	public void drawMenu(Graphics g) {
 		

@@ -111,7 +111,7 @@ public class Critter extends GameObject {
 			jump = true;
 		}
 
-		// Character Status
+		// Character Status 
 		if (invulnerable) {
 			flicker++;
 		} else {

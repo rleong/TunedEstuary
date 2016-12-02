@@ -95,7 +95,7 @@ public class KeyInput extends KeyAdapter {
 				}
 				if (temp.getId() == ObjectId.inventory) {
 					Inventory inv = (Inventory) temp;
-					// Menu Toggle
+					// Menu Toggle 
 					if (key == KeyEvent.VK_R) {
 						inv.toggleMenu();
 					}

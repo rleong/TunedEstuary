@@ -21,7 +21,7 @@ public class MouseInput implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		int x = e.getX();
 		int y = e.getY();
-		//System.out.print(x + " " + y);
+		//System.out.print(x + " " + y); 
 		if (!gm.isPause()) {
 			for (int i = 0; i < handler.object.size(); i++) {
 				GameObject temp = handler.object.get(i);

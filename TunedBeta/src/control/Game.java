@@ -70,7 +70,7 @@ public class Game extends Canvas implements Runnable {
 		handler = new Handler(this);
 		cam = new Camera(0, 0, dm);
 		// 0 1 2 3 4
-		// Width, Height, Water Start Width, Water Bottom Height, Water Surface
+		// Width, Height, Water Start Width, Water Bottom Height, Water Surface 
 		// Height
 		handler.creatSurface(dm);
 		dmBoundaries = handler.spawnLocations(dm);
