@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 
+import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
 import window.Handler;
@@ -17,6 +18,9 @@ public class Inventory extends GameObject {
 	private int countSmallSeed = 0;
 	private int countBigSeed = 0;
 	Critter critter;
+	
+	// Menu
+	boolean menuActivation = false;
 
 	public Inventory(double x, double y, ObjectId id, Handler handler) {
 		super(x, y, id, handler);
@@ -105,12 +109,16 @@ public class Inventory extends GameObject {
 		g.setColor(Color.green);
 		g.drawRect((int) x - 5, (int) y - 3, 200, 120);
 
-		// Choices
+		// Menu
+		if(menuActivation){
+			
+		}
 	}
 
-	public void build(double xx, double yy) {
+	public void build(double xx, double yy, Game gm) {
 		if (new Rectangle((int) xx, (int) yy, (int) xx + 1, (int) yy + 1).intersects(getWeakGrass())) {
 			critter.planT(0);
+			gm.setPause(3000);
 		}
 	}
 
@@ -121,6 +129,20 @@ public class Inventory extends GameObject {
 
 	public Rectangle getWeakGrass() {
 		return new Rectangle((int) x + 10, (int) y + 10, 16, 16);
+	}
+
+	// Menu (Currently not using)
+
+	public void drawMenu(Graphics g) {
+		g.setColor(Color.WHITE);
+		g.drawRect((int) x - 32, (int) y - 96, 96, 48);
+	}
+
+	public void toggleMenu() {
+		if (menuActivation)
+			menuActivation = false;
+		else
+			menuActivation = true;
 	}
 
 }

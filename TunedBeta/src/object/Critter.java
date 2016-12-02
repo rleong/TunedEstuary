@@ -61,9 +61,6 @@ public class Critter extends GameObject {
 	int picNum = 0;
 	Images images;
 
-	// Menu
-	boolean menuActivation = false;
-
 	// Debugging
 	boolean debugging = false;
 
@@ -235,10 +232,6 @@ public class Critter extends GameObject {
 		g.setColor(Color.YELLOW);
 		g.fillRect(healthBarXLocation + 1, healthBarYLocation + 2 + 160, (int) sp2 * 2 / 3 - 1, 7);
 
-		// Menu
-		if (menuActivation)
-			drawMenu(g);
-
 		// Animations
 		drawWateringPlantAction(g);
 
@@ -259,20 +252,6 @@ public class Critter extends GameObject {
 			// test(g);
 		}
 
-	}
-
-	// Menu (Currently not using)
-
-	public void drawMenu(Graphics g) {
-		g.setColor(Color.WHITE);
-		g.drawRect((int) x - 32, (int) y - 96, 96, 48);
-	}
-
-	public void toggleMenu() {
-		if (menuActivation)
-			menuActivation = false;
-		else
-			menuActivation = true;
 	}
 
 	// Animations & GFX

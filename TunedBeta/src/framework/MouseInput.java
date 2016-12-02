@@ -26,9 +26,8 @@ public class MouseInput implements MouseListener {
 				GameObject temp = handler.object.get(i);
 
 				if (temp.getId() == ObjectId.inventory) {
-					gm.setPause(3000);
 					Inventory inv = (Inventory) temp;
-					inv.build(x, y);
+					inv.build(x, y, gm);
 				}
 
 			}

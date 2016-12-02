@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 
 import control.Game;
 import object.Critter;
+import object.Inventory;
 import window.Handler;
 
 public class KeyInput extends KeyAdapter {
@@ -87,13 +88,16 @@ public class KeyInput extends KeyAdapter {
 					if (key == KeyEvent.VK_Q) {
 						t.ability();
 					}
-					// Menu Toggle
-					if (key == KeyEvent.VK_R) {
-						t.toggleMenu();
-					}
 					// Debug Toggle
 					if (key == KeyEvent.VK_M) {
 						t.setDebug();
+					}
+				}
+				if (temp.getId() == ObjectId.inventory) {
+					Inventory inv = (Inventory) temp;
+					// Menu Toggle
+					if (key == KeyEvent.VK_R) {
+						inv.toggleMenu();
 					}
 				}
 			}
