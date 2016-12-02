@@ -258,6 +258,7 @@ public class Critter extends GameObject {
 		g.setColor(Color.YELLOW);
 		g.fillRect(healthBarXLocation + 1, healthBarYLocation + 2 + 160, (int) sp2 * 2 / 3 - 1, 7);
 	}
+	
 
 	// Animations & GFX
 	public void drawWateringPlantAction(Graphics g) {
