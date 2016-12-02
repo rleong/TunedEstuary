@@ -62,7 +62,7 @@ public class Critter extends GameObject {
 	Images images;
 
 	// Menu
-	// boolean menuActivation = false;
+	boolean menuActivation = false;
 
 	// Debugging
 	boolean debugging = false;
@@ -106,7 +106,7 @@ public class Critter extends GameObject {
 		x += velX;
 		y += velY;
 
-		if (x > xbounds/2 * 5 / 6 - 64) {
+		if (x > xbounds / 2 * 5 / 6 - 64) {
 			onLand = false;
 			falling = true;
 		}
@@ -236,9 +236,9 @@ public class Critter extends GameObject {
 		g.fillRect(healthBarXLocation + 1, healthBarYLocation + 2 + 160, (int) sp2 * 2 / 3 - 1, 7);
 
 		// Menu
-		// if(menuActivation)
-		// drawMenu(g);
-		
+		if (menuActivation)
+			drawMenu(g);
+
 		// Animations
 		drawWateringPlantAction(g);
 
@@ -262,19 +262,24 @@ public class Critter extends GameObject {
 	}
 
 	// Menu (Currently not using)
-	/*
-	 * public void drawMenu(Graphics g){ g.setColor(Color.WHITE);
-	 * g.drawRect((int)x-32, (int)y-96, 96, 48); }
-	 * 
-	 * public void toggleMenu(){ if(menuActivation) menuActivation = false; else
-	 * menuActivation = true; }
-	 */
-	
+
+	public void drawMenu(Graphics g) {
+		g.setColor(Color.WHITE);
+		g.drawRect((int) x - 32, (int) y - 96, 96, 48);
+	}
+
+	public void toggleMenu() {
+		if (menuActivation)
+			menuActivation = false;
+		else
+			menuActivation = true;
+	}
+
 	// Animations & GFX
-	public void drawWateringPlantAction(Graphics g){
+	public void drawWateringPlantAction(Graphics g) {
 		picNum = (picNum + 1) % images.getActionFrameCount();
-		
-		if(game.isPause()){
+
+		if (game.isPause()) {
 			g.drawImage(images.getWateringPlant(picNum), (int) x, (int) y - 42, game);
 		}
 	}
@@ -393,8 +398,8 @@ public class Critter extends GameObject {
 	 */
 	// Collision
 	private void collision(LinkedList<GameObject> object) {
-		if( x + 32 >= xbounds){
-			x = xbounds -32;
+		if (x + 32 >= xbounds) {
+			x = xbounds - 32;
 		}
 		for (int i = 0; i < handler.object.size(); i++) {
 			GameObject temp = handler.object.get(i);
@@ -435,33 +440,33 @@ public class Critter extends GameObject {
 			}
 			if (temp.getId() == ObjectId.wall) {
 				if (getBoundsLeft().intersects(temp.getBounds())) {
-					//setX(xbounds * 5 / 6);
+					// setX(xbounds * 5 / 6);
 					setVelX(0);
 				}
 			}
-//			if (temp.getId() == ObjectId.seed) {
-//				Seed seed = (Seed) temp;
-//				if (getBoundsSelf().intersects(temp.getBounds())) {
-//					switch (seed.type) {
-//					case 0:
-//						inventory.addSmallSeed();
-//						break;
-//					case 1:
-//						inventory.addBigSeed();
-//						break;
-//					}
-//					object.remove(temp);
-//				}
-//			}
+			// if (temp.getId() == ObjectId.seed) {
+			// Seed seed = (Seed) temp;
+			// if (getBoundsSelf().intersects(temp.getBounds())) {
+			// switch (seed.type) {
+			// case 0:
+			// inventory.addSmallSeed();
+			// break;
+			// case 1:
+			// inventory.addBigSeed();
+			// break;
+			// }
+			// object.remove(temp);
+			// }
+			// }
 			if (temp.getId() == ObjectId.compost1) {
 				Compost comp = (Compost) temp;
 				if (getBoundsSelf().intersects(temp.getBounds())) {
 					switch (comp.type) {
 					case 0:
-//						inventory.addSmallSeed();
+						// inventory.addSmallSeed();
 						break;
 					case 1:
-//						inventory.addBigSeed();
+						// inventory.addBigSeed();
 						break;
 					}
 					object.remove(temp);

@@ -88,9 +88,9 @@ public class KeyInput extends KeyAdapter {
 						t.ability();
 					}
 					// Menu Toggle
-					// if (key == KeyEvent.VK_E) {
-					// t.toggleMenu();
-					// }
+					if (key == KeyEvent.VK_R) {
+						t.toggleMenu();
+					}
 					// Debug Toggle
 					if (key == KeyEvent.VK_M) {
 						t.setDebug();
