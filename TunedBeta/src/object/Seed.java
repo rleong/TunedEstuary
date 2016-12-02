@@ -16,7 +16,7 @@ public class Seed extends GameObject {
 	int type;
 	int dir;
 	Dimension dm;
-	
+	boolean growing;
 	static Toolkit tk = Toolkit.getDefaultToolkit();
 	public Seed(double x, double y, ObjectId id, Handler handler, int type) {
 		super(x, y, id, handler);
@@ -39,6 +39,7 @@ public class Seed extends GameObject {
 			setVelX(-0.25);
 			break;
 		}
+		growing=true;
 	}
 
 	@Override
@@ -57,8 +58,12 @@ public class Seed extends GameObject {
 			if (temp.getId() == ObjectId.sand) {
 				if(getBounds().intersects(temp.getBounds())){
 					falling=false;
-					handler.object.add(new WaterTree(x, y-65, ObjectId.waterTree, type, handler, dm));
-					handler.object.remove(this);
+//					if(growing){
+						
+						handler.object.add(new WaterTree(x, y-65, ObjectId.waterTree, type, handler, dm));
+						handler.object.remove(this);
+						return;
+//					}
 				}
 			}
 		}
