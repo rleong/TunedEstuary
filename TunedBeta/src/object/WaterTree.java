@@ -63,8 +63,8 @@ public class WaterTree extends GameObject {
 //			velY+=gravity*10;
 //		}
 		
-		if (System.currentTimeMillis() - timer0 > 5000) {
-			timer0+=5000;
+		if (System.currentTimeMillis() - timer0 > 10000) {
+			timer0+=10000;
 			dropCompost();
 			
 		}
