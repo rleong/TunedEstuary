@@ -1,6 +1,7 @@
 package object;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -46,8 +47,7 @@ public class Critter extends GameObject {
 	int sp2 = SPRECHARGE;
 
 	// Location on Screen
-	double xbounds;
-	double ybounds;
+	Dimension dm;
 	boolean xdir;
 	boolean ydir;
 
@@ -64,8 +64,7 @@ public class Critter extends GameObject {
 	// Debugging
 	boolean debugging = false;
 
-	public Critter(double x, double y, ObjectId id, Handler handler, boolean xdir, boolean ydir, double xbounds,
-			double ybounds, Inventory inventory, Game game, Images images) {
+	public Critter(double x, double y, ObjectId id, Handler handler, boolean xdir, boolean ydir, Dimension dm, Inventory inventory, Game game, Images images) {
 		// Basics
 		super(x, y, id, handler);
 		this.xdir = xdir;
@@ -83,8 +82,7 @@ public class Critter extends GameObject {
 		inWater = false;
 
 		// Boundaries of Dimensions
-		this.xbounds = xbounds;
-		this.ybounds = ybounds;
+		this.dm = dm;
 
 		// GFX & Animations
 		this.images = images;
@@ -97,17 +95,17 @@ public class Critter extends GameObject {
 		x += velX;
 		y += velY;
 
-		if (x > xbounds / 2 * 5 / 6 - 64) {
+		if (x > dm.getWidth() / 2 * 5 / 6 - 64) {
 			onLand = false;
 			falling = true;
 		}
 
-		if (falling || (falling && x > xbounds * 5 / 6)) {
+		if (falling || (falling && x > dm.getWidth() * 5 / 6)) {
 			velY += gravity;
 		}
 
-		if (y < ybounds * 3 / 5 - 48 && x > xbounds * 5 / 6 - 32) {
-			setY(ybounds * 3 / 5 - 48);
+		if (y < dm.getHeight() * 3 / 5 - 48 && x > dm.getWidth() * 5 / 6 - 32) {
+			setY(dm.getHeight() * 3 / 5 - 48);
 			setVelY(0);
 			jump = true;
 		}
@@ -192,13 +190,13 @@ public class Critter extends GameObject {
 			g.setColor(Color.red);
 			switch (character) {
 			case 0:
-				g.drawString(health0 + " | " + sp0 + "/" + SPRECHARGE, (int) xbounds / 2, (int) ybounds / 2);
+				g.drawString(health0 + " | " + sp0 + "/" + SPRECHARGE, (int) dm.getWidth() / 2, (int) dm.getHeight() / 2);
 				break;
 			case 1:
-				g.drawString(health1 + " | " + sp1 + "/" + SPRECHARGE, (int) xbounds / 2, (int) ybounds / 2);
+				g.drawString(health1 + " | " + sp1 + "/" + SPRECHARGE, (int) dm.getWidth() / 2, (int) dm.getHeight() / 2);
 				break;
 			case 2:
-				g.drawString(health2 + " | " + sp2 + "/" + SPRECHARGE, (int) xbounds / 2, (int) ybounds / 2);
+				g.drawString(health2 + " | " + sp2 + "/" + SPRECHARGE, (int) dm.getWidth() / 2, (int) dm.getHeight() / 2);
 				break;
 			}
 			// test(g);
@@ -258,7 +256,6 @@ public class Critter extends GameObject {
 		g.setColor(Color.YELLOW);
 		g.fillRect(healthBarXLocation + 1, healthBarYLocation + 2 + 160, (int) sp2 * 2 / 3 - 1, 7);
 	}
-	
 
 	// Animations & GFX
 	public void drawWateringPlantAction(Graphics g) {
@@ -326,7 +323,7 @@ public class Critter extends GameObject {
 		case 1: // OYSTER
 			if (sp1 == SPRECHARGE) {
 				sp1 = 0;
-				handler.addObject(new Bubble(x - 8, y - 8, ObjectId.bubble, handler, xbounds));
+				handler.addObject(new Bubble(x - 8, y - 8, ObjectId.bubble, handler, dm.getWidth()));
 			}
 			break;
 		case 2: // HORSESHOE CRAB
@@ -367,7 +364,7 @@ public class Critter extends GameObject {
 
 	// Plants plants
 	public void planT(int type) {
-		handler.addObject(new Tree(x, ybounds * 3 / 5 - 32, ObjectId.tree, handler, type, game));
+		handler.addObject(new Tree(x, dm.getHeight() * 3 / 5 - 32, ObjectId.tree, handler, type, game));
 	}
 
 	/**
@@ -383,8 +380,8 @@ public class Critter extends GameObject {
 	 */
 	// Collision
 	private void collision(LinkedList<GameObject> object) {
-		if (x + 32 >= xbounds) {
-			x = xbounds - 32;
+		if (x + 32 >= dm.getWidth()) {
+			x = dm.getWidth() - 32;
 		}
 		for (int i = 0; i < handler.object.size(); i++) {
 			GameObject temp = handler.object.get(i);
@@ -425,7 +422,7 @@ public class Critter extends GameObject {
 			}
 			if (temp.getId() == ObjectId.wall) {
 				if (getBoundsLeft().intersects(temp.getBounds())) {
-					// setX(xbounds * 5 / 6);
+					// setX(dm.getWidth() * 5 / 6);
 					setVelX(0);
 				}
 			}
@@ -496,7 +493,7 @@ public class Critter extends GameObject {
 	}
 
 	public void test(Graphics g) {
-		g.drawString("haha", (int) xbounds / 2, (int) ybounds / 2);
+		g.drawString("haha", (int) dm.getWidth() / 2, (int) dm.getHeight() / 2);
 	}
 
 	// Hitboxes and Collision boxes
