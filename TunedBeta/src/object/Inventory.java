@@ -18,7 +18,7 @@ public class Inventory extends GameObject {
 	private int countSmallSeed = 0;
 	private int countBigSeed = 0;
 	Critter critter;
-	
+
 	// Menu
 	boolean menuActivation = false;
 
@@ -70,6 +70,39 @@ public class Inventory extends GameObject {
 
 	@Override
 	public void render(Graphics g) {
+
+		// Menu
+		if (menuActivation) {
+
+			drawMenu(g);
+
+		}
+	}
+
+	public void build(double xx, double yy, Game gm) {
+		if (new Rectangle((int) xx, (int) yy, (int) xx + 1, (int) yy + 1).intersects(getWeakGrass())) {
+			critter.planT(0);
+			gm.setPause(3000);
+		}
+	}
+
+	@Override
+	public Rectangle getBounds() {
+		return null;
+	}//
+
+	public Rectangle getWeakGrass() {
+		return new Rectangle((int) x + 10, (int) y + 10, 16, 16);
+	}
+
+	// Menu (Currently not using)
+
+	public void drawMenu(Graphics g) {
+		
+		// Borders
+		g.setColor(Color.WHITE);
+		g.drawRect((int) critter.getX() - 48, (int) critter.getY() - 128, 128, 80);
+
 		// Compost
 		String output0 = "x" + countCompost + " Compost";
 		g.setColor(Color.white);
@@ -108,34 +141,6 @@ public class Inventory extends GameObject {
 		// Menu Box
 		g.setColor(Color.green);
 		g.drawRect((int) x - 5, (int) y - 3, 200, 120);
-
-		// Menu
-		if(menuActivation){
-			
-		}
-	}
-
-	public void build(double xx, double yy, Game gm) {
-		if (new Rectangle((int) xx, (int) yy, (int) xx + 1, (int) yy + 1).intersects(getWeakGrass())) {
-			critter.planT(0);
-			gm.setPause(3000);
-		}
-	}
-
-	@Override
-	public Rectangle getBounds() {
-		return null;
-	}//
-
-	public Rectangle getWeakGrass() {
-		return new Rectangle((int) x + 10, (int) y + 10, 16, 16);
-	}
-
-	// Menu (Currently not using)
-
-	public void drawMenu(Graphics g) {
-		g.setColor(Color.WHITE);
-		g.drawRect((int) x - 32, (int) y - 96, 96, 48);
 	}
 
 	public void toggleMenu() {
