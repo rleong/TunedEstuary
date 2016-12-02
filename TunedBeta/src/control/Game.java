@@ -133,29 +133,12 @@ public class Game extends Canvas implements Runnable {
 			}
 			render();
 			frames++;
-			if(game2){
-				switch(g2stage){
-				case 0:
-					if(trees<3){
-						factory.prodT(handler, dm);
-						trees+=3;
-					}
-					break;
-				case 1:
-					break;
-				case 2:
-					break;
-				case 3:
-					break;
-				}
-			}
+			
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
 				System.out.println("FPS: " + frames + " TICKS: " + updates);
 				frames = 0;
 				updates = 0;
-				
-				//factory.prodRof(handler, dm);
 				
 			}
 
