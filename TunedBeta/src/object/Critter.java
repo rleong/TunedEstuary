@@ -126,7 +126,12 @@ public class Critter extends GameObject {
 
 		// Collisions
 		collision(object);
-
+		
+		// Health Bar & Name Locations
+		nameXLocation = (int) (x - (dm.getWidth() * 49 / 100));
+		nameYLocation = (int) (y - (dm.getHeight() * 46 / 100));
+		healthBarXLocation = (int) (x - (dm.getWidth() * 43 / 100));
+		healthBarYLocation = (int) (y - (dm.getHeight() * 47 / 100));
 	}
 
 	@Override
@@ -180,7 +185,7 @@ public class Critter extends GameObject {
 		}
 		
 		// Health Bars
-		drawHealthBars(g, (int) x, (int) y);
+		drawHealthBars(g);
 
 		// Animations
 		drawWateringPlantAction(g);
@@ -204,13 +209,7 @@ public class Critter extends GameObject {
 
 	}
 
-	public void drawHealthBars(Graphics g, int xx, int yy) {
-		// Health Bar & Name Locations
-		nameXLocation = (int) (xx + 512);
-		nameYLocation = (int) (yy - 512);
-		healthBarXLocation = (int) (xx + 612);
-		healthBarYLocation = (int) (yy - 512);
-
+	public void drawHealthBars(Graphics g) {
 		// Crab Health & SP Display
 		g.setColor(Color.BLACK);
 		if (health0 <= 0) {
