@@ -129,8 +129,8 @@ public class Critter extends GameObject {
 		
 		// Health Bar & Name Locations
 		nameXLocation = (int) (x - (dm.getWidth() * 49 / 100));
-		nameYLocation = (int) (y - (dm.getHeight() * 46 / 100));
-		healthBarXLocation = (int) (x - (dm.getWidth() * 43 / 100));
+		nameYLocation = (int) (y - (dm.getHeight() * 48 / 100));
+		healthBarXLocation = (int) (x - (dm.getWidth() * 49 / 100));
 		healthBarYLocation = (int) (y - (dm.getHeight() * 47 / 100));
 	}
 
