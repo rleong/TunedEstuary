@@ -24,13 +24,19 @@ public class Seed extends GameObject {
 		setVelY(-3);
 		dm=tk.getScreenSize();
 		Random random = new Random();
-		dir=random.nextInt(100)%2;
+		dir=random.nextInt(100)%4;
 		switch(dir){
 		case 0:
 			setVelX(-0.5);
 			break;
 		case 1:
 			setVelX(0.5);
+			break;
+		case 2:
+			setVelX(0.25);
+			break;
+		case 3:
+			setVelX(-0.25);
 			break;
 		}
 	}
