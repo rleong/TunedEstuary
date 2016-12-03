@@ -65,7 +65,7 @@ public class Game extends Canvas implements Runnable {
 	
 	//Game2 var
 	
-	public double nWast=0;
+	public double nWaste=0;
 	public double nW1=0;
 	public double nW2=0;
 	public double nW3=0;

@@ -28,13 +28,13 @@ public class RofFactory extends GameObject {
 		switch(game.g2stage){
 		case 0:
 			if (System.currentTimeMillis() - timer > 8000) {
-				timer += 8000;
+				timer=System.currentTimeMillis();
 				game.g2stage+=1;
 			}
 			break;
 		case 1:
-			if(game.nWast<0){
-				game.nWast=0;
+			if(game.nWaste<0){
+				game.nWaste=0;
 				game.g2stage+=1;
 				break;
 			}
@@ -66,7 +66,7 @@ public class RofFactory extends GameObject {
 			timer += 2500;
 			handler.object.add(new Runoff(x, y, game.dm, handler, ObjectId.runOff, 0, game));
 			game.nW1+=1;
-			game.nWast+=1;
+			game.nWaste+=1;
 		}
 	}
 	public void wave2(){
