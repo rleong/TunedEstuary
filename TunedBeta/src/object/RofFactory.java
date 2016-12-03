@@ -14,16 +14,36 @@ import window.Handler;
 
 public class RofFactory extends GameObject {
 	Game game;
+	long timer;
 	public RofFactory(double x, double y, ObjectId id, Handler handler, Game game) {
 		super(x, y, id, handler);
 		// TODO Auto-generated constructor stub
 		this.game=game;
+		timer=System.currentTimeMillis();
 	}
 
 	@Override
 	public void tick(LinkedList<GameObject> object) {
 		// TODO Auto-generated method stub
-
+		switch(game.g2stage){
+		case 0:
+			if (System.currentTimeMillis() - timer > 8000) {
+				timer += 8000;
+				game.g2stage+=1;
+			}
+			break;
+		case 1:
+			if(game.nWast<0){
+				game.nWast=0;
+				game.g2stage+=1;
+				break;
+			}
+			wave1();
+			break;
+		case 2:
+			break;
+		}
+		
 	}
 
 	@Override
@@ -41,6 +61,22 @@ public class RofFactory extends GameObject {
 	}
 	
 	
-	
+	public void wave1(){
+		if (System.currentTimeMillis() - timer > 2500 && game.nW1<5) {
+			timer += 2500;
+			handler.object.add(new Runoff(x, y, game.dm, handler, ObjectId.runOff, 0, game));
+			game.nW1+=1;
+			game.nWast+=1;
+		}
+	}
+	public void wave2(){
+		
+	}
+	public void wave3(){
+		
+	}
+	public void wave4(){
+		
+	}
 
 }

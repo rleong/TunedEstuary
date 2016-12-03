@@ -61,6 +61,15 @@ public class Game extends Canvas implements Runnable {
 	boolean game2 = false;
 	boolean game3 = false;
 	Timer gameTime;
+	
+	
+	//Game2 var
+	
+	public double nWast=0;
+	public double nW1=0;
+	public double nW2=0;
+	public double nW3=0;
+	public double nW4=0;
 
 	// Camera
 	Camera cam;
