@@ -16,6 +16,9 @@ public class Images {
 	BufferedImage gabionBuildIcon;
 	BufferedImage menuBar;
 	
+	// Miscellaneous
+	BufferedImage[] wasteBins;
+	
 	// Test
 	BufferedImage testImg;
 
@@ -31,6 +34,13 @@ public class Images {
 		for(int i = 0; i < actionFrameCount; i++){
 			BufferedImage img = createImage("actions/Building.png");
 			buildingAction[i] = img.getSubimage(32*i, 0, 32, 32);
+    	}
+		
+		// Miscellaneous
+		wasteBins = new BufferedImage[3];
+		for(int i = 0; i < 3; i++){
+			BufferedImage img = createImage("misc/WasteBins.png");
+			wasteBins[i] = img.getSubimage(64*i, 0, 64, 64);
     	}
 		
 		// Icons
@@ -96,5 +106,13 @@ public class Images {
 
 	public void setWateringPlant(BufferedImage[] wateringPlant) {
 		this.wateringPlant = wateringPlant;
+	}
+	
+	public BufferedImage getWasteBins(int i) {
+		return wasteBins[i];
+	}
+
+	public void setWasteBins(BufferedImage[] wasteBins) {
+		this.wasteBins = wasteBins;
 	}
 }

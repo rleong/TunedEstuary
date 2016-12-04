@@ -41,12 +41,18 @@ public class Handler {
 					object.remove(temp);
 				}
 			}
+		}
+		for (int i = 0; i < object.size(); i++) {
+			temp = object.get(i);
 			if (temp.getId() == ObjectId.waste) {
 				Waste waste = (Waste) temp;
 				if (waste.getType() == 2 && waste.checkDeath()) {
 					object.remove(temp);
 				}
 			}
+		}
+		for (int i = 0; i < object.size(); i++) {
+			temp = object.get(i);
 			if (temp.getId() == ObjectId.bubble) {
 				Bubble bubble = (Bubble) temp;
 				if (bubble.getDeath()) {
@@ -65,24 +71,7 @@ public class Handler {
 				Boat boat = (Boat) temp;
 				boat.removeBoat();
 				object.remove(i);
-			} else if (temp.getId() == ObjectId.wasteBin) {
-				object.remove(i);
-			} 
-		}
-		
-		// I have to do it a second time for some reason, cause 
-		// there are some residual wastes.
-		for (int i = 0; i < object.size(); i++){
-			temp = object.get(i);
-			if (temp.getId() == ObjectId.waste){
-				object.remove(i);
-			} else if (temp.getId() == ObjectId.boat){
-				Boat boat = (Boat) temp;
-				boat.removeBoat();
-				object.remove(i);
-			} else if (temp.getId() == ObjectId.wasteBin) {
-				object.remove(i);
-			} 
+			}
 		}
 	}
 

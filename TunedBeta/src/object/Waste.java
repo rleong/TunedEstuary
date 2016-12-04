@@ -50,11 +50,11 @@ public class Waste extends GameObject {
 			switch (type) {
 			case 0: // TRASH
 				setVelX((trashBin.getX() - x) / 50);
-				setVelY(-15);
+				setVelY(-25);
 				break;
 			case 1:
 				setVelX((recycleBin.getX() - x) / 50);
-				setVelY(-15);
+				setVelY(-25);
 				break;
 			case 2: // COMPOST
 				counter.addPlant1();
@@ -89,6 +89,7 @@ public class Waste extends GameObject {
 			case 0: // TRASH
 				if (x >= trashBin.getX() && x <= trashBin.getX() + 32) {
 					velX = 0;
+					x = trashBin.getX()+16;
 					// System.out.println("Success" + x + " " +
 					// trashBin.getX());
 				}
@@ -96,6 +97,7 @@ public class Waste extends GameObject {
 			case 1: // RECYCLE
 				if (x >= recycleBin.getX() && x <= recycleBin.getX() + 32) {
 					velX = 0;
+					x = recycleBin.getX()+16;
 					// System.out.println("Success" + x + " " +
 					// recycleBin.getX());
 				}
@@ -109,9 +111,9 @@ public class Waste extends GameObject {
 		}
 		
 		if(isTrapped){
-			if(x+50 >= boundaries){
+			if(bubble.getPop()){
 				isTrapped = false;
-				x=recycleBin.getX();
+				//x=recycleBin.getX();
 				health = 0;
 				dead();
 			}

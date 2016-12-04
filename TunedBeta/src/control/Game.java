@@ -84,8 +84,8 @@ public class Game extends Canvas implements Runnable {
 		dmBoundaries = handler.spawnLocations(dm);
 		factory = new RofFactory(0, dm.getHeight() * 3 / 5 - 32, ObjectId.RofFactory, handler, this);
 		school = new SchoolFish(dm.getWidth(), dm.getHeight()*4/5, ObjectId.school, handler, this);
-		trashBin = new WasteBin(dm.getWidth() - 50, dm.getHeight() - 70, ObjectId.wasteBin, handler, 0);
-		recyclebin = new WasteBin(dm.getWidth() - 100, dm.getHeight() - 70, ObjectId.wasteBin, handler, 1);
+		trashBin = new WasteBin(dm.getWidth() * .84 - 128, dm.getHeight() * 3 / 5 - 64, ObjectId.wasteBin, handler, 0, images, this);
+		recyclebin = new WasteBin(dm.getWidth() * .84 - 192, dm.getHeight() * 3 / 5 - 64, ObjectId.wasteBin, handler, 1, images, this);
 		inventory = new Inventory(10, 10, ObjectId.inventory, handler);
 		critter = new Critter(600, dm.getHeight() * 3 / 5 - 32, ObjectId.critter, handler, true, true, dm, inventory, this, images);
 		
@@ -95,7 +95,7 @@ public class Game extends Canvas implements Runnable {
 		handler.addObject(trashBin);
 		handler.addObject(recyclebin);
 		handler.addObject(inventory);
-		handler.addObject(new Habitat(dmBoundaries[2], dmBoundaries[1] - 96 - 64, ObjectId.habitat, handler, dm));
+		handler.addObject(new Habitat(dmBoundaries[2]+16, dmBoundaries[1] - 96 - 64, ObjectId.habitat, handler, dm));
 
 		// Critter
 		handler.addObject(critter);

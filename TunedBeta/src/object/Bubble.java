@@ -32,7 +32,6 @@ public class Bubble extends GameObject {
 		else
 			x -= 3.5;
 		y += .5 * Math.sin(x / 25);
-		popBubble();
 	}
 
 	@Override
@@ -44,19 +43,23 @@ public class Bubble extends GameObject {
 	}
 
 	public void popBubble() {
-		if (x == bounds) {
-			pop = true;
-		}
+		pop = true;
+	}
+	
+	public boolean getPop(){
+		return pop;
 	}
 
 	public boolean getDeath() {
 		if(right){
 			if (x + 10 >= bounds) {
+				popBubble();
 				return true;
 			} else
 				return false;
 		}else{
 			if (x - 10 <= bounds) {
+				popBubble();
 				return true;
 			} else
 				return false;

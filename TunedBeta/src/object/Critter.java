@@ -519,7 +519,7 @@ public class Critter extends GameObject {
 					waste.canAttack = false;
 				}
 				if (getBodyBounds().intersects(temp.getBounds())) {
-					if (waste.canAttack && !invulnerable && waste.getType() != 2) {
+					if (waste.canAttack && !invulnerable && waste.getType() != 2 && !waste.checkDeath()) {
 						invulnerable = true;
 						clockInvincible = new Timer(3000, listener);
 						clockInvincible.start();
