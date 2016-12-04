@@ -7,8 +7,9 @@ import java.io.File;
 
 public class Images {
 	
-	final int actionFrameCount = 4;
+	final int actionFrameCount = 16;
 	BufferedImage[] wateringPlant;
+	BufferedImage[] buildingAction;
 
 	public Images(){
 		
@@ -17,6 +18,11 @@ public class Images {
 		for(int i = 0; i < actionFrameCount; i++){
 			BufferedImage img = createImage("actions/WateringPlant.png");
     		wateringPlant[i] = img.getSubimage(32*i, 0, 32, 32);
+    	}
+		buildingAction = new BufferedImage[actionFrameCount];
+		for(int i = 0; i < actionFrameCount; i++){
+			BufferedImage img = createImage("actions/Building.png");
+			buildingAction[i] = img.getSubimage(32*i, 0, 32, 32);
     	}
 		
 	}
@@ -36,6 +42,14 @@ public class Images {
 	// Getters and Setters
 	public int getActionFrameCount() {
 		return actionFrameCount;
+	}
+	
+	public BufferedImage getBuildingAction(int i) {
+		return buildingAction[i];
+	}
+
+	public void setBuildingAction(BufferedImage[] buildingAction) {
+		this.buildingAction = buildingAction;
 	}
 	
 	public BufferedImage getWateringPlant(int i) {

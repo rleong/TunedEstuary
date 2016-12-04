@@ -99,6 +99,21 @@ public class KeyInput extends KeyAdapter {
 					if (key == KeyEvent.VK_R) {
 						inv.toggleMenu();
 					}
+					if (key == KeyEvent.VK_Y) {
+						inv.buildGabion(gm);
+					}
+					if (key == KeyEvent.VK_U) {
+						inv.buildPlant1(gm);
+					}
+					if (key == KeyEvent.VK_I) {
+						
+					}
+					if (key == KeyEvent.VK_O) {
+						
+					}
+					if (key == KeyEvent.VK_P) {
+						
+					}
 				}
 			}
 		}

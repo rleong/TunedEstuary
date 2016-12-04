@@ -57,7 +57,7 @@ public class Waste extends GameObject {
 				setVelY(-15);
 				break;
 			case 2: // COMPOST
-				counter.addCompost();
+				counter.addPlant1();
 				break;
 			default: // ERROR
 				System.out.println("SOMETHING WENT WRONG YO");
@@ -180,7 +180,7 @@ public class Waste extends GameObject {
 	public int getType() {
 		return type;
 	}
-
+ 
 	public void bubbleCollide() {
 		x = bubble.getX()-2;
 		y += 1 * Math.sin(x / 25);

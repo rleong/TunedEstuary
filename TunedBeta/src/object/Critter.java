@@ -56,10 +56,16 @@ public class Critter extends GameObject {
 	int healthBarYLocation;
 	int nameXLocation;
 	int nameYLocation;
+	int buildXLocation;
+	int buildYLocation;
 
 	// GFX & Animations
 	int picNum = 0;
 	Images images;
+	
+	// Action Booleans
+	boolean plantAction = false;
+	boolean buildAction = false;
 
 	// Debugging
 	boolean debugging = false;
@@ -133,6 +139,8 @@ public class Critter extends GameObject {
 		nameYLocation = (int) (y - (dm.getHeight() * 48 / 100));
 		healthBarXLocation = (int) (x - (dm.getWidth() * 49 / 100));
 		healthBarYLocation = (int) (y - (dm.getHeight() * 47 / 100));
+		buildXLocation = (int) (x - (dm.getWidth() * 11 / 100));
+		buildYLocation = (int) (y + (dm.getHeight() * 35 / 100));
 	}
 
 	@Override
@@ -187,9 +195,15 @@ public class Critter extends GameObject {
 		
 		// Health Bars
 		drawHealthBars(g);
+		
+		// Build Options
+		drawBuildOptions(g);
 
 		// Animations
-		drawWateringPlantAction(g);
+		if(plantAction)
+			drawWateringPlantAction(g);
+		if(buildAction)
+			drawBuildingAction(g);
 
 		// Debugging Purposes Only
 		if (debugging) {
@@ -209,7 +223,37 @@ public class Critter extends GameObject {
 		}
 
 	}
-
+	
+	public void drawBuildOptions(Graphics g){
+		g.setColor(Color.ORANGE);
+		g.fillRect(buildXLocation, buildYLocation, 64, 64);
+		
+		g.setColor(Color.BLUE);
+		g.fillRect(buildXLocation+64+32, buildYLocation, 64, 64);
+		
+		g.setColor(Color.RED);
+		g.fillRect(buildXLocation+64+32+64+32, buildYLocation, 64, 64);
+		
+		g.setColor(Color.GRAY);
+		g.fillRect(buildXLocation+64+32+64+32+64+32, buildYLocation, 64, 64);
+		
+		g.setColor(Color.GREEN);
+		g.fillRect(buildXLocation+64+32+64+32+64+32+64+32, buildYLocation, 64, 64);
+	
+	}
+	
+	public void setBuildAnimation(boolean planting){
+		if(planting)
+			plantAction = true;
+		else
+			buildAction = true;
+	}
+	
+	public void endAnimation(){
+		plantAction = false;
+		buildAction = false;
+	}
+	
 	public void drawHealthBars(Graphics g) {
 		// Crab Health & SP Display
 		g.setColor(Color.BLACK);
@@ -264,6 +308,16 @@ public class Critter extends GameObject {
 		if (game.isPause()) {
 			g.drawImage(images.getWateringPlant(picNum), (int) x, (int) y - 42, game);
 		}
+
+	}
+	
+	public void drawBuildingAction(Graphics g) {
+		picNum = (picNum + 1) % images.getActionFrameCount();
+
+		if (game.isPause()) {
+			g.drawImage(images.getBuildingAction(picNum), (int) x, (int) y - 42, game);
+		}
+
 	}
 
 	// Set Character Damage

@@ -13,7 +13,6 @@ import java.awt.image.BufferStrategy;
 import javax.swing.Timer;
 
 import framework.KeyInput;
-import framework.MouseInput;
 import framework.ObjectId;
 import gfx.Images;
 import object.Boat;
@@ -102,7 +101,6 @@ public class Game extends Canvas implements Runnable {
 		handler.addObject(critter);
 		inventory.setCritter(critter);
 		this.addKeyListener(new KeyInput(handler, this));
-		this.addMouseListener(new MouseInput(handler, this));
 
 		// Game Timer
 		gameTime = new Timer(50000, gameTimeListener);
@@ -145,7 +143,7 @@ public class Game extends Canvas implements Runnable {
 			
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
-				System.out.println("FPS: " + frames + " TICKS: " + updates);
+				//System.out.println("FPS: " + frames + " TICKS: " + updates);
 				frames = 0;
 				updates = 0;
 				
@@ -219,6 +217,7 @@ public class Game extends Canvas implements Runnable {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			pause = false;
+			critter.endAnimation();
 			clock.stop();
 		}
 	};

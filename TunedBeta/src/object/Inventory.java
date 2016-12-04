@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 
+import javax.swing.JButton;
+
 import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
@@ -12,11 +14,11 @@ import window.Handler;
 
 public class Inventory extends GameObject {
 
-	private int countCompost = 0;
 	private int countOyster = 0;
-	private int countConcrete = 0;
-	private int countSmallSeed = 0;
-	private int countBigSeed = 0;
+	private int countPlant1 = 0;
+	private int countPlant2 = 0;
+	private int countPlant3 = 0;
+	private int countMiraclePlant = 0;
 	private int xx;
 	private int yy;
 	Critter critter;
@@ -41,39 +43,30 @@ public class Inventory extends GameObject {
 		yy = (int) critter.getY() - 144;
 		
 	}
-
-	// Compost
-	public void addCompost() {
-		countCompost++;
-	}
-	// public void subtractCompost(){
-	// countCompost--;
-	// }
-
+	
 	// Oyster
 	public void addOyster() {
 		countOyster++;
 	}
-	// public void subtractOysterCounter(){
-	// countOyster--;
-	// }
 
-	// Concrete
-	public void addConcrete() {
-		countConcrete++;
+	// Plant 1
+	public void addPlant1() {
+		countPlant1++;
 	}
-	// public void subtractConcrete(){
-	// countConcrete--;
-	// }
-
-	// Small Seed
-	public void addSmallSeed() {
-		countSmallSeed++;
+	
+	// Plant 2
+	public void addPlant2() {
+		countPlant2++;
+	}
+	
+	// Plant 3
+	public void addPlant3() {
+		countPlant3++;
 	}
 
-	// Big Seed
-	public void addBigSeed() {
-		countBigSeed++;
+	// Miracle Plant
+	public void addMiraclePlant() {
+		countMiraclePlant++;
 	}
 
 	@Override
@@ -85,15 +78,19 @@ public class Inventory extends GameObject {
 			drawMenu(g);
 
 		}
+
+	}
+	
+	public void buildGabion(Game gm) {
+		critter.planT(0);
+		critter.setBuildAnimation(false);
+		gm.setPause(3000);
 	}
 
-	public void build(double mx, double my, Game gm) {
-		if(menuActivation){
-			if (new Rectangle((int) mx, (int) my, (int) mx + 1, (int) my + 1).intersects(getWeakGrass())) {
-				critter.planT(0);
-				gm.setPause(3000);
-			}
-		}
+	public void buildPlant1(Game gm) {
+		critter.planT(0);
+		critter.setBuildAnimation(true);
+		gm.setPause(3000);
 	}
 
 	@Override
@@ -111,38 +108,38 @@ public class Inventory extends GameObject {
 		
 		// Borders
 		g.setColor(Color.WHITE);
-		g.drawRect((int) critter.getX() - 64, (int) critter.getY() - 144, 148, 115);
+		g.drawRect((int) critter.getX() - 64, (int) critter.getY() - 144, 160, 115);
 
 		// Compost
-		String output0 = "x" + countCompost + " Plant 1";
+		String output0 = "x" + countOyster + " Oyster Shells";
 		g.setColor(Color.white);
 		g.drawString(output0, (int) xx + 31, (int) yy + 23);
 		g.setColor(Color.orange);
 		g.fillRect((int) xx + 10, (int) yy + 10, 16, 16);
 
 		// Oyster Shells
-		String output1 = "x" + countOyster + " Plant 2";
+		String output1 = "x" + countPlant1 + " Regular Compost";
 		g.setColor(Color.white);
 		g.drawString(output1, (int) xx + 31, (int) yy + 43);
 		g.setColor(Color.blue);
 		g.fillRect((int) xx + 10, (int) yy + 30, 16, 16);
 
 		// Concrete
-		String output2 = "x" + countConcrete + " Plant 3";
+		String output2 = "x" + countPlant2 + " Good Compost";
 		g.setColor(Color.white);
 		g.drawString(output2, (int) xx + 31, (int) yy + 63);
 		g.setColor(Color.red);
 		g.fillRect((int) xx + 10, (int) yy + 50, 16, 16);
 
 		// Concrete
-		String output3 = "x" + countSmallSeed + " Plant 4";
+		String output3 = "x" + countPlant3 + " Great Compost";
 		g.setColor(Color.white);
 		g.drawString(output3, (int) xx + 31, (int) yy + 83);
 		g.setColor(Color.gray);
 		g.fillRect((int) xx + 10, (int) yy + 70, 16, 16);
 
 		// Concrete
-		String output4 = "x" + countBigSeed + " Oyster Gabion";
+		String output4 = "x" + countMiraclePlant + " Nutritious Compost";
 		g.setColor(Color.white);
 		g.drawString(output4, (int) xx + 31, (int) yy + 103);
 		g.setColor(Color.green);
