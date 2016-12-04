@@ -15,6 +15,9 @@ public class Images {
 	// Icons
 	BufferedImage gabionBuildIcon;
 	BufferedImage menuBar;
+	
+	// Test
+	BufferedImage testImg;
 
 	public Images(){
 		
@@ -33,6 +36,9 @@ public class Images {
 		// Icons
 		gabionBuildIcon = createImage("icons/BuildGabionIcon.png");
 		menuBar = createImage("icons/MenuBar.png");
+		
+		// Test
+		testImg = createImage("test/Test.png");
 	}
 	
 	private BufferedImage createImage(String x){
@@ -50,6 +56,14 @@ public class Images {
 	// Getters and Setters
 	public int getActionFrameCount() {
 		return actionFrameCount;
+	}
+	
+	public BufferedImage getTestImg() {
+		return testImg;
+	}
+
+	public void setTestImg(BufferedImage testImg) {
+		this.testImg = testImg;
 	}
 	
 	public BufferedImage getMenuBar() {

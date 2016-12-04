@@ -17,8 +17,8 @@ import window.Handler;
 public class Habitat extends GameObject{
 	
 	private double health = 30;
-	private final int TRASHDAMAGE = 1;
-	private final double COMPOSTDAMAGE = .5;
+	private final double TRASHDAMAGE = .5;
+	private final double COMPOSTDAMAGE = .25;
 	private int numberOfHazards = 0;
 	private int numberOfCompost = 0;
 	private double width;
@@ -27,7 +27,7 @@ public class Habitat extends GameObject{
 
 	public Habitat(double x, double y, ObjectId id, Handler handler, Dimension dm) {
 		super(x, y, id,handler);
-		width = dm.getWidth()-dm.getWidth()*3/4;
+		width = dm.getWidth()*3/2-dm.getWidth()*.84;
 		clock = new Timer(7000, listener);
 		clock.start();
 	}

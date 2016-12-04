@@ -62,9 +62,11 @@ public class KeyInput extends KeyAdapter {
 					// Movements
 					if (key == KeyEvent.VK_A) {
 						temp.setVelX(0);
+						t.setLeft();
 					}
 					if (key == KeyEvent.VK_D) {
 						temp.setVelX(0);
+						t.setRight();
 					}
 					if (key == KeyEvent.VK_W) {
 						temp.setVelY(0);

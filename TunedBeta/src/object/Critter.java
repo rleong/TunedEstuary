@@ -50,6 +50,7 @@ public class Critter extends GameObject {
 	Dimension dm;
 	boolean xdir;
 	boolean ydir;
+	boolean right;
 
 	// Location of Interface
 	int healthBarXLocation;
@@ -151,6 +152,7 @@ public class Critter extends GameObject {
 			switch (character) {
 			case 0:
 				g.setColor(Color.RED);
+				g.drawImage(images.getTestImg(), (int) x-16, (int) y-32, game );
 				break;
 			case 1:
 				g.setColor(Color.DARK_GRAY);
@@ -162,15 +164,15 @@ public class Critter extends GameObject {
 		} else {
 			g.setColor(Color.BLACK);
 		}
-		g.fillRect((int) x, (int) y, 32, 32);
+		//g.fillRect((int) x, (int) y, 32, 32);
 
 		// Character Inner Bounds
 		Graphics2D g2d = (Graphics2D) g;
-		g.setColor(Color.green);
-		g2d.draw(getBoundsTop());
-		g2d.draw(getBoundsBottom());
-		g2d.draw(getBoundsLeft());
-		g2d.draw(getBoundsRight());
+//		g.setColor(Color.green);
+//		g2d.draw(getBoundsTop());
+//		g2d.draw(getBoundsBottom());
+//		g2d.draw(getBoundsLeft());
+//		g2d.draw(getBoundsRight());
 
 		// Character Attack Range Bounds
 		g.setColor(Color.gray);
@@ -380,7 +382,7 @@ public class Critter extends GameObject {
 		case 1: // OYSTER
 			if (sp1 == SPRECHARGE) {
 				sp1 = 0;
-				handler.addObject(new Bubble(x - 8, y - 8, ObjectId.bubble, handler, dm.getWidth()));
+				handler.addObject(new Bubble(x - 8, y - 8, ObjectId.bubble, handler, right));
 			}
 			break;
 		case 2: // HORSESHOE CRAB
@@ -583,6 +585,14 @@ public class Critter extends GameObject {
 	public Rectangle getBoundsRight() {
 
 		return new Rectangle((int) x + 26, (int) y + 6, 6, 20);
+	}
+	
+	public void setRight(){
+		right = true;
+	}
+	
+	public void setLeft(){
+		right = false;
 	}
 
 }
