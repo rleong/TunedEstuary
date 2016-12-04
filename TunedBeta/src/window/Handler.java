@@ -89,7 +89,8 @@ public class Handler {
 			if (temp.getId() == ObjectId.critter && i != this.object.size()-1) {
 				Collections.swap(this.object, i, this.object.size()-1);
 			}
-		}
+		} // NEED TO ASK HARVEY ABOUT HOW I CAN MAKE THIS A PRIORITY YET NOT REPEAT ALL The TIME IN THE TICK!!!!!!!!!!!!!!!!!!!!!!!!!! IT IS CAUSING
+		// CLASSCASTEXCEPTION ERRORS!!!!!!!!!!!
 	}
 
 	public void removeObject(GameObject object) {

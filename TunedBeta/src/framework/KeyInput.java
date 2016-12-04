@@ -102,10 +102,10 @@ public class KeyInput extends KeyAdapter {
 						inv.toggleMenu();
 					}
 					if (key == KeyEvent.VK_Y) {
-						inv.buildGabion(gm);
+						inv.buildBarrier(gm, 0);
 					}
 					if (key == KeyEvent.VK_U) {
-						inv.buildPlant1(gm);
+						inv.buildBarrier(gm, 1);
 					}
 					if (key == KeyEvent.VK_I) {
 						

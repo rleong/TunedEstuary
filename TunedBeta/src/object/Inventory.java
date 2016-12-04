@@ -1,11 +1,15 @@
 package object;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.LinkedList;
 
 import javax.swing.JButton;
+import javax.swing.Timer;
 
 import control.Game;
 import framework.GameObject;
@@ -22,13 +26,26 @@ public class Inventory extends GameObject {
 	private int xx;
 	private int yy;
 	Critter critter;
+	Dimension dm;
 
 	// Menu
 	boolean menuActivation = false;
+	boolean error = false;
+	Timer errorTimer;
 
-	public Inventory(double x, double y, ObjectId id, Handler handler) {
+	public Inventory(double x, double y, ObjectId id, Handler handler, Dimension dm) {
 		super(x, y, id, handler);
+		this.dm = dm;
+		errorTimer = new Timer(5000, listener);
 	}
+
+	ActionListener listener = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			error = false;
+			errorTimer.stop();
+		}
+	};
 
 	public void setCritter(Critter critter) {
 		this.critter = critter;
@@ -38,12 +55,12 @@ public class Inventory extends GameObject {
 
 	@Override
 	public void tick(LinkedList<GameObject> object) {
-		
+
 		xx = (int) critter.getX() - 64;
 		yy = (int) critter.getY() - 144;
-		
+
 	}
-	
+
 	// Oyster
 	public void addOyster() {
 		countOyster++;
@@ -53,12 +70,12 @@ public class Inventory extends GameObject {
 	public void addPlant1() {
 		countPlant1++;
 	}
-	
+
 	// Plant 2
 	public void addPlant2() {
 		countPlant2++;
 	}
-	
+
 	// Plant 3
 	public void addPlant3() {
 		countPlant3++;
@@ -79,18 +96,36 @@ public class Inventory extends GameObject {
 
 		}
 
+		// Error
+		if (error) {
+			drawError(g);
+		}
+
 	}
 	
-	public void buildGabion(Game gm) {
-		critter.planT(0);
-		critter.setBuildAnimation(false);
-		gm.setPause(3000);
-	}
-
-	public void buildPlant1(Game gm) {
-		critter.planT(0);
-		critter.setBuildAnimation(true);
-		gm.setPause(3000);
+	public void buildBarrier(Game gm, int type) {
+		if (critter.getX() <= dm.getWidth() * .84 - 64 && !error) {
+			switch(type){
+			case 0:
+				critter.planT(0);
+				critter.setBuildAnimation(false);
+				break;
+			case 1:
+				critter.planT(0);
+				critter.setBuildAnimation(true);
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				break;
+			}
+			gm.setPause(3000);
+		} else {
+			error = true;
+			errorTimer.start();
+		}
 	}
 
 	@Override
@@ -102,10 +137,10 @@ public class Inventory extends GameObject {
 		return new Rectangle((int) xx + 10, (int) yy + 10, 16, 16);
 	}
 
-	// Menu (Currently not using) 
+	// Menu (Currently not using)
 
 	public void drawMenu(Graphics g) {
-		
+
 		// Borders
 		g.setColor(Color.WHITE);
 		g.drawRect((int) critter.getX() - 64, (int) critter.getY() - 144, 160, 115);
@@ -144,7 +179,12 @@ public class Inventory extends GameObject {
 		g.drawString(output4, (int) xx + 31, (int) yy + 103);
 		g.setColor(Color.green);
 		g.fillRect((int) xx + 10, (int) yy + 90, 16, 16);
-		
+
+	}
+
+	public void drawError(Graphics g) {
+		g.setColor(Color.WHITE);
+		g.drawString("You cannot build or plant here!", (int) critter.getX() - 64, (int) critter.getY() - 32);
 	}
 
 	public void toggleMenu() {

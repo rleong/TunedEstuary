@@ -86,7 +86,7 @@ public class Game extends Canvas implements Runnable {
 		school = new SchoolFish(dm.getWidth(), dm.getHeight()*4/5, ObjectId.school, handler, this);
 		trashBin = new WasteBin(dm.getWidth() * .84 - 128, dm.getHeight() * 3 / 5 - 64, ObjectId.wasteBin, handler, 0, images, this);
 		recyclebin = new WasteBin(dm.getWidth() * .84 - 192, dm.getHeight() * 3 / 5 - 64, ObjectId.wasteBin, handler, 1, images, this);
-		inventory = new Inventory(10, 10, ObjectId.inventory, handler);
+		inventory = new Inventory(10, 10, ObjectId.inventory, handler, dm);
 		critter = new Critter(600, dm.getHeight() * 3 / 5 - 32, ObjectId.critter, handler, true, true, dm, inventory, this, images);
 		
 		// Game 1 Objects
