@@ -103,7 +103,7 @@ public class Game extends Canvas implements Runnable {
 		this.addKeyListener(new KeyInput(handler, this));
 
 		// Game Timer
-		gameTime = new Timer(50000, gameTimeListener);
+		gameTime = new Timer(5000, gameTimeListener);
 		gameTime.start();
 	}
 

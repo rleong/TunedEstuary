@@ -35,12 +35,46 @@ public class RofFactory extends GameObject {
 		case 1:
 			if(game.nWaste<0){
 				game.nWaste=0;
+				game.nW1=0;
 				game.g2stage+=1;
 				break;
 			}
 			wave1();
 			break;
 		case 2:
+			if (System.currentTimeMillis() - timer > 10000) {
+				timer=System.currentTimeMillis();
+				game.g2stage+=1;
+			}
+			break;
+			
+		case 3:
+			if(game.nWaste<0){
+				game.nWaste=0;
+				game.nW1=0;
+				game.nW2=0;
+				game.g2stage+=1;
+				break;
+			}
+			wave2();
+			break;
+		case 4:
+			if (System.currentTimeMillis() - timer > 10000) {
+				timer=System.currentTimeMillis();
+				game.g2stage+=1;
+			}
+			break;
+		case 5:
+			wave3();
+			break;
+		case 6:
+			if (System.currentTimeMillis() - timer > 10000) {
+				timer=System.currentTimeMillis();
+				game.g2stage+=1;
+			}
+			break;
+		case 7:
+			wave4();
 			break;
 		}
 		
@@ -70,13 +104,38 @@ public class RofFactory extends GameObject {
 		}
 	}
 	public void wave2(){
-		
+		if(game.nW1<5){
+			if (System.currentTimeMillis() - timer > 2500) {
+				timer += 2500;
+				handler.object.add(new Runoff(x, y, game.dm, handler, ObjectId.runOff, 0, game));
+				game.nW1+=1;
+				
+			}
+		}
+		else if(game.nW2<2){
+			if (System.currentTimeMillis() - timer > 2500) {
+				timer += 2500;
+				handler.object.add(new Runoff(x,y,game.dm, handler, ObjectId.runOff,1,game));
+				game.nW2+=1;
+			}
+		game.nWaste+=1;
+		}
 	}
 	public void wave3(){
-		
+		if (System.currentTimeMillis() - timer > 2500 && game.nW1<5) {
+			timer += 2500;
+			handler.object.add(new Runoff(x, y, game.dm, handler, ObjectId.runOff, 0, game));
+			game.nW1+=1;
+			game.nWaste+=1;
+		}
 	}
 	public void wave4(){
-		
+		if (System.currentTimeMillis() - timer > 2500 && game.nW1<5) {
+			timer += 2500;
+			handler.object.add(new Runoff(x, y, game.dm, handler, ObjectId.runOff, 0, game));
+			game.nW1+=1;
+			game.nWaste+=1;
+		}
 	}
 
 }
