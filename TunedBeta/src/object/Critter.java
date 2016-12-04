@@ -225,8 +225,11 @@ public class Critter extends GameObject {
 	}
 	
 	public void drawBuildOptions(Graphics g){
-		g.setColor(Color.ORANGE);
-		g.fillRect(buildXLocation, buildYLocation, 64, 64);
+		
+		g.drawImage(images.getMenuBar(), buildXLocation-32, buildYLocation-26, game);
+		
+		g.drawImage(images.getGabionBuildIcon(), buildXLocation, buildYLocation, game);
+		//g.fillRect(buildXLocation, buildYLocation, 64, 64);
 		
 		g.setColor(Color.BLUE);
 		g.fillRect(buildXLocation+64+32, buildYLocation, 64, 64);

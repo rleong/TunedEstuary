@@ -7,9 +7,14 @@ import java.io.File;
 
 public class Images {
 	
+	// Actions
 	final int actionFrameCount = 16;
 	BufferedImage[] wateringPlant;
 	BufferedImage[] buildingAction;
+	
+	// Icons
+	BufferedImage gabionBuildIcon;
+	BufferedImage menuBar;
 
 	public Images(){
 		
@@ -25,6 +30,9 @@ public class Images {
 			buildingAction[i] = img.getSubimage(32*i, 0, 32, 32);
     	}
 		
+		// Icons
+		gabionBuildIcon = createImage("icons/BuildGabionIcon.png");
+		menuBar = createImage("icons/MenuBar.png");
 	}
 	
 	private BufferedImage createImage(String x){
@@ -42,6 +50,22 @@ public class Images {
 	// Getters and Setters
 	public int getActionFrameCount() {
 		return actionFrameCount;
+	}
+	
+	public BufferedImage getMenuBar() {
+		return menuBar;
+	}
+
+	public void setMenuBar(BufferedImage menuBar) {
+		this.menuBar = menuBar;
+	}
+	
+	public BufferedImage getGabionBuildIcon() {
+		return gabionBuildIcon;
+	}
+
+	public void setGabionBuildIcon(BufferedImage gabionBuildIcon) {
+		this.gabionBuildIcon = gabionBuildIcon;
 	}
 	
 	public BufferedImage getBuildingAction(int i) {
