@@ -9,17 +9,19 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferStrategy;
+import java.util.Random;
 
 import javax.swing.Timer;
 
 import framework.KeyInput;
 import framework.ObjectId;
 import gfx.Images;
+import object.Barrier;
 import object.Boat;
-import object.Inventory;
 import object.Critter;
 import object.GuardianFish;
 import object.Habitat;
+import object.Inventory;
 import object.RofFactory;
 import object.SchoolFish;
 import object.WasteBin;
@@ -43,7 +45,8 @@ public class Game extends Canvas implements Runnable {
 	Timer clock;
 	public int nRof = 0;
 	public int g2stage = 0;
-	public int trees = 0;
+	Barrier barrier;
+	private Random rand = new Random();
 	// Object
 	public Handler handler;
 	public Handler handler2;
@@ -64,6 +67,7 @@ public class Game extends Canvas implements Runnable {
 	boolean game2 = false;
 	boolean game3 = false;
 	Timer gameTime;
+	Timer game3Time;
 
 	// Game2 var
 
@@ -73,6 +77,7 @@ public class Game extends Canvas implements Runnable {
 	public double nW3 = 0;
 	public double nW4 = 0;
 
+	KeyInput k;
 	// Camera
 	Camera cam;
 
@@ -81,6 +86,7 @@ public class Game extends Canvas implements Runnable {
 		handler = new Handler(this);
 		handler2 = new Handler(this);
 		cam = new Camera(0, 0, dm);
+		barrier = new Barrier((int)(dm.getWidth()/2 + dm.getWidth()/4),(int)(dm.height/2 + (dm.getHeight()/15)),ObjectId.barrier, handler);
 		// 0 1 2 3 4
 		// Width, Height, Water Start Width, Water Bottom Height, Water Surface
 		// Height
