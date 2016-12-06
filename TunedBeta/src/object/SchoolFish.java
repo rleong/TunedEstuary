@@ -20,8 +20,8 @@ public class SchoolFish extends GameObject {
 	boolean isDead;
 	List<Fish> school = new ArrayList<Fish>();
 
-	public SchoolFish(double x, double y, ObjectId id, Handler handler, Game game) {
-		super(x, y, id, handler);
+	public SchoolFish(double x, double y, ObjectId id, Game game) {
+		super(x, y, id, game);
 		this.game = game;
 		velX = speed;
 		school.add(new Fish(1));

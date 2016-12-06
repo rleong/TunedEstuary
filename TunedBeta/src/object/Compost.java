@@ -4,14 +4,15 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 
+import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
 import window.Handler;
 
 public class Compost extends GameObject {
 	int type;
-	public Compost(double x, double y, ObjectId id, Handler handler, int type) {
-		super(x, y, id, handler);
+	public Compost(double x, double y, ObjectId id, Game game, int type) {
+		super(x, y, id, game);
 		this.type=type;
 	}
 
@@ -27,8 +28,8 @@ public class Compost extends GameObject {
 
 	private void collision() {
 		// TODO Auto-generated method stub
-		for (int i = 0; i < handler.object.size(); i++) {
-			GameObject temp = handler.object.get(i);
+		for (int i = 0; i < game.handler.object.size(); i++) {
+			GameObject temp = game.handler.object.get(i);
 			if (temp.getId() == ObjectId.sand) {
 				if(getBounds().intersects(temp.getBounds())){
 					falling=false;

@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 import java.util.Random;
+
+import control.Game;
 import window.Handler;
 
 import framework.GameObject;
@@ -19,8 +21,8 @@ public class Clock extends GameObject{
 	WasteBin recyclebin;
 	Inventory counter;
 
-	public Clock(double x, double y, ObjectId id, Handler handler, WasteBin trashbin, WasteBin recyclebin, Inventory counter) {
-		super(x, y, id, handler);
+	public Clock(double x, double y, ObjectId id, Game game, WasteBin trashbin, WasteBin recyclebin, Inventory counter) {
+		super(x, y, id, game);
 		this.trashbin=trashbin;
 		this.recyclebin=recyclebin;
 		this.counter = counter;
@@ -55,14 +57,14 @@ public class Clock extends GameObject{
 	public void spawnTrash(){
 		amount = rand.nextInt(3);
 		for(int i = 0; i < amount; i++){
-			handler.addObject(new Waste(rand.nextInt(600), rand.nextInt(200), ObjectId.trash,handler,trashbin, recyclebin, counter, 0));
+			game.handler.addObject(new Waste(rand.nextInt(600), rand.nextInt(200), ObjectId.trash,game,trashbin, recyclebin, counter, 0));
 		}
 	}
 	
 	public void spawnRecycle(){
 		amount = rand.nextInt(3);
 		for(int i = 0; i < amount; i++){
-			handler.addObject(new Waste(rand.nextInt(600), rand.nextInt(200), ObjectId.recycle,handler, trashbin, recyclebin, counter, 1));
+			game.handler.addObject(new Waste(rand.nextInt(600), rand.nextInt(200), ObjectId.recycle,game, trashbin, recyclebin, counter, 1));
 		}
 	}
 

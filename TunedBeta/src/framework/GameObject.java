@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 
+import control.Game;
 import window.Handler;
 
 public abstract class GameObject {
@@ -12,14 +13,13 @@ public abstract class GameObject {
 	protected double velX = 0, velY = 0;
 	protected boolean falling=true;
 	protected double gravity =0.055f;
-	protected Handler handler;
+	protected Game game;
 	
-	
-	public GameObject(double x, double y, ObjectId id, Handler handler) {
+	public GameObject(double x, double y, ObjectId id, Game game) {
 		this.x = x;
 		this.y = y;
 		this.id = id;
-		this.handler=handler;
+		this.game=game;
 	}
 	
 	public abstract void tick(LinkedList<GameObject> object);

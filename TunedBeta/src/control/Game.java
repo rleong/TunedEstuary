@@ -45,7 +45,8 @@ public class Game extends Canvas implements Runnable {
 	public int g2stage = 0;
 	public int trees = 0;
 	// Object
-	Handler handler;
+	public Handler handler;
+	public Handler handler2;
 	RofFactory factory;
 	WasteBin trashBin;
 	WasteBin recyclebin;
@@ -78,37 +79,38 @@ public class Game extends Canvas implements Runnable {
 	private void init() {
 		// Default Objects
 		handler = new Handler(this);
+		handler2 = new Handler(this);
 		cam = new Camera(0, 0, dm);
 		// 0 1 2 3 4
 		// Width, Height, Water Start Width, Water Bottom Height, Water Surface
 		// Height
 		handler.creatSurface(dm);
 		dmBoundaries = handler.spawnLocations(dm);
-		factory = new RofFactory(0, dm.getHeight() * 3 / 5 - 32, ObjectId.RofFactory, handler, this);
-		school = new SchoolFish(dm.getWidth(), dm.getHeight()*4/5, ObjectId.school, handler, this);
-		school2 = new SchoolFish(dm.getWidth()*1.2, dm.getHeight()*3.6/5, ObjectId.school, handler, this);
-		school3 = new SchoolFish(dm.getWidth()*1.5, dm.getHeight()*3.2/5, ObjectId.school, handler, this);
-		gfish= new GuardianFish(dm.getWidth()*1.517, dm.getHeight(), ObjectId.guardian, handler, this);
+		factory = new RofFactory(0, dm.getHeight() * 3 / 5 - 32, ObjectId.RofFactory, this);
+		school = new SchoolFish(dm.getWidth(), dm.getHeight()*4/5, ObjectId.school, this);
+		school2 = new SchoolFish(dm.getWidth()*1.2, dm.getHeight()*3.6/5, ObjectId.school, this);
+		school3 = new SchoolFish(dm.getWidth()*1.5, dm.getHeight()*3.2/5, ObjectId.school, this);
+		gfish= new GuardianFish(dm.getWidth()*1.517, dm.getHeight(), ObjectId.guardian,this);
 		
-		trashBin = new WasteBin(dm.getWidth() * .84 - 128, dm.getHeight() * 3 / 5 - 64, ObjectId.wasteBin, handler, 0, images, this);
-		recyclebin = new WasteBin(dm.getWidth() * .84 - 192, dm.getHeight() * 3 / 5 - 64, ObjectId.wasteBin, handler, 1, images, this);
+		trashBin = new WasteBin(dm.getWidth() * .84 - 128, dm.getHeight() * 3 / 5 - 64, ObjectId.wasteBin, 0, images, this);
+		recyclebin = new WasteBin(dm.getWidth() * .84 - 192, dm.getHeight() * 3 / 5 - 64, ObjectId.wasteBin, 1, images, this);
 		
-		inventory = new Inventory(10, 10, ObjectId.inventory, handler, dm);
-		critter = new Critter(600, dm.getHeight() * 3 / 5 - 32, ObjectId.critter, handler, true, true, dm, inventory,
+		inventory = new Inventory(10, 10, ObjectId.inventory, this, dm);
+		critter = new Critter(600, dm.getHeight() * 3 / 5 - 32, ObjectId.critter, true, true, dm, inventory,
 				this, images);
 
 		// Game 1 Objects
-		handler.addObject(new Boat(dmBoundaries[2], dmBoundaries[4] - 40, ObjectId.boat, handler, trashBin, recyclebin,
+		handler.addObject(new Boat(dmBoundaries[2], dmBoundaries[4] - 40, ObjectId.boat, this, trashBin, recyclebin,
 				inventory, dmBoundaries[2], dm.getWidth() * 3 / 2));
 		handler.addObject(trashBin);
 		handler.addObject(recyclebin);
 		handler.addObject(inventory);
-		handler.addObject(new Habitat(dmBoundaries[2] + 16, dmBoundaries[1] - 96 - 64, ObjectId.habitat, handler, dm));
+		handler.addObject(new Habitat(dmBoundaries[2] + 16, dmBoundaries[1] - 96 - 64, ObjectId.habitat, this, dm));
 
 		// Critter
-		handler.addObject(critter);
+		handler2.addObject(critter);
 		inventory.setCritter(critter);
-		this.addKeyListener(new KeyInput(handler, this));
+		this.addKeyListener(new KeyInput(handler,handler2, this));
 
 		// Game Timer
 		gameTime = new Timer(5000, gameTimeListener);
@@ -165,9 +167,10 @@ public class Game extends Canvas implements Runnable {
 
 	private void tick() {
 		handler.tick();
-		for (int i = 0; i < handler.object.size(); i++) {
-			if (handler.object.get(i).getId() == ObjectId.critter) {
-				cam.tick(handler.object.get(i));
+		handler2.tick();
+		for (int i = 0; i < handler2.object.size(); i++) {
+			if (handler2.object.get(i).getId() == ObjectId.critter) {
+				cam.tick(handler2.object.get(i));
 			}
 		}
 	}
@@ -203,6 +206,7 @@ public class Game extends Canvas implements Runnable {
 
 		g2d.translate(cam.getX(), cam.getY());
 		handler.render(g);
+		handler2.render(g);
 		g2d.translate(-cam.getX(), -cam.getY());
 		//
 		g.dispose();

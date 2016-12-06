@@ -17,11 +17,11 @@ public class WasteBin extends GameObject {
 	Images images;
 	Game gm;
 
-	public WasteBin(double x, double y, ObjectId id, Handler handler, int type, Images images, Game gm) {
-		super(x, y, id, handler);
+	public WasteBin(double x, double y, ObjectId id, int type, Images images, Game game) {
+		super(x, y, id, game);
 		this.type = type;
 		this.images = images;
-		this.gm = gm;
+		
 	}
 
 	@Override

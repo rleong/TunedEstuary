@@ -16,8 +16,8 @@ public class Runoff extends GameObject {
 	Dimension dm;
 	Game game;
 
-	public Runoff(double x, double y, Dimension dm, Handler handler, ObjectId id, int type, Game game) {
-		super(x, y, id, handler);
+	public Runoff(double x, double y, Dimension dm, ObjectId id, int type, Game game) {
+		super(x, y, id, game);
 		if (type == 0 || type == 1 || type == 2) {
 			setVelX(1.2);
 		} else if (type == 3) {
@@ -34,7 +34,7 @@ public class Runoff extends GameObject {
 			velY += gravity;
 		x += velX;
 		y += velY;
-		collision(handler.object);
+		collision(game.handler.object);
 	}
 
 	@Override
@@ -72,8 +72,8 @@ public class Runoff extends GameObject {
 	}
 
 	private void collision(LinkedList<GameObject> object) {
-		for (int i = 0; i < handler.object.size(); i++) {
-			GameObject temp = handler.object.get(i);
+		for (int i = 0; i < game.handler.object.size(); i++) {
+			GameObject temp = game.handler.object.get(i);
 			if (temp.getId() == ObjectId.landSurface) {
 				if (getBounds().intersects(temp.getBounds())) {
 					falling = false;
@@ -102,7 +102,7 @@ public class Runoff extends GameObject {
 					game.count += 1;
 					
 					game.nWaste-=1.005;
-					handler.removeObject(this);
+					game.handler.removeObject(this);
 					
 					
 				}

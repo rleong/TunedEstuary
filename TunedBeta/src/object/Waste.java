@@ -5,9 +5,9 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 
+import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
-import window.Handler;
 
 public class Waste extends GameObject {
 	int damage = 5;
@@ -24,9 +24,9 @@ public class Waste extends GameObject {
 	Bubble bubble;
 	double boundaries = 0;
 
-	public Waste(double x, double y, ObjectId id, Handler handler, WasteBin trashBin, WasteBin recycleBin,
+	public Waste(double x, double y, ObjectId id, Game game, WasteBin trashBin, WasteBin recycleBin,
 			Inventory counter, int type) {
-		super(x, y, id, handler);
+		super(x, y, id, game);
 		this.trashBin = trashBin;
 		this.recycleBin = recycleBin;
 		this.counter = counter;
@@ -189,8 +189,8 @@ public class Waste extends GameObject {
 	}
 
 	private void collision(LinkedList<GameObject> object) {
-		for (int i = 0; i < handler.object.size(); i++) {
-			GameObject temp = handler.object.get(i);
+		for (int i = 0; i < game.handler.object.size(); i++) {
+			GameObject temp = game.handler.object.get(i);
 			if (temp.getId() == ObjectId.sand) {
 				if (getBoundsBottom().intersects(temp.getBounds())) {
 					setY(temp.getY() - 32);

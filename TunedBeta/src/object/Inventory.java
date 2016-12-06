@@ -33,8 +33,8 @@ public class Inventory extends GameObject {
 	boolean error = false;
 	Timer errorTimer;
 
-	public Inventory(double x, double y, ObjectId id, Handler handler, Dimension dm) {
-		super(x, y, id, handler);
+	public Inventory(double x, double y, ObjectId id, Game game, Dimension dm) {
+		super(x, y, id, game);
 		this.dm = dm;
 		errorTimer = new Timer(5000, listener);
 	}

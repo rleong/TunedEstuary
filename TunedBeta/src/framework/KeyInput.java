@@ -11,17 +11,18 @@ import window.Handler;
 public class KeyInput extends KeyAdapter {
 	Handler handler;
 	Game gm;
-
-	public KeyInput(Handler handler, Game gm) {
+	Handler handler2;
+	public KeyInput(Handler handler,Handler handler2, Game gm) {
 		this.handler = handler;
 		this.gm = gm;
+		this.handler2=handler2;
 	}
 
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		if (!gm.isPause()) {
-			for (int i = 0; i < handler.object.size(); i++) {
-				GameObject temp = handler.object.get(i);
+			for (int i = 0; i < handler2.object.size(); i++) {
+				GameObject temp = handler2.object.get(i);
 
 				if (temp.getId() == ObjectId.critter) {
 					Critter t = (Critter) temp;
@@ -62,8 +63,8 @@ public class KeyInput extends KeyAdapter {
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
 		if (!gm.isPause()) {
-			for (int i = 0; i < handler.object.size(); i++) {
-				GameObject temp = handler.object.get(i);
+			for (int i = 0; i < handler2.object.size(); i++) {
+				GameObject temp = handler2.object.get(i);
 				if (temp.getId() == ObjectId.critter) {
 					Critter t = (Critter) temp;
 					// Movements
@@ -104,6 +105,10 @@ public class KeyInput extends KeyAdapter {
 						t.setDebug();
 					}
 				}
+			}
+			for (int i = 0; i < handler.object.size(); i++) {
+				GameObject temp = handler.object.get(i);
+				
 				if (temp.getId() == ObjectId.inventory) {
 					Inventory inv = (Inventory) temp;
 					// Menu Toggle
@@ -127,6 +132,7 @@ public class KeyInput extends KeyAdapter {
 					}
 				}
 			}
+		
 		}
 
 	}

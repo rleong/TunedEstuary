@@ -12,10 +12,9 @@ import framework.ObjectId;
 import window.Handler;
 
 public class LandSurface extends GameObject {
-	Game game;
-	public LandSurface(double x, double y, ObjectId id, Handler handler, Game game) {
-		super(x, y, id, handler);
-		this.game=game;
+	public LandSurface(double x, double y, ObjectId id, Game game) {
+		super(x, y, id, game);
+
 	}
 
 	@Override

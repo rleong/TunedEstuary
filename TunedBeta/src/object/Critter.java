@@ -23,7 +23,6 @@ public class Critter extends GameObject {
 	int character;
 	int damage;
 	Inventory inventory;
-	Game game;
 
 	// Character Health
 	int health0;
@@ -76,10 +75,10 @@ public class Critter extends GameObject {
 	// Debugging
 	boolean debugging = false;
 
-	public Critter(double x, double y, ObjectId id, Handler handler, boolean xdir, boolean ydir, Dimension dm,
+	public Critter(double x, double y, ObjectId id, boolean xdir, boolean ydir, Dimension dm,
 			Inventory inventory, Game game, Images images) {
 		// Basics
-		super(x, y, id, handler);
+		super(x, y, id, game);
 		this.xdir = xdir;
 		this.ydir = ydir;
 		character = 0;
@@ -88,7 +87,6 @@ public class Critter extends GameObject {
 		health1 = 100;
 		health2 = 100;
 		this.inventory = inventory;
-		this.game = game;
 
 		// Physics
 		jump = false;
@@ -160,7 +158,7 @@ public class Critter extends GameObject {
 			sp2++;
 
 		// Collisions
-		collision(object);
+		collision(game.handler.object);
 
 		// Health Bar & Name Locations
 		nameXLocation = (int) (x - (dm.getWidth() * 49 / 100));
@@ -448,7 +446,7 @@ public class Critter extends GameObject {
 		case 1: // OYSTER
 			if (sp1 == SPRECHARGE) {
 				sp1 = 0;
-				handler.addObject(new Bubble(x - 8, y - 8, ObjectId.bubble, handler, right));
+				game.handler.addObject(new Bubble(x - 8, y - 8, ObjectId.bubble, game, right));
 			}
 			break;
 		case 2: // HORSESHOE CRAB
@@ -489,7 +487,7 @@ public class Critter extends GameObject {
 
 	// Plants plants
 	public void planT(int type) {
-		handler.addObject(new Tree(x, dm.getHeight() * 3 / 5 - 32, ObjectId.tree, handler, type, game));
+		game.handler.addObject(new Tree(x, dm.getHeight() * 3 / 5 - 32, ObjectId.tree, type, game));
 	}
 
 	/**
@@ -505,8 +503,8 @@ public class Critter extends GameObject {
 	 */
 	// Collision
 	private void collision(LinkedList<GameObject> object) {
-		for (int i = 0; i < handler.object.size(); i++) {
-			GameObject temp = handler.object.get(i);
+		for (int i = 0; i < game.handler.object.size(); i++) {
+			GameObject temp = game.handler.object.get(i);
 			if (temp.getId() == ObjectId.landSurface) {
 				if (getBoundsBottom().intersects(temp.getBounds())) {
 					setY(temp.getY() - 31);

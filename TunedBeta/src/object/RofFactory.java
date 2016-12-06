@@ -13,13 +13,11 @@ import framework.ObjectId;
 import window.Handler;
 
 public class RofFactory extends GameObject {
-	Game game;
 	long timer;
 	int count=0;
-	public RofFactory(double x, double y, ObjectId id, Handler handler, Game game) {
-		super(x, y, id, handler);
+	public RofFactory(double x, double y, ObjectId id, Game game) {
+		super(x, y, id, game);
 		// TODO Auto-generated constructor stub
-		this.game=game;
 		timer=System.currentTimeMillis();
 	}
 
@@ -38,7 +36,7 @@ public class RofFactory extends GameObject {
 			}
 			if(game.g2stage==1){
 				if(game.nW1<5){
-					handler.object.add(new Runoff(x, y, game.dm, handler, ObjectId.runOff, 0, game));
+					game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 0,game));
 					game.nW1++;
 					game.nWaste++;
 				}
@@ -54,20 +52,20 @@ public class RofFactory extends GameObject {
 					count=0;
 					Random random=new Random();
 					int xx= random.nextInt(1000) % (int)(game.dm.getWidth()*1.5-game.dm.getWidth()*5/6-32);
-					handler.addObject(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, handler, game.dm));
+					game.handler.addObject(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, game, game.dm));
 				}
 				count+=1;
 				
 			}
 			if(game.g2stage==3){
 				if(game.nW1<5){
-					handler.object.add(new Runoff(x, y, game.dm, handler, ObjectId.runOff, 0, game));
+					game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 0,game));
 					game.nW1++;
 					game.nWaste++;
 					return;
 				}
 				if(game.nW1==5){
-					handler.object.add(new Runoff(x, y, game.dm, handler, ObjectId.runOff, 1, game));
+					game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 1,game));
 					game.nW2++;
 					if(game.nW2==2){
 						game.nW1++;
@@ -89,20 +87,20 @@ public class RofFactory extends GameObject {
 						count=0;
 						Random random=new Random();
 						int xx= random.nextInt(1000) % (int)(game.dm.getWidth()*1.5-game.dm.getWidth()*5/6-32);
-						handler.addObject(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, handler, game.dm));
+						game.handler.addObject(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, game, game.dm));
 					}
 					count+=1;
 				}
 			
 			if(game.g2stage==5){
 				if(game.nW1<3){
-					handler.object.add(new Runoff(x, y, game.dm, handler, ObjectId.runOff, 0, game));
+					game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 0,game));
 					game.nW1++;
 					game.nWaste++;
 					return;
 				}
 				if(game.nW1==3){
-					handler.object.add(new Runoff(x, y, game.dm, handler, ObjectId.runOff, 1, game));
+					game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 1,game));
 					game.nW2++;
 					if(game.nW2==3){
 						game.nW1++;
@@ -111,7 +109,7 @@ public class RofFactory extends GameObject {
 					return;
 				}
 				if(game.nW2==3){
-					handler.object.add(new Runoff(x, y, game.dm, handler, ObjectId.runOff, 2, game));
+					game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 2, game));
 					game.nW3++;
 					if(game.nW3==3){
 						game.nW2++;
@@ -137,7 +135,7 @@ public class RofFactory extends GameObject {
 				}
 			
 			if(game.g2stage==7){
-				handler.object.add(new Runoff(x, y, game.dm, handler, ObjectId.runOff, 4, game));
+				game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 4, game));
 				game.nW4++;
 				game.nWaste++;
 				if(game.nWaste<0){
@@ -153,7 +151,7 @@ public class RofFactory extends GameObject {
 		for(int i=0; i<3; i++){
 			Random random = new Random();
 			int xx= random.nextInt(1000) % (int)(game.dm.getWidth()*1.5-game.dm.getWidth()*5/6-32);
-			handler.object.add(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, handler, game.dm));
+			game.handler.object.add(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, game, game.dm));
 		}
 	}
 

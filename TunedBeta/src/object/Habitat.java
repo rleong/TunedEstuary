@@ -10,9 +10,9 @@ import java.util.LinkedList;
 
 import javax.swing.Timer;
 
+import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
-import window.Handler;
 
 public class Habitat extends GameObject{
 	
@@ -25,8 +25,8 @@ public class Habitat extends GameObject{
 	
 	Timer clock;
 
-	public Habitat(double x, double y, ObjectId id, Handler handler, Dimension dm) {
-		super(x, y, id,handler);
+	public Habitat(double x, double y, ObjectId id, Game game, Dimension dm) {
+		super(x, y, id,game);
 		width = dm.getWidth()*3/2-dm.getWidth()*.84;
 		clock = new Timer(7000, listener);
 		clock.start();
@@ -63,8 +63,8 @@ public class Habitat extends GameObject{
 	private void collision(LinkedList<GameObject> object) {
 		numberOfHazards = 0;
 		numberOfCompost = 0;
-		for (int i = 0; i < handler.object.size(); i++) {
-			GameObject temp = handler.object.get(i);
+		for (int i = 0; i < game.handler.object.size(); i++) {
+			GameObject temp = game.handler.object.get(i);
 			if (temp.getId() == ObjectId.waste) {
 				Waste waste = (Waste) temp;
 				if (getBounds().intersects(temp.getBounds()) && !waste.checkDeath() && !waste.getIsTrapped()) {
