@@ -15,6 +15,7 @@ import window.Handler;
 public class RofFactory extends GameObject {
 	Game game;
 	long timer;
+	int count=0;
 	public RofFactory(double x, double y, ObjectId id, Handler handler, Game game) {
 		super(x, y, id, handler);
 		// TODO Auto-generated constructor stub
@@ -25,25 +26,135 @@ public class RofFactory extends GameObject {
 	@Override
 	public void tick(LinkedList<GameObject> object) {
 		// TODO Auto-generated method stub
-		switch(game.g2stage){
-		case 0:
-			if (System.currentTimeMillis() - timer > 8000) {
-				timer=System.currentTimeMillis();
-				game.g2stage+=1;
+
+		if(System.currentTimeMillis()-timer>2500){
+			timer=System.currentTimeMillis();
+			if(game.g2stage==0){
+				if(count>3){
+					game.g2stage+=1;
+					count=0;
+				}
+				count+=1;
 			}
-			break;
-		case 1:
-			if(game.nWaste<0){
-				game.nWaste=0;
-				game.g2stage+=1;
-				break;
+			if(game.g2stage==1){
+				if(game.nW1<5){
+					handler.object.add(new Runoff(x, y, game.dm, handler, ObjectId.runOff, 0, game));
+					game.nW1++;
+					game.nWaste++;
+				}
+				if(game.nWaste<0){
+					game.g2stage++;
+					game.nWaste=0;
+					game.nW1=0;
+				}
 			}
-			wave1();
-			break;
-		case 2:
-			break;
+			if(game.g2stage==2){
+				if(count>3){
+					game.g2stage+=1;
+					count=0;
+					Random random=new Random();
+					int xx= random.nextInt(1000) % (int)(game.dm.getWidth()*1.5-game.dm.getWidth()*5/6-32);
+					handler.addObject(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, handler, game.dm));
+				}
+				count+=1;
+				
+			}
+			if(game.g2stage==3){
+				if(game.nW1<5){
+					handler.object.add(new Runoff(x, y, game.dm, handler, ObjectId.runOff, 0, game));
+					game.nW1++;
+					game.nWaste++;
+					return;
+				}
+				if(game.nW1==5){
+					handler.object.add(new Runoff(x, y, game.dm, handler, ObjectId.runOff, 1, game));
+					game.nW2++;
+					if(game.nW2==2){
+						game.nW1++;
+					}
+					game.nWaste++;
+					return;
+				}
+				if(game.nWaste<0){
+					game.g2stage++;
+					game.nWaste=0;
+					game.nW1=0;
+					game.nW2=0;
+				}
+			}
+			
+				if(game.g2stage==4){
+					if(count>5){
+						game.g2stage+=1;
+						count=0;
+						Random random=new Random();
+						int xx= random.nextInt(1000) % (int)(game.dm.getWidth()*1.5-game.dm.getWidth()*5/6-32);
+						handler.addObject(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, handler, game.dm));
+					}
+					count+=1;
+				}
+			
+			if(game.g2stage==5){
+				if(game.nW1<3){
+					handler.object.add(new Runoff(x, y, game.dm, handler, ObjectId.runOff, 0, game));
+					game.nW1++;
+					game.nWaste++;
+					return;
+				}
+				if(game.nW1==3){
+					handler.object.add(new Runoff(x, y, game.dm, handler, ObjectId.runOff, 1, game));
+					game.nW2++;
+					if(game.nW2==3){
+						game.nW1++;
+					}
+					game.nWaste++;
+					return;
+				}
+				if(game.nW2==3){
+					handler.object.add(new Runoff(x, y, game.dm, handler, ObjectId.runOff, 2, game));
+					game.nW3++;
+					if(game.nW3==3){
+						game.nW2++;
+					}
+					game.nWaste++;
+					return;
+				}
+				if(game.nWaste<0){
+					game.g2stage++;
+					game.nWaste=0;
+					game.nW1=0;
+					game.nW2=0;
+					game.nW3=0;
+				}
+			}
+			
+				if(game.g2stage==6){
+					if(count>6){
+						game.g2stage+=1;
+						count=0;
+					}
+					count+=1;
+				}
+			
+			if(game.g2stage==7){
+				handler.object.add(new Runoff(x, y, game.dm, handler, ObjectId.runOff, 4, game));
+				game.nW4++;
+				game.nWaste++;
+				if(game.nWaste<0){
+					game.g2stage++;
+					game.nWaste=0;
+					game.nW4=0;
+				}
+			}
 		}
 		
+	}
+	public void iniTree(){
+		for(int i=0; i<3; i++){
+			Random random = new Random();
+			int xx= random.nextInt(1000) % (int)(game.dm.getWidth()*1.5-game.dm.getWidth()*5/6-32);
+			handler.object.add(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, handler, game.dm));
+		}
 	}
 
 	@Override
@@ -58,25 +169,6 @@ public class RofFactory extends GameObject {
 	public Rectangle getBounds() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-	
-	
-	public void wave1(){
-		if (System.currentTimeMillis() - timer > 2500 && game.nW1<5) {
-			timer += 2500;
-			handler.object.add(new Runoff(x, y, game.dm, handler, ObjectId.runOff, 0, game));
-			game.nW1+=1;
-			game.nWaste+=1;
-		}
-	}
-	public void wave2(){
-		
-	}
-	public void wave3(){
-		
-	}
-	public void wave4(){
-		
 	}
 
 }

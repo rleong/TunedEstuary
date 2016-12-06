@@ -100,8 +100,11 @@ public class Runoff extends GameObject {
 
 				if (getBounds().intersects(temp.getBounds())) {
 					game.count += 1;
-					handler.removeObject(this);
+					
 					game.nWaste-=1.005;
+					handler.removeObject(this);
+					
+					
 				}
 			}
 		}
