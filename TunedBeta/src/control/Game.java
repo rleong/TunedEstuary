@@ -196,7 +196,7 @@ public class Game extends Canvas implements Runnable {
 			g.drawImage(images.getSkyTiles(2), i, 128, this);
 		}
 		for (int j = 192; j < getHeight(); j+= 64){
-			for (int i = 0; i < getWidth() - 64; i += 64) {
+			for (int i = 0; i < getWidth(); i += 64) {
 				g.drawImage(images.getSkyTiles(3), i, j, this);
 			}
 		}
