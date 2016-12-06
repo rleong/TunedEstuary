@@ -122,7 +122,7 @@ public class Critter extends GameObject {
 //			}  else {
 //				currentAnimation = 0;
 //			}
-//		}
+//		} 
 
 		// Character Physics
 		x += velX;
