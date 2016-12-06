@@ -10,6 +10,7 @@ import java.util.LinkedList;
 
 import javax.swing.Timer;
 
+import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
 import window.Handler;
@@ -20,8 +21,8 @@ public class Game3Timer extends GameObject {
 	private int mstime;//milliseconds remaining
 	public static Timer clock1;//clock
 	//initializer to 1:30 seconds in game
-	public Game3Timer(double x, double y, ObjectId id, Handler handler) {
-		super(x, y, id, handler);
+	public Game3Timer(double x, double y, ObjectId id, Game game) {
+		super(x, y, id, game);
 		mintime = 1;
 		sectime = 30;
 		mstime = 0 ;
@@ -77,7 +78,7 @@ public class Game3Timer extends GameObject {
 	}
 	//radd gamewin object to handler
 	public void win(){
-		handler.addObject(new GameWin(1,1,ObjectId.gamewin,handler));
+		game.handler.addObject(new GameWin(1,1,ObjectId.gamewin,game));
 	}
 	
 }

@@ -34,13 +34,13 @@ public class Person extends GameObject {
 	public void drop() {
 			int drop = rand.nextInt(4);
 			if(drop == 0){
-				Game.dropWood((int)x, (int)y);
+				game.dropWood((int)x, (int)y);
 			}
 			else if(drop == 1){
-				Game.dropRope((int)x, (int)y);
+				game.dropRope((int)x, (int)y);
 			}
 			else{
-				Game.dropTrash((int)x, (int)y);
+				game.dropTrash((int)x, (int)y);
 			}
 		}
 
@@ -60,7 +60,7 @@ public class Person extends GameObject {
 			
 		}
 		//if object reaches a certain point on the screen, switch it's direction
-		if(x >= (Window.getDm().getWidth()/2 + Window.getDm().getWidth()/4)){
+		if(x >= (game.dm.getWidth()/2 + game.dm.getWidth()/4)){
 			if (direction == 0) {
 				direction = 1;
 			} 

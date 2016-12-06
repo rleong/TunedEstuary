@@ -130,7 +130,7 @@ public class Game extends Canvas implements Runnable {
 		k = new KeyInput(handler,handler2,this);
 		this.addKeyListener(new KeyInput(handler,handler2, this));
 		
-		game3inst = new Game3Instructions(1,1,ObjectId.instr3,handler);
+		game3inst = new Game3Instructions(1,1,ObjectId.instr3,this);
 		
 		// Game Timer
 		gameTime = new Timer(5000, gameTimeListener);
@@ -295,8 +295,14 @@ public class Game extends Canvas implements Runnable {
 		}
 	};
 	
-	
-
+	Game3Timer g3t=new Game3Timer((int)(dm.getWidth() - dm.getWidth()/4),(int)(dm.getHeight()/8),ObjectId.game3timer,this);
+	Estuary estuary=new Estuary(0, dm.getHeight()/1.9, ObjectId.estuary, this, dm);
+	WaveClock wclock = new WaveClock(1,1,ObjectId.wclock,this);
+	public void personCreate(){
+		for(int i = 0; i<3;i++){
+			handler.addObject(new Person(rand.nextInt(900), (int)(dm.height/2 + (dm.getHeight()/15)), ObjectId.person,this, rand.nextInt(2)));
+		}
+	}
 	ActionListener gameTimeListener = new ActionListener() {
 		@Override
 		
@@ -323,17 +329,15 @@ public class Game extends Canvas implements Runnable {
 				// Remove Game 2 Objects
 
 				// Game 3 Objects
-				handler.addObject(new Game3Timer((int)(dm.getWidth() - dm.getWidth()/4),(int)(dm.getHeight()/8),ObjectId.game3timer,this));
-				handler.addObject(new Estuary(0, dm.getHeight()/1.9, ObjectId.estuary, this, dm));
+				handler.addObject(g3t);
+				handler.addObject(estuary);
 				handler.addObject(game3inst);
 				
 				Boat.game3 = true;
 				handler.addObject(barrier);
-				handler.addObject(new WaveClock(1,1,ObjectId.wclock,this));
+				handler.addObject(wclock);
 				//spawns 3 people
-				for(int i = 0; i<3;i++){
-					handler.addObject(new Person(rand.nextInt(900), (int)(dm.height/2 + (dm.getHeight()/15)), ObjectId.person,handler, rand.nextInt(2)));
-				}
+				personCreate();
 
 			} else if (game3) {
 				game3 = false;

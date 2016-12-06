@@ -22,8 +22,8 @@ public class GameWin extends GameObject {
 	//private BufferedImage waveImg;
 	private int count;//remaining time until game exit in seconds
 	private Timer time;//timer to remove one from count
-	public GameWin(double x, double y, ObjectId id, Handler handler) {
-		super(x, y, id, handler);
+	public GameWin(double x, double y, ObjectId id, Game game) {
+		super(x, y, id, game);
 		count = 4;
 		time = new Timer(1000, listener);//call listener every second
 		time.start();
@@ -62,9 +62,9 @@ public class GameWin extends GameObject {
 	//print game win message
 	public void render(Graphics g) {
 		g.setColor(Color.white);
-		g.drawString("Congratulations!",(int) (Window.getDm().getWidth()/2.5),(int) (Window.getDm().getHeight()/3));
-		g.drawString("You have successfully protected the estuary!!",(int) (Window.getDm().getWidth()/2.5),(int) (Window.getDm().getHeight()/3 + 20));
-		g.drawString("Returning to menu in: " + count, (int) (Window.getDm().getWidth()/2.5),(int) (Window.getDm().getHeight()/3+40));
+		g.drawString("Congratulations!",(int) (game.dm.getWidth()/2.5),(int) (game.dm.getHeight()/3));
+		g.drawString("You have successfully protected the estuary!!",(int) (game.dm.getWidth()/2.5),(int) (game.dm.getHeight()/3 + 20));
+		g.drawString("Returning to menu in: " + count, (int) (game.dm.getWidth()/2.5),(int) (game.dm.getHeight()/3+40));
 		
 
 	}
