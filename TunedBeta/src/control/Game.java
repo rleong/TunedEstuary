@@ -186,13 +186,13 @@ public class Game extends Canvas implements Runnable {
 
 		g.setColor(Color.black);
 		g.fillRect(0, 0, getWidth(), getHeight());
-		for (int i = 0; i < getWidth() - 64; i += 64) {
+		for (int i = 0; i < getWidth(); i += 64) {
 			g.drawImage(images.getSkyTiles(0), i, 0, this);
 		}
-		for (int i = 0; i < getWidth() - 64; i += 64) {
+		for (int i = 0; i < getWidth(); i += 64) {
 			g.drawImage(images.getSkyTiles(1), i, 64, this);
 		}
-		for (int i = 0; i < getWidth() - 64; i += 64) {
+		for (int i = 0; i < getWidth(); i += 64) {
 			g.drawImage(images.getSkyTiles(2), i, 128, this);
 		}
 		for (int j = 192; j < getHeight(); j+= 64){
