@@ -80,9 +80,11 @@ public class KeyInput extends KeyAdapter {
 					}
 					if (key == KeyEvent.VK_W) {
 						temp.setVelY(0);
+						t.setAnimation(3);
 					}
 					if (key == KeyEvent.VK_S) {
 						temp.setVelY(0);
+						t.setAnimation(4);
 					}
 					// Attack
 					if (key == KeyEvent.VK_SPACE) {
