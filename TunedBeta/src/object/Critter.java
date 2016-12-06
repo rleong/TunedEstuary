@@ -130,20 +130,19 @@ public class Critter extends GameObject {
 		if (!game.isPause())
 			y += velY;
 
-		if (x > dm.getWidth() / 2 * 5 / 6 - 64) {
+		if (x > dm.getWidth() * 5 / 6) {
 			onLand = false;
-			falling = true;
 		}
 
-		if (falling || (falling && x > dm.getWidth() * 5 / 6)) {
+		if (falling || inWater) {
 			velY += gravity;
 		}
 
-		if (y < dm.getHeight() * 3 / 5 - 48 && x > dm.getWidth() * 5 / 6 - 32) {
-			setY(dm.getHeight() * 3 / 5 - 48);
-			setVelY(0);
-			jump = true;
-		}
+//		if (y < dm.getHeight() * 3 / 5 - 48 && x > dm.getWidth() * 5 / 6 - 32) {
+//			setY(dm.getHeight() * 3 / 5 - 48);
+//			setVelY(0);
+//			jump = true;
+//		}
 
 		// Character Status
 		if (invulnerable) {
@@ -521,13 +520,11 @@ public class Critter extends GameObject {
 					setVelY(0);
 					jump = false;
 					onLand = true;
-				} else {
-					onLand = false;
 				}
 			}
 			if (temp.getId() == ObjectId.seaLevel) {
 				if (getBoundsSelf().intersects(temp.getBounds())) {
-
+					falling=true;
 					jump = false;
 
 				}
@@ -537,7 +534,6 @@ public class Critter extends GameObject {
 				if (getBoundsBottom().intersects(temp.getBounds())) {
 					setY(temp.getY() - 31);
 					setVelY(0);
-					jump = false;
 				}
 			}
 			if (temp.getId() == ObjectId.waterTree) {
