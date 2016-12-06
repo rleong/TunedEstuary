@@ -41,7 +41,7 @@ public class Game extends Canvas implements Runnable {
 	boolean pause = false;
 	Timer clock;
 	public int nRof = 0;
-	public int g2stage=0;
+	public int g2stage = 0;
 	public int trees = 0;
 	// Object
 	Handler handler;
@@ -60,15 +60,14 @@ public class Game extends Canvas implements Runnable {
 	boolean game2 = false;
 	boolean game3 = false;
 	Timer gameTime;
-	
-	
-	//Game2 var
-	
-	public double nWaste=0;
-	public double nW1=0;
-	public double nW2=0;
-	public double nW3=0;
-	public double nW4=0;
+
+	// Game2 var
+
+	public double nWaste = 0;
+	public double nW1 = 0;
+	public double nW2 = 0;
+	public double nW3 = 0;
+	public double nW4 = 0;
 
 	// Camera
 	Camera cam;
@@ -78,24 +77,27 @@ public class Game extends Canvas implements Runnable {
 		handler = new Handler(this);
 		cam = new Camera(0, 0, dm);
 		// 0 1 2 3 4
-		// Width, Height, Water Start Width, Water Bottom Height, Water Surface 
+		// Width, Height, Water Start Width, Water Bottom Height, Water Surface
 		// Height
 		handler.creatSurface(dm);
 		dmBoundaries = handler.spawnLocations(dm);
 		factory = new RofFactory(0, dm.getHeight() * 3 / 5 - 32, ObjectId.RofFactory, handler, this);
-		school = new SchoolFish(dm.getWidth(), dm.getHeight()*4/5, ObjectId.school, handler, this);
-		trashBin = new WasteBin(dm.getWidth() * .84 - 128, dm.getHeight() * 3 / 5 - 64, ObjectId.wasteBin, handler, 0, images, this);
-		recyclebin = new WasteBin(dm.getWidth() * .84 - 192, dm.getHeight() * 3 / 5 - 64, ObjectId.wasteBin, handler, 1, images, this);
+		school = new SchoolFish(dm.getWidth(), dm.getHeight() * 4 / 5, ObjectId.school, handler, this);
+		trashBin = new WasteBin(dm.getWidth() * .84 - 128, dm.getHeight() * 3 / 5 - 64, ObjectId.wasteBin, handler, 0,
+				images, this);
+		recyclebin = new WasteBin(dm.getWidth() * .84 - 192, dm.getHeight() * 3 / 5 - 64, ObjectId.wasteBin, handler, 1,
+				images, this);
 		inventory = new Inventory(10, 10, ObjectId.inventory, handler, dm);
-		critter = new Critter(600, dm.getHeight() * 3 / 5 - 32, ObjectId.critter, handler, true, true, dm, inventory, this, images);
-		
+		critter = new Critter(600, dm.getHeight() * 3 / 5 - 32, ObjectId.critter, handler, true, true, dm, inventory,
+				this, images);
+
 		// Game 1 Objects
 		handler.addObject(new Boat(dmBoundaries[2], dmBoundaries[4] - 40, ObjectId.boat, handler, trashBin, recyclebin,
-				inventory, dmBoundaries[2], dm.getWidth()*3/2));
+				inventory, dmBoundaries[2], dm.getWidth() * 3 / 2));
 		handler.addObject(trashBin);
 		handler.addObject(recyclebin);
 		handler.addObject(inventory);
-		handler.addObject(new Habitat(dmBoundaries[2]+16, dmBoundaries[1] - 96 - 64, ObjectId.habitat, handler, dm));
+		handler.addObject(new Habitat(dmBoundaries[2] + 16, dmBoundaries[1] - 96 - 64, ObjectId.habitat, handler, dm));
 
 		// Critter
 		handler.addObject(critter);
@@ -129,24 +131,26 @@ public class Game extends Canvas implements Runnable {
 		int updates = 0;
 		int frames = 0;
 
+		// int temp = 0;
 		while (running) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
 			lastTime = now;
 			while (delta >= 1) {
+				// System.out.println(temp++);
 				tick();
 				updates++;
 				delta--;
 			}
 			render();
 			frames++;
-			
+
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
-				//System.out.println("FPS: " + frames + " TICKS: " + updates);
+				// System.out.println("FPS: " + frames + " TICKS: " + updates);
 				frames = 0;
 				updates = 0;
-				
+
 			}
 
 		}
@@ -176,6 +180,20 @@ public class Game extends Canvas implements Runnable {
 
 		g.setColor(Color.black);
 		g.fillRect(0, 0, getWidth(), getHeight());
+		for (int i = 0; i < getWidth() - 64; i += 64) {
+			g.drawImage(images.getSkyTiles(0), i, 0, this);
+		}
+		for (int i = 0; i < getWidth() - 64; i += 64) {
+			g.drawImage(images.getSkyTiles(1), i, 64, this);
+		}
+		for (int i = 0; i < getWidth() - 64; i += 64) {
+			g.drawImage(images.getSkyTiles(2), i, 128, this);
+		}
+		for (int j = 192; j < getHeight(); j+= 64){
+			for (int i = 0; i < getWidth() - 64; i += 64) {
+				g.drawImage(images.getSkyTiles(3), i, j, this);
+			}
+		}
 
 		g2d.translate(cam.getX(), cam.getY());
 		handler.render(g);

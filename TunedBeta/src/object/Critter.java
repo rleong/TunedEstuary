@@ -61,9 +61,13 @@ public class Critter extends GameObject {
 	int buildYLocation;
 
 	// GFX & Animations
-	int picNum = 0;
+	int actionFrameNum = 0;
+	int movementFrameNum = 0;
+	int currentAnimation = 0; // 0 Idle 1 Left Walk 2 Right Walk 3 Swim Up 4
+								// Swim Down 5 Swim Left 6 Swim Right 7
+								// Attack/Interact
 	Images images;
-	
+
 	// Action Booleans
 	boolean plantAction = false;
 	boolean buildAction = false;
@@ -71,7 +75,8 @@ public class Critter extends GameObject {
 	// Debugging
 	boolean debugging = false;
 
-	public Critter(double x, double y, ObjectId id, Handler handler, boolean xdir, boolean ydir, Dimension dm, Inventory inventory, Game game, Images images) {
+	public Critter(double x, double y, ObjectId id, Handler handler, boolean xdir, boolean ydir, Dimension dm,
+			Inventory inventory, Game game, Images images) {
 		// Basics
 		super(x, y, id, handler);
 		this.xdir = xdir;
@@ -98,9 +103,31 @@ public class Critter extends GameObject {
 	@Override
 	public void tick(LinkedList<GameObject> object) {
 
+		if (inWater) {
+			if (velX == 0) {
+				currentAnimation = 0;
+			} else if (velY > 0) {
+				currentAnimation = 3;
+			} else if (velY < 0) {
+				currentAnimation = 4;
+			} else {
+				currentAnimation = 0;
+			}
+		} else {
+			if (velX == 0) {
+				currentAnimation = 0;
+			} else if (velX < 0) {
+				currentAnimation = 1;
+			} else if (velX > 0) {
+				currentAnimation = 2;
+			}  else {
+				currentAnimation = 0;
+			}
+		}
+
 		// Character Physics
 		x += velX;
-		if(!game.isPause())
+		if (!game.isPause())
 			y += velY;
 
 		if (x > dm.getWidth() / 2 * 5 / 6 - 64) {
@@ -118,7 +145,7 @@ public class Critter extends GameObject {
 			jump = true;
 		}
 
-		// Character Status 
+		// Character Status
 		if (invulnerable) {
 			flicker++;
 		} else {
@@ -134,7 +161,7 @@ public class Critter extends GameObject {
 
 		// Collisions
 		collision(object);
-		
+
 		// Health Bar & Name Locations
 		nameXLocation = (int) (x - (dm.getWidth() * 49 / 100));
 		nameYLocation = (int) (y - (dm.getHeight() * 48 / 100));
@@ -147,12 +174,45 @@ public class Critter extends GameObject {
 	@Override
 	public void render(Graphics g) {
 
+		/*
+		 * actionFrameNum = (actionFrameNum + 1) % images.getActionFrameCount();
+		 * 
+		 * if (game.isPause()) {
+		 * g.drawImage(images.getWateringPlant(actionFrameNum), (int) x, (int) y
+		 * - 42, game); }
+		 */
+
+		movementFrameNum = (movementFrameNum + 1) % images.getWalkLeftFrameCount();
+
 		// Character Flickering & Normal
 		if (flicker == 0 || flicker % 10 == 0) {
 			switch (character) {
 			case 0:
-				g.setColor(Color.RED);
-				g.drawImage(images.getTestImg(), (int) x-16, (int) y-32, game );
+				switch (currentAnimation) {
+				case 0:
+					if (right) {
+						g.drawImage(images.getBlueCrabImage(currentAnimation, 0), (int) x - 16, (int) y - 32, game);
+					} else {
+						g.drawImage(images.getBlueCrabImage(currentAnimation, 1), (int) x - 16, (int) y - 32, game);
+					}
+					break;
+				case 1:
+					g.drawImage(images.getBlueCrabImage(currentAnimation, movementFrameNum), (int) x - 16, (int) y - 32,
+							game);
+					break;
+				case 2:
+					g.drawImage(images.getBlueCrabImage(currentAnimation, movementFrameNum), (int) x - 16, (int) y - 32,
+							game);
+					break;
+				case 3:
+					g.drawImage(images.getBlueCrabImage(currentAnimation, movementFrameNum), (int) x - 16, (int) y - 32,
+							game);
+					break;
+				case 4:
+					g.drawImage(images.getBlueCrabImage(currentAnimation, movementFrameNum), (int) x - 16, (int) y - 32,
+							game);
+					break;
+				}
 				break;
 			case 1:
 				g.setColor(Color.DARK_GRAY);
@@ -162,17 +222,30 @@ public class Critter extends GameObject {
 				break;
 			}
 		} else {
-			g.setColor(Color.BLACK);
+			switch (character) {
+			case 0:
+				if (right) {
+					g.drawImage(images.getBlueCrabImage(currentAnimation, 2), (int) x - 16, (int) y - 32, game);
+				} else {
+					g.drawImage(images.getBlueCrabImage(currentAnimation, 3), (int) x - 16, (int) y - 32, game);
+				}
+			case 1:
+				g.setColor(Color.DARK_GRAY);
+				break;
+			case 2:
+				g.setColor(Color.lightGray);
+				break;
+			}
 		}
-		//g.fillRect((int) x, (int) y, 32, 32);
+		// g.fillRect((int) x, (int) y, 32, 32);
 
 		// Character Inner Bounds
 		Graphics2D g2d = (Graphics2D) g;
-//		g.setColor(Color.green);
-//		g2d.draw(getBoundsTop());
-//		g2d.draw(getBoundsBottom());
-//		g2d.draw(getBoundsLeft());
-//		g2d.draw(getBoundsRight());
+		// g.setColor(Color.green);
+		// g2d.draw(getBoundsTop());
+		// g2d.draw(getBoundsBottom());
+		// g2d.draw(getBoundsLeft());
+		// g2d.draw(getBoundsRight());
 
 		// Character Attack Range Bounds
 		g.setColor(Color.gray);
@@ -194,17 +267,17 @@ public class Critter extends GameObject {
 			g.drawString("Debug Godmode", (int) x - 24, (int) y - 10);
 			break;
 		}
-		
+
 		// Health Bars
 		drawHealthBars(g);
-		
+
 		// Build Options
 		drawBuildOptions(g);
 
 		// Animations
-		if(plantAction)
+		if (plantAction)
 			drawWateringPlantAction(g);
-		if(buildAction)
+		if (buildAction)
 			drawBuildingAction(g);
 
 		// Debugging Purposes Only
@@ -212,62 +285,64 @@ public class Critter extends GameObject {
 			g.setColor(Color.red);
 			switch (character) {
 			case 0:
-				g.drawString(health0 + " | " + sp0 + "/" + SPRECHARGE, (int) dm.getWidth() / 2, (int) dm.getHeight() / 2);
+				g.drawString(health0 + " | " + sp0 + "/" + SPRECHARGE, (int) dm.getWidth() / 2,
+						(int) dm.getHeight() / 2);
 				break;
 			case 1:
-				g.drawString(health1 + " | " + sp1 + "/" + SPRECHARGE, (int) dm.getWidth() / 2, (int) dm.getHeight() / 2);
+				g.drawString(health1 + " | " + sp1 + "/" + SPRECHARGE, (int) dm.getWidth() / 2,
+						(int) dm.getHeight() / 2);
 				break;
 			case 2:
-				g.drawString(health2 + " | " + sp2 + "/" + SPRECHARGE, (int) dm.getWidth() / 2, (int) dm.getHeight() / 2);
+				g.drawString(health2 + " | " + sp2 + "/" + SPRECHARGE, (int) dm.getWidth() / 2,
+						(int) dm.getHeight() / 2);
 				break;
 			}
 			// test(g);
 		}
 
 	}
-	
-	public void drawBuildOptions(Graphics g){
-		
-		g.drawImage(images.getMenuBar(), buildXLocation-32, buildYLocation-26, game);
-		
+
+	public void drawBuildOptions(Graphics g) {
+
+		g.drawImage(images.getMenuBar(), buildXLocation - 32, buildYLocation - 26, game);
+
 		g.drawImage(images.getGabionBuildIcon(), buildXLocation, buildYLocation, game);
-		//g.fillRect(buildXLocation, buildYLocation, 64, 64);
-		
+		// g.fillRect(buildXLocation, buildYLocation, 64, 64);
+
 		g.setColor(Color.BLUE);
-		g.fillRect(buildXLocation+64+32, buildYLocation, 64, 64);
-		
+		g.fillRect(buildXLocation + 64 + 32, buildYLocation, 64, 64);
+
 		g.setColor(Color.RED);
-		g.fillRect(buildXLocation+64+32+64+32, buildYLocation, 64, 64);
-		
+		g.fillRect(buildXLocation + 64 + 32 + 64 + 32, buildYLocation, 64, 64);
+
 		g.setColor(Color.GRAY);
-		g.fillRect(buildXLocation+64+32+64+32+64+32, buildYLocation, 64, 64);
-		
+		g.fillRect(buildXLocation + 64 + 32 + 64 + 32 + 64 + 32, buildYLocation, 64, 64);
+
 		g.setColor(Color.GREEN);
-		g.fillRect(buildXLocation+64+32+64+32+64+32+64+32, buildYLocation, 64, 64);
-	
+		g.fillRect(buildXLocation + 64 + 32 + 64 + 32 + 64 + 32 + 64 + 32, buildYLocation, 64, 64);
+
 	}
-	
-	public void setBuildAnimation(boolean planting){
-		if(planting)
+
+	public void setBuildAnimation(boolean planting) {
+		if (planting)
 			plantAction = true;
 		else
 			buildAction = true;
 	}
-	
-	public void endAnimation(){
+
+	public void endAnimation() {
 		plantAction = false;
 		buildAction = false;
 	}
-	
+
 	public void drawHealthBars(Graphics g) {
 		// Crab Health & SP Display
 		g.setColor(Color.BLACK);
 		if (health0 <= 0) {
 			g.setColor(Color.RED);
 		}
-		g.setColor(Color.WHITE);
+		g.setColor(Color.BLACK);
 		g.drawString("Blue Crab", nameXLocation, nameYLocation);
-		g.setColor(Color.green);
 		g.drawRect(healthBarXLocation, healthBarYLocation, 200, 10);
 		g.drawRect(healthBarXLocation, healthBarYLocation + 20, 200, 10);
 		g.setColor(Color.RED);
@@ -280,9 +355,8 @@ public class Critter extends GameObject {
 		if (health1 <= 0) {
 			g.setColor(Color.RED);
 		}
-		g.setColor(Color.WHITE);
+		g.setColor(Color.BLACK);
 		g.drawString("Eastern Oyster", nameXLocation, nameYLocation + 70);
-		g.setColor(Color.green);
 		g.drawRect(healthBarXLocation, healthBarYLocation + 70, 200, 10);
 		g.drawRect(healthBarXLocation, healthBarYLocation + 90, 200, 10);
 		g.setColor(Color.RED);
@@ -295,9 +369,8 @@ public class Critter extends GameObject {
 		if (health2 <= 0) {
 			g.setColor(Color.RED);
 		}
-		g.setColor(Color.WHITE);
+		g.setColor(Color.BLACK);
 		g.drawString("Horseshoe Crab", nameXLocation, nameYLocation + 140);
-		g.setColor(Color.green);
 		g.drawRect(healthBarXLocation, healthBarYLocation + 140, 200, 10);
 		g.drawRect(healthBarXLocation, healthBarYLocation + 160, 200, 10);
 		g.setColor(Color.RED);
@@ -308,19 +381,19 @@ public class Critter extends GameObject {
 
 	// Animations & GFX
 	public void drawWateringPlantAction(Graphics g) {
-		picNum = (picNum + 1) % images.getActionFrameCount();
+		actionFrameNum = (actionFrameNum + 1) % images.getActionFrameCount();
 
 		if (game.isPause()) {
-			g.drawImage(images.getWateringPlant(picNum), (int) x, (int) y - 42, game);
+			g.drawImage(images.getWateringPlant(actionFrameNum), (int) x, (int) y - 42, game);
 		}
 
 	}
-	
+
 	public void drawBuildingAction(Graphics g) {
-		picNum = (picNum + 1) % images.getActionFrameCount();
+		actionFrameNum = (actionFrameNum + 1) % images.getActionFrameCount();
 
 		if (game.isPause()) {
-			g.drawImage(images.getBuildingAction(picNum), (int) x, (int) y - 42, game);
+			g.drawImage(images.getBuildingAction(actionFrameNum), (int) x, (int) y - 42, game);
 		}
 
 	}
@@ -586,12 +659,12 @@ public class Critter extends GameObject {
 
 		return new Rectangle((int) x + 26, (int) y + 6, 6, 20);
 	}
-	
-	public void setRight(){
+
+	public void setRight() {
 		right = true;
 	}
-	
-	public void setLeft(){
+
+	public void setLeft() {
 		right = false;
 	}
 
