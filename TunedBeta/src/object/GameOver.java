@@ -20,8 +20,8 @@ import window.Window;
 public class GameOver extends GameObject {
 	private int count;//remaining time until game exit in seconds
 	private Timer time;//timer to remove one from count
-	public GameOver(double x, double y, ObjectId id, Handler handler) {
-		super(x, y, id, handler);
+	public GameOver(double x, double y, ObjectId id, Game game) {
+		super(x, y, id, game);
 		count = 4;
 		time = new Timer(1000, listener);//call listener every second
 		time.start();
@@ -54,9 +54,9 @@ public class GameOver extends GameObject {
 	//prints game loss message
 	public void render(Graphics g) {
 		g.setColor(Color.white);
-		g.drawString("Game Over",(int) (Window.getDm().getWidth()/2.5),(int) (Window.getDm().getHeight()/3));
-		g.drawString("You failed to protect the Estuary",(int) (Window.getDm().getWidth()/2.5),(int) (Window.getDm().getHeight()/3 + 20));
-		g.drawString("Returning to menu in: " + count, (int) (Window.getDm().getWidth()/2.5),(int) (Window.getDm().getHeight()/3+40));
+		g.drawString("Game Over",(int) (game.dm.getWidth()/2.5),(int) (game.dm.getHeight()/3));
+		g.drawString("You failed to protect the Estuary",(int) (game.dm.getWidth()/2.5),(int) (game.dm.getHeight()/3 + 20));
+		g.drawString("Returning to menu in: " + count, (int) (game.dm.getWidth()/2.5),(int) (game.dm.getHeight()/3+40));
 	}
 	@Override
 	//has no bounds

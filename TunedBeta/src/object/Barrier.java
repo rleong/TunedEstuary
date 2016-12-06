@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
 import window.Handler;
@@ -14,14 +15,14 @@ import window.Handler;
 public class Barrier extends GameObject{
 	public int hp;
 	Handler handler;
-	public Barrier(double x, double y, ObjectId id, Handler handler) {
-		super(x, y, id,handler);
+	public Barrier(double x, double y, ObjectId id, Game game) {
+		super(x, y, id,game);
 		hp = 4;
 	}
 
 	@Override
 	public void tick(LinkedList<GameObject> object) {
-		collision(object);
+		collision(game.handler.object);
 		
 	}
 	private void collision(LinkedList<GameObject> object){

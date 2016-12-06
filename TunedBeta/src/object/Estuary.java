@@ -10,6 +10,7 @@ import java.awt.Rectangle;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
 import window.Handler;
@@ -17,8 +18,8 @@ import window.Handler;
 public class Estuary extends GameObject{
 	//health value
 	private double health = 5;
-	public Estuary(double x, double y, ObjectId id, Handler handler, Dimension dm) {
-		super(x, y, id,handler);
+	public Estuary(double x, double y, ObjectId id, Game game, Dimension dm) {
+		super(x, y, id,game);
 	}
 
 	@Override
@@ -40,7 +41,7 @@ public class Estuary extends GameObject{
 	}
 	//adds gameover object to handler, ends game
 	private void lose(){
-		handler.addObject(new GameOver(1,1,ObjectId.gameover,handler));
+		game.handler.addObject(new GameOver(1,1,ObjectId.gameover,game));
 	}
 	//check for collisions
 	private void collision(LinkedList<GameObject> object) {

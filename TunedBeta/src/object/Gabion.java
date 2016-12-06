@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
 import window.Handler;
@@ -13,8 +14,8 @@ import window.Handler;
 public class Gabion extends GameObject{
 	public int hp;
 	Handler handler;
-	public Gabion(double x, double y, ObjectId id, Handler handler) {
-		super(x, y, id,handler);
+	public Gabion(double x, double y, ObjectId id,Game game) {
+		super(x, y, id,game);
 		hp = 3;
 	}
 

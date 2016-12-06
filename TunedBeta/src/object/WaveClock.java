@@ -29,12 +29,12 @@ public class WaveClock extends GameObject{
 	public void tick(LinkedList<GameObject> object) {
 		//wave spawn speed increases to increase difficulty
 		if(wSummon == rand1 && hard == true){
-			Game.summonWave();
+			game.summonWave();
 			wSummon = 0;//resets counter after wave spawn
 			rand1 = rand.nextInt(150)+100;//next random to change spawning rate
 		}
 		else if(wSummon == rand1){
-			Game.summonWave();
+			game.summonWave();
 			wSummon = -300;//resets counter after wave spawn
 			rand1 = rand.nextInt(200)+100;//next random to change spawning rate
 		}
