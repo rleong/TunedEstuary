@@ -18,6 +18,7 @@ import gfx.Images;
 import object.Boat;
 import object.Inventory;
 import object.Critter;
+import object.GuardianFish;
 import object.Habitat;
 import object.RofFactory;
 import object.SchoolFish;
@@ -53,7 +54,9 @@ public class Game extends Canvas implements Runnable {
 	Critter critter;
 	Images images = new Images();
 	SchoolFish school;
-
+	SchoolFish school2;
+	SchoolFish school3;
+	GuardianFish gfish;
 	// Game Conditions
 	boolean gameover = false;
 	boolean game1 = true;
@@ -84,6 +87,10 @@ public class Game extends Canvas implements Runnable {
 		dmBoundaries = handler.spawnLocations(dm);
 		factory = new RofFactory(0, dm.getHeight() * 3 / 5 - 32, ObjectId.RofFactory, handler, this);
 		school = new SchoolFish(dm.getWidth(), dm.getHeight()*4/5, ObjectId.school, handler, this);
+		school2 = new SchoolFish(dm.getWidth()*1.2, dm.getHeight()*3.6/5, ObjectId.school, handler, this);
+		school3 = new SchoolFish(dm.getWidth()*1.5, dm.getHeight()*3.2/5, ObjectId.school, handler, this);
+		gfish= new GuardianFish(dm.getWidth()*1.517, dm.getHeight(), ObjectId.guardian, handler, this);
+		
 		trashBin = new WasteBin(dm.getWidth() * .84 - 128, dm.getHeight() * 3 / 5 - 64, ObjectId.wasteBin, handler, 0, images, this);
 		recyclebin = new WasteBin(dm.getWidth() * .84 - 192, dm.getHeight() * 3 / 5 - 64, ObjectId.wasteBin, handler, 1, images, this);
 		inventory = new Inventory(10, 10, ObjectId.inventory, handler, dm);
@@ -235,7 +242,11 @@ public class Game extends Canvas implements Runnable {
 				// Game 2 Objects
 				handler.addObject(factory);
 				handler.addObject(school);
-
+				handler.addObject(school2);
+				handler.addObject(school3);
+				handler.addObject(gfish);
+				factory.iniTree();
+				
 			} else if (game2) {
 				game2 = false;
 				game3 = true;

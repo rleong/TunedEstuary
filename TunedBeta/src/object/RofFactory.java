@@ -52,6 +52,9 @@ public class RofFactory extends GameObject {
 				if(count>3){
 					game.g2stage+=1;
 					count=0;
+					Random random=new Random();
+					int xx= random.nextInt(1000) % (int)(game.dm.getWidth()*1.5-game.dm.getWidth()*5/6-32);
+					handler.addObject(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, handler, game.dm));
 				}
 				count+=1;
 				
@@ -84,6 +87,9 @@ public class RofFactory extends GameObject {
 					if(count>5){
 						game.g2stage+=1;
 						count=0;
+						Random random=new Random();
+						int xx= random.nextInt(1000) % (int)(game.dm.getWidth()*1.5-game.dm.getWidth()*5/6-32);
+						handler.addObject(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, handler, game.dm));
 					}
 					count+=1;
 				}
@@ -142,6 +148,13 @@ public class RofFactory extends GameObject {
 			}
 		}
 		
+	}
+	public void iniTree(){
+		for(int i=0; i<3; i++){
+			Random random = new Random();
+			int xx= random.nextInt(1000) % (int)(game.dm.getWidth()*1.5-game.dm.getWidth()*5/6-32);
+			handler.object.add(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, handler, game.dm));
+		}
 	}
 
 	@Override

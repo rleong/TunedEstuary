@@ -31,6 +31,6 @@ public enum ObjectId {
 	clock(), boat(), RofFactory(),
 
 	// Player
-	inventory(), critter(), compost1, school;
+	inventory(), critter(), compost1, school, guardian;
 
 }
