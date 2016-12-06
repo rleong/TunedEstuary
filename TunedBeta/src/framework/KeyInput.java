@@ -71,20 +71,28 @@ public class KeyInput extends KeyAdapter {
 					if (key == KeyEvent.VK_A) {
 						temp.setVelX(0);
 						t.setLeft();
-						t.setAnimation(0);
+						if(t.getInWater())
+							t.setAnimation(4);
+						else
+							t.setAnimation(0);
 					}
 					if (key == KeyEvent.VK_D) {
 						temp.setVelX(0);
 						t.setRight();
-						t.setAnimation(0);
+						if(t.getInWater())
+							t.setAnimation(4);
+						else
+							t.setAnimation(0);
 					}
 					if (key == KeyEvent.VK_W) {
 						temp.setVelY(0);
-						t.setAnimation(3);
+						if(t.getInWater())
+							t.setAnimation(3);
 					}
 					if (key == KeyEvent.VK_S) {
 						temp.setVelY(0);
-						t.setAnimation(4);
+						if(t.getInWater())
+							t.setAnimation(4);
 					}
 					// Attack
 					if (key == KeyEvent.VK_SPACE) {
