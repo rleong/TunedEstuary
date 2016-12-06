@@ -16,8 +16,8 @@ public class GuardianFish extends GameObject {
 	boolean chasing;
 	
 
-	public GuardianFish(double x, double y, ObjectId id, Handler handler, Game game) {
-		super(x, y, id, handler);
+	public GuardianFish(double x, double y, ObjectId id, Game game) {
+		super(x, y, id, game);
 		damage = 5;
 		this.game = game;
 		chasing = false;
@@ -37,7 +37,7 @@ public class GuardianFish extends GameObject {
 			velY *= -1;
 		}
 		}
-		collision(handler.object);
+		collision(game.handler.object);
 
 	}
 
@@ -60,8 +60,8 @@ public class GuardianFish extends GameObject {
 	}
 
 	private void collision(LinkedList<GameObject> object) {
-		for (int i = 0; i < handler.object.size(); i++) {
-			GameObject temp = handler.object.get(i);
+		for (int i = 0; i < game.handler.object.size(); i++) {
+			GameObject temp = game.handler.object.get(i);
 			if (temp.getId() == ObjectId.critter) {
 				if (getGuardBounds().intersects(temp.getBounds())) {
 					chasing = true;

@@ -8,9 +8,9 @@ import java.awt.Toolkit;
 import java.util.LinkedList;
 import java.util.Random;
 
+import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
-import window.Handler;
 
 public class Seed extends GameObject {
 	int type;
@@ -18,8 +18,8 @@ public class Seed extends GameObject {
 	Dimension dm;
 	boolean growing;
 	static Toolkit tk = Toolkit.getDefaultToolkit();
-	public Seed(double x, double y, ObjectId id, Handler handler, int type) {
-		super(x, y, id, handler);
+	public Seed(double x, double y, ObjectId id, Game game, int type) {
+		super(x, y, id, game);
 		this.type=type;
 		setVelY(-3);
 		dm=tk.getScreenSize();
@@ -56,15 +56,15 @@ public class Seed extends GameObject {
 
 	private void collision() {
 		// TODO Auto-generated method stub
-		for (int i = 0; i < handler.object.size(); i++) {
-			GameObject temp = handler.object.get(i);
+		for (int i = 0; i < game.handler.object.size(); i++) {
+			GameObject temp = game.handler.object.get(i);
 			if (temp.getId() == ObjectId.sand) {
 				if(getBounds().intersects(temp.getBounds())){
 					falling=false;
 //					if(growing){
 						
-						handler.object.add(new WaterTree(x, y-65, ObjectId.waterTree, type, handler, dm));
-						handler.object.remove(this);
+						game.handler.object.add(new WaterTree(x, y-65, ObjectId.waterTree, type, game, dm));
+						game.handler.object.remove(this);
 						return;
 //					}
 				}

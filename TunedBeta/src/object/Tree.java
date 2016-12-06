@@ -15,8 +15,8 @@ public class Tree extends GameObject {
 	public int hp;
 	public int type;
 	Game game;
-	public Tree(double x, double y, ObjectId id, Handler handler, int type, Game game) {
-		super(x, y, id, handler);
+	public Tree(double x, double y, ObjectId id, int type, Game game) {
+		super(x, y, id, game);
 		hp=3;
 		this.type=type;
 		this.game=game;

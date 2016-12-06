@@ -10,6 +10,7 @@ import java.util.Random;
 
 import javax.swing.Timer;
 
+import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
 import window.Handler;
@@ -31,10 +32,9 @@ public class Boat extends GameObject {
 	// Swing Timer
 	Timer clock;
 
-	public Boat(double x, double y, ObjectId id, Handler handler, WasteBin trashBin, WasteBin recyclebin,
+	public Boat(double x, double y, ObjectId id, Game game, WasteBin trashBin, WasteBin recyclebin,
 			Inventory counter, double boundary1, double boundary2) {
-		super(x, y, id, handler);
-		this.handler = handler;
+		super(x, y, id, game);
 		initialY = y;
 		this.trashBin = trashBin;
 		this.recyclebin = recyclebin;
@@ -92,15 +92,15 @@ public class Boat extends GameObject {
 			break;
 		case 1:
 			//1 Trash
-			handler.addObject(new Waste(x, y, ObjectId.waste, handler, trashBin, recyclebin, counter, 0));
+			game.handler.addObject(new Waste(x, y, ObjectId.waste, game, trashBin, recyclebin, counter, 0));
 			break;
 		case 2:
 			//1 Recycle
-			handler.addObject(new Waste(x, y, ObjectId.waste, handler, trashBin, recyclebin, counter, 1));
+			game.handler.addObject(new Waste(x, y, ObjectId.waste, game, trashBin, recyclebin, counter, 1));
 			break;
 		case 3:
 			//1 Compost
-			handler.addObject(new Waste(x, y, ObjectId.waste, handler, trashBin, recyclebin, counter, 2));
+			game.handler.addObject(new Waste(x, y, ObjectId.waste, game, trashBin, recyclebin, counter, 2));
 			break;
 		default:
 			System.out.println("Something went wrong!");

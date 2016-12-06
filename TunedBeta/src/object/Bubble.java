@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 
+import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
 import window.Handler;
@@ -16,8 +17,8 @@ public class Bubble extends GameObject {
 	LinkedList<Waste> carriedWaste;
 	boolean right;
 
-	public Bubble(double x, double y, ObjectId id, Handler handler, boolean right) {
-		super(x, y, id, handler);
+	public Bubble(double x, double y, ObjectId id, Game game, boolean right) {
+		super(x, y, id, game);
 		this.right = right;
 		if(right)
 			bounds = x += 700;

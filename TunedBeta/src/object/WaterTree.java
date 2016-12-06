@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 import java.util.LinkedList;
 import java.util.Random;
 
+import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
 import window.Handler;
@@ -20,8 +21,8 @@ public class WaterTree extends GameObject {
 	private long timer1=System.currentTimeMillis();
 	private long timer2=System.currentTimeMillis();
 
-	public WaterTree(double x, double y, ObjectId id,int type, Handler handler, Dimension dm) {
-		super(x, y, id, handler);
+	public WaterTree(double x, double y, ObjectId id,int type, Game game, Dimension dm) {
+		super(x, y, id, game);
 		this.dm=dm;
 		hp=20;
 		
@@ -32,24 +33,24 @@ public class WaterTree extends GameObject {
 //		type=type%2;
 //	}
 	public void chopDown(){
-		handler.addObject(new Compost(x,y,ObjectId.compost1, handler, type));
-		handler.addObject(new Compost(x,y,ObjectId.compost1, handler, type));
-		handler.addObject(new Compost(x,y,ObjectId.compost1, handler, type));
+		game.handler.addObject(new Compost(x,y,ObjectId.compost1, game, type));
+		game.handler.addObject(new Compost(x,y,ObjectId.compost1, game, type));
+		game.handler.addObject(new Compost(x,y,ObjectId.compost1, game, type));
 		dead();
 	}
 	public void dead(){
 		dropSeed();
 		canAttack=false;
-		handler.object.remove(this);
+		game.handler.object.remove(this);
 		
 	}
 	public void dropCompost() {
 	// TODO Auto-generated method stub
-		handler.addObject(new Compost(x, y, ObjectId.compost1, handler, type));
+		game.handler.addObject(new Compost(x, y, ObjectId.compost1, game, type));
 		
 	}
 	public void dropSeed(){
-		handler.addObject(new Seed(x,y,ObjectId.seed, handler, type));
+		game.handler.addObject(new Seed(x,y,ObjectId.seed, game, type));
 		
 	}
 	
