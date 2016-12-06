@@ -27,9 +27,11 @@ public class KeyInput extends KeyAdapter {
 					Critter t = (Critter) temp;
 					if (key == KeyEvent.VK_A) {
 						t.setVelX(-2);
+						t.setAnimation(1);
 					}
 					if (key == KeyEvent.VK_D) {
 						t.setVelX(2);
+						t.setAnimation(2);
 					}
 					if (key == KeyEvent.VK_W && !t.jump) {
 						t.setVelY(-2);
@@ -38,10 +40,15 @@ public class KeyInput extends KeyAdapter {
 							t.jump = true;
 						}
 						t.onLand = false;
-
+					}
+					if (key == KeyEvent.VK_W && t.getInWater()) {
+						t.setAnimation(3);
 					}
 					if (key == KeyEvent.VK_S && !((Critter) temp).onLand) {
 						temp.setVelY(2);
+					}
+					if (key == KeyEvent.VK_S && t.getInWater()) {
+						t.setAnimation(4);
 					}
 
 				}
@@ -63,10 +70,12 @@ public class KeyInput extends KeyAdapter {
 					if (key == KeyEvent.VK_A) {
 						temp.setVelX(0);
 						t.setLeft();
+						t.setAnimation(0);
 					}
 					if (key == KeyEvent.VK_D) {
 						temp.setVelX(0);
 						t.setRight();
+						t.setAnimation(0);
 					}
 					if (key == KeyEvent.VK_W) {
 						temp.setVelY(0);
@@ -97,7 +106,7 @@ public class KeyInput extends KeyAdapter {
 				}
 				if (temp.getId() == ObjectId.inventory) {
 					Inventory inv = (Inventory) temp;
-					// Menu Toggle 
+					// Menu Toggle
 					if (key == KeyEvent.VK_R) {
 						inv.toggleMenu();
 					}
@@ -108,13 +117,13 @@ public class KeyInput extends KeyAdapter {
 						inv.buildBarrier(gm, 1);
 					}
 					if (key == KeyEvent.VK_I) {
-						
+
 					}
 					if (key == KeyEvent.VK_O) {
-						
+
 					}
 					if (key == KeyEvent.VK_P) {
-						
+
 					}
 				}
 			}

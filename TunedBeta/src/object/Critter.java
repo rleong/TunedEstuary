@@ -63,6 +63,7 @@ public class Critter extends GameObject {
 	// GFX & Animations
 	int actionFrameNum = 0;
 	int movementFrameNum = 0;
+	int movementFrameNum2 = 0;
 	int currentAnimation = 0; // 0 Idle 1 Left Walk 2 Right Walk 3 Swim Up 4
 								// Swim Down 5 Swim Left 6 Swim Right 7
 								// Attack/Interact
@@ -103,27 +104,27 @@ public class Critter extends GameObject {
 	@Override
 	public void tick(LinkedList<GameObject> object) {
 
-		if (inWater) {
-			if (velX == 0) {
-				currentAnimation = 0;
-			} else if (velY > 0) {
-				currentAnimation = 3;
-			} else if (velY < 0) {
-				currentAnimation = 4;
-			} else {
-				currentAnimation = 0;
-			}
-		} else {
-			if (velX == 0) {
-				currentAnimation = 0;
-			} else if (velX < 0) {
-				currentAnimation = 1;
-			} else if (velX > 0) {
-				currentAnimation = 2;
-			}  else {
-				currentAnimation = 0;
-			}
-		}
+//		if (inWater) {
+//			if (velX == 0) {
+//				currentAnimation = 0;
+//			} else if (velY > 0) {
+//				currentAnimation = 3;
+//			} else if (velY < 0) {
+//				currentAnimation = 4;
+//			} else {
+//				currentAnimation = 0;
+//			}
+//		} else {
+//			if (velX == 0) {
+//				currentAnimation = 0;
+//			} else if (velX < 0) {
+//				currentAnimation = 1;
+//			} else if (velX > 0) {
+//				currentAnimation = 2;
+//			}  else {
+//				currentAnimation = 0;
+//			}
+//		}
 
 		// Character Physics
 		x += velX;
@@ -138,11 +139,11 @@ public class Critter extends GameObject {
 			velY += gravity;
 		}
 
-//		if (y < dm.getHeight() * 3 / 5 - 48 && x > dm.getWidth() * 5 / 6 - 32) {
-//			setY(dm.getHeight() * 3 / 5 - 48);
-//			setVelY(0);
-//			jump = true;
-//		}
+		if (y < dm.getHeight() * 3 / 5 - 96 && x > dm.getWidth() * 5 / 6 - 32) {
+			setY(dm.getHeight() * 3 / 5 - 96d);
+			setVelY(0);
+			jump = true;
+		}
 
 		// Character Status
 		if (invulnerable) {
@@ -173,15 +174,8 @@ public class Critter extends GameObject {
 	@Override
 	public void render(Graphics g) {
 
-		/*
-		 * actionFrameNum = (actionFrameNum + 1) % images.getActionFrameCount();
-		 * 
-		 * if (game.isPause()) {
-		 * g.drawImage(images.getWateringPlant(actionFrameNum), (int) x, (int) y
-		 * - 42, game); }
-		 */
-
-		movementFrameNum = (movementFrameNum + 1) % images.getWalkLeftFrameCount();
+		movementFrameNum = (movementFrameNum + 1) % images.getMoveFrames();
+		movementFrameNum2 = (movementFrameNum2 + 1) % images.getSwimFrames();
 
 		// Character Flickering & Normal
 		if (flicker == 0 || flicker % 10 == 0) {
@@ -204,11 +198,11 @@ public class Critter extends GameObject {
 							game);
 					break;
 				case 3:
-					g.drawImage(images.getBlueCrabImage(currentAnimation, movementFrameNum), (int) x - 16, (int) y - 32,
+					g.drawImage(images.getBlueCrabImage(currentAnimation, movementFrameNum2), (int) x - 16, (int) y - 32,
 							game);
 					break;
 				case 4:
-					g.drawImage(images.getBlueCrabImage(currentAnimation, movementFrameNum), (int) x - 16, (int) y - 32,
+					g.drawImage(images.getBlueCrabImage(currentAnimation, movementFrameNum2), (int) x - 16, (int) y - 32,
 							game);
 					break;
 				}
@@ -380,7 +374,7 @@ public class Critter extends GameObject {
 
 	// Animations & GFX
 	public void drawWateringPlantAction(Graphics g) {
-		actionFrameNum = (actionFrameNum + 1) % images.getActionFrameCount();
+		actionFrameNum = (actionFrameNum + 1) % images.getActionFrames();
 
 		if (game.isPause()) {
 			g.drawImage(images.getWateringPlant(actionFrameNum), (int) x, (int) y - 42, game);
@@ -389,7 +383,7 @@ public class Critter extends GameObject {
 	}
 
 	public void drawBuildingAction(Graphics g) {
-		actionFrameNum = (actionFrameNum + 1) % images.getActionFrameCount();
+		actionFrameNum = (actionFrameNum + 1) % images.getActionFrames();
 
 		if (game.isPause()) {
 			g.drawImage(images.getBuildingAction(actionFrameNum), (int) x, (int) y - 42, game);
@@ -520,15 +514,16 @@ public class Critter extends GameObject {
 					setVelY(0);
 					jump = false;
 					onLand = true;
+					inWater = false;
 				}
 			}
 			if (temp.getId() == ObjectId.seaLevel) {
 				if (getBoundsSelf().intersects(temp.getBounds())) {
 					falling=true;
 					jump = false;
-
+					inWater = true;
+					//System.out.println("I'm in WATER!!!");
 				}
-
 			}
 			if (temp.getId() == ObjectId.sand) {
 				if (getBoundsBottom().intersects(temp.getBounds())) {
@@ -662,6 +657,14 @@ public class Critter extends GameObject {
 
 	public void setLeft() {
 		right = false;
+	}
+	
+	public boolean getInWater(){
+		return inWater;
+	}
+	
+	public void setAnimation(int currentAnimation){
+		this.currentAnimation = currentAnimation;
 	}
 
 }

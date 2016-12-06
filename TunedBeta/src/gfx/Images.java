@@ -101,10 +101,6 @@ public class Images {
 	}
 
 	// Getters and Setters
-	public int getActionFrameCount() {
-		return actionFrameCount;
-	}
-
 	public BufferedImage getTestImg() {
 		return testImg;
 	}
@@ -133,16 +129,22 @@ public class Images {
 		return skyTile[i];
 	}
 	
-	public int getWalkLeftFrameCount() {
-		return walkFrameCount;
-	}
-	
 	public BufferedImage getBlueCrabImage(int i, int j) {
 		return blueCrab[i][j];
 	}
 	
-	public int getSwimFrameCount() {
-		return swimFrameCount;
+	// Frame Counts
+	// For use when other classes want to know how many frames per animation
+	public int getActionFrames(){
+		return 16;
+	}
+	
+	public int getSwimFrames(){
+		return 12;
+	}
+	
+	public int getMoveFrames(){
+		return 18;
 	}
 
 }
