@@ -473,6 +473,30 @@ public class Critter extends GameObject {
 					}
 				}
 			}
+			
+			//if object is an oyster and in range, collect the oyster 
+			else if(temp.getId() == ObjectId.oyster && temp.getBounds().intersects(this.getBounds())){
+				Oyster oyster = (Oyster)temp;
+				game.handler.removeObject(oyster);
+				inventory.addOyster();
+			}
+			//if object is a rope and in range, collect the rope
+			else if(temp.getId() == ObjectId.rope && temp.getBounds().intersects(this.getBounds())){
+				Rope rope = (Rope)temp;
+				game.handler.removeObject(rope);
+				inventory.addRope();
+			}
+			//if object is wood and in range, collect the wood
+			else if(temp.getId() == ObjectId.wood && temp.getBounds().intersects(this.getBounds())){
+				Wood wood = (Wood)temp;
+				game.handler.removeObject(wood);
+				inventory.addWood();
+			}
+			//if object is trash and in range, remove it
+			else if(temp.getId() == ObjectId.ptrash && temp.getBounds().intersects(this.getBounds())){
+				Trash trash = (Trash)temp;
+				game.handler.removeObject(trash);
+			}
 			/*
 			 * if (temp.getId() == ObjectId.waterTree) { WaterTree wt =
 			 * (WaterTree) temp; if (wt.canAttack) { wt.hp -= damage; } if
@@ -665,5 +689,19 @@ public class Critter extends GameObject {
 	public void setAnimation(int currentAnimation){
 		this.currentAnimation = currentAnimation;
 	}
+	public void plantGabion() {
+		//builds gabion if inventory method returns true, and you are on the sand behind initial barrier
+				if(inventory.buildGabion() && this.x < dm.getWidth()/2 + dm.getWidth()/4){
+					game.handler.addObject(new Gabion((int)x,(int)y-12,ObjectId.gabion,game));
+					inventory.removeOysters();
+					inventory.removeRope();
+					inventory.removeWood();
+				}
+				else{
+					System.out.println("Failed");
+				}
+				
+	}
+
 
 }
