@@ -105,7 +105,7 @@ public class Game extends Canvas implements Runnable {
 		cam = new Camera(0, 0, dm);
 		g1t=new Game3Timer((int)(dm.getWidth() - dm.getWidth()/4),(int)(dm.getHeight()/8),ObjectId.game3timer,this,1);
 		habitat = new Habitat(dmBoundaries[2] + 16, dmBoundaries[1] - 96 - 64, ObjectId.habitat, this, dm);
-		barrier = new Barrier((int)(dm.getWidth()/2 + dm.getWidth()/4),(int)(dm.height/2 + (dm.getHeight()/15)),ObjectId.barrier, this);
+		barrier = new Barrier((int)(dm.getWidth()/2 + dm.getWidth()/4),(int)(dm.height/2 + (dm.getHeight()/15)),ObjectId.barrier, this, images);
 		// 0 1 2 3 4
 		// Width, Height, Water Start Width, Water Bottom Height, Water Surface
 		// Height
@@ -383,7 +383,7 @@ public class Game extends Canvas implements Runnable {
 		@Override
 		
 		public void actionPerformed(ActionEvent e) {
-			/*if (game1) {
+			if (game1) {
 				game1 = false;
 				game2 = true;
 
@@ -400,9 +400,15 @@ public class Game extends Canvas implements Runnable {
 				
 			} else if (game2) {
 				game2 = false;
-				game3 = true;
-
+				if(g2stage>7){
+					game3 = true;
+				}
 				// Remove Game 2 Objects
+				handler.removeGame2();
+				
+				//add game 3
+				
+				
 				
 
 			} else if (game3) {
@@ -413,7 +419,7 @@ public class Game extends Canvas implements Runnable {
 				gameTime.stop();
 
 			}
-			gameTime.restart();*/
+			gameTime.restart();
 			game3Create();
 	}
 	};

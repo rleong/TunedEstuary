@@ -24,6 +24,7 @@ public class Images {
 	BufferedImage[] littleBlueStem;
 	BufferedImage[] indianGrass;
 	BufferedImage[] gaBion;
+	BufferedImage[] conCrete;
 
 	// Tiles
 	BufferedImage[] skyTile;
@@ -72,6 +73,11 @@ public class Images {
 		for (int i = 0; i < 3; i++) {
 			BufferedImage img = createImage("barriers/Gabion.png");
 			gaBion[i] = img.getSubimage(64 * i, 0, 64, 64);
+		}
+		conCrete = new BufferedImage[3];
+		for (int i = 0; i < 3; i++) {
+			BufferedImage img = createImage("barriers/Concrete.png");
+			conCrete[i] = img.getSubimage(64 * i, 0, 64, 64);
 		}
 
 		// Entities
@@ -276,6 +282,10 @@ public class Images {
 	
 	public BufferedImage getGabion(int i) {
 		return gaBion[i];
+	}
+	
+	public BufferedImage getConcrete(int i) {
+		return conCrete[i];
 	}
 
 	// Entity Getters

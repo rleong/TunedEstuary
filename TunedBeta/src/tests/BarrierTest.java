@@ -15,7 +15,7 @@ import object.Waves;
 
 public class BarrierTest {
 
-	Barrier tester = new Barrier(50.0,50.0,ObjectId.barrier,null);
+	Barrier tester = new Barrier(50.0,50.0,ObjectId.barrier,null, null);
 	
 	@Test
 	public void getBoundsTest(){

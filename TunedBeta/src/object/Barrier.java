@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
+import gfx.Images;
 import window.Handler;
 /**
  * 
@@ -20,6 +21,8 @@ import window.Handler;
 public class Barrier extends GameObject{
 	public int hp;
 	Handler handler;
+	private int stage = 0;
+	Images images;
 	
 	/**
 	 * creates an initial barrier for game 3 to protect the estuary from waves
@@ -28,9 +31,10 @@ public class Barrier extends GameObject{
 	 * @param id object's Id Enum value
 	 * @param game Game object
 	 */
-	public Barrier(double x, double y, ObjectId id, Game game) {
+	public Barrier(double x, double y, ObjectId id, Game game, Images images) {
 		super(x, y, id,game);
 		hp = 5;
+		this.images = images;
 	}
 
 	@Override
@@ -39,7 +43,13 @@ public class Barrier extends GameObject{
 	 */
 	public void tick(LinkedList<GameObject> object) {
 		collision(game.handler.object);
-		if(this.getHp() == 0){
+		if(this.getHp() >= 5){
+			stage = 0;
+		}else if(this.getHp() >= 2){
+			stage = 1;
+		}else if(this.getHp() == 1){
+			stage = 2;
+		}else{
 			game.handler.object.remove(this);
 		}
 		
@@ -75,8 +85,8 @@ public class Barrier extends GameObject{
 	 */
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.yellow);
-		g.fillRect((int)x, (int)y, 45, 45);
+		g.drawImage(images.getConcrete(stage), (int)x, (int)y, game);
+		//g.fillRect((int)x, (int)y, 45, 45);
 		g.setColor(Color.red);
 		g.fillRect((int)x, (int)y, (int)(hp*45/4), 2);
 		
