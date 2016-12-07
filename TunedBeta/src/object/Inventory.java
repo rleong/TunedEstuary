@@ -15,21 +15,21 @@ import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
 import window.Handler;
+
 //
 public class Inventory extends GameObject {
-	
+
 	private int countOyster = 0;
 	private int countPlant1 = 0;
 	private int countPlant2 = 0;
 	private int countPlant3 = 0;
-	
-	
+
 	private int countRope = 0;
 	private int countWood = 0;
 	private int countMiraclePlant = 0;
 	private int xx;
 	private int yy;
-	
+
 	Critter critter;
 	Dimension dm;
 
@@ -100,7 +100,6 @@ public class Inventory extends GameObject {
 			drawMenu(g);
 
 		}
-		
 
 		// Error
 		if (error) {
@@ -108,12 +107,12 @@ public class Inventory extends GameObject {
 		}
 
 	}
-	
+
 	public void buildBarrier(Game gm, int type) {
 		if (critter.getX() <= dm.getWidth() * .84 - 64 && !error) {
-			switch(type){
+			switch (type) {
 			case 0:
-				critter.planT(0);
+				critter.plantGabion();
 				critter.setBuildAnimation(false);
 				break;
 			case 1:
@@ -121,8 +120,12 @@ public class Inventory extends GameObject {
 				critter.setBuildAnimation(true);
 				break;
 			case 2:
+				critter.planT(1);
+				critter.setBuildAnimation(true);
 				break;
 			case 3:
+				critter.planT(2);
+				critter.setBuildAnimation(true);
 				break;
 			case 4:
 				break;
@@ -185,7 +188,7 @@ public class Inventory extends GameObject {
 		g.drawString(output4, (int) xx + 31, (int) yy + 103);
 		g.setColor(Color.green);
 		g.fillRect((int) xx + 10, (int) yy + 90, 16, 16);
-		
+
 		// Concrete
 		String output5 = "x" + countRope + " Ropes";
 		g.setColor(Color.white);
@@ -213,34 +216,39 @@ public class Inventory extends GameObject {
 		else
 			menuActivation = true;
 	}
-	
+
 	// Oyster
-		
+
 	public void addRope() {
-			countRope++;
-		}
-		// adds 1 wood
-		public void addWood() {
-			countWood++;
-		}
-		//removes a rope
-		public void removeRope() {
-			countRope--;
-		}
-		// Big Seed
-		public void removeWood() {
-			countWood--;
-		}
-		//removes 5 oysters(for gabion)
-		public void removeOysters(){
-			countOyster-=5;
-		}
-		//returns true if you have enough materials to build gabion
-		public boolean buildGabion(){
-			if(countRope >=1 && countWood >=1 && countOyster >= 5)
-				return true;
-			else
-				return false;
-		}
+		countRope++;
+	}
+
+	// adds 1 wood
+	public void addWood() {
+		countWood++;
+	}
+
+	// removes a rope
+	public void removeRope() {
+		countRope--;
+	}
+
+	// Big Seed
+	public void removeWood() {
+		countWood--;
+	}
+
+	// removes 5 oysters(for gabion)
+	public void removeOysters() {
+		countOyster -= 5;
+	}
+
+	// returns true if you have enough materials to build gabion
+	public boolean buildGabion() {
+		if (countRope >=1 && countWood >=1 && countOyster >= 5)
+			return true;
+		else
+			return false;
+	}
 
 }

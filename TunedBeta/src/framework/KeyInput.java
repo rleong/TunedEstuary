@@ -80,7 +80,7 @@ public class KeyInput extends KeyAdapter {
 						temp.setVelX(0);
 						t.setLeft();
 						if(t.getInWater())
-							t.setAnimation(4);
+							t.setAnimation(5);
 						else
 							t.setAnimation(0);
 					}
@@ -88,7 +88,7 @@ public class KeyInput extends KeyAdapter {
 						temp.setVelX(0);
 						t.setRight();
 						if(t.getInWater())
-							t.setAnimation(4);
+							t.setAnimation(6);
 						else
 							t.setAnimation(0);
 					}
@@ -144,10 +144,10 @@ public class KeyInput extends KeyAdapter {
 						inv.buildBarrier(gm, 1);
 					}
 					if (key == KeyEvent.VK_I) {
-
+						inv.buildBarrier(gm, 2);
 					}
 					if (key == KeyEvent.VK_O) {
-
+						inv.buildBarrier(gm, 3);
 					}
 					if (key == KeyEvent.VK_P) {
 

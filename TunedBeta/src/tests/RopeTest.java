@@ -2,24 +2,34 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.awt.Rectangle;
+import java.util.LinkedList;
+
 import org.junit.Test;
 
+import framework.GameObject;
 import framework.ObjectId;
-import object.Game3Instructions;
-import object.Game3Timer;
+import object.LandSurface;
+import object.Rope;
+import object.Wood;
 
-public class Game3TimerTest {
+public class RopeTest {
 
-	Game3Timer tester = new Game3Timer(1.0,1.0,ObjectId.game3timer,null,3);
+	LinkedList<GameObject>test1 = new LinkedList<GameObject>();
+	Rope tester = new Rope(50,50,ObjectId.rope,null);
 	
 	@Test
 	public void getBoundsTest(){
-		assertEquals(tester.getBounds(), null);
+		assertEquals(tester.getBounds(), new Rectangle(34,34,16,16));
 	}
-	//@Test
-	/*public void loseTest(){
-		assertEquals(tester.lose(),1);
-	}*/
+	@Test
+	public void getBoundsFallTest(){
+		assertEquals(tester.getBoundsFall(), new Rectangle(34,34,32,32));
+	}
+	@Test
+	public void getBoundsBottomTest(){
+		assertEquals(tester.getBoundsBottom(), new Rectangle(56,76,20,6));
+	}
 	@SuppressWarnings("deprecation")
 	@Test
 	public void getXTest() {
@@ -59,7 +69,7 @@ public class Game3TimerTest {
 	}
 	@Test
 	public void getIdTest() {
-		assertEquals(tester.getId(),ObjectId.game3timer);
+		assertEquals(tester.getId(),ObjectId.rope);
 	}
 	@Test
 	public void setGravityTest(){
@@ -78,5 +88,12 @@ public class Game3TimerTest {
 	@Test
 	public void getFallingTest(){
 		assertEquals(tester.getFalling(), true);
+	}
+	@Test
+	public void testCollision(){
+		test1.add(tester);
+		test1.add(new LandSurface(50.0,50.0,ObjectId.landSurface,null));
+		tester.testCollision(test1);
+		assertEquals(test1.get(0).getY(),01,18.0);	
 	}
 }

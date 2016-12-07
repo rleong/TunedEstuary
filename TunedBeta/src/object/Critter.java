@@ -205,10 +205,96 @@ public class Critter extends GameObject {
 				}
 				break;
 			case 1:
-				g.setColor(Color.DARK_GRAY);
+				switch (currentAnimation) {
+				case 0:
+					if (right) {
+						g.drawImage(images.getOysterImage(currentAnimation, 0), (int) x - 16, (int) y - 32, game);
+					} else {
+						g.drawImage(images.getOysterImage(currentAnimation, 1), (int) x - 16, (int) y - 32, game);
+					}
+					break;
+				case 1:
+					g.drawImage(images.getOysterImage(currentAnimation, movementFrameNum), (int) x - 16, (int) y - 32,
+							game);
+					break;
+				case 2:
+					g.drawImage(images.getOysterImage(currentAnimation, movementFrameNum), (int) x - 16, (int) y - 32,
+							game);
+					break;
+				case 3:
+					g.drawImage(images.getOysterImage(currentAnimation, movementFrameNum), (int) x - 16, (int) y - 32,
+							game);
+					break;
+				case 4:
+					g.drawImage(images.getOysterImage(currentAnimation, movementFrameNum), (int) x - 16, (int) y - 32,
+							game);
+					break;
+				case 5:
+					g.drawImage(images.getOysterImage(currentAnimation, movementFrameNum), (int) x - 16, (int) y - 32,
+							game);
+					break;
+				case 6:
+					g.drawImage(images.getOysterImage(currentAnimation, movementFrameNum), (int) x - 16, (int) y - 32,
+							game);
+					break;
+				case 7:
+					g.drawImage(images.getOysterImage(currentAnimation, movementFrameNum3), (int) x - 16, (int) y - 32,
+							game);
+					break;
+				case 8:
+					if (right) {
+						g.drawImage(images.getOysterImage(currentAnimation, 0), (int) x - 16, (int) y - 32, game);
+					} else {
+						g.drawImage(images.getOysterImage(currentAnimation, 1), (int) x - 16, (int) y - 32, game);
+					}
+					break;
+				}
 				break;
 			case 2:
-				g.setColor(Color.lightGray);
+				switch (currentAnimation) {
+				case 0:
+					if (right) {
+						g.drawImage(images.getHorseshoeCrabImage(currentAnimation, 0), (int) x - 16, (int) y - 32, game);
+					} else {
+						g.drawImage(images.getHorseshoeCrabImage(currentAnimation, 1), (int) x - 16, (int) y - 32, game);
+					}
+					break;
+				case 1:
+					g.drawImage(images.getHorseshoeCrabImage(currentAnimation, movementFrameNum), (int) x - 16, (int) y - 32,
+							game);
+					break;
+				case 2:
+					g.drawImage(images.getHorseshoeCrabImage(currentAnimation, movementFrameNum), (int) x - 16, (int) y - 32,
+							game);
+					break;
+				case 3:
+					g.drawImage(images.getHorseshoeCrabImage(currentAnimation, movementFrameNum2), (int) x - 16, (int) y - 32,
+							game);
+					break;
+				case 4:
+					g.drawImage(images.getHorseshoeCrabImage(currentAnimation, movementFrameNum2), (int) x - 16, (int) y - 32,
+							game);
+					break;
+				case 5:
+					g.drawImage(images.getHorseshoeCrabImage(currentAnimation, movementFrameNum2), (int) x - 16, (int) y - 32,
+							game);
+					break;
+				case 6:
+					g.drawImage(images.getHorseshoeCrabImage(currentAnimation, movementFrameNum2), (int) x - 16, (int) y - 32,
+							game);
+					break;
+				case 7:
+					g.drawImage(images.getHorseshoeCrabImage(currentAnimation, movementFrameNum3), (int) x - 16, (int) y - 32,
+							game);
+					break;
+				case 8:
+					if (right) {
+						g.drawImage(images.getHorseshoeCrabImage(currentAnimation, 0), (int) x - 16, (int) y - 32, game);
+					} else {
+						g.drawImage(images.getHorseshoeCrabImage(currentAnimation, 1), (int) x - 16, (int) y - 32, game);
+					}
+					break;
+				}
 				break;
 			}
 		} else {
@@ -297,16 +383,12 @@ public class Critter extends GameObject {
 		g.drawImage(images.getMenuBar(), buildXLocation - 32, buildYLocation - 26, game);
 
 		g.drawImage(images.getGabionBuildIcon(), buildXLocation, buildYLocation, game);
-		// g.fillRect(buildXLocation, buildYLocation, 64, 64);
 
-		g.setColor(Color.BLUE);
-		g.fillRect(buildXLocation + 64 + 32, buildYLocation, 64, 64);
+		g.drawImage(images.getPlant1(2), buildXLocation + 64 + 32, buildYLocation, game);
 
-		g.setColor(Color.RED);
-		g.fillRect(buildXLocation + 64 + 32 + 64 + 32, buildYLocation, 64, 64);
+		g.drawImage(images.getPlant2(2), buildXLocation + 64 + 32 + 64 + 32, buildYLocation, game);
 
-		g.setColor(Color.GRAY);
-		g.fillRect(buildXLocation + 64 + 32 + 64 + 32 + 64 + 32, buildYLocation, 64, 64);
+		g.drawImage(images.getPlant3(2), buildXLocation + 64 + 32 + 64 + 32 + 64 + 32, buildYLocation, game);
 
 		g.setColor(Color.GREEN);
 		g.fillRect(buildXLocation + 64 + 32 + 64 + 32 + 64 + 32 + 64 + 32, buildYLocation, 64, 64);
@@ -512,7 +594,7 @@ public class Critter extends GameObject {
 
 	// Plants plants
 	public void planT(int type) {
-		game.handler.addObject(new Tree(x, dm.getHeight() * 3 / 5 - 32, ObjectId.tree, type, game));
+		game.handler.addObject(new Tree(x, dm.getHeight() * 3 / 5 - 32, ObjectId.tree, type, game, images));
 	}
 
 	/**
@@ -692,7 +774,7 @@ public class Critter extends GameObject {
 	public void plantGabion() {
 		//builds gabion if inventory method returns true, and you are on the sand behind initial barrier
 				if(inventory.buildGabion() && this.x < dm.getWidth()/2 + dm.getWidth()/4){
-					game.handler.addObject(new Gabion((int)x,(int)y-12,ObjectId.gabion,game));
+					game.handler.addObject(new Gabion(x, dm.getHeight() * 3 / 5 - 32,ObjectId.gabion,game, images));
 					inventory.removeOysters();
 					inventory.removeRope();
 					inventory.removeWood();

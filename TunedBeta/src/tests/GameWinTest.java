@@ -10,7 +10,7 @@ import object.GameOver;
 import object.GameWin;
 
 public class GameWinTest {
-	Game3Timer test = new Game3Timer(1,1,ObjectId.game3timer,null);
+	Game3Timer test = new Game3Timer(1,1,ObjectId.game3timer,null,3);
 	GameWin tester = new GameWin(1.0,1.0,ObjectId.gameover,null);
 	
 	@Test
