@@ -238,7 +238,7 @@ public class Game extends Canvas implements Runnable {
 		if(g2stage > 7){
 			game3 = true;
 		}
-		//start game 3
+		//start game 3 
 		if(game3 == true && gmeval == 2){
 			gmeval++;
 			handler.removeGame2();

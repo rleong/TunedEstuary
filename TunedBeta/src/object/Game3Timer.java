@@ -98,7 +98,7 @@ public class Game3Timer extends GameObject {
 	
 
 	@Override
-	//no bounds
+	//no bounds 
 	/**
 	 * gets this objects bounds
 	 * @return Rectangle of null
