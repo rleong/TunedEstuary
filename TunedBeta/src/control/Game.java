@@ -225,6 +225,9 @@ public class Game extends Canvas implements Runnable {
 			factory.iniTree();
 			
 		}
+		if(g2stage > 7){
+			game3 = true;
+		}
 		if(game3 == true && gmeval == 2){
 			gmeval++;
 			handler.removeGame2();
