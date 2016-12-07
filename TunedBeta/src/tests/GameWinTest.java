@@ -17,10 +17,7 @@ public class GameWinTest {
 	public void getBoundsTest(){
 		assertEquals(tester.getBounds(), null);
 	}
-	//@Test
-	/*public void loseTest(){
-		assertEquals(tester.lose(),1);
-	}*/
+	
 	@SuppressWarnings("deprecation")
 	@Test
 	public void getXTest() {

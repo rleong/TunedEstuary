@@ -18,10 +18,6 @@ public class WavesTest {
 	public void getBoundsTest(){
 		assertEquals(tester.getBounds(), new Rectangle(1,1,32,32));
 	}
-	//@Test
-	/*public void loseTest(){
-		assertEquals(tester.lose(),1);
-	}*/
 	@SuppressWarnings("deprecation")
 	@Test
 	public void getXTest() {
