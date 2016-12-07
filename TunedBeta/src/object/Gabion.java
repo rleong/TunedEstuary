@@ -15,7 +15,11 @@ import framework.GameObject;
 import framework.ObjectId;
 import gfx.Images;
 import window.Handler;
-
+/**
+ * 
+ * @author justin said
+ *
+ */
 public class Gabion extends GameObject{
 	public int hp;
 	Handler handler;
@@ -24,6 +28,13 @@ public class Gabion extends GameObject{
 	Timer buildStage;
 	
 	public Gabion(double x, double y, ObjectId id,Game game, Images images) {
+	/**
+	 * creates a gabion for game 3 to protect the estuary from waves
+	 * @param x object's x position
+	 * @param y object's y position
+	 * @param id object's Id Enum value
+	 * @param game Game object
+	 */
 		super(x, y, id,game);
 		this.images=images;
 		hp = 3;
@@ -32,6 +43,9 @@ public class Gabion extends GameObject{
 	}
 
 	@Override
+	/**
+	 * continuously called to check collision and hp
+	 */
 	public void tick(LinkedList<GameObject> object) {
 		collision(object);
 		//if the object is a gabion with no health remove it
@@ -53,6 +67,10 @@ public class Gabion extends GameObject{
 	};
 	
 	//check for collision with all game objects
+	/**
+	 * checks for collisions with different objects(waves)
+	 * @param linked list<GameObject>object
+	 */
 	private void collision(LinkedList<GameObject> object){
 		
 		GameObject temp;
@@ -69,12 +87,19 @@ public class Gabion extends GameObject{
 		}
 	}
 	//return hp value
+	/**
+	 * gets hp value
+	 * @return int hp value
+	 */
 	public int getHp(){
 		return hp;
 	}
 	
 	@Override
 	//print gabion object
+	/**
+	 * prints the gabion object at that location
+	 */
 	public void render(Graphics g) {
 		g.drawImage(images.getGabion(stage), (int) x - 16, (int) y - 32, game);
 		g.setColor(Color.red);
@@ -84,10 +109,19 @@ public class Gabion extends GameObject{
 
 	@Override
 	//get gabion object bounds
+	/**
+	 * returns rectangle with object bounds for collision
+	 * @return rectangle with object bounds
+	 */
 	public Rectangle getBounds() {
 		return new Rectangle((int)x - 16,(int)y - 32,64,64);
 		
 	}
+	/**
+	  * for test to access collision
+	  * @param test
+	  * @return LinkedList<GameObject> test after calling collision
+	  */
 	public LinkedList<GameObject> testCollision(LinkedList<GameObject>test){
 		collision(test);
 		return test;
