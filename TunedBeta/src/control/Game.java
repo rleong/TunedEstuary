@@ -118,7 +118,7 @@ public class Game extends Canvas implements Runnable {
 
 		// Game 1 Objects
 		handler.addObject(new Boat(dmBoundaries[2], dmBoundaries[4] - 40, ObjectId.boat, this, trashBin, recyclebin,
-				inventory, dmBoundaries[2], dm.getWidth() * 3 / 2));
+				inventory, dmBoundaries[2], dm.getWidth() * 3 / 2, false));
 		handler.addObject(trashBin);
 		handler.addObject(recyclebin);
 		handler.addObject(inventory);
@@ -298,7 +298,10 @@ public class Game extends Canvas implements Runnable {
 	Game3Timer g3t=new Game3Timer((int)(dm.getWidth() - dm.getWidth()/4),(int)(dm.getHeight()/8),ObjectId.game3timer,this);
 	Estuary estuary=new Estuary(0, dm.getHeight()/1.9, ObjectId.estuary, this, dm);
 	WaveClock wclock = new WaveClock(1,1,ObjectId.wclock,this);
-	public void personCreate(){
+	
+	public void game3Create(){
+		handler.addObject(new Boat(dmBoundaries[2], dmBoundaries[4] - 40, ObjectId.boat, this, trashBin, recyclebin,
+				inventory, dmBoundaries[2], dm.getWidth() * 3 / 2, true));
 		for(int i = 0; i<3;i++){
 			handler.addObject(new Person(rand.nextInt(900), (int)(dm.height/2 + (dm.getHeight()/15)), ObjectId.person,this, rand.nextInt(2)));
 		}
@@ -327,17 +330,16 @@ public class Game extends Canvas implements Runnable {
 				game3 = true;
 
 				// Remove Game 2 Objects
-
+				handler.removeGame2();
 				// Game 3 Objects
 				handler.addObject(g3t);
 				handler.addObject(estuary);
 				handler.addObject(game3inst);
 				
-				Boat.game3 = true;
 				handler.addObject(barrier);
 				handler.addObject(wclock);
 				//spawns 3 people
-				personCreate();
+				game3Create();
 
 			} else if (game3) {
 				game3 = false;

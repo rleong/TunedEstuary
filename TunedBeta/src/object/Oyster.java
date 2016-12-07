@@ -46,10 +46,7 @@ public class Oyster extends GameObject {
 	//check for collisions with other objects
 	private void collision(LinkedList<GameObject> object) {
 		//iterate through objects list
-		Iterator<GameObject> itr = object.iterator();
-		GameObject temp;
-		for (; itr.hasNext();) {
-			temp = itr.next();
+		for (GameObject temp:object) {
 			//if it collides with sand, then stop falling
 			if (temp.getId() == ObjectId.sand) {
 				if (getBoundsBottom().intersects(temp.getBounds())) {

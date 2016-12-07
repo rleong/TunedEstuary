@@ -3,6 +3,7 @@ package window;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import control.Game;
@@ -63,6 +64,36 @@ public class Handler {
 				boat.removeBoat();
 				object.remove(i);
 			}
+		}
+	}
+	public void removeGame2(){
+		for (Iterator<GameObject> it = object.iterator(); it.hasNext();){
+			temp = it.next();
+			if (temp.getId() == ObjectId.waste){
+				it.remove();
+			} 
+			else if (temp.getId() == ObjectId.compost){
+				it.remove();
+			}
+			else if (temp.getId() == ObjectId.runOff){
+				it.remove();
+			}
+			else if (temp.getId() == ObjectId.RofFactory){
+				it.remove();
+			}
+			else if (temp.getId() == ObjectId.recycle){
+				it.remove();
+			}
+			else if (temp.getId() == ObjectId.trash){
+				it.remove();
+			}
+			else if (temp.getId() == ObjectId.recycleBin){
+				it.remove();
+			}
+			else if (temp.getId() == ObjectId.trashBin){
+				it.remove();
+			}
+			
 		}
 	}
 

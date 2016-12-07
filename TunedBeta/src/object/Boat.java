@@ -25,8 +25,9 @@ public class Boat extends GameObject {
 	private double boundary1;
 	private double boundary2;
 	private int rand1;
+	private int count;
 	boolean waves;
-	public static boolean game3;
+	public boolean game3;
 	public static boolean game1;
 
 	// Random Droppings
@@ -38,7 +39,7 @@ public class Boat extends GameObject {
 	Timer clock2;
 
 	public Boat(double x, double y, ObjectId id, Game game, WasteBin trashBin, WasteBin recyclebin,
-			Inventory counter, double boundary1, double boundary2) {
+			Inventory counter, double boundary1, double boundary2, boolean g3) {
 		super(x, y, id, game);
 		initialY = y;
 		this.trashBin = trashBin;
@@ -46,6 +47,8 @@ public class Boat extends GameObject {
 		this.counter = counter;
 		this.boundary1 = boundary1;
 		this.boundary2 = boundary2;
+		this.game3 = g3;
+		count = 1;
 		clock = new Timer(2000, listener);
 		clock2 = new Timer(2000, listener2);
 		clock.start();
@@ -72,19 +75,22 @@ public class Boat extends GameObject {
 		x += direction;
 		y += .25 * Math.sin(x / 25);
 		rand1 = rand.nextInt(200)+100;//sets new random value
-		if(game3 == true){
+		if(game3 == true && count == 1){
 			clock2.start();
 			clock.stop();
-			game3 = false;
+			count = 0;
+		}
+		if(game3 == true){
+			if(oysterSpawn == rand1){
+				spawnOyster();
+				oysterSpawn = -300;//resets oyster spawn count
+			}
+			oysterSpawn++;
 		}
 		collide();
 		
 		//spawns oyster if the count is equal to the random value
-				if(oysterSpawn == rand1){
-					spawnOyster();
-					oysterSpawn = 0;//resets oyster spawn count
-				}
-				oysterSpawn++;//increments oyster spawn count
+		//increments oyster spawn count
 				
 	}
 
