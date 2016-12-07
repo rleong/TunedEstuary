@@ -63,6 +63,7 @@ public class Critter extends GameObject {
 	int actionFrameNum = 0;
 	int movementFrameNum = 0;
 	int movementFrameNum2 = 0;
+	int movementFrameNum3 = 0;
 	int currentAnimation = 0; // 0 Idle 1 Left Walk 2 Right Walk 3 Swim Up 4
 								// Swim Down 5 Swim Left 6 Swim Right 7
 								// Attack/Interact
@@ -101,28 +102,6 @@ public class Critter extends GameObject {
 
 	@Override
 	public void tick(LinkedList<GameObject> object) {
-
-//		if (inWater) {
-//			if (velX == 0) {
-//				currentAnimation = 0;
-//			} else if (velY > 0) {
-//				currentAnimation = 3;
-//			} else if (velY < 0) {
-//				currentAnimation = 4;
-//			} else {
-//				currentAnimation = 0;
-//			}
-//		} else {
-//			if (velX == 0) {
-//				currentAnimation = 0;
-//			} else if (velX < 0) {
-//				currentAnimation = 1;
-//			} else if (velX > 0) {
-//				currentAnimation = 2;
-//			}  else {
-//				currentAnimation = 0;
-//			}
-//		} 
 
 		// Character Physics
 		x += velX;
@@ -174,6 +153,7 @@ public class Critter extends GameObject {
 
 		movementFrameNum = (movementFrameNum + 1) % images.getMoveFrames();
 		movementFrameNum2 = (movementFrameNum2 + 1) % images.getSwimFrames();
+		movementFrameNum3 = (movementFrameNum3 + 1) % images.getInteractFrames();
 
 		// Character Flickering & Normal
 		if (flicker == 0 || flicker % 10 == 0) {
@@ -203,6 +183,25 @@ public class Critter extends GameObject {
 					g.drawImage(images.getBlueCrabImage(currentAnimation, movementFrameNum2), (int) x - 16, (int) y - 32,
 							game);
 					break;
+				case 5:
+					g.drawImage(images.getBlueCrabImage(currentAnimation, movementFrameNum2), (int) x - 16, (int) y - 32,
+							game);
+					break;
+				case 6:
+					g.drawImage(images.getBlueCrabImage(currentAnimation, movementFrameNum2), (int) x - 16, (int) y - 32,
+							game);
+					break;
+				case 7:
+					g.drawImage(images.getBlueCrabImage(currentAnimation, movementFrameNum3), (int) x - 16, (int) y - 32,
+							game);
+					break;
+				case 8:
+					if (right) {
+						g.drawImage(images.getBlueCrabImage(currentAnimation, 0), (int) x - 16, (int) y - 32, game);
+					} else {
+						g.drawImage(images.getBlueCrabImage(currentAnimation, 1), (int) x - 16 - 64, (int) y - 32, game);
+					}
+					break;
 				}
 				break;
 			case 1:
@@ -231,7 +230,7 @@ public class Critter extends GameObject {
 		// g.fillRect((int) x, (int) y, 32, 32);
 
 		// Character Inner Bounds
-		Graphics2D g2d = (Graphics2D) g;
+//		Graphics2D g2d = (Graphics2D) g;
 		// g.setColor(Color.green);
 		// g2d.draw(getBoundsTop());
 		// g2d.draw(getBoundsBottom());
@@ -239,23 +238,23 @@ public class Critter extends GameObject {
 		// g2d.draw(getBoundsRight());
 
 		// Character Attack Range Bounds
-		g.setColor(Color.gray);
-		g2d.draw(getBounds());
+//		g.setColor(Color.gray);
+//		g2d.draw(getBounds());
 
 		// Character Name
 		g.setColor(Color.WHITE);
 		switch (character) {
 		case 0:
-			g.drawString("Blue Crab", (int) x - 10, (int) y - 10);
+			g.drawString("Blue Crab", (int) x - 10, (int) y - 18);
 			break;
 		case 1:
-			g.drawString("Eastern Oyster", (int) x - 22, (int) y - 10);
+			g.drawString("Eastern Oyster", (int) x - 22, (int) y - 18);
 			break;
 		case 2:
-			g.drawString("Horseshoe Crab", (int) x - 26, (int) y - 10);
+			g.drawString("Horseshoe Crab", (int) x - 26, (int) y - 18);
 			break;
 		default:
-			g.drawString("Debug Godmode", (int) x - 24, (int) y - 10);
+			g.drawString("Debug Godmode", (int) x - 24, (int) y - 18);
 			break;
 		}
 
@@ -315,6 +314,7 @@ public class Critter extends GameObject {
 	}
 
 	public void setBuildAnimation(boolean planting) {
+		setAnimation(7);
 		if (planting)
 			plantAction = true;
 		else
@@ -322,6 +322,7 @@ public class Critter extends GameObject {
 	}
 
 	public void endAnimation() {
+		setAnimation(0);
 		plantAction = false;
 		buildAction = false;
 	}
