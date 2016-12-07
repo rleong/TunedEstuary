@@ -296,7 +296,7 @@ public class Game extends Canvas implements Runnable {
 	};
 	
 	Game3Timer g3t=new Game3Timer((int)(dm.getWidth() - dm.getWidth()/4),(int)(dm.getHeight()/8),ObjectId.game3timer,this);
-	Estuary estuary=new Estuary(0, dm.getHeight()/1.9, ObjectId.estuary, this, dm);
+	Estuary estuary=new Estuary(0, dm.getHeight() * 3 / 5 - 60, ObjectId.estuary, this, dm);
 	WaveClock wclock = new WaveClock(1,1,ObjectId.wclock,this);
 	
 	public void game3Create(){
