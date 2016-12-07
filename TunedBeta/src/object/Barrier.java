@@ -30,7 +30,7 @@ public class Barrier extends GameObject{
 	 */
 	public Barrier(double x, double y, ObjectId id, Game game) {
 		super(x, y, id,game);
-		hp = 4;
+		hp = 5;
 	}
 
 	@Override

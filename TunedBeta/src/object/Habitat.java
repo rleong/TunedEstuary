@@ -76,6 +76,9 @@ public class Habitat extends GameObject{
 			}
 		}
 	}
+	public double getHealth(){
+		return health;
+	}
 
 	@Override
 	public Rectangle getBounds() {

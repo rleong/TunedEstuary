@@ -23,6 +23,7 @@ public class Game3Timer extends GameObject {
 	private int mintime;//minute time
 	private int sectime;//seconds remaining
 	private int mstime;//milliseconds remaining
+	private int g;
 	public static Timer clock1;//clock
 	//initializer to 1:30 seconds in game
 	/**
@@ -32,11 +33,12 @@ public class Game3Timer extends GameObject {
 	 * @param id object's Id Enum value
 	 * @param game Game object
 	 */
-	public Game3Timer(double x, double y, ObjectId id, Game game) {
+	public Game3Timer(double x, double y, ObjectId id, Game game, int g) {
 		super(x, y, id, game);
 		mintime = 1;
 		sectime = 30;
 		mstime = 0 ;
+		this.g = g;
 		clock1 = new Timer(100, l1);//calls listener l1 every millisecond
 		clock1.start();
 	}
@@ -62,15 +64,25 @@ public class Game3Timer extends GameObject {
 	 */
 	public void tick(LinkedList<GameObject> object) {
 		//if timer runs out stop the clock and call win method
-		if(mintime == 0 && sectime == 0 && mstime == 0){
-			clock1.stop();
-			System.out.println("Win");
-			win();
+		if(g == 3){
+			if(mintime == 0 && sectime == 0 && mstime == 0){
+				clock1.stop();
+				System.out.println("Win");
+				win();
+			}
+			//if 20 seconds are left, set game to hard mode
+			if(mintime == 0 && sectime == 15){
+				Waves.hard = true;
+				WaveClock.hard = true;
+			}
 		}
-		//if 20 seconds are left, set game to hard mode
-		if(mintime == 0 && sectime == 20){
-			Waves.hard = true;
-			WaveClock.hard = true;
+		else if(g == 1){
+			if(mintime == 0 && sectime == 0 && mstime == 0){
+				clock1.stop();
+				System.out.println("Win");
+				win();
+			}
+			
 		}
 				
 	}
@@ -99,7 +111,11 @@ public class Game3Timer extends GameObject {
 	 * add gamewin object to handler
 	 */
 	private void win(){
-		game.handler.addObject(new GameWin(1,1,ObjectId.gamewin,game));
+		if(g == 1){
+			game.game2 = true;
+		}
+		else if(g==3)
+			game.handler.addObject(new GameWin(1,1,ObjectId.gamewin,game));
 	}
 	
 }

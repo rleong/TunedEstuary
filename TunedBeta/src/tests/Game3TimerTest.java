@@ -10,7 +10,7 @@ import object.Game3Timer;
 
 public class Game3TimerTest {
 
-	Game3Timer tester = new Game3Timer(1.0,1.0,ObjectId.game3timer,null);
+	Game3Timer tester = new Game3Timer(1.0,1.0,ObjectId.game3timer,null,3);
 	
 	@Test
 	public void getBoundsTest(){
