@@ -109,7 +109,7 @@ public class KeyInput extends KeyAdapter {
 					if (key == KeyEvent.VK_G) {
 						t.plantGabion();
 					}
-					// Ability
+					// Ability 
 					if (key == KeyEvent.VK_Q) {
 						t.ability();
 					}

@@ -35,7 +35,7 @@ public class Oyster extends GameObject {
 	}
 
 	@Override
-	//print oyster object
+	//print oyster object 
 	public void render(Graphics g) {
 		g.setColor(Color.GRAY);
 		g.fillRect((int) x, (int) y, 32, 32);

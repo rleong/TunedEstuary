@@ -198,7 +198,7 @@ public class Game extends Canvas implements Runnable {
 
 		if(gameover == true)
 			handler.removeObject(game3inst);
-			//this.removeKeyListener(k);
+			//this.removeKeyListener(k); 
 	}
 
 	private void render() {

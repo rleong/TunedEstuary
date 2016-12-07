@@ -61,7 +61,7 @@ public class Boat extends GameObject {
 			clock.restart();
 		}
 	};
-	//called by clock2 to spawn oyster
+	//called by clock2 to spawn oyster 
 		ActionListener listener2 = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

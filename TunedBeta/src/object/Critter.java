@@ -473,7 +473,7 @@ public class Critter extends GameObject {
 				}
 			}
 			
-			//if object is an oyster and in range, collect the oyster 
+			//if object is an oyster and in range, collect the oyster  
 			else if(temp.getId() == ObjectId.oyster && temp.getBounds().intersects(this.getBounds())){
 				Oyster oyster = (Oyster)temp;
 				game.handler.removeObject(oyster);

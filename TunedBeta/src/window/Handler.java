@@ -18,7 +18,7 @@ import object.Waste;
 public class Handler {
 
 	public LinkedList<GameObject> object = new LinkedList<GameObject>();
-
+//--
 	private GameObject temp;
 	Game game;
 
