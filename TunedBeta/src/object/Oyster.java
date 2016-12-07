@@ -21,7 +21,13 @@ public class Oyster extends GameObject {
 
 	boolean falling = true;
 	//initializer
-	
+	/**
+	 * creates an oyster object spawned from the boat for the critter to collect
+	 * @param x object's x position
+	 * @param y object's y position
+	 * @param id object's Id Enum value
+	 * @param game Game object
+	 */
 	public Oyster(double x, double y, ObjectId id, Game game) {
 		super(x, y, id, game);
 		setVelY(1);
