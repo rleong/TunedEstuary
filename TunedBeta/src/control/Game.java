@@ -331,7 +331,7 @@ public class Game extends Canvas implements Runnable {
 
 				// Remove Game 2 Objects
 				handler.removeGame2();
-				// Game 3 Objects
+				// Game 3 Objects 
 				handler.addObject(g3t);
 				handler.addObject(estuary);
 				handler.addObject(game3inst);
