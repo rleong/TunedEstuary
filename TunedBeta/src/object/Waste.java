@@ -189,8 +189,9 @@ public class Waste extends GameObject {
 	}
 
 	private void collision(LinkedList<GameObject> object) {
+		GameObject temp;
 		for (int i = 0; i < game.handler.object.size(); i++) {
-			GameObject temp = game.handler.object.get(i);
+			temp = game.handler.object.get(i);
 			if (temp.getId() == ObjectId.sand) {
 				if (getBoundsBottom().intersects(temp.getBounds())) {
 					setY(temp.getY() - 32);

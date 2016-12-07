@@ -27,7 +27,7 @@ public class Person extends GameObject {
 		velX = speed;
 		velY = grav;
 		this.direction = direction;
-		this.dropcount = -300;
+		this.dropcount = -100;
 	}
 	//function for the person object to drop either a rope, wood, or trash randomly by adding it to the handler
 	//uses static methods in game class
@@ -72,8 +72,8 @@ public class Person extends GameObject {
 		if (x <= 0 || x >= 1400 - 32) {
 			velX *= -1;
 		}
-		//if dropcount is 1000, call drop() to drop a random item, and reset count
-		if (dropcount == 1000){
+		//if dropcount is 600, call drop() to drop a random item, and reset count
+		if (dropcount == 700){
 			drop();
 			dropcount = 0;
 		}
@@ -129,6 +129,14 @@ public class Person extends GameObject {
 	public Rectangle getBoundsBottom() {
 
 		return new Rectangle((int) x + 6, (int) y + 26, 20, 6);
+	}
+	//test collision
+	public LinkedList<GameObject> testCollision(LinkedList<GameObject>test){
+		collision(test);
+		return test;
+	}
+	public int getDirection(){
+		return direction;
 	}
 
 }

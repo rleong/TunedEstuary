@@ -22,6 +22,9 @@ public class Gabion extends GameObject{
 	@Override
 	public void tick(LinkedList<GameObject> object) {
 		collision(object);
+		//if the object is a gabion with no health remove it
+		if(this.getHp() == 0)
+			game.handler.removeObject(this);
 		
 	}
 	//check for collision with all game objects
@@ -37,11 +40,6 @@ public class Gabion extends GameObject{
 					hp-=1;
 					itr.remove();
 				}
-			}
-			//if the object is a gabion with no health remove it
-			if(temp.getId() == ObjectId.gabion){
-				if(((Gabion) temp).getHp() == 0)
-					itr.remove();	
 			}
 		}
 	}
@@ -65,6 +63,10 @@ public class Gabion extends GameObject{
 	public Rectangle getBounds() {
 		return new Rectangle((int)x,(int)y,45,45);
 		
+	}
+	public LinkedList<GameObject> testCollision(LinkedList<GameObject>test){
+		collision(test);
+		return test;
 	}
 
 }

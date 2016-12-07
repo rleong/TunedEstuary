@@ -3,14 +3,18 @@ package tests;
 import static org.junit.Assert.*;
 
 import java.awt.Rectangle;
+import java.util.LinkedList;
 
 import org.junit.Test;
 
 import control.Game;
+import framework.GameObject;
 import framework.ObjectId;
+import object.LandSurface;
 import object.Wood;
 
 public class WoodTest {
+	LinkedList<GameObject>test1 = new LinkedList<GameObject>();
 	Wood tester = new Wood(50,50,ObjectId.wood,null);
 	
 	@Test
@@ -83,5 +87,19 @@ public class WoodTest {
 	@Test
 	public void getFallingTest(){
 		assertEquals(tester.getFalling(), true);
+	}
+	@Test
+	public void testCollision(){
+		test1.add(tester);
+		test1.add(new LandSurface(50.0,50.0,ObjectId.landSurface,null));
+		tester.testCollision(test1);
+		assertEquals(test1.get(0).getY(),01,18.0);	
+	}
+	@Test
+	public void testCollision2(){
+		test1.add(tester);
+		test1.add(new LandSurface(50.0,50.0,ObjectId.sand,null));
+		tester.testCollision(test1);
+		assertEquals(test1.get(0).getVelY(),1,1);	
 	}
 }

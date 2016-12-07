@@ -69,7 +69,11 @@ public class Oyster extends GameObject {
 	}
 	//returns bottom bounds
 	public Rectangle getBoundsBottom() {
-
 		return new Rectangle((int) x + 6, (int) y + 26, 20, 6);
+	}
+	//test collision
+	public LinkedList<GameObject> testCollision(LinkedList<GameObject>test){
+		collision(test);
+		return test;
 	}
 }

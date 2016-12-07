@@ -3,14 +3,19 @@ package tests;
 import static org.junit.Assert.assertEquals;
 
 import java.awt.Rectangle;
+import java.util.LinkedList;
 
 import org.junit.Test;
 
 import control.Game;
+import framework.GameObject;
 import framework.ObjectId;
+import object.LandSurface;
 import object.Oyster;
+import object.Waves;
 
 public class OysterTest {
+	LinkedList<GameObject>test1 = new LinkedList<GameObject>();
 	Oyster tester = new Oyster(50.0,50.0,ObjectId.oyster,null);
 	
 	@Test
@@ -83,5 +88,20 @@ public class OysterTest {
 	@Test
 	public void getFallingTest(){
 		assertEquals(tester.getFalling(), true);
+	}
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testCollision(){
+		test1.add(tester);
+		test1.add(new LandSurface(50.0,50.0,ObjectId.sand,null));
+		tester.testCollision(test1);
+		assertEquals(test1.get(0).getY(),01,18.0);	
+	}
+	@Test
+	public void testCollision2(){
+		test1.add(tester);
+		test1.add(new LandSurface(50.0,50.0,ObjectId.sand,null));
+		tester.testCollision(test1);
+		assertEquals(test1.get(0).getVelY(),1,1);	
 	}
 }

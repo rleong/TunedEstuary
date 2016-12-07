@@ -3,11 +3,14 @@ package tests;
 import static org.junit.Assert.*;
 
 import java.awt.Rectangle;
+import java.util.LinkedList;
 
 import org.junit.Test;
 
+import framework.GameObject;
 import framework.ObjectId;
 import object.Gabion;
+import object.Waves;
 
 public class GabionTest {
 	Gabion tester = new Gabion(50.0,50.0,ObjectId.gabion,null);
@@ -78,5 +81,22 @@ public class GabionTest {
 	@Test
 	public void getFallingTest(){
 		assertEquals(tester.getFalling(), true);
+	}
+	@Test
+	public void testCollision(){
+		LinkedList<GameObject>test1 = new LinkedList<GameObject>();
+		LinkedList<GameObject>testexpected = new LinkedList<GameObject>();
+		test1.add(tester);
+		test1.add(new Waves(50.0,50.0,ObjectId.waves,null));
+		testexpected.add(tester);
+		assertEquals(tester.testCollision(test1),testexpected);	
+	}
+	@Test
+	public void testCollision2(){
+		LinkedList<GameObject>test1 = new LinkedList<GameObject>();
+		test1.add(tester);
+		test1.add(new Waves(50.0,50.0,ObjectId.waves,null));
+		tester.testCollision(test1);
+		assertEquals(tester.getHp(),2);	
 	}
 }

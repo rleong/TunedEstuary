@@ -35,8 +35,8 @@ public class WaveClock extends GameObject{
 		}
 		else if(wSummon == rand1){
 			game.summonWave();
-			wSummon = -300;//resets counter after wave spawn
-			rand1 = rand.nextInt(200)+100;//next random to change spawning rate
+			wSummon = -100;//resets counter after wave spawn
+			rand1 = rand.nextInt(150)+100;//next random to change spawning rate
 		}
 		wSummon++;//increments wave summon
 	}

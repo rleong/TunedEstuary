@@ -17,7 +17,7 @@ import window.Handler;
 
 public class Estuary extends GameObject{
 	//health value
-	private double health = 5;
+	private int health = 5;
 	public Estuary(double x, double y, ObjectId id, Game game, Dimension dm) {
 		super(x, y, id,game);
 	}
@@ -55,24 +55,20 @@ public class Estuary extends GameObject{
 				}
 			}
 		}
-		
-		
-		
-		/*for(GameObject temp:object){
-			//if a wave object collides with the estuary, remove one health point and the wave
-			if (temp.getId() == ObjectId.waves) {
-				if(getBounds().intersects(temp.getBounds())){
-					health--;
-					object.remove(temp);
-				}
-			}
-		}*/
+	}
+	public int getHp(){
+		return health;
 	}
 
 	@Override
 	//get object boundaries
 	public Rectangle getBounds() {
 		return new Rectangle((int)x, (int) y , 60, 60);
+	}
+	//test collision
+	public LinkedList<GameObject> testCollision(LinkedList<GameObject>test){
+		collision(test);
+		return test;
 	}
 
 }

@@ -3,11 +3,14 @@ package tests;
 import static org.junit.Assert.*;
 
 import java.awt.Rectangle;
+import java.util.LinkedList;
 
 import org.junit.Test;
 
+import framework.GameObject;
 import framework.ObjectId;
 import object.Estuary;
+import object.Waves;
 import window.Window;
 
 public class EstuaryTest {
@@ -80,5 +83,26 @@ public class EstuaryTest {
 	@Test
 	public void getFallingTest(){
 		assertEquals(tester.getFalling(), true);
+	}
+	@Test
+	public void getHpTest(){
+		assertEquals(tester.getHp(),5);
+	}
+	@Test
+	public void testCollision(){
+		LinkedList<GameObject>test1 = new LinkedList<GameObject>();
+		LinkedList<GameObject>testexpected = new LinkedList<GameObject>();
+		test1.add(tester);
+		test1.add(new Waves(5.0,5.0,ObjectId.waves,null));
+		testexpected.add(tester);
+		assertEquals(tester.testCollision(test1),testexpected);	
+	}
+	@Test
+	public void testCollision2(){
+		LinkedList<GameObject>test1 = new LinkedList<GameObject>();
+		test1.add(tester);
+		test1.add(new Waves(5.0,5.0,ObjectId.waves,null));
+		tester.testCollision(test1);
+		assertEquals(tester.getHp(),4);	
 	}
 }

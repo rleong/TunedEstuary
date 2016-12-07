@@ -3,11 +3,15 @@ package tests;
 import static org.junit.Assert.*;
 
 import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 import org.junit.Test;
 
+import framework.GameObject;
 import framework.ObjectId;
 import object.Barrier;
+import object.Waves;
 
 public class BarrierTest {
 
@@ -79,6 +83,15 @@ public class BarrierTest {
 	@Test
 	public void getFallingTest(){
 		assertEquals(tester.getFalling(), true);
+	}
+	@Test
+	public void testCollision(){
+		LinkedList<GameObject>test1 = new LinkedList<GameObject>();
+		LinkedList<GameObject>testexpected = new LinkedList<GameObject>();
+		test1.add(tester);
+		test1.add(new Waves(50.0,50.0,ObjectId.waves,null));
+		testexpected.add(tester);
+		assertEquals(tester.testCollision(test1),testexpected);	
 	}
 
 }

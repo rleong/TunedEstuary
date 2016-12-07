@@ -3,15 +3,19 @@ package tests;
 import static org.junit.Assert.*;
 
 import java.awt.Rectangle;
+import java.util.LinkedList;
 
 import org.junit.Test;
 
+import framework.GameObject;
 import framework.ObjectId;
+import object.LandSurface;
 import object.Oyster;
+import object.Person;
 import object.Trash;
 
 public class TrashTest {
-
+	LinkedList<GameObject>test1 = new LinkedList<GameObject>();
 	Trash tester = new Trash(50.0,50.0,ObjectId.ptrash,null);
 	
 	@Test
@@ -85,5 +89,18 @@ public class TrashTest {
 	public void getFallingTest(){
 		assertEquals(tester.getFalling(), true);
 	}
-
+	@Test
+	public void testCollision(){
+		test1.add(tester);
+		test1.add(new LandSurface(50.0,50.0,ObjectId.landSurface,null));
+		tester.testCollision(test1);
+		assertEquals(test1.get(0).getY(),01,18.0);	
+	}
+	@Test
+	public void testCollision2(){
+		test1.add(tester);
+		test1.add(new LandSurface(50.0,50.0,ObjectId.sand,null));
+		tester.testCollision(test1);
+		assertEquals(test1.get(0).getVelY(),1,1);	
+	}
 }

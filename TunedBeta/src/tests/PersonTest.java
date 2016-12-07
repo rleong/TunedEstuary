@@ -3,12 +3,16 @@ package tests;
 import static org.junit.Assert.*;
 
 import java.awt.Rectangle;
+import java.util.LinkedList;
 
 import org.junit.Test;
 
 import control.Game;
+import framework.GameObject;
 import framework.ObjectId;
+import object.LandSurface;
 import object.Person;
+import object.Waves;
 
 public class PersonTest {
 	Person tester = new Person(10,10,ObjectId.person,null,0);
@@ -76,6 +80,10 @@ public class PersonTest {
 		assertEquals(tester.getGravity(),01,1);
 	}
 	@Test
+	public void getDirectionTest(){
+		assertEquals(tester.getDirection(),0);
+	}
+	@Test
 	public void setFallingTest(){
 		tester.setFalling(false);
 		assertEquals(tester.getFalling(), false);
@@ -83,6 +91,24 @@ public class PersonTest {
 	@Test
 	public void getFallingTest(){
 		assertEquals(tester.getFalling(), true);
+	}
+	@Test
+	public void testCollision(){
+		LinkedList<GameObject>test1 = new LinkedList<GameObject>();
+		test1.add(tester);
+		test1.add(new LandSurface(10,10,ObjectId.landSurface,null));
+		tester.testCollision(test1);
+		Person test2 = (Person) test1.get(0);
+		assertEquals(test2.getVelY(),0,0);
+	}
+	@Test
+	public void testCollision2(){
+		LinkedList<GameObject>test1 = new LinkedList<GameObject>();
+		test1.add(tester);
+		test1.add(new LandSurface(10.0,10.0,ObjectId.wall,null));
+		tester.testCollision(test1);
+		Person test2 = (Person) test1.get(0);
+		assertEquals(test2.getDirection(),0,1);
 	}
 
 }

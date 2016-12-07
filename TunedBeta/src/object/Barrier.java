@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -23,8 +24,12 @@ public class Barrier extends GameObject{
 	@Override
 	public void tick(LinkedList<GameObject> object) {
 		collision(game.handler.object);
+		if(this.getHp() == 0){
+			game.handler.object.remove(this);
+		}
 		
 	}
+	//check for collisions with wave objects
 	private void collision(LinkedList<GameObject> object){
 		
 		GameObject temp;
@@ -36,12 +41,9 @@ public class Barrier extends GameObject{
 					itr.remove();
 				}
 			}
-			if(temp.getId() == ObjectId.barrier){
-				if(hp == 0)
-					itr.remove();	
-			}
 		}
 	}
+	//return hp
 	public int getHp(){
 		return hp;
 	}
@@ -55,9 +57,15 @@ public class Barrier extends GameObject{
 	}
 
 	@Override
+	//return sand barrier boundsß
 	public Rectangle getBounds() {
 		return new Rectangle((int)x,(int)y,45,45);
 		
+	}
+	//test collision
+	public LinkedList<GameObject> testCollision(LinkedList<GameObject> test) {
+		collision(test);
+		return test;
 	}
 
 }
