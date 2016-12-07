@@ -2,21 +2,19 @@ package tests;
 
 import static org.junit.Assert.*;
 
-import java.awt.Rectangle;
-
 import org.junit.Test;
 
 import framework.ObjectId;
 import object.Game3Instructions;
-import object.Waves;
+import object.Game3Timer;
 
-public class WavesTest {
+public class Game3TimerTest {
 
-	Waves tester = new Waves(1.0,1.0,ObjectId.waves,null);
+	Game3Timer tester = new Game3Timer(1.0,1.0,ObjectId.game3timer,null);
 	
 	@Test
 	public void getBoundsTest(){
-		assertEquals(tester.getBounds(), new Rectangle(1,1,32,32));
+		assertEquals(tester.getBounds(), null);
 	}
 	//@Test
 	/*public void loseTest(){
@@ -43,7 +41,7 @@ public class WavesTest {
 	}
 	@Test
 	public void getVelXTest() {
-		assertEquals(tester.getVelX(),01,3.0);
+		assertEquals(tester.getVelX(),01,1.0);
 	}
 	@Test
 	public void getVelYTest() {
@@ -61,7 +59,7 @@ public class WavesTest {
 	}
 	@Test
 	public void getIdTest() {
-		assertEquals(tester.getId(),ObjectId.waves);
+		assertEquals(tester.getId(),ObjectId.game3timer);
 	}
 	@Test
 	public void setGravityTest(){

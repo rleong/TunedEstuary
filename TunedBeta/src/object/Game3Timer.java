@@ -77,7 +77,7 @@ public class Game3Timer extends GameObject {
 		return null;
 	}
 	//radd gamewin object to handler
-	public void win(){
+	private void win(){
 		game.handler.addObject(new GameWin(1,1,ObjectId.gamewin,game));
 	}
 	

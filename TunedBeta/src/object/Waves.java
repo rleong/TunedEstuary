@@ -42,8 +42,5 @@ public class Waves extends GameObject {
 		
 		return new Rectangle((int)x,(int)y,32,32);
 	}
-	public void setVelx(int val){
-		setVelX(val);
-	}
 }
 
