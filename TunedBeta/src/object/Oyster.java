@@ -12,11 +12,16 @@ import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
 import window.Handler;
-
+/**
+ * 
+ * @author justin said
+ *
+ */
 public class Oyster extends GameObject {
 
 	boolean falling = true;
 	//initializer
+	
 	public Oyster(double x, double y, ObjectId id, Game game) {
 		super(x, y, id, game);
 		setVelY(1);
@@ -24,6 +29,10 @@ public class Oyster extends GameObject {
 
 	@Override
 	//called continuously to update x and y and to call collision
+	/**
+	 * @param LinkedList<GameObject> object with all objects in the handler
+	 * continuously called to check collision and update position
+	 */
 	public void tick(LinkedList<GameObject> object) {
 			x += velX;
 			y += velY;
@@ -36,6 +45,9 @@ public class Oyster extends GameObject {
 
 	@Override
 	//print oyster object 
+	/**
+	 * prints oyster object at x and y location
+	 */
 	public void render(Graphics g) {
 		g.setColor(Color.GRAY);
 		g.fillRect((int) x, (int) y, 32, 32);
@@ -44,6 +56,10 @@ public class Oyster extends GameObject {
 
 	}
 	//check for collisions with other objects
+	/**
+	 * checks for collision with other objects, then stops it's y value from incrementing
+	 * @param LinkedList<GameObject> object with all game objects
+	 */
 	private void collision(LinkedList<GameObject> object) {
 		//iterate through objects list
 		for (GameObject temp:object) {
@@ -60,18 +76,35 @@ public class Oyster extends GameObject {
 
 	@Override
 	//returns object bounds
+	/**
+	 * gets object bounds
+	 * @return new Rectangle with bounds for collision
+	 */
 	public Rectangle getBounds() {
 		return new Rectangle((int) x - 16, (int) y - 16, 16, 16);
 	}
 	//returns falling bounds
+	/**
+	 * gets object bounds falling
+	 * @return new Rectangle with falling bounds for collision
+	 */
 	public Rectangle getBoundsFall() {
 		return new Rectangle((int) x - 16, (int) y - 16, 32, 32);
 	}
 	//returns bottom bounds
+	/**
+	 * gets object bottom bounds
+	 * @return new Rectangle with bottombounds for collision
+	 */
 	public Rectangle getBoundsBottom() {
 		return new Rectangle((int) x + 6, (int) y + 26, 20, 6);
 	}
 	//test collision
+	 /**
+	  * for test to access collision
+	  * @param test
+	  * @return LinkedList<GameObject> test after calling collision
+	  */
 	public LinkedList<GameObject> testCollision(LinkedList<GameObject>test){
 		collision(test);
 		return test;

@@ -14,13 +14,24 @@ import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
 import window.Handler;
-
+/**
+ * 
+ * @author justin said
+ *
+ */
 public class Game3Timer extends GameObject {
 	private int mintime;//minute time
 	private int sectime;//seconds remaining
 	private int mstime;//milliseconds remaining
 	public static Timer clock1;//clock
 	//initializer to 1:30 seconds in game
+	/**
+	 * creates the game 3 timer(if you protect the estuary the whole time you win)
+	 * @param x object's x position
+	 * @param y object's y position
+	 * @param id object's Id Enum value
+	 * @param game Game object
+	 */
 	public Game3Timer(double x, double y, ObjectId id, Game game) {
 		super(x, y, id, game);
 		mintime = 1;
@@ -46,6 +57,9 @@ public class Game3Timer extends GameObject {
 	};
 
 	@Override
+	/**
+	 * continuously called to check time remaining
+	 */
 	public void tick(LinkedList<GameObject> object) {
 		//if timer runs out stop the clock and call win method
 		if(mintime == 0 && sectime == 0 && mstime == 0){
@@ -72,11 +86,18 @@ public class Game3Timer extends GameObject {
 
 	@Override
 	//no bounds
+	/**
+	 * gets this objects bounds
+	 * @return Rectangle of null
+	 */
 	public Rectangle getBounds() {
 		
 		return null;
 	}
 	//add gamewin object to handler
+	/**
+	 * add gamewin object to handler
+	 */
 	private void win(){
 		game.handler.addObject(new GameWin(1,1,ObjectId.gamewin,game));
 	}

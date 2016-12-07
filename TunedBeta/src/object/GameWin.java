@@ -17,11 +17,22 @@ import framework.GameObject;
 import framework.ObjectId;
 import window.Handler;
 import window.Window;
-
+/**
+ * 
+ * @author justin said
+ *
+ */
 public class GameWin extends GameObject {
 	//private BufferedImage waveImg;
 	private int count;//remaining time until game exit in seconds
 	private Timer time;//timer to remove one from count
+	/**
+	 * creates game win object to end game 3
+	 * @param x object's x position
+	 * @param y object's y position
+	 * @param id object's Id Enum value
+	 * @param game Game object
+	 */
 	public GameWin(double x, double y, ObjectId id, Game game) {
 		super(x, y, id, game);
 		count = 4;
@@ -43,6 +54,9 @@ public class GameWin extends GameObject {
 		}
 	};
 	@Override
+	/**
+	 * continuously called to remove game 3 objects and count down timer.
+	 */
 	public void tick(LinkedList<GameObject> object) {
 		//removes game3 related objects
 		for(Iterator<GameObject> it = object.iterator();it.hasNext();){
@@ -60,6 +74,9 @@ public class GameWin extends GameObject {
 
 	@Override
 	//print game win message
+	/**
+	 * prints game win method
+	 */
 	public void render(Graphics g) {
 		g.setColor(Color.white);
 		g.drawString("Congratulations!",(int) (game.dm.getWidth()/2.5),(int) (game.dm.getHeight()/3));
@@ -72,6 +89,10 @@ public class GameWin extends GameObject {
 
 	@Override
 	//bounds dont exist
+	/**
+	 * gets this objects bounds
+	 * @return Rectangle of null
+	 */
 	public Rectangle getBounds() {
 		return null;
 	}

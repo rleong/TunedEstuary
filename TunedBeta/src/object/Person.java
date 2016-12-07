@@ -13,7 +13,11 @@ import framework.GameObject;
 import framework.ObjectId;
 import window.Handler;
 import window.Window;
-
+/**
+ * 
+ * @author justin said
+ *
+ */
 public class Person extends GameObject {
 	int speed = 1;
 	int grav = 2;
@@ -21,7 +25,13 @@ public class Person extends GameObject {
 	int direction;
 	int dropcount;
 	Random rand = new Random();
-
+	/**
+	 * creates a person object to spawn rope, trash, or wood objects for critter to collect
+	 * @param x object's x position
+	 * @param y object's y position
+	 * @param id object's Id Enum value
+	 * @param game Game object
+	 */
 	public Person(double x, double y, ObjectId id, Game game, int direction) {
 		super(x, y, id, game);
 		velX = speed;
@@ -31,6 +41,9 @@ public class Person extends GameObject {
 	}
 	//function for the person object to drop either a rope, wood, or trash randomly by adding it to the handler
 	//uses static methods in game class
+	/**
+	 * adds an item to the handler randomly as a drop item
+	 */
 	public void drop() {
 			int drop = rand.nextInt(4);
 			if(drop == 0){
@@ -47,6 +60,9 @@ public class Person extends GameObject {
 
 	@Override
 	//continuously called, switch x direction based off of collision with barrier
+	/**
+	 * continuously called to check collision and update position
+	 */
 	public void tick(LinkedList<GameObject> object) {
 		y += velY;
 		//increment x position based on direction
@@ -82,6 +98,9 @@ public class Person extends GameObject {
 	}
 
 	@Override
+	/**
+	 * prints person object
+	 */
 	public void render(Graphics g) {
 		//g.drawImage(birdImg, (int)x, (int)y, 32, 32, null);
 		g.setColor(Color.blue);
@@ -89,6 +108,10 @@ public class Person extends GameObject {
 		//g.fillRect((int) x, (int) y, (int) ((getHealth() / 20) * 32), 2);
 	}
 	//checks for collisions between this object and any other object in handler
+	/**
+	 * checks for collision with other objects, then stops it's y value from incrementing
+	 * @param LinkedList<GameObject> object with all game objects
+	 */
 	private void collision(LinkedList<GameObject> object) {
 		//iterate through object list
 		Iterator<GameObject> it = object.iterator();
@@ -115,10 +138,18 @@ public class Person extends GameObject {
 		}
 	}
 	@Override
+	/**
+	 * gets object bounds
+	 * @return new Rectangle with bounds for collision
+	 */
 	public Rectangle getBounds() {
 
 		return new Rectangle((int) x, (int) y, 32, 32);
 	}
+	/**
+	 * gets object bounds falling
+	 * @return new Rectangle with falling bounds for collision
+	 */
 	public Rectangle getBoundsWall() {
 
 		return new Rectangle((int) x-4, (int) y-100, 15, 200);
@@ -126,15 +157,28 @@ public class Person extends GameObject {
 
 	
 	//returns person bottom bounds
+	/**
+	 * gets object bottom bounds
+	 * @return new Rectangle with bottombounds for collision
+	 */
 	public Rectangle getBoundsBottom() {
 
 		return new Rectangle((int) x + 6, (int) y + 26, 20, 6);
 	}
 	//test collision
+	/**
+	  * for test to access collision
+	  * @param test
+	  * @return LinkedList<GameObject> test after calling collision
+	  */
 	public LinkedList<GameObject> testCollision(LinkedList<GameObject>test){
 		collision(test);
 		return test;
 	}
+	/**
+	 * gets the specific person object's direction
+	 * @return int direction(1 for left, 0 for right)
+	 */
 	public int getDirection(){
 		return direction;
 	}
