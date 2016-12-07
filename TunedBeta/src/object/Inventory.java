@@ -187,18 +187,18 @@ public class Inventory extends GameObject {
 		g.fillRect((int) xx + 10, (int) yy + 90, 16, 16);
 		
 		// Concrete
-				String output5 = "x" + countRope + " Ropes";
-				g.setColor(Color.white);
-				g.drawString(output5, (int) x + 31, (int) y + 123);
-				g.setColor(Color.gray);
-				g.fillRect((int) x + 10, (int) y + 110, 16, 16);
+		String output5 = "x" + countRope + " Ropes";
+		g.setColor(Color.white);
+		g.drawString(output5, (int) x + 31, (int) y + 123);
+		g.setColor(Color.gray);
+		g.fillRect((int) xx + 10, (int) yy + 110, 16, 16);
 
-				// Concrete
-				String output6 = "x" + countWood + " Wood";
-				g.setColor(Color.white);
-				g.drawString(output6, (int) x + 31, (int) y + 143);
-				g.setColor(Color.CYAN);
-				g.fillRect((int) x + 10, (int) y + 130, 16, 16);
+		// Concrete
+		String output6 = "x" + countWood + " Wood";
+		g.setColor(Color.white);
+		g.drawString(output6, (int) x + 31, (int) y + 143);
+		g.setColor(Color.CYAN);
+		g.fillRect((int) xx + 10, (int) yy + 130, 16, 16);
 
 	}
 
