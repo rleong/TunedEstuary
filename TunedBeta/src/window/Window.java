@@ -11,8 +11,10 @@ import control.Game;
 public class Window {
 	
 	private JFrame frame;
+	private static Dimension dm;
 	
 	public Window(Dimension dm, String title, Game game) {
+		this.dm = dm;
 		game.setPreferredSize(dm);
 		game.setMaximumSize(dm);
 		game.setMinimumSize(dm);
@@ -30,7 +32,6 @@ public class Window {
 	}
 	
 	public void changeWindow(int w, int h, String title, Game gamec){
-		
 		//Dimension dm = new Dimension(w,h);
 		
 		gamec.setPreferredSize(new Dimension(w, h));
@@ -44,5 +45,8 @@ public class Window {
 		frame.repaint();
 		gamec.start();
 		
+	}
+	public static Dimension getDm(){
+		return dm;
 	}
 }

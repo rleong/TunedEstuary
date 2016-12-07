@@ -72,5 +72,8 @@ public abstract class GameObject {
 	public void setFalling(boolean b){
 		this.falling=b;
 	}
+	public boolean getFalling(){
+		return this.falling;
+	}
 
 }

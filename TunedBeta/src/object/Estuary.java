@@ -45,10 +45,9 @@ public class Estuary extends GameObject{
 	}
 	//check for collisions
 	private void collision(LinkedList<GameObject> object) {
-		
-		for(GameObject temp:object){
-			
-			//if a wave object collides with the estuary, remove one health point and the wave
+		GameObject temp;
+		for(int i = 0;i<object.size();i++){
+			temp = object.get(i);
 			if (temp.getId() == ObjectId.waves) {
 				if(getBounds().intersects(temp.getBounds())){
 					health--;
@@ -56,12 +55,24 @@ public class Estuary extends GameObject{
 				}
 			}
 		}
+		
+		
+		
+		/*for(GameObject temp:object){
+			//if a wave object collides with the estuary, remove one health point and the wave
+			if (temp.getId() == ObjectId.waves) {
+				if(getBounds().intersects(temp.getBounds())){
+					health--;
+					object.remove(temp);
+				}
+			}
+		}*/
 	}
 
 	@Override
 	//get object boundaries
 	public Rectangle getBounds() {
-		return new Rectangle((int)x, (int) y , (int)60, 60);
+		return new Rectangle((int)x, (int) y , 60, 60);
 	}
 
 }

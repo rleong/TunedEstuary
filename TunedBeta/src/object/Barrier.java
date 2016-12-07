@@ -42,7 +42,9 @@ public class Barrier extends GameObject{
 			}
 		}
 	}
-	
+	public int getHp(){
+		return hp;
+	}
 	@Override
 	public void render(Graphics g) {
 		g.setColor(Color.yellow);

@@ -68,19 +68,6 @@ public class Trash extends GameObject {
 	public Rectangle getBoundsBottom() {
 
 		return new Rectangle((int) x + 6, (int) y + 26, 20, 6);
-	}
-	
-//	public void testCollision(){
-//		Critter temp = new Critter(x,y,ObjectId.critter,handler,true,true,1,1,null,null,null);
-//		LandSurface temp2 = new LandSurface(x,y,ObjectId.landSurface,handler,null);
-//		LinkedList<GameObject> test = new LinkedList<GameObject>();
-//		test.add(temp);
-//		test.add(temp2);
-//		collision(test);
-//		//assertEquals(temp.getY(),temp2.getY() - 32);	
-//	}
-	
-	
-	
+	}	
 	
 }
