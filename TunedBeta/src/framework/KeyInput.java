@@ -28,11 +28,17 @@ public class KeyInput extends KeyAdapter {
 					Critter t = (Critter) temp;
 					if (key == KeyEvent.VK_A) {
 						t.setVelX(-2);
-						t.setAnimation(1);
+						if(t.getInWater())
+							t.setAnimation(5);
+						else
+							t.setAnimation(1);
 					}
 					if (key == KeyEvent.VK_D) {
 						t.setVelX(2);
-						t.setAnimation(2);
+						if(t.getInWater())
+							t.setAnimation(6);
+						else
+							t.setAnimation(2);
 					}
 					if (key == KeyEvent.VK_W && !t.jump) {
 						t.setVelY(-2);
@@ -51,7 +57,9 @@ public class KeyInput extends KeyAdapter {
 					if (key == KeyEvent.VK_S && t.getInWater()) {
 						t.setAnimation(4);
 					}
-
+					if (key == KeyEvent.VK_SPACE) {
+						t.setAnimation(8);
+					}
 				}
 			}
 		}
@@ -94,9 +102,10 @@ public class KeyInput extends KeyAdapter {
 						if(t.getInWater())
 							t.setAnimation(4);
 					}
-					// Attack
+					// Attack 
 					if (key == KeyEvent.VK_SPACE) {
 						t.attack(handler.object);
+						t.setAnimation(0);
 					}
 					// Change Characters
 					if (key == KeyEvent.VK_E) {

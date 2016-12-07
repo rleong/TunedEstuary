@@ -45,7 +45,7 @@ public class Images {
 		}
 		
 		// Entities
-		blueCrab = new BufferedImage[5][walkFrameCount];
+		blueCrab = new BufferedImage[9][walkFrameCount];
 		for (int i = 0; i < 4; i++) {
 			BufferedImage img = createImage("entities/BlueCrab.png");
 			blueCrab[0][i] = img.getSubimage(64 * i, 0, 64, 64);
@@ -65,6 +65,22 @@ public class Images {
 		for (int i = 0; i < swimFrameCount; i++) {
 			BufferedImage img = createImage("entities/BlueCrab.png");
 			blueCrab[4][i] = img.getSubimage(64 * i, 256, 64, 64);
+		}
+		for (int i = 0; i < swimFrameCount; i++) {
+			BufferedImage img = createImage("entities/BlueCrab.png");
+			blueCrab[5][i] = img.getSubimage(64 * i, 320, 64, 64);
+		}
+		for (int i = 0; i < swimFrameCount; i++) {
+			BufferedImage img = createImage("entities/BlueCrab.png");
+			blueCrab[6][i] = img.getSubimage(64 * i, 384, 64, 64);
+		}
+		for (int i = 0; i < 8; i++) {
+			BufferedImage img = createImage("entities/BlueCrab.png");
+			blueCrab[7][i] = img.getSubimage(64 * i, 448, 64, 64);
+		}
+		for (int i = 0; i < 2; i++) {
+			BufferedImage img = createImage("entities/BlueCrab.png");
+			blueCrab[8][i] = img.getSubimage(128 * i, 512, 128, 64);
 		}
 
 		// Miscellaneous
@@ -145,6 +161,10 @@ public class Images {
 	
 	public int getMoveFrames(){
 		return 18;
+	}
+	
+	public int getInteractFrames(){
+		return 8;
 	}
 
 }
