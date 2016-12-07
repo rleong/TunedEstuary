@@ -3,20 +3,32 @@ package object;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Iterator;
 import java.util.LinkedList;
+
+import javax.swing.Timer;
 
 import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
+import gfx.Images;
 import window.Handler;
 
 public class Gabion extends GameObject{
 	public int hp;
 	Handler handler;
-	public Gabion(double x, double y, ObjectId id,Game game) {
+	int stage = 0;
+	Images images;
+	Timer buildStage;
+	
+	public Gabion(double x, double y, ObjectId id,Game game, Images images) {
 		super(x, y, id,game);
+		this.images=images;
 		hp = 3;
+		buildStage = new Timer(1000, listener);
+		buildStage.start();
 	}
 
 	@Override
@@ -27,6 +39,19 @@ public class Gabion extends GameObject{
 			game.handler.removeObject(this);
 		
 	}
+	
+	ActionListener listener = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(stage == 2)
+				buildStage.stop();
+			else{
+				buildStage.restart();
+				stage++;
+			}			
+		}
+	};
+	
 	//check for collision with all game objects
 	private void collision(LinkedList<GameObject> object){
 		
@@ -51,17 +76,16 @@ public class Gabion extends GameObject{
 	@Override
 	//print gabion object
 	public void render(Graphics g) {
-		g.setColor(Color.blue);
-		g.fillRect((int)x, (int)y, 45, 45);
+		g.drawImage(images.getGabion(stage), (int) x - 16, (int) y - 32, game);
 		g.setColor(Color.red);
-		g.fillRect((int)x, (int)y, (int)(hp*45/3), 2);
+		g.fillRect((int)x - 16, (int)y - 42, (int)(hp*64/3), 2);
 		
 	}
 
 	@Override
 	//get gabion object bounds
 	public Rectangle getBounds() {
-		return new Rectangle((int)x,(int)y,45,45);
+		return new Rectangle((int)x - 16,(int)y - 32,64,64);
 		
 	}
 	public LinkedList<GameObject> testCollision(LinkedList<GameObject>test){
