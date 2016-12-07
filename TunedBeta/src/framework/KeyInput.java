@@ -102,7 +102,7 @@ public class KeyInput extends KeyAdapter {
 						if(t.getInWater())
 							t.setAnimation(4);
 					}
-					// Attack
+					// Attack 
 					if (key == KeyEvent.VK_SPACE) {
 						t.attack(handler.object);
 						t.setAnimation(0);
