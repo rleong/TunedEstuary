@@ -62,7 +62,7 @@ public class Inventory extends GameObject {
 	public void tick(LinkedList<GameObject> object) {
 
 		xx = (int) critter.getX() - 64;
-		yy = (int) critter.getY() - 144;
+		yy = (int) critter.getY() - 174;
 
 	}
 
@@ -149,7 +149,7 @@ public class Inventory extends GameObject {
 
 		// Borders
 		g.setColor(Color.WHITE);
-		g.drawRect((int) critter.getX() - 64, (int) critter.getY() - 144, 160, 115);
+		g.drawRect((int) critter.getX() - 64, (int) critter.getY() - 176, 160, 160);
 
 		// Compost
 		String output0 = "x" + countOyster + " Oyster Shells";
@@ -189,14 +189,14 @@ public class Inventory extends GameObject {
 		// Concrete
 		String output5 = "x" + countRope + " Ropes";
 		g.setColor(Color.white);
-		g.drawString(output5, (int) x + 31, (int) y + 123);
+		g.drawString(output5, (int) xx + 31, (int) yy + 123);
 		g.setColor(Color.gray);
 		g.fillRect((int) xx + 10, (int) yy + 110, 16, 16);
 
 		// Concrete
 		String output6 = "x" + countWood + " Wood";
 		g.setColor(Color.white);
-		g.drawString(output6, (int) x + 31, (int) y + 143);
+		g.drawString(output6, (int) xx + 31, (int) yy + 143);
 		g.setColor(Color.CYAN);
 		g.fillRect((int) xx + 10, (int) yy + 130, 16, 16);
 

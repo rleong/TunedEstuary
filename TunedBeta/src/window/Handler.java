@@ -93,6 +93,12 @@ public class Handler {
 			else if (temp.getId() == ObjectId.trashBin){
 				it.remove();
 			}
+			else if (temp.getId() == ObjectId.waterTree){
+				it.remove();
+			}
+			else if (temp.getId() == ObjectId.tree){
+				it.remove();
+			}
 			
 		}
 	}
