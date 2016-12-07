@@ -37,6 +37,9 @@ public class SchoolFish extends GameObject {
 	public int schoolSize() {
 		return school.size();
 	}
+	public boolean isDead(){
+		return isDead;
+	}
 
 	@Override
 	public void tick(LinkedList<GameObject> object) {

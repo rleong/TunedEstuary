@@ -201,10 +201,19 @@ public class Game extends Canvas implements Runnable {
 				cam.tick(handler2.object.get(i));
 			}
 		}
+		//Lose conditions
 		for(int j = 0; j<handler.object.size();j++){
 			if(handler.object.get(j).getId() == ObjectId.habitat){
 				Habitat temp = (Habitat) handler.object.get(j);
 				if(temp.getHealth() == 0.0){
+					gameover = true;
+					handler.addObject(new GameOver(1,1,ObjectId.gameover,this));
+				}
+					
+			}
+			if(handler.object.get(j).getId() == ObjectId.school){
+				SchoolFish temp = (SchoolFish) handler.object.get(j);
+				if(temp.isDead() == true){
 					gameover = true;
 					handler.addObject(new GameOver(1,1,ObjectId.gameover,this));
 				}
@@ -225,9 +234,11 @@ public class Game extends Canvas implements Runnable {
 			factory.iniTree();
 			
 		}
+		//check game 2 win condition
 		if(g2stage > 7){
 			game3 = true;
 		}
+		//start game 3
 		if(game3 == true && gmeval == 2){
 			gmeval++;
 			handler.removeGame2();

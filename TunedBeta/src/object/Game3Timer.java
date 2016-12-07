@@ -63,6 +63,7 @@ public class Game3Timer extends GameObject {
 	 * continuously called to check time remaining
 	 */
 	public void tick(LinkedList<GameObject> object) {
+		//checks when to call win condition
 		//if timer runs out stop the clock and call win method
 		if(g == 3){
 			if(mintime == 0 && sectime == 0 && mstime == 0){
@@ -110,6 +111,7 @@ public class Game3Timer extends GameObject {
 	/**
 	 * add gamewin object to handler
 	 */
+	//win condition
 	private void win(){
 		if(g == 1){
 			game.game2 = true;
