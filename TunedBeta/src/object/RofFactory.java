@@ -142,6 +142,7 @@ public class RofFactory extends GameObject {
 					game.g2stage++;
 					game.nWaste=0;
 					game.nW4=0;
+					game.g2stage++;
 				}
 			}
 		}

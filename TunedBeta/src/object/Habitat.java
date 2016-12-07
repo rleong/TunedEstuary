@@ -79,10 +79,16 @@ public class Habitat extends GameObject{
 	public double getHealth(){
 		return health;
 	}
-
+	public double getWidth(){
+		return width;
+	}
 	@Override
 	public Rectangle getBounds() {
 		return new Rectangle((int)x + 6, (int) y + 26, (int)width, 64);
+	}
+	public LinkedList<GameObject> testCollision(LinkedList<GameObject> test) {
+		collision(test);
+		return test;
 	}
 
 }

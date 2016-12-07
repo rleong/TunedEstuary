@@ -83,7 +83,7 @@ public class Game extends Canvas implements Runnable {
 	public static boolean game3 = false;
 	Timer gameTime;
 	Timer game3Time;
-
+	public static Boat test;
 	// Game2 var
 
 	public double nWaste = 0;
@@ -369,7 +369,7 @@ public class Game extends Canvas implements Runnable {
 		@Override
 		
 		public void actionPerformed(ActionEvent e) {
-			/*if (game1) {
+			if (game1) {
 				game1 = false;
 				game2 = true;
 
@@ -386,9 +386,15 @@ public class Game extends Canvas implements Runnable {
 				
 			} else if (game2) {
 				game2 = false;
-				game3 = true;
-
+				if(g2stage>7){
+					game3 = true;
+				}
 				// Remove Game 2 Objects
+				handler.removeGame2();
+				
+				//add game 3
+				
+				
 				
 
 			} else if (game3) {
@@ -399,7 +405,7 @@ public class Game extends Canvas implements Runnable {
 				gameTime.stop();
 
 			}
-			gameTime.restart();*/
+			gameTime.restart();
 			game3Create();
 	}
 	};
