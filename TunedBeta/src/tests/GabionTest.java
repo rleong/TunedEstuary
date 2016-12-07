@@ -13,7 +13,7 @@ import object.Gabion;
 import object.Waves;
 
 public class GabionTest {
-	Gabion tester = new Gabion(50.0,50.0,ObjectId.gabion,null);
+	Gabion tester = new Gabion(50.0,50.0,ObjectId.gabion,null, null);
 	
 	@Test
 	public void getBoundsTest(){
