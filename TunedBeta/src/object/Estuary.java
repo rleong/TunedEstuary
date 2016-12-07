@@ -46,13 +46,13 @@ public class Estuary extends GameObject{
 	//check for collisions
 	private void collision(LinkedList<GameObject> object) {
 		
-		for(Iterator<GameObject> it = object.iterator();it.hasNext();){
-			GameObject temp = it.next();
+		for(GameObject temp:object){
+			
 			//if a wave object collides with the estuary, remove one health point and the wave
 			if (temp.getId() == ObjectId.waves) {
 				if(getBounds().intersects(temp.getBounds())){
 					health--;
-					it.remove();
+					object.remove(temp);
 				}
 			}
 		}
