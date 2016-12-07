@@ -38,6 +38,9 @@ public class WaterTree extends GameObject {
 		game.handler.addObject(new Compost(x,y,ObjectId.compost1, game, type));
 		dead();
 	}
+	public boolean getAttack(){
+		return canAttack;
+	}
 	public void dead(){
 		dropSeed();
 		canAttack=false;

@@ -63,5 +63,10 @@ public class WasteBin extends GameObject {
 
 		return new Rectangle((int) x, (int) y, 32, 32);
 	}
+	public LinkedList<GameObject> testCollision(LinkedList<GameObject> test) {
+		collision(test);
+		return test;
+	}
+
 
 }

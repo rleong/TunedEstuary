@@ -83,7 +83,7 @@ public class Game extends Canvas implements Runnable {
 	public static boolean game3 = false;
 	Timer gameTime;
 	Timer game3Time;
-
+	public static Boat test;
 	// Game2 var
 
 	public double nWaste = 0;
