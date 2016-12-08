@@ -77,6 +77,22 @@ public class Critter extends GameObject {
 	// Debugging
 	boolean debugging = false;
 
+	/**
+	 * Constructor the constructs a critter object. This critter is what 
+	 * the player controls throughout the game. The critter goes around 
+	 * doing different events that will help clean nad protect the estuary
+	 * from harm.
+	 * 
+	 * @param x - x position of critter
+	 * @param y - y position of critter
+	 * @param id - object id 
+	 * @param xdir - direction critter is facing (left or right)
+	 * @param ydir - direction critter is facing (up or down)
+	 * @param dm - dimension of game
+	 * @param inventory - inventory containing collected items
+	 * @param game - game 
+	 * @param images - images of the objects
+	 */
 	public Critter(double x, double y, ObjectId id, boolean xdir, boolean ydir, Dimension dm,
 			Inventory inventory, Game game, Images images) {
 		// Basics
@@ -101,6 +117,17 @@ public class Critter extends GameObject {
 		this.images = images;
 	}
 
+	/**
+	 * Method that will change attributes of the critter per call
+	 * 	- add x velocity to x position causing critter to move in the x position
+	 *  - when not constructing objects allow the character to move
+	 *  - if critter is in a certain position
+	 *  - if in critter is falling or in water decrease the y velocity 
+	 *  - prevents the character from pressing the key twice to jump higher
+	 *  - if the critter is hit make the critter flicker
+	 *  - when the special ability meter is less then full have it recharge 
+	 *  - Set health and special ability meters to follow the character
+	 */
 	@Override
 	public void tick(ArrayList<GameObject> object) {
 
@@ -155,6 +182,9 @@ public class Critter extends GameObject {
 		buildYLocation = (int) (y + (dm.getHeight() * 35 / 100));
 	}
 
+	/**
+	 * Method to display critter, health, and special ability images
+	 */
 	@Override
 	public void render(Graphics g) {
 
@@ -385,6 +415,11 @@ public class Critter extends GameObject {
 
 	}
 
+	/**
+	 * Method that shows the different items your critter can collect
+	 * 
+	 * @param g - graphics variable
+	 */
 	public void drawBuildOptions(Graphics g) {
 
 		g.drawImage(images.getMenuBar(), buildXLocation - 32, buildYLocation - 26, game);
@@ -402,6 +437,12 @@ public class Critter extends GameObject {
 
 	}
 
+	/**
+	 * Method that sets a boolean to true or false depending of what object 
+	 * you are trying to build
+	 * 
+	 * @param planting - boolean if planting or not  
+	 */
 	public void setBuildAnimation(boolean planting) {
 		setAnimation(7);
 		if (planting)
@@ -410,12 +451,21 @@ public class Critter extends GameObject {
 			buildAction = true;
 	}
 
+
+	/**
+	 * Method that sets a boolean to false when finished the animation 
+	 */
 	public void endAnimation() {
 		setAnimation(0);
 		plantAction = false;
 		buildAction = false;
 	}
 
+	/**
+	 * Method that draws the health bars for each critter
+	 * 
+	 * @param g - graphics variable
+	 */
 	public void drawHealthBars(Graphics g) {
 		// Crab Health & SP Display
 		g.setColor(Color.BLACK);
@@ -460,7 +510,11 @@ public class Critter extends GameObject {
 		g.fillRect(healthBarXLocation + 1, healthBarYLocation + 2 + 160, (int) sp2 * 2 / 3 - 1, 7);
 	}
 
-	// Animations & GFX
+	/**
+	 * Method that draws the animation to the screen by going frame by frame
+	 * 
+	 * @param g - graphics variable
+	 */
 	public void drawWateringPlantAction(Graphics g) {
 		actionFrameNum = (actionFrameNum + 1) % images.getActionFrames();
 
@@ -470,6 +524,11 @@ public class Critter extends GameObject {
 
 	}
 
+	/**
+	 * Method that draws building animations to the screen 
+	 * 
+	 * @param g - graphics varible
+	 */
 	public void drawBuildingAction(Graphics g) {
 		actionFrameNum = (actionFrameNum + 1) % images.getActionFrames();
 
@@ -479,7 +538,9 @@ public class Critter extends GameObject {
 
 	}
 
-	// Set Character Damage
+	/**
+	 * Method to set the damage for each critter depending on its type
+	 */
 	public void setDamage() {
 		switch (character) {
 		case 0:
@@ -494,11 +555,18 @@ public class Critter extends GameObject {
 		}
 	}
 
+	/**
+	 * Method to get the damage assigned to the critter
+	 * 
+	 * @return damage of critter
+	 */
 	public int getDamage() {
 		return this.damage;
 	}
 
-	// Timer for invincibility of Character after getting hurt
+	/**
+	 * Method that has a timer of when the critter can be hit again after being hit
+	 */
 	ActionListener listener = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -507,13 +575,20 @@ public class Critter extends GameObject {
 		}
 	};
 
-	// Sets & Changes Characters
+	/**
+	 * Method to change the critter you are to one of three different kinds
+	 */
 	public void changeCharacter() {
 		character += 1;
 		character = character % 3;
 		setDamage();
 	}
 
+	/**
+	 * Method to set different characters 
+	 * 
+	 * @param character - character you want to change to
+	 */
 	public void setCharacter(int character) {
 		this.character = character;
 	}
@@ -547,7 +622,13 @@ public class Critter extends GameObject {
 		}
 	}
 
-	// Attacking an enemy
+
+	/**
+	 * Method that allows a critter to attack waste objects if the waste is
+	 * in the crab attack boundaries
+	 * 
+	 * @param object - list of game objects 
+	 */
 	public void attack(ArrayList<GameObject> object) {
 		for (int i = 0; i < object.size(); i++) {
 			GameObject temp = object.get(i);
@@ -604,7 +685,11 @@ public class Critter extends GameObject {
 
 	}
 
-	// Plants plants
+	/**
+	 * Method that allows a critter to plant a plant depending on its type
+	 * 
+	 * @param type - type of plant 
+	 */
 	public void planT(int type) {
 		if(game.currency>=50){
 			game.handler.addObject(new Tree(x, dm.getHeight() * 3 / 5 - 32, ObjectId.tree, type, game, images));
@@ -738,13 +823,21 @@ public class Critter extends GameObject {
 		g.drawString("haha", (int) dm.getWidth() / 2, (int) dm.getHeight() / 2);
 	}
 
-	// Hitboxes and Collision boxes
+	/**
+	 * Returns attack boundaries of the critter object.
+	 * Used to see if critter can attack waste
+	 */
 	@Override
 	public Rectangle getBounds() {
 
 		return new Rectangle((int) x - 16, (int) y - 16, 64, 64);
 	}
 
+	/**
+	 * Returns boundaries of the critter object.
+	 * Used see if critter is colliding with another game object
+	 * @return
+	 */
 	public Rectangle getBoundsSelf() {
 		return new Rectangle((int) x, (int) y, 32, 32);
 	}
@@ -758,37 +851,74 @@ public class Critter extends GameObject {
 		return new Rectangle((int) x + 6, (int) y, 20, 6);
 	}
 
+	/**
+	 * Returns boundaries of the bottom of the critter object.
+	 * Used to check if the critter is touching the floor
+	 * 
+	 * @return bottom boundary 
+	 */
 	public Rectangle getBoundsBottom() {
 
 		return new Rectangle((int) x + 6, (int) y + 26, 20, 6);
 	}
 
+	/**
+	 * Returns boundaries  left of the critter object.
+	 * Stops the critter it runs into a wall or boundary
+	 * 
+	 * @return left boundary 
+	 */
 	public Rectangle getBoundsLeft() {
 
 		return new Rectangle((int) x, (int) y + 6, 6, 20);
 	}
 
+	/**
+	 * Returns boundaries right of the critter object.
+	 * Stops the critter it runs into a wall or boundary
+	 * 
+	 * @return right boundary 
+	 */
 	public Rectangle getBoundsRight() {
 
 		return new Rectangle((int) x + 26, (int) y + 6, 6, 20);
 	}
 
+	/**
+	 * Method to set if the critter is moving right
+	 */
 	public void setRight() {
 		right = true;
 	}
 
+	/**
+	 * Method to set if the critter is moving left
+	 */
 	public void setLeft() {
 		right = false;
 	}
 	
+	/**
+	 * Returns boolean if the critter is in the water or not
+	 *  
+	 * @return boolean if in water
+	 */
 	public boolean getInWater(){
 		return inWater;
 	}
 	
+	/**
+	 * Method to set animations depending on what the player is doing
+	 * 
+	 * @param currentAnimation - action of the user
+	 */
 	public void setAnimation(int currentAnimation){
 		this.currentAnimation = currentAnimation;
 	}
 	
+	/**
+	 * Method to constructs a gabion if you have the needed materials in your inventory
+	 */
 	public void plantGabion() {
 		//builds gabion if inventory method returns true, and you are on the sand behind initial barrier
 				if(inventory.buildGabion() && this.x < dm.getWidth()/2 + dm.getWidth()/4){
