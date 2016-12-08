@@ -25,7 +25,7 @@ public class Game3Timer extends GameObject {
 	private int mstime;//milliseconds remaining
 	private int g;
 	public static Timer clock1;//clock
-	//initializer to 1:30 seconds in game
+	//initializer to 1:30 seconds in game  
 	/**
 	 * creates the game 3 timer(if you protect the estuary the whole time you win)
 	 * @param x object's x position
