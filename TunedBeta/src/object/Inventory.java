@@ -19,6 +19,7 @@ import window.Handler;
 //
 public class Inventory extends GameObject {
 
+	//Attributes
 	private int countOyster = 0;
 	private int countPlant1 = 0;
 	private int countPlant2 = 0;
@@ -38,12 +39,31 @@ public class Inventory extends GameObject {
 	boolean error = false;
 	Timer errorTimer;
 
+	/**
+	 * Constructor that constructs inventory object. Holds all the items you
+	 * collect throughout the game that allows you to construct different
+	 * objects in the game
+	 * 
+	 * @param x
+	 *            - x position of the inventory
+	 * @param y
+	 *            - y position of the inventory
+	 * @param id
+	 *            - object id to be read by the handler
+	 * @param game
+	 *            - game it is in
+	 * @param dm
+	 *            - dimensions of the game
+	 */
 	public Inventory(double x, double y, ObjectId id, Game game, Dimension dm) {
 		super(x, y, id, game);
 		this.dm = dm;
 		errorTimer = new Timer(5000, listener);
 	}
 
+	/**
+	 * Method that prevents the user from building inside the water
+	 */
 	ActionListener listener = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -52,12 +72,25 @@ public class Inventory extends GameObject {
 		}
 	};
 
+
+	/**
+	 * Method the sets the x and y positions of the inventory according to the
+	 * critters x and y
+	 * 
+	 * @param critter
+	 *            - critter object
+	 */
 	public void setCritter(Critter critter) {
 		this.critter = critter;
 		xx = (int) critter.getX() - 64;
 		yy = (int) critter.getY() - 144;
 	}
 
+	/**
+	 * Method that changes variables of inventory per call. - changes
+	 * inventory's x position to be based on critter's x position - changes
+	 * inventory's y position to be based on critter's y position
+	 */
 	@Override
 	public void tick(ArrayList<GameObject> object) {
 
@@ -66,31 +99,44 @@ public class Inventory extends GameObject {
 
 	}
 
-	// Oyster
+	/**
+	 * Method that increases the oyster count in the inventory
+	 */
 	public void addOyster() {
 		countOyster++;
 	}
 
-	// Plant 1
+	/**
+	 * Method that increases the plant1 count in the inventory
+	 */
 	public void addPlant1() {
 		countPlant1++;
 	}
 
-	// Plant 2
+	/**
+	 * Method that increases the plant2 count in the inventory
+	 */
 	public void addPlant2() {
 		countPlant2++;
 	}
 
-	// Plant 3
+	/**
+	 * Method that increases the plant3 count in the inventory
+	 */
 	public void addPlant3() {
 		countPlant3++;
 	}
 
-	// Miracle Plant
+	/**
+	 * Method that increases the miracle plant count in the inventory
+	 */
 	public void addMiraclePlant() {
 		countMiraclePlant++;
 	}
 
+	/**
+	 * Method to display the inventory image
+	 */
 	@Override
 	public void render(Graphics g) {
 
@@ -108,6 +154,12 @@ public class Inventory extends GameObject {
 
 	}
 
+	/**
+	 * Method that builds objects based on the number of inventory objects
+	 * 
+	 * @param gm- game
+	 * @param type - type of object to construct
+	 */
 	public void buildBarrier(Game gm, int type) {
 		if (critter.getX() <= dm.getWidth() * .84 - 64 && !error) {
 			switch (type) {
@@ -139,17 +191,28 @@ public class Inventory extends GameObject {
 		}
 	}
 
+	/**
+	 * Returns the bounds of the inventory
+	 */
 	@Override
 	public Rectangle getBounds() {
 		return null;
 	}
 
+	/**
+	 * Returns the boundaries of an inventory object
+	 * 
+	 * @return - the bounds of an inventory object
+	 */
 	public Rectangle getWeakGrass() {
 		return new Rectangle((int) xx + 10, (int) yy + 10, 16, 16);
 	}
 
-	// Menu (Currently not using)
-
+	/**
+	 * Method that draws the menu to see your inventory items
+	 * 
+	 * @param g - graphics variable
+	 */
 	public void drawMenu(Graphics g) {
 
 		// Borders
@@ -207,11 +270,20 @@ public class Inventory extends GameObject {
 
 	}
 
+	/**
+	 * Method to draw something if an error occurs
+	 * 
+	 * @param g - graphics varible
+	 */
 	public void drawError(Graphics g) {
 		g.setColor(Color.WHITE);
 		g.drawString("You cannot build or plant here!", (int) critter.getX() - 64, (int) critter.getY() - 32);
 	}
 
+	/**
+	 * Method is display the menu when you press a key and get rid of it when
+	 * you press the key again
+	 */
 	public void toggleMenu() {
 		if (menuActivation)
 			menuActivation = false;
@@ -219,33 +291,47 @@ public class Inventory extends GameObject {
 			menuActivation = true;
 	}
 
-	// Oyster
-
+	/**
+	 * Method is increase the rope count in inventory
+	 */
 	public void addRope() {
 		countRope++;
 	}
 
-	// adds 1 wood
+	/**
+	 * Method is increase the wood count in inventory
+	 */
 	public void addWood() {
 		countWood++;
 	}
 
-	// removes a rope
+	/**
+	 * Method is subtracts from the rope count in inventory
+	 */
 	public void removeRope() {
 		countRope--;
 	}
 
-	// Big Seed
+	/**
+	 * Method is subtracts from the wood count in inventory
+	 */
 	public void removeWood() {
 		countWood--;
 	}
 
-	// removes 5 oysters(for gabion)
+	/**
+	 * Method is subtracts from the oyster count by 5 in inventory
+	 */
 	public void removeOysters() {
 		countOyster -= 5;
 	}
 
-	// returns true if you have enough materials to build gabion
+	/**
+	 * Method that returns true or false if you have all the materials to 
+	 * construct a gabion. 
+	 * 
+	 * @return boolean stating if the have the materials 
+	 */
 	public boolean buildGabion() {
 		if (countRope >=1 && countWood >=1 && countOyster >= 5)
 			return true;
