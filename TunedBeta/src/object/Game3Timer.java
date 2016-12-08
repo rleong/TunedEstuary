@@ -36,7 +36,7 @@ public class Game3Timer extends GameObject {
 	public Game3Timer(double x, double y, ObjectId id, Game game, int g) {
 		super(x, y, id, game);
 		mintime = 0;
-		sectime = 30;
+		sectime = 3;
 		mstime = 0 ;
 		this.g = g;
 		clock1 = new Timer(100, l1);//calls listener l1 every millisecond

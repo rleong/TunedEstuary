@@ -61,7 +61,9 @@ public class Tree extends GameObject {
 					if (this.type == rof.type) {
 						game.setnRof(game.getnRof() - 1);
 						hp -= 1;
-						object.remove(this);
+						object.remove(temp);
+						if(hp<=0)
+							object.remove(this);
 					}
 				}
 			}

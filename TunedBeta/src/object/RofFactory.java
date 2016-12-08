@@ -29,7 +29,7 @@ public class RofFactory extends GameObject {
 	public void tick(ArrayList<GameObject> object) {
 		// TODO Auto-generated method stub
 
-		if(System.currentTimeMillis()-timer>2500){
+		if(System.currentTimeMillis()-timer>3300){
 			timer=System.currentTimeMillis();
 			if(game.g2stage==0){
 				if(count>3){
@@ -131,7 +131,7 @@ public class RofFactory extends GameObject {
 			}
 			
 				if(game.g2stage==6){
-					if(count>6){
+					if(count>7){
 						game.g2stage+=1;
 						count=0;
 					}
@@ -139,9 +139,11 @@ public class RofFactory extends GameObject {
 				}
 			
 			if(game.g2stage==7){
-				game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 4, game));
-				game.nW4++;
-				game.nWaste++;
+				if(game.nW4<1){
+					game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 3, game));
+					game.nW4++;
+					game.nWaste+=0.5;
+				}
 				if(game.nWaste<0){
 					game.g2stage++;
 					game.nWaste=0;

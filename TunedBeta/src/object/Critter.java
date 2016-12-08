@@ -606,7 +606,10 @@ public class Critter extends GameObject {
 
 	// Plants plants
 	public void planT(int type) {
-		game.handler.addObject(new Tree(x, dm.getHeight() * 3 / 5 - 32, ObjectId.tree, type, game, images));
+		if(game.currency>=50){
+			game.handler.addObject(new Tree(x, dm.getHeight() * 3 / 5 - 32, ObjectId.tree, type, game, images));
+			game.currency-=50;
+		}
 	}
 
 	/**
@@ -681,6 +684,14 @@ public class Critter extends GameObject {
 				Compost comp = (Compost) temp;
 				if (getBoundsSelf().intersects(temp.getBounds())) {
 					game.currency+=25;
+					System.out.println(game.currency);
+					object.remove(temp);
+				}
+			}
+			if (temp.getId() == ObjectId.compost2) {
+				Compost comp = (Compost) temp;
+				if (getBoundsSelf().intersects(temp.getBounds())) {
+					game.currency+=1000;
 					System.out.println(game.currency);
 					object.remove(temp);
 				}
