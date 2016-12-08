@@ -5,7 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 import control.Game;
 import framework.GameObject;
@@ -28,10 +28,10 @@ public class Wood extends GameObject {
 	@Override
 	//called continuously to update x and y and to call collision
 	/**
-	 * @param LinkedList<GameObject> object with all objects in the handler
+	 * @param ArrayList<GameObject> object with all objects in the handler
 	 * continuously called to check collision and update position
 	 */
-	public void tick(LinkedList<GameObject> object) {
+	public void tick(ArrayList<GameObject> object) {
 		x += velX;
 		y += velY;
 		collision(game.handler.object);
@@ -56,9 +56,9 @@ public class Wood extends GameObject {
 	//check for collisions with other objects
 	/**
 	 * checks for collision with other objects(land surface), then stops it's y value from incrementing
-	 * @param LinkedList<GameObject> object with all game objects
+	 * @param ArrayList<GameObject> object with all game objects
 	 */
-	private void collision(LinkedList<GameObject> object) {
+	private void collision(ArrayList<GameObject> object) {
 		//iterate through objects list
 		Iterator<GameObject> itr = object.iterator();
 		GameObject temp;
@@ -102,9 +102,9 @@ public class Wood extends GameObject {
 	 /**
 	  * for test to access collision
 	  * @param test
-	  * @return LinkedList<GameObject> test after calling collision
+	  * @return ArrayList<GameObject> test after calling collision
 	  */
-	public LinkedList<GameObject> testCollision(LinkedList<GameObject>test){
+	public ArrayList<GameObject> testCollision(ArrayList<GameObject>test){
 		collision(test);
 		return test;
 	}

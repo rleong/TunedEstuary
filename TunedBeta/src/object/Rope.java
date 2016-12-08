@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 import control.Game;
 import framework.GameObject;
@@ -33,7 +33,7 @@ public class Rope extends GameObject {
 	/**
 	 * continuously called to check collision and update position
 	 */
-	public void tick(LinkedList<GameObject> object) {
+	public void tick(ArrayList<GameObject> object) {
 			x += velX;
 			y += velY;
 
@@ -59,9 +59,9 @@ public class Rope extends GameObject {
 	//check for collisions with other objects
 	/**
 	 * checks for collision with other objects, then stops it's y value from incrementing
-	 * @param LinkedList<GameObject> object with all game objects
+	 * @param ArrayList<GameObject> object with all game objects
 	 */
-	private void collision(LinkedList<GameObject> object) {
+	private void collision(ArrayList<GameObject> object) {
 		//iterate through objects list
 		Iterator<GameObject> itr = object.iterator();
 		GameObject temp;
@@ -107,9 +107,9 @@ public class Rope extends GameObject {
 	 /**
 	  * for test to access collision
 	  * @param test
-	  * @return LinkedList<GameObject> test after calling collision
+	  * @return ArrayList<GameObject> test after calling collision
 	  */
-	public LinkedList<GameObject> testCollision(LinkedList<GameObject>test){
+	public ArrayList<GameObject> testCollision(ArrayList<GameObject>test){
 		collision(test);
 		return test;
 	}

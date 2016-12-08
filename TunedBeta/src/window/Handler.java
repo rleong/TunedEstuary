@@ -2,10 +2,9 @@ package window;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.LinkedList;
-
 import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
@@ -17,7 +16,7 @@ import object.Waste;
 
 public class Handler {
 
-	public LinkedList<GameObject> object = new LinkedList<GameObject>();
+	public ArrayList<GameObject> object = new ArrayList<GameObject>();
 //--
 	private GameObject temp;
 	Game game;

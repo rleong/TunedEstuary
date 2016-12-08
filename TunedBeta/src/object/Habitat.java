@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 import javax.swing.Timer;
 
@@ -42,7 +42,7 @@ public class Habitat extends GameObject{
 	};
 
 	@Override
-	public void tick(LinkedList<GameObject> object) {
+	public void tick(ArrayList<GameObject> object) {
 		collision(object);
 		if(health<=0){
 			clock.stop();
@@ -60,7 +60,7 @@ public class Habitat extends GameObject{
 		g.fillRect((int) x, (int) y-8, (int) ((health / 30) * width), 6);
 	}
 	
-	private void collision(LinkedList<GameObject> object) {
+	private void collision(ArrayList<GameObject> object) {
 		numberOfHazards = 0;
 		numberOfCompost = 0;
 		for (int i = 0; i < game.handler.object.size(); i++) {
@@ -86,7 +86,7 @@ public class Habitat extends GameObject{
 	public Rectangle getBounds() {
 		return new Rectangle((int)x + 6, (int) y + 26, (int)width, 64);
 	}
-	public LinkedList<GameObject> testCollision(LinkedList<GameObject> test) {
+	public ArrayList<GameObject> testCollision(ArrayList<GameObject> test) {
 		collision(test);
 		return test;
 	}

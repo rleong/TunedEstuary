@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 import javax.swing.Timer;
 
@@ -46,7 +46,7 @@ public class Gabion extends GameObject{
 	/**
 	 * continuously called to check collision and hp
 	 */
-	public void tick(LinkedList<GameObject> object) {
+	public void tick(ArrayList<GameObject> object) {
 		collision(object);
 		//if the object is a gabion with no health remove it
 		if(this.getHp() == 0)
@@ -71,7 +71,7 @@ public class Gabion extends GameObject{
 	 * checks for collisions with different objects(waves)
 	 * @param linked list<GameObject>object
 	 */
-	private void collision(LinkedList<GameObject> object){
+	private void collision(ArrayList<GameObject> object){
 		
 		GameObject temp;
 		//iterate through object list
@@ -120,9 +120,9 @@ public class Gabion extends GameObject{
 	/**
 	  * for test to access collision
 	  * @param test
-	  * @return LinkedList<GameObject> test after calling collision
+	  * @return ArrayList<GameObject> test after calling collision
 	  */
-	public LinkedList<GameObject> testCollision(LinkedList<GameObject>test){
+	public ArrayList<GameObject> testCollision(ArrayList<GameObject>test){
 		collision(test);
 		return test;
 	}

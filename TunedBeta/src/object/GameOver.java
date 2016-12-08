@@ -7,7 +7,7 @@ import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 import javax.swing.Timer;
 
@@ -50,7 +50,7 @@ public class GameOver extends GameObject {
 	/**
 	 * continuously called to remove game 3 objects and count down timer.
 	 */
-	public void tick(LinkedList<GameObject> object) {
+	public void tick(ArrayList<GameObject> object) {
 		//removes game3 related objects
 		for(Iterator<GameObject> it = object.iterator();it.hasNext();){
 			GameObject temp = it.next();

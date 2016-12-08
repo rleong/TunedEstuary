@@ -1,7 +1,7 @@
 package window;
 
 import java.awt.Graphics;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 import control.Game;
 import framework.GameObject;
@@ -11,7 +11,7 @@ import object.Bubble;
 import object.Waste;
 
 public class Handler2 {
-	public LinkedList<GameObject> object = new LinkedList<GameObject>();
+	public ArrayList<GameObject> object = new ArrayList<GameObject>();
 
 	private GameObject temp;
 	Game game;

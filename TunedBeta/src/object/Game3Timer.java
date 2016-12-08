@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 import javax.swing.Timer;
 
@@ -62,7 +62,7 @@ public class Game3Timer extends GameObject {
 	/**
 	 * continuously called to check time remaining
 	 */
-	public void tick(LinkedList<GameObject> object) {
+	public void tick(ArrayList<GameObject> object) {
 		//checks when to call win condition
 		//if timer runs out stop the clock and call win method
 		if(g == 3){

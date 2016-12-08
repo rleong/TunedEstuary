@@ -3,7 +3,7 @@ package object;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 import control.Game;
 import framework.GameObject;
@@ -73,7 +73,7 @@ public class Waste extends GameObject {
 	}
 
 	@Override
-	public void tick(LinkedList<GameObject> object) {
+	public void tick(ArrayList<GameObject> object) {
 		if (!isTrapped) {
 			x += velX;
 			y += velY;
@@ -188,7 +188,7 @@ public class Waste extends GameObject {
 		y += 1 * Math.sin(x / 25);
 	}
 
-	private void collision(LinkedList<GameObject> object) {
+	private void collision(ArrayList<GameObject> object) {
 		GameObject temp;
 		for (int i = 0; i < game.handler.object.size(); i++) {
 			temp = game.handler.object.get(i);

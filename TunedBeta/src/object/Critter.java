@@ -7,7 +7,8 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.ArrayList;
 
 import javax.swing.Timer;
 
@@ -101,7 +102,7 @@ public class Critter extends GameObject {
 	}
 
 	@Override
-	public void tick(LinkedList<GameObject> object) {
+	public void tick(ArrayList<GameObject> object) {
 
 		// Character Physics
 		x += velX;
@@ -541,7 +542,7 @@ public class Critter extends GameObject {
 	}
 
 	// Attacking an enemy
-	public void attack(LinkedList<GameObject> object) {
+	public void attack(ArrayList<GameObject> object) {
 		for (int i = 0; i < object.size(); i++) {
 			GameObject temp = object.get(i);
 			if (temp.getId() == ObjectId.waste) {
@@ -557,33 +558,38 @@ public class Critter extends GameObject {
 			}
 			
 			//if object is an oyster and in range, collect the oyster  
-			else if(temp.getId() == ObjectId.oyster && temp.getBounds().intersects(this.getBounds())){
+			if(temp.getId() == ObjectId.oyster && temp.getBounds().intersects(this.getBounds())){
 				Oyster oyster = (Oyster)temp;
 				game.handler.removeObject(oyster);
 				inventory.addOyster();
 			}
 			//if object is a rope and in range, collect the rope
-			else if(temp.getId() == ObjectId.rope && temp.getBounds().intersects(this.getBounds())){
+			if(temp.getId() == ObjectId.rope && temp.getBounds().intersects(this.getBounds())){
 				Rope rope = (Rope)temp;
 				game.handler.removeObject(rope);
 				inventory.addRope();
 			}
 			//if object is wood and in range, collect the wood
-			else if(temp.getId() == ObjectId.wood && temp.getBounds().intersects(this.getBounds())){
+			if(temp.getId() == ObjectId.wood && temp.getBounds().intersects(this.getBounds())){
 				Wood wood = (Wood)temp;
 				game.handler.removeObject(wood);
 				inventory.addWood();
 			}
 			//if object is trash and in range, remove it
-			else if(temp.getId() == ObjectId.ptrash && temp.getBounds().intersects(this.getBounds())){
+			if(temp.getId() == ObjectId.ptrash && temp.getBounds().intersects(this.getBounds())){
 				Trash trash = (Trash)temp;
 				game.handler.removeObject(trash);
 			}
-			/*
-			 * if (temp.getId() == ObjectId.waterTree) { WaterTree wt =
-			 * (WaterTree) temp; if (wt.canAttack) { wt.hp -= damage; } if
-			 * (wt.hp <= 0) wt.dead(); }
-			 */
+			
+			if (temp.getId() == ObjectId.waterTree) { 
+				 WaterTree wt =(WaterTree) temp; 
+				 if (wt.canAttack) { 
+					 wt.hp -= damage; 
+				 } 
+				 if(wt.hp <= 0) 
+					 wt.chopDown();
+			}
+			 
 		}
 	}
 
@@ -609,7 +615,7 @@ public class Critter extends GameObject {
 	 * 
 	 */
 	// Collision
-	private void collision(LinkedList<GameObject> object) {
+	private void collision(ArrayList<GameObject> object) {
 		for (int i = 0; i < game.handler.object.size(); i++) {
 			GameObject temp = game.handler.object.get(i);
 			if (temp.getId() == ObjectId.landSurface) {

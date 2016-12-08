@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 import control.Game;
 import framework.GameObject;
@@ -41,7 +41,7 @@ public class Barrier extends GameObject{
 	/**
 	 * continuously called to check collision and hp
 	 */
-	public void tick(LinkedList<GameObject> object) {
+	public void tick(ArrayList<GameObject> object) {
 		collision(game.handler.object);
 		if(this.getHp() >= 5){
 			stage = 0;
@@ -59,7 +59,7 @@ public class Barrier extends GameObject{
 	 * checks for collisions with different objects(waves)
 	 * @param linked list<GameObject>object
 	 */
-	private void collision(LinkedList<GameObject> object){
+	private void collision(ArrayList<GameObject> object){
 		
 		GameObject temp;
 		for(Iterator<GameObject> itr = object.iterator();itr.hasNext();){
@@ -105,9 +105,9 @@ public class Barrier extends GameObject{
 	 /**
 	  * for test to access collision
 	  * @param test
-	  * @return LinkedList<GameObject> test after calling collision
+	  * @return ArrayList<GameObject> test after calling collision
 	  */
-	public LinkedList<GameObject> testCollision(LinkedList<GameObject> test) {
+	public ArrayList<GameObject> testCollision(ArrayList<GameObject> test) {
 		collision(test);
 		return test;
 	}

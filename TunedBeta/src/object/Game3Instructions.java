@@ -3,7 +3,7 @@ package object;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 import control.Game;
 import framework.GameObject;
@@ -29,7 +29,7 @@ public class Game3Instructions extends GameObject {
 	/**
 	 *no tick for this object
 	 */
-	public void tick(LinkedList<GameObject> object){
+	public void tick(ArrayList<GameObject> object){
 	}
 
 	@Override

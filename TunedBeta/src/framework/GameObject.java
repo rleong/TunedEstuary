@@ -2,7 +2,8 @@ package framework;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.ArrayList;
 
 import control.Game;
 import window.Handler;
@@ -22,7 +23,7 @@ public abstract class GameObject {
 		this.game=game;
 	}
 	
-	public abstract void tick(LinkedList<GameObject> object);
+	public abstract void tick(ArrayList<GameObject> object);
 	
 	public abstract void render(Graphics g);
 	

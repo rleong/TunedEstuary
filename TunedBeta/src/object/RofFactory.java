@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.Random;
 
 import control.Game;
@@ -22,7 +22,7 @@ public class RofFactory extends GameObject {
 	}
 
 	@Override
-	public void tick(LinkedList<GameObject> object) {
+	public void tick(ArrayList<GameObject> object) {
 		// TODO Auto-generated method stub
 
 		if(System.currentTimeMillis()-timer>2500){

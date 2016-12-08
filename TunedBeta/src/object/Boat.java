@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.Timer;
@@ -71,7 +71,7 @@ public class Boat extends GameObject {
 		};
 
 	@Override
-	public void tick(LinkedList<GameObject> object) {
+	public void tick(ArrayList<GameObject> object) {
 		x += direction;
 		y += .25 * Math.sin(x / 25);
 		rand1 = rand.nextInt(200)+100;//sets new random value

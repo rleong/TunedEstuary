@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.Random;
 
 import control.Game;
@@ -25,7 +25,7 @@ public class WaterTree extends GameObject {
 		super(x, y, id, game);
 		this.dm=dm;
 		hp=20;
-		
+		canAttack=true;
 		this.type=type;
 	}
 //	public void change(){
@@ -33,10 +33,11 @@ public class WaterTree extends GameObject {
 //		type=type%2;
 //	}
 	public void chopDown(){
-		game.handler.addObject(new Compost(x,y,ObjectId.compost1, game, type));
-		game.handler.addObject(new Compost(x,y,ObjectId.compost1, game, type));
-		game.handler.addObject(new Compost(x,y,ObjectId.compost1, game, type));
-		dead();
+		game.handler.addObject(new Compost(x-64,y-128,ObjectId.compost1, game, type));
+		game.handler.addObject(new Compost(x,y-128,ObjectId.compost1, game, type));
+		game.handler.addObject(new Compost(x+64,y-128,ObjectId.compost1, game, type));
+		game.handler.object.remove(this);
+		return;
 	}
 	public boolean getAttack(){
 		return canAttack;
@@ -59,7 +60,7 @@ public class WaterTree extends GameObject {
 	
 
 	@Override
-	public void tick(LinkedList<GameObject> object) {
+	public void tick(ArrayList<GameObject> object) {
 		
 		x+=velX;
 		y+=velY;

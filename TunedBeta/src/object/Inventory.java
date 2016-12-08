@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.Timer;
@@ -59,7 +59,7 @@ public class Inventory extends GameObject {
 	}
 
 	@Override
-	public void tick(LinkedList<GameObject> object) {
+	public void tick(ArrayList<GameObject> object) {
 
 		xx = (int) critter.getX() - 64;
 		yy = (int) critter.getY() - 174;

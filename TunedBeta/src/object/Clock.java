@@ -2,7 +2,7 @@ package object;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.Random;
 
 import control.Game;
@@ -29,7 +29,7 @@ public class Clock extends GameObject{
 	}
 
 	@Override
-	public void tick(LinkedList<GameObject> object) {
+	public void tick(ArrayList<GameObject> object) {
 		if(timer1==countdown1){
 			countdown1 = rand.nextInt(500);
 			spawnTrash();

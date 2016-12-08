@@ -6,7 +6,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.Random;
 import control.Game;
 import framework.GameObject;
@@ -63,7 +63,7 @@ public class Person extends GameObject {
 	/**
 	 * continuously called to check collision and update position
 	 */
-	public void tick(LinkedList<GameObject> object) {
+	public void tick(ArrayList<GameObject> object) {
 		y += velY;
 		//increment x position based on direction
 		if (colliding) {
@@ -110,9 +110,9 @@ public class Person extends GameObject {
 	//checks for collisions between this object and any other object in handler
 	/**
 	 * checks for collision with other objects, then stops it's y value from incrementing
-	 * @param LinkedList<GameObject> object with all game objects
+	 * @param ArrayList<GameObject> object with all game objects
 	 */
-	private void collision(LinkedList<GameObject> object) {
+	private void collision(ArrayList<GameObject> object) {
 		//iterate through object list
 		Iterator<GameObject> it = object.iterator();
 		for(;it.hasNext();){
@@ -169,9 +169,9 @@ public class Person extends GameObject {
 	/**
 	  * for test to access collision
 	  * @param test
-	  * @return LinkedList<GameObject> test after calling collision
+	  * @return ArrayList<GameObject> test after calling collision
 	  */
-	public LinkedList<GameObject> testCollision(LinkedList<GameObject>test){
+	public ArrayList<GameObject> testCollision(ArrayList<GameObject>test){
 		collision(test);
 		return test;
 	}

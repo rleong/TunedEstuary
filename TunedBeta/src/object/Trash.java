@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 import control.Game;
 import framework.GameObject;
@@ -35,7 +35,7 @@ public class Trash extends GameObject {
 	/**
 	 * continuously called to check collision and update position
 	 */
-	public void tick(LinkedList<GameObject> object) {
+	public void tick(ArrayList<GameObject> object) {
 		x += velX;
 		y += velY;
 		collision(game.handler.object);
@@ -60,7 +60,7 @@ public class Trash extends GameObject {
 	/**
 	 * continuously called to check collision with the land surface, and if it does stop incrementing the y value
 	 */
-	private void collision(LinkedList<GameObject> object) {
+	private void collision(ArrayList<GameObject> object) {
 		//iterate through game objects
 		Iterator<GameObject> itr = object.iterator();
 		GameObject temp;
@@ -105,9 +105,9 @@ public class Trash extends GameObject {
 	 /**
 	  * for test to access collision
 	  * @param test
-	  * @return LinkedList<GameObject> test after calling collision
+	  * @return ArrayList<GameObject> test after calling collision
 	  */
-	public LinkedList<GameObject> testCollision(LinkedList<GameObject>test){
+	public ArrayList<GameObject> testCollision(ArrayList<GameObject>test){
 		collision(test);
 		return test;
 	}

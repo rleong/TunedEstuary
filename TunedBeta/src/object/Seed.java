@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.Random;
 
 import control.Game;
@@ -43,7 +43,7 @@ public class Seed extends GameObject {
 	}
 
 	@Override
-	public void tick(LinkedList<GameObject> object) {
+	public void tick(ArrayList<GameObject> object) {
 		// TODO Auto-generated method stub
 		x+=velX;
 		y+=velY;

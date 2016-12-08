@@ -3,7 +3,7 @@ package object;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 import control.Game;
 import framework.GameObject;
@@ -14,7 +14,7 @@ public class Bubble extends GameObject {
 
 	double bounds = 0;
 	boolean pop = false;
-	LinkedList<Waste> carriedWaste;
+	ArrayList<Waste> carriedWaste;
 	boolean right;
 
 	public Bubble(double x, double y, ObjectId id, Game game, boolean right) {
@@ -27,7 +27,7 @@ public class Bubble extends GameObject {
 	}
 
 	@Override
-	public void tick(LinkedList<GameObject> object) {
+	public void tick(ArrayList<GameObject> object) {
 		if(right)
 			x += 3.5;
 		else
