@@ -33,7 +33,10 @@ public class Camera {
 	
 	public void tick(GameObject critter) {
 		x = -critter.getX() + dm.getWidth() / 2;
+		
 		y = -critter.getY() + dm.getHeight() / 2;
+		
+		
 	}
 
 }
