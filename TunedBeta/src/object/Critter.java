@@ -192,7 +192,7 @@ public class Critter extends GameObject {
 		movementFrameNum2 = (movementFrameNum2 + 1) % images.getSwimFrames();
 		movementFrameNum3 = (movementFrameNum3 + 1) % images.getInteractFrames();
 
-		// Character Flickering & Normal
+		// Character Flickering & Normal 
 		if (flicker == 0 || flicker % 10 == 0) {
 			switch (character) {
 			case 0:
