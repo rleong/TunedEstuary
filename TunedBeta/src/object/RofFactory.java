@@ -14,10 +14,18 @@ import gfx.Images;
 import window.Handler;
 
 public class RofFactory extends GameObject {
+	//Attributes
 	long timer;
 	int count=0;
 	Images images;
 	
+	/**
+	 * Constructor that creates a Factory that will shoot off run-off. 
+	 * @param x - x position of the factory
+	 * @param y - y position of the factory
+	 * @param id - object id to be read by the handler
+	 * @param game - game it is in
+	 */
 	public RofFactory(double x, double y, ObjectId id, Game game, Images images) {
 		super(x, y, id, game);
 		// TODO Auto-generated constructor stub
@@ -25,6 +33,10 @@ public class RofFactory extends GameObject {
 		this.images = images;
 	}
 
+	/**
+	 * Method that changes multiple variables of the factory per call.
+	 * 	-with each stage a new amount of run-off objects are spawned
+	 */
 	@Override
 	public void tick(ArrayList<GameObject> object) {
 		// TODO Auto-generated method stub
@@ -167,6 +179,11 @@ public class RofFactory extends GameObject {
 		}
 		
 	}
+	
+	
+	/**
+	 * Method that creates the three trees when the game runs 
+	 */
 	public void iniTree(){
 		for(int i=0; i<3; i++){
 			Random random = new Random();
@@ -175,6 +192,9 @@ public class RofFactory extends GameObject {
 		}
 	}
 
+	/**
+	 * Method that displays the image of the factory 
+	 */
 	@Override
 	public void render(Graphics g) {
 		g.setColor(Color.DARK_GRAY);
@@ -183,6 +203,10 @@ public class RofFactory extends GameObject {
 		g.drawRect((int)x, (int)y-32, 32, 64);
 	}
 
+
+	/**
+	 * Returns the bounds of the factory
+	 */
 	@Override
 	public Rectangle getBounds() {
 		// TODO Auto-generated method stub
