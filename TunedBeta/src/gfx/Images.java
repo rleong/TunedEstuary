@@ -480,13 +480,34 @@ public class Images {
 		return blueCrab[i][j];
 	}
 
+	/**
+	 * Method that returns the oyster image
+	 *  
+	 * @param i - image at ith position in list
+	 * @param j - image at jth position in list
+	 * @return oyster image
+	 */
 	public BufferedImage getOysterImage(int i, int j) {
 		return easternOyster[i][j];
 	}
 	
+	/**
+	 * Method that returns the horseshoe crab image
+	 *  
+	 * @param i - image at ith position in list
+	 * @param j - image at jth position in list
+	 * @return crab image
+	 */
 	public BufferedImage getHorseshoeCrabImage(int i, int j) {
 		return horseshoeCrab[i][j];
 	}
+	
+	/**
+	 * Method that returns the guardian fish image
+	 *  
+	 * @param i - image at ith position in list
+	 * @return crab image
+	 */
 	public BufferedImage getGuardianFish(int i) {
 		return guardianFish[i];
 	}
