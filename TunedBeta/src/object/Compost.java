@@ -48,12 +48,7 @@ public class Compost extends GameObject {
 		case 1:
 			g.setColor(Color.ORANGE);
 			break;
-		case 2: 
-			g.setColor(Color.CYAN);
-			break;
-		case 3: 
-			g.setColor(Color.RED);
-			break;
+			
 		}
 		g.fillOval((int)x, (int)y, 32, 32);
 		

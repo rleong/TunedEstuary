@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import java.util.Random;
 
 import control.Game;
 import framework.GameObject;
@@ -14,7 +15,8 @@ public class GuardianFish extends GameObject {
 	int damage;
 	Game game;
 	boolean chasing;
-	
+	MiracleTree mt;
+	boolean firstTime=true;
 
 	public GuardianFish(double x, double y, ObjectId id, Game game) {
 		super(x, y, id, game);
@@ -23,6 +25,7 @@ public class GuardianFish extends GameObject {
 		chasing = false;
 		velX = .5;
 		velY = .5;
+		this.mt=new MiracleTree(game.dm.getWidth()*7/4, game.dm.getHeight()*6/5-192, ObjectId.MiracleTree, game, null);
 	}
 
 	@Override
@@ -65,6 +68,12 @@ public class GuardianFish extends GameObject {
 			if (temp.getId()  == ObjectId.critter) {
 				if (getGuardBounds().intersects(temp.getBounds())) {
 					chasing = true;
+					mt.lock=true;
+					if(firstTime){
+						game.handler.addObject(mt);
+						mt.setTimer();
+						firstTime=false;
+					}
 					if(this.x <= temp.getX()){
 						velX = 1.2;
 						x += velX;
@@ -88,6 +97,7 @@ public class GuardianFish extends GameObject {
 				}
 				if (!getGuardBounds().intersects(temp.getBounds())) {
 					chasing = false;
+					mt.lock=false;
 					
 				}
 			}

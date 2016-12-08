@@ -66,7 +66,7 @@ public class Seed extends GameObject {
 					falling=false;
 //					if(growing){
 						
-						game.handler.object.add(new WaterTree(x, y-65, ObjectId.waterTree, type, game, dm, images));
+						game.handler.object.add(new WaterTree(x, y-65, ObjectId.waterTree, type, game, images));
 						game.handler.object.remove(this);
 						return;
 //					}
