@@ -42,15 +42,15 @@ public class LandSurface extends GameObject {
 				g.setColor(Color.CYAN);
 				g.fillRect((int)x, (int)y, 32, 32);
 				break;
-			case 2:
+			case 1:
 				g.setColor(Color.blue);
 				g.fillRect((int)x, (int)y, 32, 32);
 				break;
-			case 4:
+			case 2:
 				g.setColor(Color.green);
 				g.fillRect((int)x, (int)y, 32, 32);
 				break;
-			case 6:
+			case 3:
 				g.setColor(Color.darkGray);
 				g.fillRect((int)x, (int)y, 32, 32);
 				break;

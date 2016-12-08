@@ -15,6 +15,7 @@ public class Runoff extends GameObject {
 	public int type;
 	Dimension dm;
 	Game game;
+	public boolean inTer=false;
 
 	public Runoff(double x, double y, Dimension dm, ObjectId id, int type, Game game) {
 		super(x, y, id, game);
@@ -99,11 +100,13 @@ public class Runoff extends GameObject {
 			if (temp.getId() == ObjectId.seaLevel) {
 
 				if (getBounds().intersects(temp.getBounds())) {
+					if(!inTer){
 					game.count += 1;
 					
 					game.nWaste-=1.005;
 					object.remove(this);
-					
+					inTer=true;
+					}
 					
 				}
 			}

@@ -142,7 +142,7 @@ public class RofFactory extends GameObject {
 				if(game.nW4<1){
 					game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 3, game));
 					game.nW4++;
-					game.nWaste+=0.5;
+					game.nWaste+=1;
 				}
 				if(game.nWaste<0){
 					game.g2stage++;
