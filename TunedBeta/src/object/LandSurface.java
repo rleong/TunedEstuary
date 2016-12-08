@@ -13,21 +13,38 @@ import gfx.Images;
 import window.Handler;
 
 public class LandSurface extends GameObject {
+	//Attributes
 	Images images;
 	private int stage = 0;
 	
+	/**
+	 * Constructor used to construct game object that are used to build the 
+	 * map where the player moves around in. 
+	 * 
+	 * @param x - x position of land surface
+	 * @param y - y position of land surface 
+	 * @param id - object id 
+	 * @param game - game it is in
+	 */
 	public LandSurface(double x, double y, ObjectId id, Game game, Images images) {
 		super(x, y, id, game);
 		this.images = images;
 		stage = game.getCount();
 	}
 
+	/**
+	 * Method that changes variables of land surface per call.
+	 */
 	@Override
 	public void tick(ArrayList<GameObject> object) {
 		
 		
 	}
 
+	/**
+	 * Method that displays land surface images depending on the type of surface
+	 * you need
+	 */
 	@Override
 	public void render(Graphics g) {
 		if(id==ObjectId.landSurface){
@@ -72,6 +89,10 @@ public class LandSurface extends GameObject {
 		
 	}
 
+	/**
+	 * Returns the boundaries of the land surface object.
+	 * Used to check if land surface is colliding with another object
+	 */
 	@Override
 	public Rectangle getBounds() {
 		
