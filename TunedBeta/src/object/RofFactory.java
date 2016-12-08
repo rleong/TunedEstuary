@@ -29,25 +29,29 @@ public class RofFactory extends GameObject {
 	public void tick(ArrayList<GameObject> object) {
 		// TODO Auto-generated method stub
 
-		if(System.currentTimeMillis()-timer>3300){
+		if(System.currentTimeMillis()-timer>2500){
 			timer=System.currentTimeMillis();
 			if(game.g2stage==0){
 				if(count>3){
 					game.g2stage+=1;
 					count=0;
+					return;
 				}
 				count+=1;
+				return;
 			}
 			if(game.g2stage==1){
 				if(game.nW1<5){
 					game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 0,game));
 					game.nW1++;
 					game.nWaste++;
+					return;
 				}
 				if(game.nWaste<0){
 					game.g2stage++;
 					game.nWaste=0;
 					game.nW1=0;
+					return;
 				}
 			}
 			if(game.g2stage==2){
@@ -57,8 +61,10 @@ public class RofFactory extends GameObject {
 					Random random=new Random();
 					int xx= random.nextInt(1000) % (int)(game.dm.getWidth()*1.5-game.dm.getWidth()*5/6-32);
 					game.handler.addObject(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, game, images));
+					return;
 				}
 				count+=1;
+				return;
 				
 			}
 			if(game.g2stage==3){
@@ -82,6 +88,7 @@ public class RofFactory extends GameObject {
 					game.nWaste=0;
 					game.nW1=0;
 					game.nW2=0;
+					return;
 				}
 			}
 			
@@ -92,8 +99,10 @@ public class RofFactory extends GameObject {
 						Random random=new Random();
 						int xx= random.nextInt(1000) % (int)(game.dm.getWidth()*1.5-game.dm.getWidth()*5/6-32);
 						game.handler.addObject(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, game, images));
+						return;
 					}
 					count+=1;
+					return;
 				}
 			
 			if(game.g2stage==5){
@@ -127,6 +136,7 @@ public class RofFactory extends GameObject {
 					game.nW1=0;
 					game.nW2=0;
 					game.nW3=0;
+					return;
 				}
 			}
 			
@@ -136,6 +146,7 @@ public class RofFactory extends GameObject {
 						count=0;
 					}
 					count+=1;
+					return;
 				}
 			
 			if(game.g2stage==7){
@@ -143,12 +154,14 @@ public class RofFactory extends GameObject {
 					game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 3, game));
 					game.nW4++;
 					game.nWaste+=1;
+					return;
 				}
 				if(game.nWaste<0){
 					game.g2stage++;
 					game.nWaste=0;
 					game.nW4=0;
 					game.g2stage++;
+					return;
 				}
 			}
 		}

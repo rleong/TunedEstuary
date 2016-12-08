@@ -59,7 +59,7 @@ public class Tree extends GameObject {
 				Runoff rof = (Runoff) temp;
 				if (getBounds().intersects(temp.getBounds())) {
 					if (this.type == rof.type) {
-						game.setnRof(game.getnRof() - 1);
+						game.nWaste-=1.005;
 						hp -= 1;
 						object.remove(temp);
 						if(hp<=0)
