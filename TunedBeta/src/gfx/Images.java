@@ -417,28 +417,62 @@ public class Images {
 		return waterTile[i][j];
 	}
 	
-	// Barrier Getters
-	
+	/**
+	 * Method that returns the plant 1 image
+	 * 
+	 * @param i - image at ith position in list
+	 * @return grass image
+	 */
 	public BufferedImage getPlant1(int i) {
 		return panicGrass[i];
 	}
 	
+	/**
+	 * Method that returns the plant 2 image
+	 * 
+	 * @param i - image at ith position in list
+	 * @return plant2 image
+	 */
 	public BufferedImage getPlant2(int i) {
 		return littleBlueStem[i];
 	}
 	
+	/**
+	 * Method that returns the plant 3 image
+	 * 
+	 * @param i - image at ith position in list
+	 * @return plant3 image
+	 */
 	public BufferedImage getPlant3(int i) {
 		return indianGrass[i];
 	}
 	
+	/**
+	 * Method that returns the gabion image
+	 * 
+	 * @param i - image at ith position in list
+	 * @return gabion image
+	 */
 	public BufferedImage getGabion(int i) {
 		return gaBion[i];
 	}
 	
+	/**
+	 * Method that returns the concrete image
+	 * 
+	 * @param i - image at ith position in list
+	 * @return concrete image
+	 */
 	public BufferedImage getConcrete(int i) {
 		return conCrete[i];
 	}
 	
+	/**
+	 * Method that returns the goldenrod image 
+	 * 
+	 * @param i - image at ith position in list
+	 * @return goldenrod image
+	 */
 	public BufferedImage getGoldenrod(int i) {
 		return goldenRod[i];
 	}
