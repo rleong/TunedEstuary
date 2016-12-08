@@ -120,6 +120,9 @@ public class Runoff extends GameObject {
 						setVelY(-3);
 						falling=true;
 					}
+					else{
+						setVelY(0);
+					}
 					if (type == 3) {
 						setY(temp.getY() - 100);
 					} else {
