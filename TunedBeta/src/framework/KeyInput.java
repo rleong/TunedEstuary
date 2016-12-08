@@ -9,15 +9,36 @@ import object.Inventory;
 import window.Handler;
 
 public class KeyInput extends KeyAdapter {
+	//Attributes
 	Handler handler;
 	Game gm;
 	Handler handler2;
+	
+	/**
+	 * Constructor that constructs a key input that will read the keyboard
+	 * and do actions for different keys.
+	 * 
+	 * @param handler - list of game objects
+	 * @param handler2 - list of game objects
+	 * @param gm - game 
+	 */
 	public KeyInput(Handler handler,Handler handler2, Game gm) {
 		this.handler = handler;
 		this.gm = gm;
 		this.handler2=handler2;
 	}
 
+	
+	/**
+	 * Method that does certain actions when certain keys are pressed
+	 * 	-if the 'A' key is pressed move character to the left 2 positions over and do animation 1
+	 * 	-if the 'D' key is pressed move character to the right 2 positions over and do animation 2
+	 *  -if the 'W' key is pressed move the character 2 positions upward and set falling to true;
+	 *  -if the 'W' key is pressed and in water then do animation 3
+	 *  -if the 'S' key is pressed and in water then move the character 2 positions downward 
+	 *  -if pressing 'S' key in water do animation 4
+	 * 	-if escape key is pressed exit the game
+	 */
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		if (!gm.isPause()) {
@@ -68,6 +89,24 @@ public class KeyInput extends KeyAdapter {
 		}
 	}
 
+	/**
+	 * Method that does certain actions when certain keys are released
+	 * 	-if the 'A' key is released then don't move the critter in the x position. If in the water do animation 4 else animation 0 
+	 * 	-if the 'D' key is released then don't move the critter in the x position. If in the water do animation 4 else animation 0
+	 * 	-if the 'W' key is released then don't move the critter in the y position. If in the water do animation 3 
+	 * 	-if the 'S' key is released then don't move the critter in the y position. If in the water do animation 4
+	 * 	-if the 'Space' key is released have the critter attack 
+	 * 	-if the 'E' key is released then switch critters
+	 * 	-if the 'P' key is released plant tree object
+	 *  -if the 'G' key is released plant construct gabion object
+	 *  -if the 'Q' key is released use the special ability of the critter
+	 *  -if the 'R' key is released open up the inventory 
+	 *  -if the 'Y' key is released build a barrier
+	 *  -if the 'U' key is released build a barrier
+	 *  -if the 'I' key is released build a barrier
+	 *  -if the 'O' key is released build a barrier
+	 *  -if the 'P' key is released build a barrier
+	 */
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
 		if (!gm.isPause()) {

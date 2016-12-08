@@ -6,7 +6,8 @@ import javax.imageio.ImageIO;
 import java.io.File;
 
 public class Images {
-
+	//Attributes
+	
 	// Actions
 	final int actionFrameCount = 16;
 	BufferedImage[] wateringPlant;
@@ -47,7 +48,11 @@ public class Images {
 	BufferedImage[][] blueCrab;
 	BufferedImage[][] easternOyster;
 	BufferedImage[][] horseshoeCrab;
-
+	
+	
+	/**
+	 * Constructor that creates a images object which initializes all the attributes to have animations.  
+	 */
 	public Images() {
 
 		// Action Animations
@@ -262,6 +267,12 @@ public class Images {
 //	}
 
 	// Creates a Single Image
+	/**
+	 * Method that gets an image from a file
+	 * 
+	 * @param x - name of the file path
+	 * @return - image on file
+	 */
 	private BufferedImage createImage(String x) {
 		BufferedImage bufferedImage;
 		try {
@@ -273,31 +284,69 @@ public class Images {
 		return null;
 	}
 
-	// Getters and Setters
+	/**
+	 * Method to get an image
+	 * 
+	 * @return image
+	 */
 	public BufferedImage getTestImg() {
 		return testImg;
 	}
 
+	/**
+	 * Method to get the menu 
+	 * 
+	 * @return image
+	 */
 	public BufferedImage getMenuBar() {
 		return menuBar;
 	}
 
+	/**
+	 * Method that gets the gabion build icon 
+	 * 
+	 * @return image of gabion icon
+	 */
 	public BufferedImage getGabionBuildIcon() {
 		return gabionBuildIcon;
 	}
 
+	/**
+	 * Method that returns the building animation when constructing an object
+	 * 
+	 * @param i - image at ith position in list 
+	 * @return image of building 
+	 */
 	public BufferedImage getBuildingAction(int i) {
 		return buildingAction[i];
 	}
-
+	
+	/**
+	 * Method that returns the building animation when planting a tree
+	 * 
+	 * @param i - image at ith position in list
+	 * @return image of planting 
+	 */
 	public BufferedImage getWateringPlant(int i) {
 		return wateringPlant[i];
 	}
 
+	/**
+	 * Method that returns the images for the waste bins 
+	 * 
+	 * @param i - image at ith position in list
+	 * @return image of bin
+	 */
 	public BufferedImage getWasteBins(int i) {
 		return wasteBins[i];
 	}
 
+	/**
+	 * Method that returns the sky tiles 
+	 * 
+	 * @param i - image at ith position in list
+	 * @return sky image
+	 */
 	public BufferedImage getSkyTiles(int i) {
 		return skyTile[i];
 	}
@@ -350,6 +399,13 @@ public class Images {
 
 	// Entity Getters
 
+	/**
+	 * Method that returns the blue crab image
+	 *  
+	 * @param i - image at ith position in list
+	 * @param j - image at jth position in list
+	 * @return crab image
+	 */
 	public BufferedImage getBlueCrabImage(int i, int j) {
 		return blueCrab[i][j];
 	}
@@ -364,14 +420,26 @@ public class Images {
 
 	// Frame Counts
 	// For use when other classes want to know how many frames per animation
+	/**
+	 * Method that used to get the number of frames per animation of actions 
+	 * @return frame count 
+	 */
 	public int getActionFrames() {
 		return 16;
 	}
 
+	/**
+	 * Method that used to get the number of frames per animation of swimming
+	 * @return frame count 
+	 */
 	public int getSwimFrames() {
 		return 12;
 	}
 
+	/**
+	 * Method that used to get the number of frames per animation of moving 
+	 * @return frame count 
+	 */
 	public int getMoveFrames() {
 		return 18;
 	}

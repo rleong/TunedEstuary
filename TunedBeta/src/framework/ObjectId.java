@@ -1,5 +1,9 @@
 package framework;
 
+/**
+ * Enum class that has all the ids to object so that we can find them quickly in our handler
+ *
+ */
 public enum ObjectId {
 	// Old Stuff
 	recycle(), trashBin(), recycleBin(), trash(), compost(),
