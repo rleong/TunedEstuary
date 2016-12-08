@@ -17,12 +17,25 @@ import gfx.Images;
 import window.Handler;
 
 public class Tree extends GameObject {
+	//Attributes
 	public int hp;
 	public int type;
 	private int stage = 0;
 	Images images;
 	Timer buildStage;
 
+	/**
+	 * Method that constructs a tree object. This tree object will block 
+	 * incoming run-off heading towards the water in game2
+	 * 
+	 * @param x - x position of tree
+	 * @param y - y position of tree
+	 * @param id - object id to be read in handler
+	 * @param type - type of tree being planted
+	 * @param game - game object
+	 * @param images - image of tree
+	 * 
+	 */
 	public Tree(double x, double y, ObjectId id, int type, Game game, Images images) {
 		super(x, y, id, game);
 		hp = 3;
@@ -33,6 +46,10 @@ public class Tree extends GameObject {
 	}
 
 	// Timer for the render of the build stage of plant
+	/**
+	 * Method that executes code after a certain action
+	 * 	-show decay in plants
+	 */
 	ActionListener listener = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -45,12 +62,22 @@ public class Tree extends GameObject {
 		}
 	};
 
+
+	/**
+	 * Method that calls the collision function per call
+	 */
 	@Override
 	public void tick(ArrayList<GameObject> object) {
 
 		collision(object);
 	}
 
+	/**
+	 * Method that checks if certain object intersect the tree and do 
+	 * certain actions when so
+	 * 	- If run-off collides with the tree: subtract health and remove the run-off from the game
+	 * @param object - list of objects in the game
+	 */
 	private void collision(ArrayList<GameObject> object) {
 		GameObject temp;
 		for (int i=0; i<object.size();i++) {
@@ -70,6 +97,9 @@ public class Tree extends GameObject {
 		}
 	}
 
+	/**
+	 * Method that displays images of the tree depending on what type of tree
+	 */
 	@Override
 	public void render(Graphics g) {
 		switch (type) {
@@ -92,16 +122,30 @@ public class Tree extends GameObject {
 		g.fillRect((int) x - 16, (int) y - 42, (int) (hp * 64 / 3), 2);
 	}
 
+	/**
+	 * Returns the boundary of the tree
+	 * Used to tell if to touches another object
+	 */
 	@Override
 	public Rectangle getBounds() {
 
 		return new Rectangle((int) x - 16, (int) y - 32, 64, 64);
 	}
 
+	/**
+	 * Method that gets the current stage 
+	 * 
+	 * @return stage
+	 */
 	public int getStage() {
 		return stage;
 	}
 
+	/**
+	 * Method that sets the stage 
+	 * 
+	 * @param stage - stage to be
+	 */
 	public void setStage(int stage) {
 		this.stage = stage;
 	}
