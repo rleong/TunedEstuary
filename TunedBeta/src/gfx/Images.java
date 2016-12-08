@@ -25,6 +25,7 @@ public class Images {
 	BufferedImage[] indianGrass;
 	BufferedImage[] gaBion;
 	BufferedImage[] conCrete;
+	BufferedImage[] goldenRod;
 
 	// Tiles
 	BufferedImage[] skyTile;
@@ -78,6 +79,11 @@ public class Images {
 		for (int i = 0; i < 3; i++) {
 			BufferedImage img = createImage("barriers/Concrete.png");
 			conCrete[i] = img.getSubimage(64 * i, 0, 64, 64);
+		}
+		goldenRod = new BufferedImage[3];
+		for (int i = 0; i < 3; i++) {
+			BufferedImage img = createImage("barriers/Goldenrod.png");
+			goldenRod[i] = img.getSubimage(64 * i, 0, 64, 64);
 		}
 
 		// Entities
@@ -286,6 +292,10 @@ public class Images {
 	
 	public BufferedImage getConcrete(int i) {
 		return conCrete[i];
+	}
+	
+	public BufferedImage getGoldenrod(int i) {
+		return goldenRod[i];
 	}
 
 	// Entity Getters
