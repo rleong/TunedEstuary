@@ -73,7 +73,7 @@ public class Game extends Canvas implements Runnable {
 	SchoolFish school3;
 	GuardianFish gfish;
 	Game3Timer g1t;
-	Habitat habitat; 
+	Habitat habitat;
 	int gmeval = 1;
 	Game3Instructions game3inst;
 	// Game Conditions
@@ -91,39 +91,47 @@ public class Game extends Canvas implements Runnable {
 	public double nW2 = 0;
 	public double nW3 = 0;
 	public double nW4 = 0;
-	
-	public int currency=0;
+
+	public int currency = 0;
 	KeyInput k;
 	// Camera
 	Camera cam;
 
+	/**
+	 * Method that initializes the objects that are going to be in our game
+	 */
 	private void init() {
 		// Default Objects
-		
+
 		handler = new Handler(this);
 		handler2 = new Handler(this);
 		dmBoundaries = handler.spawnLocations(dm);
-		cam = new Camera(0,0, dm);
-		g1t=new Game3Timer((int)(dm.getWidth() - dm.getWidth()/4),(int)(dm.getHeight()/8),ObjectId.game3timer,this,1);
-		habitat = new Habitat(dmBoundaries[2] + 16, dmBoundaries[1] - 96 - 64, ObjectId.habitat, this, dm);
-		barrier = new Barrier(dm.getWidth()*5/6-64,dm.getHeight()*3/5-64,ObjectId.barrier, this, images);
+
+		cam = new Camera(0, 0, dm);
+		g1t = new Game3Timer((int) (dm.getWidth() - dm.getWidth() / 4), (int) (dm.getHeight() / 8), ObjectId.game3timer,
+				this, 1);
+		habitat = new Habitat(dmBoundaries[2] + 16, dmBoundaries[1] - 96 - 64, ObjectId.habitat, this, dm, images);
+		barrier = new Barrier(dm.getWidth() * 5 / 6 - 64, dm.getHeight() * 3 / 5 - 64, ObjectId.barrier, this, images);
+
 		// 0 1 2 3 4
 		// Width, Height, Water Start Width, Water Bottom Height, Water Surface
 		// Height
 		handler.creatSurface(dm);
-		
+
 		factory = new RofFactory(0, dm.getHeight() * 3 / 5 - 32, ObjectId.RofFactory, this, images);
-		school = new SchoolFish(dm.getWidth(), dm.getHeight()*4/5, ObjectId.school, this);
-		school2 = new SchoolFish(dm.getWidth()*1.2, dm.getHeight()*3.6/5, ObjectId.school, this);
-		school3 = new SchoolFish(dm.getWidth()*1.5, dm.getHeight()*3.2/5, ObjectId.school, this);
-		gfish= new GuardianFish(dm.getWidth()*1.517, dm.getHeight(), ObjectId.guardian,this);
-		
-		trashBin = new WasteBin(dm.getWidth() * .84 - 128, dm.getHeight() * 3 / 5 - 64, ObjectId.wasteBin, 0, images, this);
-		recyclebin = new WasteBin(dm.getWidth() * .84 - 192, dm.getHeight() * 3 / 5 - 64, ObjectId.wasteBin, 1, images, this);
-		
+		school = new SchoolFish(dm.getWidth(), dm.getHeight() * 4 / 5, ObjectId.school, this);
+		school2 = new SchoolFish(dm.getWidth() * 1.2, dm.getHeight() * 3.6 / 5, ObjectId.school, this);
+		school3 = new SchoolFish(dm.getWidth() * 1.5, dm.getHeight() * 3.2 / 5, ObjectId.school, this);
+		gfish = new GuardianFish(dm.getWidth() * 1.517, dm.getHeight(), ObjectId.guardian, this);
+
+		trashBin = new WasteBin(dm.getWidth() * .84 - 128, dm.getHeight() * 3 / 5 - 64, ObjectId.wasteBin, 0, images,
+				this);
+		recyclebin = new WasteBin(dm.getWidth() * .84 - 192, dm.getHeight() * 3 / 5 - 64, ObjectId.wasteBin, 1, images,
+				this);
+
 		inventory = new Inventory(10, 10, ObjectId.inventory, this, dm);
-		critter = new Critter(600, dm.getHeight() * 3 / 5 - 32, ObjectId.critter, true, true, dm, inventory,
-				this, images);
+		critter = new Critter(600, dm.getHeight() * 3 / 5 - 32, ObjectId.critter, true, true, dm, inventory, this,
+				images);
 
 		// Game 1 Objects
 		handler.addObject(new Boat(dmBoundaries[2], dmBoundaries[4] - 40, ObjectId.boat, this, trashBin, recyclebin,
@@ -137,15 +145,16 @@ public class Game extends Canvas implements Runnable {
 		// Critter
 		handler2.addObject(critter);
 		inventory.setCritter(critter);
-		k = new KeyInput(handler,handler2,this);
-		this.addKeyListener(new KeyInput(handler,handler2, this));
-		
-		game3inst = new Game3Instructions(1,1,ObjectId.instr3,this);
-	
-	}
-	
-	
+		k = new KeyInput(handler, handler2, this);
+		this.addKeyListener(new KeyInput(handler, handler2, this));
 
+		game3inst = new Game3Instructions(1, 1, ObjectId.instr3, this);
+
+	}
+
+	/**
+	 * Method that starts the game by running a new thread
+	 */
 	public synchronized void start() {
 		if (running)
 			return;
@@ -155,6 +164,10 @@ public class Game extends Canvas implements Runnable {
 		thread.start();
 	}
 
+	/**
+	 * Method that calls the tick(changes variables) and render(uploads images)
+	 * for objects in the game 60 times every second
+	 */
 	@Override
 	public void run() {
 
@@ -174,7 +187,7 @@ public class Game extends Canvas implements Runnable {
 			delta += (now - lastTime) / ns;
 			lastTime = now;
 			while (delta >= 1) {
-				// System.out.println(temp++); 
+				// System.out.println(temp++);
 				tick();
 				updates++;
 				delta--;
@@ -194,6 +207,9 @@ public class Game extends Canvas implements Runnable {
 
 	}
 
+	/**
+	 * Method that changes variables in our game per call.
+	 */
 	private void tick() {
 		handler.tick();
 		handler2.tick();
@@ -202,27 +218,27 @@ public class Game extends Canvas implements Runnable {
 				cam.tick(handler2.object.get(i));
 			}
 		}
-		//Lose conditions
-		for(int j = 0; j<handler.object.size();j++){
-			if(handler.object.get(j).getId() == ObjectId.habitat){
+		// Lose conditions
+		for (int j = 0; j < handler.object.size(); j++) {
+			if (handler.object.get(j).getId() == ObjectId.habitat) {
 				Habitat temp = (Habitat) handler.object.get(j);
-				if(temp.getHealth() <= 0.0){
+				if (temp.getHealth() <= 0.0) {
 					gameover = true;
-					handler.addObject(new GameOver(1,1,ObjectId.gameover,this));
+					handler.addObject(new GameOver(1, 1, ObjectId.gameover, this));
 				}
-					
+
 			}
-			if(handler.object.get(j).getId() == ObjectId.school){
+			if (handler.object.get(j).getId() == ObjectId.school) {
 				SchoolFish temp = (SchoolFish) handler.object.get(j);
-				if(temp.isDead() == true){
+				if (temp.isDead() == true) {
 					gameover = true;
-					handler.addObject(new GameOver(1,1,ObjectId.gameover,this));
+					handler.addObject(new GameOver(1, 1, ObjectId.gameover, this));
 				}
-					
+
 			}
 		}
-		
-		if(game2 == true && gmeval == 1){
+
+		if (game2 == true && gmeval == 1) {
 			gmeval = 2;
 			handler.removeGame1();
 
@@ -233,38 +249,36 @@ public class Game extends Canvas implements Runnable {
 			handler.addObject(school3);
 			handler.addObject(gfish);
 			factory.iniTree();
-			
+
 		}
-		//check game 2 win condition
-		if(g2stage > 7){
+		// check game 2 win condition
+		if (g2stage > 7) {
 			game3 = true;
 		}
-		//start game 3 
-		if(game3 == true && gmeval == 2){
+		// start game 3
+		if (game3 == true && gmeval == 2) {
 			gmeval++;
 			handler.removeGame2();
 			handler.addObject(game3inst);
 			game3Time = new Timer(5000, game3TimeListener);
 			game3Time.start();
-			
-			// Game 3 Objects 
-			//spawns 3 people
+
+			// Game 3 Objects
+			// spawns 3 people
 			game3Create();
-			
+
 		}
-		
-		
-		if(gameover == true){
+
+		if (gameover == true) {
 			handler.removeObject(game3inst);
-			this.removeKeyListener(k); 
+			this.removeKeyListener(k);
 		}
-		
-		
-		
-		
-		
+
 	}
 
+	/**
+	 * Method that displays images of our game objects to the screen
+	 */
 	private void render() {
 		BufferStrategy bs = this.getBufferStrategy();
 		if (bs == null) {
@@ -275,7 +289,7 @@ public class Game extends Canvas implements Runnable {
 		Graphics g = bs.getDrawGraphics();
 		Graphics2D g2d = (Graphics2D) g;
 
-		// Draw here 
+		// Draw here
 
 		g.setColor(Color.black);
 		g.fillRect(0, 0, getWidth(), getHeight());
@@ -288,7 +302,7 @@ public class Game extends Canvas implements Runnable {
 		for (int i = 0; i < getWidth(); i += 64) {
 			g.drawImage(images.getSkyTiles(2), i, 128, this);
 		}
-		for (int j = 192; j < getHeight(); j+= 64){
+		for (int j = 192; j < getHeight(); j += 64) {
 			for (int i = 0; i < getWidth(); i += 64) {
 				g.drawImage(images.getSkyTiles(3), i, j, this);
 			}
@@ -304,45 +318,97 @@ public class Game extends Canvas implements Runnable {
 		bs.show();
 	}
 
+	/**
+	 * Method that gets the count
+	 * 
+	 * @return count
+	 */
 	public int getCount() {
 		return count;
 	}
 
+	/**
+	 * Method that sets the count
+	 * 
+	 * @param count
+	 *            - count
+	 */
 	public void setCount(int count) {
 		this.count = count;
 	}
 
+	/**
+	 * Method that gets the number of run-off
+	 * 
+	 * @return number of run-off
+	 */
 	public int getnRof() {
 		return nRof;
 	}
 
+	/**
+	 * Method that set the number of run-off
+	 * 
+	 * @param nRof
+	 *            - number of run-off to be
+	 */
 	public void setnRof(int nRof) {
 		this.nRof = nRof;
 	}
 
+	/**
+	 * Method that returns if pause is true or false
+	 * 
+	 * @return boolean if paused
+	 */
 	public boolean isPause() {
 		return pause;
 	}
-	
-	//adds wave objects to handler and spawns them
-		public void summonWave(){
-			System.out.println("Wave");
-			handler.addObject(new Waves(dm.getWidth()*3,dm.getHeight()/2 + (dm.getHeight()/15),ObjectId.waves,this));
-			handler.addObject(new Waves(dm.getWidth()*3 + 50,dm.getHeight()/2 + (dm.getHeight()/15),ObjectId.waves,this));
-		}
-		//adds rope object to the handler from person class
-		public void dropRope(int x, int y){
-			handler.addObject(new Rope(x, y, ObjectId.rope, this));
-		}
-		//adds wood object to the handler from person class
-		public void dropWood(int x, int y){
-			handler.addObject(new Wood(x, y, ObjectId.wood, this));
-		}
-		//adds trash object to the handler from person class
-		public void dropTrash(int x, int y){
-			handler.addObject(new Trash(x, y, ObjectId.ptrash, this));
-		}
 
+	/**
+	 * Method that adds wave objects to the handler and spawns them
+	 */
+	public void summonWave() {
+		System.out.println("Wave");
+		handler.addObject(
+				new Waves(dm.getWidth() * 3, dm.getHeight() / 2 + (dm.getHeight() / 15), ObjectId.waves, this));
+		handler.addObject(
+				new Waves(dm.getWidth() * 3 + 50, dm.getHeight() / 2 + (dm.getHeight() / 15), ObjectId.waves, this));
+	}
+
+	/**
+	 * Method that drops rope at a certain x and y position
+	 * 
+	 * @param x - x position to be 
+	 * @param y - y position to be
+	 */
+	public void dropRope(int x, int y) {
+		handler.addObject(new Rope(x, y, ObjectId.rope, this));
+	}
+
+	/**
+	 * Method that drops wood from the person class
+	 * @param x
+	 * @param y
+	 */
+	public void dropWood(int x, int y) {
+		handler.addObject(new Wood(x, y, ObjectId.wood, this));
+	}
+
+	/**
+	 * Method that drops trash from the person class
+	 * @param x
+	 * @param y
+	 */
+	public void dropTrash(int x, int y) {
+		handler.addObject(new Trash(x, y, ObjectId.ptrash, this));
+	}
+
+	/**
+	 * Method that stops the player from moving for a set time if they are constructing something
+	 * 
+	 * @param duration - time player is stopped 
+	 */
 	public void setPause(int duration) {
 		clock = new Timer(duration, listener);
 		pause = true;
@@ -351,6 +417,12 @@ public class Game extends Canvas implements Runnable {
 		clock.start();
 	}
 
+	/**
+	 * Method that does a certain action at a certain time
+	 *	- make pause false
+	 *	- end animation
+	 *	- stop the clock 
+	 */
 	ActionListener listener = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -359,31 +431,44 @@ public class Game extends Canvas implements Runnable {
 			clock.stop();
 		}
 	};
-	
-	Game3Timer g3t=new Game3Timer((int)(dm.getWidth() - dm.getWidth()/4),(int)(dm.getHeight()/8),ObjectId.game3timer,this,3);
-	Estuary estuary=new Estuary(0, dm.getHeight() * 3 / 5 - 60, ObjectId.estuary, this, dm);
-	WaveClock wclock = new WaveClock(1,1,ObjectId.wclock,this);
-	/*Boat b2 = new Boat(dmBoundaries[2], dmBoundaries[4] - 40, ObjectId.boat, this, trashBin, recyclebin,
-			inventory, dmBoundaries[2], dm.getWidth() * 3 / 2, true);
-	Person p1 = new Person(rand.nextInt(900), (int)(dm.height/2 + (dm.getHeight()/15)), ObjectId.person,this, rand.nextInt(2));
-	Person p2 = new Person(rand.nextInt(900), (int)(dm.height/2 + (dm.getHeight()/15)), ObjectId.person,this, rand.nextInt(2));
-	Person p3 = new Person(rand.nextInt(900), (int)(dm.height/2 + (dm.getHeight()/15)), ObjectId.person,this, rand.nextInt(2));
-	*/
-	public void game3Create(){
+
+	Game3Timer g3t = new Game3Timer((int) (dm.getWidth() - dm.getWidth() / 4), (int) (dm.getHeight() / 8),
+			ObjectId.game3timer, this, 3);
+	Estuary estuary = new Estuary(0, dm.getHeight() * 3 / 5 - 60, ObjectId.estuary, this, dm);
+	WaveClock wclock = new WaveClock(1, 1, ObjectId.wclock, this);
+
+	/*
+	 * Boat b2 = new Boat(dmBoundaries[2], dmBoundaries[4] - 40, ObjectId.boat,
+	 * this, trashBin, recyclebin, inventory, dmBoundaries[2], dm.getWidth() * 3
+	 * / 2, true); Person p1 = new Person(rand.nextInt(900), (int)(dm.height/2 +
+	 * (dm.getHeight()/15)), ObjectId.person,this, rand.nextInt(2)); Person p2 =
+	 * new Person(rand.nextInt(900), (int)(dm.height/2 + (dm.getHeight()/15)),
+	 * ObjectId.person,this, rand.nextInt(2)); Person p3 = new
+	 * Person(rand.nextInt(900), (int)(dm.height/2 + (dm.getHeight()/15)),
+	 * ObjectId.person,this, rand.nextInt(2));
+	 */
+	public void game3Create() {
 		handler.addObject(g3t);
 		handler.addObject(estuary);
-		//handler.addObject(game3inst);
+		// handler.addObject(game3inst);
 		handler.addObject(barrier);
 		handler.addObject(wclock);
 		handler.addObject(new Boat(dmBoundaries[2], dmBoundaries[4] - 40, ObjectId.boat, this, trashBin, recyclebin,
 				inventory, dmBoundaries[2], dm.getWidth() * 3 / 2, true, images));
-		for(int i = 0; i<3;i++){
-			handler.addObject(new Person(rand.nextInt(900), (int)(dm.height/2 + (dm.getHeight()/15)), ObjectId.person,this, rand.nextInt(2)));
+		for (int i = 0; i < 3; i++) {
+			handler.addObject(new Person(rand.nextInt(900), (int) (dm.height / 2 + (dm.getHeight() / 15)),
+					ObjectId.person, this, rand.nextInt(2)));
 		}
 	}
+
+	/**
+	 * Method that does executes code when certain actions are performed.
+	 * This method is used to change our games when a certain condition 
+	 * happens or end when game when a certain condition is hit 
+	 */
 	ActionListener game3TimeListener = new ActionListener() {
 		@Override
-		
+
 		public void actionPerformed(ActionEvent e) {
 			if (game1) {
 				game1 = false;
@@ -399,17 +484,14 @@ public class Game extends Canvas implements Runnable {
 				handler.addObject(school3);
 				handler.addObject(gfish);
 				factory.iniTree();
-				
+
 			} else if (game2) {
 				game2 = false;
-				
+
 				// Remove Game 2 Objects
 				handler.removeGame2();
-				
-				//add game 3
-				
-				
-				
+
+				// add game 3
 
 			} else if (game3) {
 				game3 = false;
@@ -421,10 +503,14 @@ public class Game extends Canvas implements Runnable {
 			}
 			gameTime.restart();
 			game3Create();
-	}
+		}
 	};
-		
 
+	/**
+	 * Main class that starts the game
+	 * 
+	 * @param args
+	 */
 	public static void main(String args[]) {
 		Game game = new Game();
 		new Window(dm, "Estuary", game);

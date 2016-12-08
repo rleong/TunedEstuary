@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import java.util.Random;
 
 import control.Game;
 import framework.GameObject;
@@ -13,11 +14,14 @@ import window.Handler;
 public class Compost extends GameObject {
 	int type;
 	Images images;
+	Random random = new Random();
+	int imageType;
 	
 	public Compost(double x, double y, ObjectId id, Game game, int type, Images images) {
 		super(x, y, id, game);
 		this.type=type;
 		this.images = images;
+		imageType = random.nextInt(2);
 	}
 
 	@Override
@@ -47,14 +51,13 @@ public class Compost extends GameObject {
 	public void render(Graphics g) {
 		switch(type){
 		case 0:
-			g.setColor(Color.MAGENTA);
+			g.drawImage(images.getWaste(0, imageType), (int) x, (int) y, game);
 			break;
 		case 1:
-			g.setColor(Color.ORANGE);
+			g.drawImage(images.getWaste(0, 2), (int) x, (int) y, game);
 			break;
 			
 		}
-		g.fillOval((int)x, (int)y, 32, 32);
 		
 
 	}
