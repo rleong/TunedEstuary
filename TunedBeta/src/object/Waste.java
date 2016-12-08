@@ -4,10 +4,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import java.util.Random;
 
 import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
+import gfx.Images;
 
 public class Waste extends GameObject {
 	int damage = 5;
@@ -23,15 +25,25 @@ public class Waste extends GameObject {
 	WasteBin recycleBin;
 	Bubble bubble;
 	double boundaries = 0;
+	
+	Images images;
+	int wasteName = 0;
+	Random random = new Random();
 
 	public Waste(double x, double y, ObjectId id, Game game, WasteBin trashBin, WasteBin recycleBin,
-			Inventory counter, int type) {
+			Inventory counter, int type, Images images) {
 		super(x, y, id, game);
 		this.trashBin = trashBin;
 		this.recycleBin = recycleBin;
 		this.counter = counter;
 		this.type = type;
 		setVelY(1);
+		this.images = images;
+		if(type==2)
+			wasteName = random.nextInt(2);
+		else
+			wasteName = random.nextInt(4);
+		System.out.println(type + " " + wasteName);
 	}
 
 	/*
@@ -134,26 +146,11 @@ public class Waste extends GameObject {
 	public void render(Graphics g) {
 		
 		// Waste Type
-		switch (type) {
-		case 0: // TRASH
-			g.setColor(Color.BLUE);
-			break;
-		case 1: // RECYCLE
-			g.setColor(Color.GREEN);
-			break;
-		case 2: // COMPOST
-			g.setColor(Color.ORANGE);
-			break;
-		default: // ERROR
-			g.setColor(Color.RED);
-			System.out.println("SOMETHING WENT WRONG YO");
-			break;
-		}
-		g.fillRect((int) x, (int) y, 32, 32);
+		g.drawImage(images.getWaste(type, wasteName), (int) x, (int) y, game);
 		
 		// Waste Health
 		g.setColor(Color.red);
-		g.fillRect((int) x, (int) y, (int) ((health / 20) * 32), 2);
+		g.fillRect((int) x, (int) y-2, (int) ((health / 20) * 32), 2);
 		
 		// Waste Name
 		g.setColor(Color.WHITE);
@@ -171,6 +168,48 @@ public class Waste extends GameObject {
 			g.drawString("Error", (int)x, (int)y-10);
 			break;
 		}
+		
+		g.drawString(getWasteName(type), (int)x-4, (int)y-22);
+	}
+	
+	public String getWasteName(int wasteType){
+		
+		switch(wasteType){
+		case 0:
+			switch(wasteName){
+			case 0:
+				return "Plastic Bag";
+			case 1:
+				return "Battery";
+			case 2:
+				return "Waxed Carton";
+			case 3:
+				return "Styrofoam";
+			}
+			break;
+		case 1:
+			switch(wasteName){
+			case 0:
+				return "Metal";
+			case 1:
+				return "Paper";
+			case 2:
+				return "Plastic Bottle";
+			case 3:
+				return "Glass";
+			}
+			break;
+		case 2:
+			switch(wasteName){
+			case 0:
+			case 1:
+				return "Regular";
+			case 2:
+				return "Nutritious";
+			}
+			break;
+		}
+		return "Null";
 	}
 
 	@Override

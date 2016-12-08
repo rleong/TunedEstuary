@@ -127,7 +127,7 @@ public class Game extends Canvas implements Runnable {
 
 		// Game 1 Objects
 		handler.addObject(new Boat(dmBoundaries[2], dmBoundaries[4] - 40, ObjectId.boat, this, trashBin, recyclebin,
-				inventory, dmBoundaries[2], dm.getWidth() * 3 / 2, false));
+				inventory, dmBoundaries[2], dm.getWidth() * 3 / 2, false, images));
 		handler.addObject(trashBin);
 		handler.addObject(recyclebin);
 		handler.addObject(inventory);
@@ -375,7 +375,7 @@ public class Game extends Canvas implements Runnable {
 		handler.addObject(barrier);
 		handler.addObject(wclock);
 		handler.addObject(new Boat(dmBoundaries[2], dmBoundaries[4] - 40, ObjectId.boat, this, trashBin, recyclebin,
-				inventory, dmBoundaries[2], dm.getWidth() * 3 / 2, true));
+				inventory, dmBoundaries[2], dm.getWidth() * 3 / 2, true, images));
 		for(int i = 0; i<3;i++){
 			handler.addObject(new Person(rand.nextInt(900), (int)(dm.height/2 + (dm.getHeight()/15)), ObjectId.person,this, rand.nextInt(2)));
 		}

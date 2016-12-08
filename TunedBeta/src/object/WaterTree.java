@@ -37,9 +37,9 @@ public class WaterTree extends GameObject {
 //		type=type%2;
 //	}
 	public void chopDown(){
-		game.handler.addObject(new Compost(x-64,y-128,ObjectId.compost1, game, type));
-		game.handler.addObject(new Compost(x,y-128,ObjectId.compost1, game, type));
-		game.handler.addObject(new Compost(x+64,y-128,ObjectId.compost1, game, type));
+		game.handler.addObject(new Compost(x-64,y-128,ObjectId.compost1, game, type, images));
+		game.handler.addObject(new Compost(x,y-128,ObjectId.compost1, game, type, images));
+		game.handler.addObject(new Compost(x+64,y-128,ObjectId.compost1, game, type, images));
 		game.handler.object.remove(this);
 		return;
 	}
@@ -54,7 +54,7 @@ public class WaterTree extends GameObject {
 	}
 	public void dropCompost() {
 	// TODO Auto-generated method stub
-		game.handler.addObject(new Compost(x, y, ObjectId.compost1, game, type));
+		game.handler.addObject(new Compost(x, y, ObjectId.compost1, game, type, images));
 		
 	}
 	public void dropSeed(){

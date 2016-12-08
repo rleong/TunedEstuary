@@ -91,7 +91,7 @@ public class WasteBinTest {
 		ArrayList<GameObject>test1 = new ArrayList<GameObject>();
 		ArrayList<GameObject>testexpected = new ArrayList<GameObject>();
 		test1.add(tester);
-		test1.add(new Waste(50.0,50.0,ObjectId.waste,null, null, null, null, 0));
+		test1.add(new Waste(50.0,50.0,ObjectId.waste,null, null, null, null, 0, null));
 		testexpected.add(tester);
 		assertEquals(tester.testCollision(test1),testexpected);	
 	}

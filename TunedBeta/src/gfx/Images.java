@@ -11,6 +11,9 @@ public class Images {
 	final int actionFrameCount = 16;
 	BufferedImage[] wateringPlant;
 	BufferedImage[] buildingAction;
+	
+	// Items
+	BufferedImage[][] hazardWaste;
 
 	// Icons
 	BufferedImage gabionBuildIcon;
@@ -103,6 +106,15 @@ public class Images {
 			hornWort[i] = img.getSubimage(64 * i, 0, 64, 64);
 		}
 		plantSeed = createImage("environment/Seed.png");
+		
+		// Items 
+		hazardWaste = new BufferedImage[4][4];
+		for (int i = 0; i < 4; i++) {  // i = horizontal frames, j = vertical frames
+			for (int j = 0; j < 4; j++){
+				BufferedImage img = createImage("items/Waste.png");
+				hazardWaste[j][i] = img.getSubimage(32 * i, 32 * j, 32, 32);
+			}
+		}
 
 		// Entities
 		// There are no methods for generating these sprites, only because
@@ -328,6 +340,12 @@ public class Images {
 	
 	public BufferedImage getSeed() {
 		return plantSeed;
+	}
+	
+	// Item Getters
+	
+	public BufferedImage getWaste(int i, int j) {
+		return hazardWaste[i][j];
 	}
 
 	// Entity Getters

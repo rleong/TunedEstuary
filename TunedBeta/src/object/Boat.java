@@ -13,6 +13,7 @@ import javax.swing.Timer;
 import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
+import gfx.Images;
 import window.Handler;
 
 public class Boat extends GameObject {
@@ -37,9 +38,11 @@ public class Boat extends GameObject {
 	// Swing Timer
 	Timer clock;
 	Timer clock2;
+	
+	Images images;
 
 	public Boat(double x, double y, ObjectId id, Game game, WasteBin trashBin, WasteBin recyclebin,
-			Inventory counter, double boundary1, double boundary2, boolean g3) {
+			Inventory counter, double boundary1, double boundary2, boolean g3, Images images) {
 		super(x, y, id, game);
 		initialY = y;
 		this.trashBin = trashBin;
@@ -52,6 +55,7 @@ public class Boat extends GameObject {
 		clock = new Timer(2000, listener);
 		clock2 = new Timer(2000, listener2);
 		clock.start();
+		this.images = images;
 	}
 	
 	ActionListener listener = new ActionListener() {
@@ -126,15 +130,15 @@ public class Boat extends GameObject {
 			break;
 		case 1:
 			//1 Trash
-			game.handler.addObject(new Waste(x, y, ObjectId.waste, game, trashBin, recyclebin, counter, 0));
+			game.handler.addObject(new Waste(x, y, ObjectId.waste, game, trashBin, recyclebin, counter, 0, images));
 			break;
 		case 2:
 			//1 Recycle
-			game.handler.addObject(new Waste(x, y, ObjectId.waste, game, trashBin, recyclebin, counter, 1));
+			game.handler.addObject(new Waste(x, y, ObjectId.waste, game, trashBin, recyclebin, counter, 1, images));
 			break;
 		case 3:
 			//1 Compost
-			game.handler.addObject(new Waste(x, y, ObjectId.waste, game, trashBin, recyclebin, counter, 2));
+			game.handler.addObject(new Waste(x, y, ObjectId.waste, game, trashBin, recyclebin, counter, 2, images));
 			break;
 		default:
 			System.out.println("Something went wrong!");
