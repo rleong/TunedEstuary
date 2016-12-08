@@ -477,31 +477,57 @@ public class Images {
 		return goldenRod[i];
 	}
 	
-	// Environmental Getters
-	
+	/**
+	 * Method that returns the waterstar grass image
+	 * 
+	 * @param i - image at ith position in list
+	 * @return waterstar grass image
+	 */
 	public BufferedImage getWaterStarGrass(int i) {
 		return waterStarGrass[i];
 	}
 	
+	/**
+	 * Method that returns the hornwort image
+	 * 
+	 * @param i - image at ith position in list
+	 * @return hornwort image
+	 */
 	public BufferedImage getHornwort(int i) {
 		return hornWort[i];
 	}
 	
+	/**
+	 * Method that returns the seed image
+	 * 
+	 * @param i - image at ith position in list
+	 * @return seed image image
+	 */
 	public BufferedImage getSeed() {
 		return plantSeed;
 	}
 	
+	/**
+	 * Method that returns the habitat image
+	 * 
+	 * @param i - image at ith position in list
+	 * @param j - image at jth position in list
+	 * @return habitat image
+	 */
 	public BufferedImage getHabitat(int i, int j) {
 		return habitat[i][j];
 	}
 	
-	// Item Getters
-	
+	/**
+	 * Method that returns the waste image 
+	 * 
+	 * @param i - image at ith position in list
+	 * @param j - image at jth position in list
+	 * @return waste image
+	 */
 	public BufferedImage getWaste(int i, int j) {
 		return hazardWaste[i][j];
 	}
-
-	// Entity Getters
 
 	/**
 	 * Method that returns the blue crab image
