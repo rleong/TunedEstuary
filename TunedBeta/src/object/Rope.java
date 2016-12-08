@@ -63,10 +63,10 @@ public class Rope extends GameObject {
 	 */
 	private void collision(ArrayList<GameObject> object) {
 		//iterate through objects list
-		Iterator<GameObject> itr = object.iterator();
+//		Iterator<GameObject> itr = object.iterator();
 		GameObject temp;
-		for (; itr.hasNext();) {
-			temp = itr.next();
+		for (int i=0;i<object.size();i++) {
+			temp = object.get(i);
 			//if it collides with the land surface, then stop falling
 			if (temp.getId() == ObjectId.landSurface) {
 				if (getBoundsBottom().intersects(temp.getBounds())) {

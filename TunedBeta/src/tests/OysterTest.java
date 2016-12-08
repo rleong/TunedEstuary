@@ -3,6 +3,7 @@ package tests;
 import static org.junit.Assert.assertEquals;
 
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import org.junit.Test;
@@ -15,7 +16,7 @@ import object.Oyster;
 import object.Waves;
 
 public class OysterTest {
-	LinkedList<GameObject>test1 = new LinkedList<GameObject>();
+	ArrayList<GameObject>test1 = new ArrayList<GameObject>();
 	Oyster tester = new Oyster(50.0,50.0,ObjectId.oyster,null);
 	
 	@Test

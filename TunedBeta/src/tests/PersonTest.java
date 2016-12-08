@@ -3,6 +3,7 @@ package tests;
 import static org.junit.Assert.*;
 
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import org.junit.Test;
@@ -94,7 +95,7 @@ public class PersonTest {
 	}
 	@Test
 	public void testCollision(){
-		LinkedList<GameObject>test1 = new LinkedList<GameObject>();
+		ArrayList<GameObject>test1 = new ArrayList<GameObject>();
 		test1.add(tester);
 		test1.add(new LandSurface(10,10,ObjectId.landSurface,null));
 		tester.testCollision(test1);
@@ -103,7 +104,7 @@ public class PersonTest {
 	}
 	@Test
 	public void testCollision2(){
-		LinkedList<GameObject>test1 = new LinkedList<GameObject>();
+		ArrayList<GameObject>test1 = new ArrayList<GameObject>();
 		test1.add(tester);
 		test1.add(new LandSurface(10.0,10.0,ObjectId.wall,null));
 		tester.testCollision(test1);

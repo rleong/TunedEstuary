@@ -91,7 +91,8 @@ public class Game extends Canvas implements Runnable {
 	public double nW2 = 0;
 	public double nW3 = 0;
 	public double nW4 = 0;
-
+	
+	public int currency=0;
 	KeyInput k;
 	// Camera
 	Camera cam;
@@ -205,7 +206,7 @@ public class Game extends Canvas implements Runnable {
 		for(int j = 0; j<handler.object.size();j++){
 			if(handler.object.get(j).getId() == ObjectId.habitat){
 				Habitat temp = (Habitat) handler.object.get(j);
-				if(temp.getHealth() == 0.0){
+				if(temp.getHealth() <= 0.0){
 					gameover = true;
 					handler.addObject(new GameOver(1,1,ObjectId.gameover,this));
 				}

@@ -3,6 +3,7 @@ package tests;
 import static org.junit.Assert.*;
 
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import org.junit.Test;
@@ -15,7 +16,7 @@ import object.Person;
 import object.Trash;
 
 public class TrashTest {
-	LinkedList<GameObject>test1 = new LinkedList<GameObject>();
+	ArrayList<GameObject>test1 = new ArrayList<GameObject>();
 	Trash tester = new Trash(50.0,50.0,ObjectId.ptrash,null);
 	
 	@Test
