@@ -14,12 +14,25 @@ import framework.ObjectId;
 import gfx.Images;
 
 public class Seed extends GameObject {
+	//Attributes
 	int type;
 	int dir;
 	Dimension dm;
 	boolean growing;
 	static Toolkit tk = Toolkit.getDefaultToolkit();
 	Images images;
+	
+	/**
+	 * Constructor that will create a seed object. This object will be how the
+	 * aquatic plants in game 2 will be able to grow again once they decay
+	 * 
+	 * @param x - x position of seed
+	 * @param y - y position of seed
+	 * @param id - object id to be read in the handler
+	 * @param game - game it will be in
+	 * @param type - type of seed it will be 
+	 * @param images - image of seed
+	 */
 	public Seed(double x, double y, ObjectId id, Game game, int type, Images images) {
 		super(x, y, id, game);
 		this.type=type;
@@ -45,6 +58,14 @@ public class Seed extends GameObject {
 		this.images = images;
 	}
 
+	/**
+	 * Method will will change the attributes of the seed per call.
+	 * 	-will set x to be x plus x velocity causing the object to move in the x direction
+	 *  -will set y to be y plus y velocity causing the object to move in the y direction
+	 *  -y velocity will have the addition of gravity causing the object it fall 
+	 *  -creates boundaries so that the seed can only move in the set location
+	 *  -calls the collision function
+	 */
 	@Override
 	public void tick(ArrayList<GameObject> object) {
 		// TODO Auto-generated method stub
@@ -57,6 +78,10 @@ public class Seed extends GameObject {
 		collision();
 	}
 
+	/**
+	 * Method that checks if certain object intersect the seed and do certain action when so
+	 * 	-checks if the sand block is touching the seed: if so add a new tree and delete the seed and set falling to false
+	 */
 	private void collision() {
 		// TODO Auto-generated method stub
 		for (int i = 0; i < game.handler.object.size(); i++) {
@@ -75,11 +100,18 @@ public class Seed extends GameObject {
 		}
 	}
 
+	/**
+	 * Method that creates images of the seed depending on what seed it is
+	 */
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(images.getSeed(), (int)x, (int)y, game);
 	}
 
+	/**
+	 * Returns a boundary of the seed object which is used to tell if  
+	 * the seed is touching other objects in the game
+	 */
 	@Override
 	public Rectangle getBounds() {
 		
