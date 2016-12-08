@@ -16,7 +16,7 @@ import object.Waves;
 public class WaterTreeTester {
 
 
-	WaterTree tester = new WaterTree(50.0,50.0,ObjectId.waterTree,0, null, null, null);
+	WaterTree tester = new WaterTree(50.0,50.0,ObjectId.waterTree,0, null, null);
 	
 	@Test
 	public void getBoundsTest(){
