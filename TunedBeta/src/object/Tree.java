@@ -81,7 +81,7 @@ public class Tree extends GameObject {
 			g.drawImage(images.getPlant3(stage), (int) x - 16, (int) y - 32, game);
 			break;
 		case 3:
-			g.drawImage(images.getPlant4(stage), (int) x - 16, (int) y - 32, game);
+			g.drawImage(images.getGoldenrod(stage), (int) x - 16, (int) y - 32, game);
 			break;
 			
 		}
