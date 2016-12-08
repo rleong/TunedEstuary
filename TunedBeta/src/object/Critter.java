@@ -320,7 +320,7 @@ public class Critter extends GameObject {
 				break;
 			}
 		}
-		// g.fillRect((int) x, (int) y, 32, 32);
+		// g.fillRect((int) x, (int) y, 32, 32); 
 
 		// Character Inner Bounds
 //		Graphics2D g2d = (Graphics2D) g;
