@@ -18,7 +18,7 @@ import object.Waves;
 public class HabitatTest {
 
 
-	Habitat tester = new Habitat(50.0,50.0,ObjectId.habitat,null,Game.dm);
+	Habitat tester = new Habitat(50.0,50.0,ObjectId.habitat,null,Game.dm,null);
 	
 	@Test
 	public void getBoundsTest(){

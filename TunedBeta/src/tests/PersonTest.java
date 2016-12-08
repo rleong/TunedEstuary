@@ -97,7 +97,7 @@ public class PersonTest {
 	public void testCollision(){
 		ArrayList<GameObject>test1 = new ArrayList<GameObject>();
 		test1.add(tester);
-		test1.add(new LandSurface(10,10,ObjectId.landSurface,null));
+		test1.add(new LandSurface(10,10,ObjectId.landSurface,null,null));
 		tester.testCollision(test1);
 		Person test2 = (Person) test1.get(0);
 		assertEquals(test2.getVelY(),0,0);
@@ -106,7 +106,7 @@ public class PersonTest {
 	public void testCollision2(){
 		ArrayList<GameObject>test1 = new ArrayList<GameObject>();
 		test1.add(tester);
-		test1.add(new LandSurface(10.0,10.0,ObjectId.wall,null));
+		test1.add(new LandSurface(10.0,10.0,ObjectId.wall,null,null));
 		tester.testCollision(test1);
 		Person test2 = (Person) test1.get(0);
 		assertEquals(test2.getDirection(),0,1);
