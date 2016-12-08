@@ -8,6 +8,7 @@ import java.util.Iterator;
 import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
+import gfx.Images;
 import object.Boat;
 import object.Bubble;
 import object.LandSurface;
@@ -20,6 +21,7 @@ public class Handler {
 
 	private GameObject temp;
 	Game game;
+	Images images;
 
 	public Handler(Game game) {
 		this.game = game;
@@ -130,33 +132,37 @@ public class Handler {
 		int i = 0;
 		for (; i < ((double)dm.getWidth()) * 5/6; i += 32) {
 //			for (double j = dm.getHeight() * 3 / 5; j < dm.getHeight(); j += 32) {
-				addObject(new LandSurface(i, dm.getHeight() * 3 / 5, ObjectId.landSurface, game));
+				addObject(new LandSurface(i, dm.getHeight() * 3 / 5, ObjectId.landSurface, game, images));
 //			}
 
 		}
 		for (double j = ((double)dm.getHeight()) * 3 / 5; j < ((double)dm.getHeight()); j += 32) {
-			addObject(new LandSurface(i-32, j, ObjectId.wall, game));
+			addObject(new LandSurface(i-32, j, ObjectId.wall, game, images));
 		}
 		for (; i <= ((double)dm.getWidth())*3/2; i += 32) {
 			for (double j = ((double)dm.getHeight()) * 3 / 5; j < ((double)dm.getHeight()) - 64; j += 32) {
-				addObject(new LandSurface(i, j, ObjectId.seaLevel, game));
+				addObject(new LandSurface(i, j, ObjectId.seaLevel, game, images));
 			}
 //			for (double j = dm.getHeight() - 96; j < dm.getHeight(); j += 32) {
-				addObject(new LandSurface(i, dm.getHeight() - 96, ObjectId.sand, game));
+				addObject(new LandSurface(i, dm.getHeight() - 96, ObjectId.sand, game, images));
 //			}
 		}
 		for (double j = ((double)dm.getHeight())-96; j <((double) dm.getHeight())*6/5; j += 32) {
-			addObject(new LandSurface(i-32, j, ObjectId.wall, game));
+			addObject(new LandSurface(i-32, j, ObjectId.wall, game, images));
 		}
 		for (; i <=((double) dm.getWidth())*2; i += 32) {
 			for (double j = ((double)dm.getHeight()) * 3 / 5; j <((double) dm.getHeight())*6/5; j += 32) {
-				addObject(new LandSurface(i, j, ObjectId.seaLevel, game));
+				addObject(new LandSurface(i, j, ObjectId.seaLevel, game, images));
 			}
 //			for (double j = dm.getHeight()*6/5 - 96; j < dm.getHeight()*6/5; j += 32) {
-				addObject(new LandSurface(i, dm.getHeight()*6/5 - 96, ObjectId.sand, game));
+				addObject(new LandSurface(i, dm.getHeight()*6/5 - 96, ObjectId.sand, game, images));
 //			}
 		}
 		
+	}
+	
+	public void setImages(Images images){
+		this.images = images;
 	}
 
 	public double[] spawnLocations(Dimension dm) {

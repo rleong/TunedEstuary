@@ -9,12 +9,15 @@ import java.util.ArrayList;
 import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
+import gfx.Images;
 import window.Handler;
 
 public class LandSurface extends GameObject {
-	public LandSurface(double x, double y, ObjectId id, Game game) {
+	Images images;
+	
+	public LandSurface(double x, double y, ObjectId id, Game game, Images images) {
 		super(x, y, id, game);
-
+		this.images = images;
 	}
 
 	@Override
@@ -26,8 +29,14 @@ public class LandSurface extends GameObject {
 	@Override
 	public void render(Graphics g) {
 		if(id==ObjectId.landSurface){
-			g.setColor(Color.yellow);
-			g.fillRect((int)x, (int)y, 32, 32);
+			g.drawImage(images.getSandTiles(0), (int)x, (int)y, game);
+			g.drawImage(images.getSandTiles(1), (int)x, (int)y+32, game);
+			g.drawImage(images.getSandTiles(2), (int)x, (int)y+64, game);
+			g.drawImage(images.getSandTiles(3), (int)x, (int)y+96, game);
+			g.drawImage(images.getSandTiles(4), (int)x, (int)y+128, game);
+			for(int i = (int) y + 160; i < game.dm.getHeight()*2; i += 32){
+				g.drawImage(images.getSandTiles(4), (int)x, (int)i, game);
+			}
 		}
 		if(id==ObjectId.seaLevel){
 			switch(game.getCount()){

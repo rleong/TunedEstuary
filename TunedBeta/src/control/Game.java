@@ -104,6 +104,7 @@ public class Game extends Canvas implements Runnable {
 		// Default Objects
 
 		handler = new Handler(this);
+		handler.setImages(images);
 		handler2 = new Handler(this);
 		dmBoundaries = handler.spawnLocations(dm);
 		cam = new Camera(0, 0, dm);

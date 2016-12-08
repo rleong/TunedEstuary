@@ -39,6 +39,7 @@ public class Images {
 	
 	// Tiles
 	BufferedImage[] skyTile;
+	BufferedImage[] sandTile;
 
 	// Test
 	BufferedImage testImg;
@@ -261,6 +262,11 @@ public class Images {
 			BufferedImage img = createImage("tiles/Sky.png");
 			skyTile[i] = img.getSubimage(64 * i, 0, 64, 64);
 		}
+		sandTile = new BufferedImage[6];
+		for (int i = 0; i < 6; i++) {
+			BufferedImage img = createImage("tiles/SandTiles.png");
+			sandTile[i] = img.getSubimage(32 * i, 0, 32, 32);
+		}
 
 		// Icons
 		gabionBuildIcon = createImage("icons/BuildGabionIcon.png");
@@ -357,6 +363,10 @@ public class Images {
 	 */
 	public BufferedImage getSkyTiles(int i) {
 		return skyTile[i];
+	}
+	
+	public BufferedImage getSandTiles(int i) {
+		return sandTile[i];
 	}
 	
 	// Barrier Getters
