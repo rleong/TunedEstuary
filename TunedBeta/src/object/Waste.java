@@ -285,6 +285,12 @@ public class Waste extends GameObject {
 					setVelY(0);
 				}
 			}
+			if (temp.getId() == ObjectId.landSurface) {
+				if (getBoundsBottom().intersects(temp.getBounds())) {
+					setY(temp.getY() - 32);
+					setVelY(0);
+				}
+			}
 			if (temp.getId() == ObjectId.bubble) {
 				if (getBounds().intersects(temp.getBounds())) {
 					if (type == 1) {

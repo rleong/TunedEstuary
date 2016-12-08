@@ -102,6 +102,15 @@ public class Compost extends GameObject {
 					return;
 				}
 			}
+			if (temp.getId() == ObjectId.landSurface) {
+				if(getBounds().intersects(temp.getBounds())){
+					falling=false;
+					setVelY(0);
+					setVelX(0);
+					return;
+				}
+			}
+			
 		}
 	}
 

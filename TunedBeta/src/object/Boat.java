@@ -187,6 +187,7 @@ public class Boat extends GameObject {
 	public void spawnWaste() {
 		amount = rand.nextInt(4);
 		// System.out.println(amount);
+		if(game.game1){
 		switch (amount) {
 		case 0:
 			// Nothing
@@ -206,6 +207,7 @@ public class Boat extends GameObject {
 		default:
 			System.out.println("Something went wrong!");
 			break;
+		}
 		}
 	}
 

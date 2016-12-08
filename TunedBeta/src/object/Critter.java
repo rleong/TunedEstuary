@@ -149,7 +149,7 @@ public class Critter extends GameObject {
 		if (!game.isPause())
 			y += velY;
 
-		if (x > dm.getWidth() * 5 / 6) {
+		if (x > dm.getWidth() * 5 / 6+32) {
 			onLand = false;
 		}
 
@@ -157,8 +157,8 @@ public class Critter extends GameObject {
 			velY += gravity;
 		}
 
-		if (y < dm.getHeight() * 3 / 5 - 96 && x > dm.getWidth() * 5 / 6 - 32) {
-			setY(dm.getHeight() * 3 / 5 - 96d);
+		if (y < dm.getHeight() * 3 / 5 - 64 && x > dm.getWidth() * 5 / 6 - 32) {
+			setY(dm.getHeight() * 3 / 5 - 64);
 			setVelY(0);
 			jump = true;
 		}
@@ -922,7 +922,7 @@ public class Critter extends GameObject {
 	@Override
 	public Rectangle getBounds() {
 
-		return new Rectangle((int) x - 16, (int) y - 16, 64, 64);
+		return new Rectangle((int) x - 20, (int) y - 20, 72, 72);
 	}
 
 	/**

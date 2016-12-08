@@ -60,7 +60,7 @@ public class Game extends Canvas implements Runnable {
 	Barrier barrier;
 	private Random rand = new Random();
 	// Object
-	public static Handler handler;
+	public Handler handler;
 	public Handler handler2;
 	RofFactory factory;
 	WasteBin trashBin;
@@ -79,7 +79,7 @@ public class Game extends Canvas implements Runnable {
 	Game3Instructions game3inst;
 	// Game Conditions
 	public static boolean gameover = false;
-	static boolean game1 = false;
+	public static boolean game1 = false;
 	public static boolean game2 = false;
 	public static boolean game3 = false;
 	Timer gameTime;
@@ -100,7 +100,8 @@ public class Game extends Canvas implements Runnable {
 	
 	//tutorial
 	public boolean tutorial= true;
-	Tutorial tutor;
+	public Tutorial tutor;
+	boolean lock=false;
 
 	/**
 	 * Method that initializes the objects that are going to be in our game
@@ -135,7 +136,7 @@ public class Game extends Canvas implements Runnable {
 				this);
 
 		inventory = new Inventory(10, 10, ObjectId.inventory, this, dm);
-		critter = new Critter(600, dm.getHeight() * 3 / 5 - 32, ObjectId.critter, true, true, dm, inventory, this,
+		critter = new Critter(32, dm.getHeight() * 3 / 5 - 32, ObjectId.critter, true, true, dm, inventory, this,
 				images);
 
 		// Game 1 Objects 
@@ -152,7 +153,10 @@ public class Game extends Canvas implements Runnable {
 		inventory.setCritter(critter);
 		k = new KeyInput(handler, handler2, this);
 		this.addKeyListener(new KeyInput(handler, handler2, this));
-
+		tutor = new Tutorial(0, 0, ObjectId.tutorial, this, trashBin, recyclebin, inventory, images);
+		handler.addObject(tutor);
+		
+		
 		game3inst = new Game3Instructions(1, 1, ObjectId.instr3, this);
 
 	}
@@ -192,8 +196,10 @@ public class Game extends Canvas implements Runnable {
 			delta += (now - lastTime) / ns;
 			lastTime = now;
 			while (delta >= 1) {
+				
 				// System.out.println(temp++);
 				tick();
+				
 				updates++;
 				delta--;
 			}
@@ -477,16 +483,14 @@ public class Game extends Canvas implements Runnable {
 		@Override
 
 		public void actionPerformed(ActionEvent e) {
-			if(tutorial){
-				
-			}
 			
-			else if (game1) {
+			if (game1) {
 				game1 = false;
 				game2 = true;
 
 				// Remove Game 1 Objects
 				handler.removeGame1();
+				
 
 				// Game 2 Objects
 				handler.addObject(factory);
