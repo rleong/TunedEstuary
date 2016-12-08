@@ -16,10 +16,18 @@ public class Images {
 	// Items
 	BufferedImage[][] hazardWaste;
 	BufferedImage bossWaste;
+	
+	// Buttons
+	BufferedImage yButton;
+	BufferedImage uButton;
+	BufferedImage iButton;
+	BufferedImage oButton;
+	BufferedImage pButton;
 
 	// Icons
 	BufferedImage gabionBuildIcon;
 	BufferedImage menuBar;
+	BufferedImage wasteIcon;
 
 	// Miscellaneous
 	BufferedImage[] wasteBins;
@@ -138,6 +146,14 @@ public class Images {
 			}
 		}
 		bossWaste = createImage("items/BigWaste.png");
+		
+		// Buttons
+		yButton = createImage("buttons/YButton.png");
+		uButton = createImage("buttons/UButton.png");
+		iButton = createImage("buttons/IButton.png");
+		oButton = createImage("buttons/OButton.png");
+		pButton = createImage("buttons/PButton.png");
+		
 
 		// Entities
 		// There are no methods for generating these sprites, only because
@@ -312,6 +328,7 @@ public class Images {
 		// Icons
 		gabionBuildIcon = createImage("icons/BuildGabionIcon.png");
 		menuBar = createImage("icons/MenuBar.png");
+		wasteIcon = createImage("icons/WasteIcon.png");
 
 		// Test
 		testImg = createImage("test/Test.png");
@@ -631,7 +648,66 @@ public class Images {
 	public BufferedImage getTrashBoat(int i) {
 		return trashBoat[i];
 	}
+	
+	/**
+	 * Method that returns the button image
+	 *  
+	 * 
+	 * @return  button image
+	 */
+	public BufferedImage getYButton() {
+		return yButton;
+	}
 
+	/**
+	 * Method that returns the button image
+	 *  
+	 * 
+	 * @return  button image
+	 */
+	public BufferedImage getUButton() {
+		return uButton;
+	}
+	
+	/**
+	 * Method that returns the button image
+	 *  
+	 * 
+	 * @return  button image
+	 */
+	public BufferedImage getIButton() {
+		return iButton;
+	}
+	
+	/**
+	 * Method that returns the button image
+	 *  
+	 * 
+	 * @return  button image
+	 */
+	public BufferedImage getOButton() {
+		return oButton;
+	}
+	
+	/**
+	 * Method that returns the button image
+	 *  
+	 * 
+	 * @return  button image
+	 */
+	public BufferedImage getPButton() {
+		return pButton;
+	}
+	
+	/**
+	 * Method that returns the wasteIcon image
+	 *  
+	 * 
+	 * @return wasteIcon image
+	 */
+	public BufferedImage getWasteIcon() {
+		return wasteIcon;
+	}
 
 	// Frame Counts
 	// For use when other classes want to know how many frames per animation

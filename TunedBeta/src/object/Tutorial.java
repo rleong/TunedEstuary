@@ -27,7 +27,7 @@ public class Tutorial extends GameObject {
 		this.wb1=wb1;
 		this.wb2=wb2;
 		// TODO Auto-generated constructor stub
-		rof=new Runoff(0, game.dm.getHeight() * 3 / 5 - 32, game.dm, ObjectId.runOff, 0, game);
+		rof=new Runoff(0, game.dm.getHeight() * 3 / 5 - 32, game.dm, ObjectId.runOff, 0, game, img);
 		w1  = new Waste(128, game.dm.getHeight() * 3 / 5 -32, ObjectId.waste, game, wb1, wb2, ivent, 0, img);
 		w2 = new Waste(192, game.dm.getHeight() * 3 / 5-32, ObjectId.waste, game, wb1, wb2, ivent, 1, img);
 		cp1 = new Compost(256, game.dm.getHeight() * 3 / 5-32, ObjectId.compost1, game, 0, img);
