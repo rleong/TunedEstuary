@@ -123,7 +123,6 @@ public class Game extends Canvas implements Runnable {
 		// Width, Height, Water Start Width, Water Bottom Height, Water Surface
 		// Height
 		handler.creatSurface(dm);
-
 		factory = new RofFactory(0, dm.getHeight() * 3 / 5 - 32, ObjectId.RofFactory, this, images);
 		school = new SchoolFish(dm.getWidth(), dm.getHeight() * 4 / 5, ObjectId.school, this, images);
 		school2 = new SchoolFish(dm.getWidth() * 1.2, dm.getHeight() * 3.6 / 5, ObjectId.school, this, images);

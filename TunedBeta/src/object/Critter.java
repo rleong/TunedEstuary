@@ -78,23 +78,31 @@ public class Critter extends GameObject {
 	boolean debugging = false;
 
 	/**
-	 * Constructor the constructs a critter object. This critter is what 
-	 * the player controls throughout the game. The critter goes around 
-	 * doing different events that will help clean nad protect the estuary
-	 * from harm.
+	 * Constructor the constructs a critter object. This critter is what the
+	 * player controls throughout the game. The critter goes around doing
+	 * different events that will help clean nad protect the estuary from harm.
 	 * 
-	 * @param x - x position of critter
-	 * @param y - y position of critter
-	 * @param id - object id 
-	 * @param xdir - direction critter is facing (left or right)
-	 * @param ydir - direction critter is facing (up or down)
-	 * @param dm - dimension of game
-	 * @param inventory - inventory containing collected items
-	 * @param game - game 
-	 * @param images - images of the objects
+	 * @param x
+	 *            - x position of critter
+	 * @param y
+	 *            - y position of critter
+	 * @param id
+	 *            - object id
+	 * @param xdir
+	 *            - direction critter is facing (left or right)
+	 * @param ydir
+	 *            - direction critter is facing (up or down)
+	 * @param dm
+	 *            - dimension of game
+	 * @param inventory
+	 *            - inventory containing collected items
+	 * @param game
+	 *            - game
+	 * @param images
+	 *            - images of the objects
 	 */
-	public Critter(double x, double y, ObjectId id, boolean xdir, boolean ydir, Dimension dm,
-			Inventory inventory, Game game, Images images) {
+	public Critter(double x, double y, ObjectId id, boolean xdir, boolean ydir, Dimension dm, Inventory inventory,
+			Game game, Images images) {
 		// Basics
 		super(x, y, id, game);
 		this.xdir = xdir;
@@ -118,26 +126,25 @@ public class Critter extends GameObject {
 	}
 
 	/**
-	 * Method that will change attributes of the critter per call
-	 * 	- add x velocity to x position causing critter to move in the x position
-	 *  - when not constructing objects allow the character to move
-	 *  - if critter is in a certain position
-	 *  - if in critter is falling or in water decrease the y velocity 
-	 *  - prevents the character from pressing the key twice to jump higher
-	 *  - if the critter is hit make the critter flicker
-	 *  - when the special ability meter is less then full have it recharge 
-	 *  - Set health and special ability meters to follow the character
+	 * Method that will change attributes of the critter per call - add x
+	 * velocity to x position causing critter to move in the x position - when
+	 * not constructing objects allow the character to move - if critter is in a
+	 * certain position - if in critter is falling or in water decrease the y
+	 * velocity - prevents the character from pressing the key twice to jump
+	 * higher - if the critter is hit make the critter flicker - when the
+	 * special ability meter is less then full have it recharge - Set health and
+	 * special ability meters to follow the character
 	 */
 	@Override
 	public void tick(ArrayList<GameObject> object) {
 
 		// Character Physics
 		x += velX;
-		if(x<10){
-			x=10;
+		if (x < 10) {
+			x = 10;
 		}
-		if(x>dm.getWidth()*2-10){
-			x=dm.getWidth()*2-10;
+		if (x > dm.getWidth() * 2 - 10) {
+			x = dm.getWidth() * 2 - 10;
 		}
 		if (!game.isPause())
 			y += velY;
@@ -159,7 +166,7 @@ public class Critter extends GameObject {
 		// Character Status
 		if (invulnerable) {
 			flicker++;
-			flicker=flicker%10;
+			flicker = flicker % 10;
 		} else {
 			flicker = 0;
 		}
@@ -214,30 +221,31 @@ public class Critter extends GameObject {
 							game);
 					break;
 				case 3:
-					g.drawImage(images.getBlueCrabImage(currentAnimation, movementFrameNum2), (int) x - 16, (int) y - 32,
-							game);
+					g.drawImage(images.getBlueCrabImage(currentAnimation, movementFrameNum2), (int) x - 16,
+							(int) y - 32, game);
 					break;
 				case 4:
-					g.drawImage(images.getBlueCrabImage(currentAnimation, movementFrameNum2), (int) x - 16, (int) y - 32,
-							game);
+					g.drawImage(images.getBlueCrabImage(currentAnimation, movementFrameNum2), (int) x - 16,
+							(int) y - 32, game);
 					break;
 				case 5:
-					g.drawImage(images.getBlueCrabImage(currentAnimation, movementFrameNum2), (int) x - 16, (int) y - 32,
-							game);
+					g.drawImage(images.getBlueCrabImage(currentAnimation, movementFrameNum2), (int) x - 16,
+							(int) y - 32, game);
 					break;
 				case 6:
-					g.drawImage(images.getBlueCrabImage(currentAnimation, movementFrameNum2), (int) x - 16, (int) y - 32,
-							game);
+					g.drawImage(images.getBlueCrabImage(currentAnimation, movementFrameNum2), (int) x - 16,
+							(int) y - 32, game);
 					break;
 				case 7:
-					g.drawImage(images.getBlueCrabImage(currentAnimation, movementFrameNum3), (int) x - 16, (int) y - 32,
-							game);
+					g.drawImage(images.getBlueCrabImage(currentAnimation, movementFrameNum3), (int) x - 16,
+							(int) y - 32, game);
 					break;
 				case 8:
 					if (right) {
 						g.drawImage(images.getBlueCrabImage(currentAnimation, 0), (int) x - 16, (int) y - 32, game);
 					} else {
-						g.drawImage(images.getBlueCrabImage(currentAnimation, 1), (int) x - 16 - 64, (int) y - 32, game);
+						g.drawImage(images.getBlueCrabImage(currentAnimation, 1), (int) x - 16 - 64, (int) y - 32,
+								game);
 					}
 					break;
 				}
@@ -292,44 +300,48 @@ public class Critter extends GameObject {
 				switch (currentAnimation) {
 				case 0:
 					if (right) {
-						g.drawImage(images.getHorseshoeCrabImage(currentAnimation, 0), (int) x - 16, (int) y - 32, game);
+						g.drawImage(images.getHorseshoeCrabImage(currentAnimation, 0), (int) x - 16, (int) y - 32,
+								game);
 					} else {
-						g.drawImage(images.getHorseshoeCrabImage(currentAnimation, 1), (int) x - 16, (int) y - 32, game);
+						g.drawImage(images.getHorseshoeCrabImage(currentAnimation, 1), (int) x - 16, (int) y - 32,
+								game);
 					}
 					break;
 				case 1:
-					g.drawImage(images.getHorseshoeCrabImage(currentAnimation, movementFrameNum), (int) x - 16, (int) y - 32,
-							game);
+					g.drawImage(images.getHorseshoeCrabImage(currentAnimation, movementFrameNum), (int) x - 16,
+							(int) y - 32, game);
 					break;
 				case 2:
-					g.drawImage(images.getHorseshoeCrabImage(currentAnimation, movementFrameNum), (int) x - 16, (int) y - 32,
-							game);
+					g.drawImage(images.getHorseshoeCrabImage(currentAnimation, movementFrameNum), (int) x - 16,
+							(int) y - 32, game);
 					break;
 				case 3:
-					g.drawImage(images.getHorseshoeCrabImage(currentAnimation, movementFrameNum2), (int) x - 16, (int) y - 32,
-							game);
+					g.drawImage(images.getHorseshoeCrabImage(currentAnimation, movementFrameNum2), (int) x - 16,
+							(int) y - 32, game);
 					break;
 				case 4:
-					g.drawImage(images.getHorseshoeCrabImage(currentAnimation, movementFrameNum2), (int) x - 16, (int) y - 32,
-							game);
+					g.drawImage(images.getHorseshoeCrabImage(currentAnimation, movementFrameNum2), (int) x - 16,
+							(int) y - 32, game);
 					break;
 				case 5:
-					g.drawImage(images.getHorseshoeCrabImage(currentAnimation, movementFrameNum2), (int) x - 16, (int) y - 32,
-							game);
+					g.drawImage(images.getHorseshoeCrabImage(currentAnimation, movementFrameNum2), (int) x - 16,
+							(int) y - 32, game);
 					break;
 				case 6:
-					g.drawImage(images.getHorseshoeCrabImage(currentAnimation, movementFrameNum2), (int) x - 16, (int) y - 32,
-							game);
+					g.drawImage(images.getHorseshoeCrabImage(currentAnimation, movementFrameNum2), (int) x - 16,
+							(int) y - 32, game);
 					break;
 				case 7:
-					g.drawImage(images.getHorseshoeCrabImage(currentAnimation, movementFrameNum3), (int) x - 16, (int) y - 32,
-							game);
+					g.drawImage(images.getHorseshoeCrabImage(currentAnimation, movementFrameNum3), (int) x - 16,
+							(int) y - 32, game);
 					break;
 				case 8:
 					if (right) {
-						g.drawImage(images.getHorseshoeCrabImage(currentAnimation, 0), (int) x - 16, (int) y - 32, game);
+						g.drawImage(images.getHorseshoeCrabImage(currentAnimation, 0), (int) x - 16, (int) y - 32,
+								game);
 					} else {
-						g.drawImage(images.getHorseshoeCrabImage(currentAnimation, 1), (int) x - 16, (int) y - 32, game);
+						g.drawImage(images.getHorseshoeCrabImage(currentAnimation, 1), (int) x - 16, (int) y - 32,
+								game);
 					}
 					break;
 				}
@@ -348,10 +360,10 @@ public class Critter extends GameObject {
 				break;
 			}
 		}
-		// g.fillRect((int) x, (int) y, 32, 32); 
+		// g.fillRect((int) x, (int) y, 32, 32);
 
 		// Character Inner Bounds
-//		Graphics2D g2d = (Graphics2D) g;
+		// Graphics2D g2d = (Graphics2D) g;
 		// g.setColor(Color.green);
 		// g2d.draw(getBoundsTop());
 		// g2d.draw(getBoundsBottom());
@@ -359,8 +371,8 @@ public class Critter extends GameObject {
 		// g2d.draw(getBoundsRight());
 
 		// Character Attack Range Bounds
-//		g.setColor(Color.gray);
-//		g2d.draw(getBounds());
+		// g.setColor(Color.gray);
+		// g2d.draw(getBounds());
 
 		// Character Name
 		g.setColor(Color.WHITE);
@@ -416,10 +428,12 @@ public class Critter extends GameObject {
 	/**
 	 * Method that shows the different items your critter can collect
 	 * 
-	 * @param g - graphics variable
+	 * @param g
+	 *            - graphics variable
 	 */
 	public void drawBuildOptions(Graphics g) {
-
+		
+		
 		g.drawImage(images.getMenuBar(), buildXLocation - 32, buildYLocation - 26, game);
 
 		g.drawImage(images.getGabionBuildIcon(), buildXLocation, buildYLocation, game);
@@ -436,10 +450,11 @@ public class Critter extends GameObject {
 	}
 
 	/**
-	 * Method that sets a boolean to true or false depending of what object 
-	 * you are trying to build
+	 * Method that sets a boolean to true or false depending of what object you
+	 * are trying to build
 	 * 
-	 * @param planting - boolean if planting or not  
+	 * @param planting
+	 *            - boolean if planting or not
 	 */
 	public void setBuildAnimation(boolean planting) {
 		setAnimation(7);
@@ -449,9 +464,8 @@ public class Critter extends GameObject {
 			buildAction = true;
 	}
 
-
 	/**
-	 * Method that sets a boolean to false when finished the animation 
+	 * Method that sets a boolean to false when finished the animation
 	 */
 	public void endAnimation() {
 		setAnimation(0);
@@ -462,7 +476,8 @@ public class Critter extends GameObject {
 	/**
 	 * Method that draws the health bars for each critter
 	 * 
-	 * @param g - graphics variable
+	 * @param g
+	 *            - graphics variable
 	 */
 	public void drawHealthBars(Graphics g) {
 		// Crab Health & SP Display
@@ -471,47 +486,79 @@ public class Critter extends GameObject {
 			g.setColor(Color.RED);
 		}
 		g.setColor(Color.BLACK);
-		g.drawString("Blue Crab", nameXLocation, nameYLocation);
-		g.drawRect(healthBarXLocation, healthBarYLocation, 200, 10);
-		g.drawRect(healthBarXLocation, healthBarYLocation + 20, 200, 10);
-		g.setColor(Color.RED);
-		g.fillRect(healthBarXLocation + 1, healthBarYLocation + 2, (int) (health0 * 2) - 1, 7);
-		g.setColor(Color.YELLOW);
-		g.fillRect(healthBarXLocation + 1, healthBarYLocation + 2 + 20, (int) sp0 * 2 / 3 - 1, 7);
+		if (x > dm.getWidth() * 2.5 / 5) {
+			g.drawString("Blue Crab", nameXLocation, nameYLocation);
+			g.drawRect(healthBarXLocation, healthBarYLocation, 200, 10);
+			g.drawRect(healthBarXLocation, healthBarYLocation + 20, 200, 10);
+			g.setColor(Color.RED);
+			g.fillRect(healthBarXLocation + 1, healthBarYLocation + 2, (int) (health0 * 2) - 1, 7);
+			g.setColor(Color.YELLOW);
+			g.fillRect(healthBarXLocation + 1, healthBarYLocation + 2 + 20, (int) sp0 * 2 / 3 - 1, 7);
+		} else {
+			g.drawString("Blue Crab", (int) (dm.getWidth() * 1 / 95), nameYLocation);
+			g.drawRect((int) (dm.getWidth() * 1 / 95), healthBarYLocation, 200, 10);
+			g.drawRect((int) (dm.getWidth() * 1 / 95), healthBarYLocation + 20, 200, 10);
+			g.setColor(Color.RED);
+			g.fillRect((int) (dm.getWidth() * 1 / 95 + 1), healthBarYLocation + 2, (int) (health0 * 2) - 1, 7);
+			g.setColor(Color.YELLOW);
+			g.fillRect((int) (dm.getWidth() * 1 / 95 + 1), healthBarYLocation + 2 + 20, (int) sp0 * 2 / 3 - 1, 7);
+		}
 
 		// Oyster Health & SP Display
 		g.setColor(Color.BLACK);
 		if (health1 <= 0) {
 			g.setColor(Color.RED);
 		}
-		g.setColor(Color.BLACK);
-		g.drawString("Eastern Oyster", nameXLocation, nameYLocation + 70);
-		g.drawRect(healthBarXLocation, healthBarYLocation + 70, 200, 10);
-		g.drawRect(healthBarXLocation, healthBarYLocation + 90, 200, 10);
-		g.setColor(Color.RED);
-		g.fillRect(healthBarXLocation + 1, healthBarYLocation + 72, (int) (health1 * 2) - 1, 7);
-		g.setColor(Color.YELLOW);
-		g.fillRect(healthBarXLocation + 1, healthBarYLocation + 2 + 90, (int) sp1 * 2 / 3 - 1, 7);
-
+		if (x > dm.getWidth() * 2.5 / 5) {
+			g.setColor(Color.BLACK);
+			g.drawString("Eastern Oyster", nameXLocation, nameYLocation + 70);
+			g.drawRect(healthBarXLocation, healthBarYLocation + 70, 200, 10);
+			g.drawRect(healthBarXLocation, healthBarYLocation + 90, 200, 10);
+			g.setColor(Color.RED);
+			g.fillRect(healthBarXLocation + 1, healthBarYLocation + 72, (int) (health1 * 2) - 1, 7);
+			g.setColor(Color.YELLOW);
+			g.fillRect(healthBarXLocation + 1, healthBarYLocation + 2 + 90, (int) sp1 * 2 / 3 - 1, 7);
+		} else {
+			g.setColor(Color.BLACK);
+			g.drawString("Eastern Oyster", (int) (dm.getWidth() * 1 / 95), nameYLocation + 70);
+			g.drawRect((int) (dm.getWidth() * 1 / 95), healthBarYLocation + 70, 200, 10);
+			g.drawRect((int) (dm.getWidth() * 1 / 95), healthBarYLocation + 90, 200, 10);
+			g.setColor(Color.RED);
+			g.fillRect((int) ((dm.getWidth() * 1 / 95) + 1), healthBarYLocation + 72, (int) (health1 * 2) - 1, 7);
+			g.setColor(Color.YELLOW);
+			g.fillRect((int) ((dm.getWidth() * 1 / 95) + 1), healthBarYLocation + 2 + 90, (int) sp1 * 2 / 3 - 1, 7);
+		}
 		// Horseshoe Crab Health & SP Display
 		g.setColor(Color.BLACK);
 		if (health2 <= 0) {
 			g.setColor(Color.RED);
 		}
-		g.setColor(Color.BLACK);
-		g.drawString("Horseshoe Crab", nameXLocation, nameYLocation + 140);
-		g.drawRect(healthBarXLocation, healthBarYLocation + 140, 200, 10);
-		g.drawRect(healthBarXLocation, healthBarYLocation + 160, 200, 10);
-		g.setColor(Color.RED);
-		g.fillRect(healthBarXLocation + 1, healthBarYLocation + 142, (int) (health2 * 2) - 1, 7);
-		g.setColor(Color.YELLOW);
-		g.fillRect(healthBarXLocation + 1, healthBarYLocation + 2 + 160, (int) sp2 * 2 / 3 - 1, 7);
+		if (x > dm.getWidth() * 2.5 / 5) {
+			g.setColor(Color.BLACK);
+			g.drawString("Horseshoe Crab", nameXLocation, nameYLocation + 140);
+			g.drawRect(healthBarXLocation, healthBarYLocation + 140, 200, 10);
+			g.drawRect(healthBarXLocation, healthBarYLocation + 160, 200, 10);
+			g.setColor(Color.RED);
+			g.fillRect(healthBarXLocation + 1, healthBarYLocation + 142, (int) (health2 * 2) - 1, 7);
+			g.setColor(Color.YELLOW);
+			g.fillRect(healthBarXLocation + 1, healthBarYLocation + 2 + 160, (int) sp2 * 2 / 3 - 1, 7);
+		} else {
+			g.setColor(Color.BLACK);
+			g.drawString("Horseshoe Crab", (int) (dm.getWidth() * 1 / 95), nameYLocation + 140);
+			g.drawRect((int) (dm.getWidth() * 1 / 95), healthBarYLocation + 140, 200, 10);
+			g.drawRect((int) (dm.getWidth() * 1 / 95), healthBarYLocation + 160, 200, 10);
+			g.setColor(Color.RED);
+			g.fillRect((int) ((dm.getWidth() * 1 / 95) + 1), healthBarYLocation + 142, (int) (health2 * 2) - 1, 7);
+			g.setColor(Color.YELLOW);
+			g.fillRect((int) ((dm.getWidth() * 1 / 95) + 1), healthBarYLocation + 2 + 160, (int) sp2 * 2 / 3 - 1, 7);
+		}
 	}
 
 	/**
 	 * Method that draws the animation to the screen by going frame by frame
 	 * 
-	 * @param g - graphics variable
+	 * @param g
+	 *            - graphics variable
 	 */
 	public void drawWateringPlantAction(Graphics g) {
 		actionFrameNum = (actionFrameNum + 1) % images.getActionFrames();
@@ -523,9 +570,10 @@ public class Critter extends GameObject {
 	}
 
 	/**
-	 * Method that draws building animations to the screen 
+	 * Method that draws building animations to the screen
 	 * 
-	 * @param g - graphics varible
+	 * @param g
+	 *            - graphics varible
 	 */
 	public void drawBuildingAction(Graphics g) {
 		actionFrameNum = (actionFrameNum + 1) % images.getActionFrames();
@@ -563,7 +611,8 @@ public class Critter extends GameObject {
 	}
 
 	/**
-	 * Method that has a timer of when the critter can be hit again after being hit
+	 * Method that has a timer of when the critter can be hit again after being
+	 * hit
 	 */
 	ActionListener listener = new ActionListener() {
 		@Override
@@ -583,9 +632,10 @@ public class Critter extends GameObject {
 	}
 
 	/**
-	 * Method to set different characters 
+	 * Method to set different characters
 	 * 
-	 * @param character - character you want to change to
+	 * @param character
+	 *            - character you want to change to
 	 */
 	public void setCharacter(int character) {
 		this.character = character;
@@ -620,12 +670,12 @@ public class Critter extends GameObject {
 		}
 	}
 
-
 	/**
-	 * Method that allows a critter to attack waste objects if the waste is
-	 * in the crab attack boundaries
+	 * Method that allows a critter to attack waste objects if the waste is in
+	 * the crab attack boundaries
 	 * 
-	 * @param object - list of game objects 
+	 * @param object
+	 *            - list of game objects
 	 */
 	public void attack(ArrayList<GameObject> object) {
 		for (int i = 0; i < object.size(); i++) {
@@ -641,40 +691,40 @@ public class Critter extends GameObject {
 					}
 				}
 			}
-			
-			//if object is an oyster and in range, collect the oyster  
-			if(temp.getId() == ObjectId.oyster && temp.getBounds().intersects(this.getBounds())){
-				Oyster oyster = (Oyster)temp;
+
+			// if object is an oyster and in range, collect the oyster
+			if (temp.getId() == ObjectId.oyster && temp.getBounds().intersects(this.getBounds())) {
+				Oyster oyster = (Oyster) temp;
 				game.handler.removeObject(oyster);
 				inventory.addOyster();
 			}
-			//if object is a rope and in range, collect the rope
-			if(temp.getId() == ObjectId.rope && temp.getBounds().intersects(this.getBounds())){
-				Rope rope = (Rope)temp;
+			// if object is a rope and in range, collect the rope
+			if (temp.getId() == ObjectId.rope && temp.getBounds().intersects(this.getBounds())) {
+				Rope rope = (Rope) temp;
 				game.handler.removeObject(rope);
 				inventory.addRope();
 			}
-			//if object is wood and in range, collect the wood
-			if(temp.getId() == ObjectId.wood && temp.getBounds().intersects(this.getBounds())){
-				Wood wood = (Wood)temp;
+			// if object is wood and in range, collect the wood
+			if (temp.getId() == ObjectId.wood && temp.getBounds().intersects(this.getBounds())) {
+				Wood wood = (Wood) temp;
 				game.handler.removeObject(wood);
 				inventory.addWood();
 			}
-			//if object is trash and in range, remove it
-			if(temp.getId() == ObjectId.ptrash && temp.getBounds().intersects(this.getBounds())){
-				Trash trash = (Trash)temp;
+			// if object is trash and in range, remove it
+			if (temp.getId() == ObjectId.ptrash && temp.getBounds().intersects(this.getBounds())) {
+				Trash trash = (Trash) temp;
 				game.handler.removeObject(trash);
 			}
-			
-			if (temp.getId() == ObjectId.waterTree) { 
-				 WaterTree wt =(WaterTree) temp; 
-				 if (wt.canAttack) { 
-					 wt.hp -= damage; 
-				 } 
-				 if(wt.hp <= 0) 
-					 wt.chopDown();
+
+			if (temp.getId() == ObjectId.waterTree) {
+				WaterTree wt = (WaterTree) temp;
+				if (wt.canAttack) {
+					wt.hp -= damage;
+				}
+				if (wt.hp <= 0)
+					wt.chopDown();
 			}
-			 
+
 		}
 	}
 
@@ -686,12 +736,13 @@ public class Critter extends GameObject {
 	/**
 	 * Method that allows a critter to plant a plant depending on its type
 	 * 
-	 * @param type - type of plant 
+	 * @param type
+	 *            - type of plant
 	 */
 	public void planT(int type) {
-		if(game.currency>=50){
+		if (game.currency >= 50) {
 			game.handler.addObject(new Tree(x, dm.getHeight() * 3 / 5 - 32, ObjectId.tree, type, game, images));
-			game.currency-=50;
+			game.currency -= 50;
 		}
 	}
 
@@ -722,10 +773,10 @@ public class Critter extends GameObject {
 			}
 			if (temp.getId() == ObjectId.seaLevel) {
 				if (getBoundsSelf().intersects(temp.getBounds())) {
-					falling=true;
+					falling = true;
 					jump = false;
 					inWater = true;
-					//System.out.println("I'm in WATER!!!");
+					// System.out.println("I'm in WATER!!!");
 				}
 			}
 			if (temp.getId() == ObjectId.sand) {
@@ -766,7 +817,7 @@ public class Critter extends GameObject {
 			if (temp.getId() == ObjectId.compost1) {
 				Compost comp = (Compost) temp;
 				if (getBoundsSelf().intersects(temp.getBounds())) {
-					game.currency+=25;
+					game.currency += 25;
 					System.out.println(game.currency);
 					object.remove(temp);
 				}
@@ -774,7 +825,7 @@ public class Critter extends GameObject {
 			if (temp.getId() == ObjectId.compost2) {
 				Compost comp = (Compost) temp;
 				if (getBoundsSelf().intersects(temp.getBounds())) {
-					game.currency+=1000;
+					game.currency += 1000;
 					System.out.println(game.currency);
 					object.remove(temp);
 				}
@@ -788,7 +839,7 @@ public class Critter extends GameObject {
 					waste.canAttack = false;
 				}
 				if (getBodyBounds().intersects(temp.getBounds())) {
-					if(!invulnerable && ! waste.isDead){
+					if (!invulnerable && !waste.isDead) {
 						invulnerable = true;
 						clockInvincible = new Timer(3000, listener);
 						clockInvincible.start();
@@ -804,33 +855,28 @@ public class Critter extends GameObject {
 							break;
 						}
 					}
-					
-					
-					
-					
-//					if(invulnerable || waste.getType()==2|| waste.isDead){
-//						return;
-//					}
-//					else{
-//						invulnerable = true;
-//						clockInvincible = new Timer(3000, listener);
-//						clockInvincible.start();
-//						switch (character) {
-//						case 0:
-//							health0 -= 5;
-//							break;
-//						case 1:
-//							health1 -= 5;
-//							break;
-//						case 2:
-//							health2 -= 5;
-//							break;
-//						}
-//					}
+
+					// if(invulnerable || waste.getType()==2|| waste.isDead){
+					// return;
+					// }
+					// else{
+					// invulnerable = true;
+					// clockInvincible = new Timer(3000, listener);
+					// clockInvincible.start();
+					// switch (character) {
+					// case 0:
+					// health0 -= 5;
+					// break;
+					// case 1:
+					// health1 -= 5;
+					// break;
+					// case 2:
+					// health2 -= 5;
+					// break;
+					// }
+					// }
 					return;
-					
-					
-					
+
 				}
 			}
 			if (temp.getId() == ObjectId.guardian) {
@@ -870,8 +916,8 @@ public class Critter extends GameObject {
 	}
 
 	/**
-	 * Returns attack boundaries of the critter object.
-	 * Used to see if critter can attack waste
+	 * Returns attack boundaries of the critter object. Used to see if critter
+	 * can attack waste
 	 */
 	@Override
 	public Rectangle getBounds() {
@@ -880,8 +926,9 @@ public class Critter extends GameObject {
 	}
 
 	/**
-	 * Returns boundaries of the critter object.
-	 * Used see if critter is colliding with another game object
+	 * Returns boundaries of the critter object. Used see if critter is
+	 * colliding with another game object
+	 * 
 	 * @return
 	 */
 	public Rectangle getBoundsSelf() {
@@ -898,10 +945,10 @@ public class Critter extends GameObject {
 	}
 
 	/**
-	 * Returns boundaries of the bottom of the critter object.
-	 * Used to check if the critter is touching the floor
+	 * Returns boundaries of the bottom of the critter object. Used to check if
+	 * the critter is touching the floor
 	 * 
-	 * @return bottom boundary 
+	 * @return bottom boundary
 	 */
 	public Rectangle getBoundsBottom() {
 
@@ -909,10 +956,10 @@ public class Critter extends GameObject {
 	}
 
 	/**
-	 * Returns boundaries  left of the critter object.
-	 * Stops the critter it runs into a wall or boundary
+	 * Returns boundaries left of the critter object. Stops the critter it runs
+	 * into a wall or boundary
 	 * 
-	 * @return left boundary 
+	 * @return left boundary
 	 */
 	public Rectangle getBoundsLeft() {
 
@@ -920,10 +967,10 @@ public class Critter extends GameObject {
 	}
 
 	/**
-	 * Returns boundaries right of the critter object.
-	 * Stops the critter it runs into a wall or boundary
+	 * Returns boundaries right of the critter object. Stops the critter it runs
+	 * into a wall or boundary
 	 * 
-	 * @return right boundary 
+	 * @return right boundary
 	 */
 	public Rectangle getBoundsRight() {
 
@@ -943,41 +990,42 @@ public class Critter extends GameObject {
 	public void setLeft() {
 		right = false;
 	}
-	
+
 	/**
 	 * Returns boolean if the critter is in the water or not
-	 *  
+	 * 
 	 * @return boolean if in water
 	 */
-	public boolean getInWater(){
+	public boolean getInWater() {
 		return inWater;
 	}
-	
+
 	/**
 	 * Method to set animations depending on what the player is doing
 	 * 
-	 * @param currentAnimation - action of the user
+	 * @param currentAnimation
+	 *            - action of the user
 	 */
-	public void setAnimation(int currentAnimation){
+	public void setAnimation(int currentAnimation) {
 		this.currentAnimation = currentAnimation;
 	}
-	
+
 	/**
-	 * Method to constructs a gabion if you have the needed materials in your inventory
+	 * Method to constructs a gabion if you have the needed materials in your
+	 * inventory
 	 */
 	public void plantGabion() {
-		//builds gabion if inventory method returns true, and you are on the sand behind initial barrier
-				if(inventory.buildGabion() && this.x < dm.getWidth()/2 + dm.getWidth()/4){
-					game.handler.addObject(new Gabion(x, dm.getHeight() * 3 / 5 - 32,ObjectId.gabion,game, images));
-					inventory.removeOysters();
-					inventory.removeRope();
-					inventory.removeWood();
-				}
-				else{
-					System.out.println("Failed");
-				}
-				
-	}
+		// builds gabion if inventory method returns true, and you are on the
+		// sand behind initial barrier
+		if (inventory.buildGabion() && this.x < dm.getWidth() / 2 + dm.getWidth() / 4) {
+			game.handler.addObject(new Gabion(x, dm.getHeight() * 3 / 5 - 32, ObjectId.gabion, game, images));
+			inventory.removeOysters();
+			inventory.removeRope();
+			inventory.removeWood();
+		} else {
+			System.out.println("Failed");
+		}
 
+	}
 
 }

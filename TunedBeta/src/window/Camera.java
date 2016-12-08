@@ -69,8 +69,9 @@ public class Camera {
 	 * @param critter - critter object in the game
 	 */
 	public void tick(GameObject critter) {
+		if(critter.getX() > dm.getWidth() * 2.5/5 && critter.getX() < dm.getWidth() * 3/2){
 		x = -critter.getX() + dm.getWidth() / 2;
-		
+		}
 		y = -critter.getY() + dm.getHeight() / 2;
 		
 		
