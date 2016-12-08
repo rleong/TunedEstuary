@@ -20,6 +20,7 @@ public class GuardianFish extends GameObject {
 	MiracleTree mt;
 	boolean firstTime=true;
 	Images images;
+	int stage = 0;
 
 	/**
 	 * Constructor that constructs a guardian fish object. This object is used to attack the player 
@@ -55,13 +56,17 @@ public class GuardianFish extends GameObject {
 		y += velY;
 		if (x < (game.dm.getWidth() * 1.517) || x > (game.dm.getWidth() * 1.98)) {
 			velX *= -1;
+			if(velX > 0)
+				stage = 1;
+			else
+				stage = 0;
 		}
 		if (y < game.dm.getHeight() * 73 / 100 || y > game.dm.getHeight() * 1.07) {
 			velY *= -1;
 		}
 		}
 		collision(game.handler.object);
-
+		
 	}
 
 	/**
@@ -71,8 +76,11 @@ public class GuardianFish extends GameObject {
 	public void render(Graphics g) {
 //		g.setColor(Color.RED);
 //		g.fillRect((int) game.dm.getWidth() * 1517 / 1000, (int) game.dm.getHeight() * 73 / 100, 960, 420);
-		g.setColor(Color.green);
-		g.fillRect((int) x, (int) y, 64, 32);
+//		g.setColor(Color.green);
+//		g.fillRect((int) x, (int) y, 64, 32);
+		
+		g.drawImage(images.getGuardianFish(stage), (int) x, (int) y, game);
+		
 	}
 
 	/**

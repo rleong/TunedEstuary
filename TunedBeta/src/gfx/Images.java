@@ -52,6 +52,7 @@ public class Images {
 	BufferedImage[][] blueCrab;
 	BufferedImage[][] easternOyster;
 	BufferedImage[][] horseshoeCrab;
+	BufferedImage[] guardianFish;
 	
 	
 	/**
@@ -249,6 +250,12 @@ public class Images {
 		for (int i = 0; i < 2; i++) {
 			BufferedImage img = createImage("entities/HorseshoeCrab.png");
 			horseshoeCrab[8][i] = img.getSubimage(64 * i, 512, 64, 64);
+		}
+		
+		guardianFish = new BufferedImage[2];
+		for (int i = 0; i < 2; i++) {
+			BufferedImage img = createImage("entities/GuardianFish.png");
+			guardianFish[i] = img.getSubimage(64 * i, 0, 64, 64);
 		}
 
 		// Miscellaneous
@@ -460,6 +467,9 @@ public class Images {
 	
 	public BufferedImage getHorseshoeCrabImage(int i, int j) {
 		return horseshoeCrab[i][j];
+	}
+	public BufferedImage getGuardianFish(int i) {
+		return guardianFish[i];
 	}
 
 	// Frame Counts
