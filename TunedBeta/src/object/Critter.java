@@ -777,6 +777,7 @@ public class Critter extends GameObject {
 	public void setAnimation(int currentAnimation){
 		this.currentAnimation = currentAnimation;
 	}
+	
 	public void plantGabion() {
 		//builds gabion if inventory method returns true, and you are on the sand behind initial barrier
 				if(inventory.buildGabion() && this.x < dm.getWidth()/2 + dm.getWidth()/4){
