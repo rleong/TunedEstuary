@@ -31,6 +31,7 @@ public class Boat extends GameObject {
 	boolean waves;
 	public boolean game3;
 	public static boolean game1;
+	private int stage = 0;
 
 	// Random Droppings
 	int amount = 0;
@@ -133,6 +134,11 @@ public class Boat extends GameObject {
 			oysterSpawn++;
 		}
 		collide();
+		
+		if( direction > 0)
+			stage = 1;
+		else
+			stage = 0;
 
 		// spawns oyster if the count is equal to the random value
 		// increments oyster spawn count
@@ -155,8 +161,7 @@ public class Boat extends GameObject {
 	 */
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.MAGENTA);
-		g.fillRect((int) x, (int) y, 128, 48);
+		g.drawImage(images.getTrashBoat(stage), (int) x, (int) y, game);
 	}
 
 	/**

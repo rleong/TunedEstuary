@@ -53,6 +53,7 @@ public class Images {
 	BufferedImage[][] easternOyster;
 	BufferedImage[][] horseshoeCrab;
 	BufferedImage[] guardianFish;
+	BufferedImage[] trashBoat;
 	
 	
 	/**
@@ -256,6 +257,12 @@ public class Images {
 		for (int i = 0; i < 2; i++) {
 			BufferedImage img = createImage("entities/GuardianFish.png");
 			guardianFish[i] = img.getSubimage(64 * i, 0, 64, 64);
+		}
+		
+		trashBoat = new BufferedImage[2];
+		for (int i = 0; i < 2; i++) {
+			BufferedImage img = createImage("entities/TrashBoat.png");
+			trashBoat[i] = img.getSubimage(128 * i, 0, 128, 64);
 		}
 
 		// Miscellaneous
@@ -556,7 +563,7 @@ public class Images {
 	 *  
 	 * @param i - image at ith position in list
 	 * @param j - image at jth position in list
-	 * @return crab image
+	 * @return horseshoeCrab image
 	 */
 	public BufferedImage getHorseshoeCrabImage(int i, int j) {
 		return horseshoeCrab[i][j];
@@ -566,11 +573,22 @@ public class Images {
 	 * Method that returns the guardian fish image
 	 *  
 	 * @param i - image at ith position in list
-	 * @return crab image
+	 * @return guardianFish image
 	 */
 	public BufferedImage getGuardianFish(int i) {
 		return guardianFish[i];
 	}
+	
+	/**
+	 * Method that returns the trash boat image
+	 *  
+	 * @param i - image at ith position in list
+	 * @return trash boat image
+	 */
+	public BufferedImage getTrashBoat(int i) {
+		return trashBoat[i];
+	}
+
 
 	// Frame Counts
 	// For use when other classes want to know how many frames per animation
