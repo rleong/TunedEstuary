@@ -35,7 +35,7 @@ public class Game3Timer extends GameObject {
 	 */
 	public Game3Timer(double x, double y, ObjectId id, Game game, int g) {
 		super(x, y, id, game);
-		mintime = 1;
+		mintime = 0;
 		sectime = 30;
 		mstime = 0 ;
 		this.g = g;
@@ -46,11 +46,11 @@ public class Game3Timer extends GameObject {
 	ActionListener l1 = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(sectime == 0 && mintime > 0){//if seconds is 0 and there at least a minute left
+			if(sectime <= 0 && mintime > 0){//if seconds is 0 and there at least a minute left
 				sectime = 59;//set seconds to 59
 				mintime--;//subtract 1 from minutes time
 			}
-			if(mstime == 0 && sectime > 0){//is there are no milliseconds and at least 1 seconds left
+			if(mstime <= 0 && sectime > 0){//is there are no milliseconds and at least 1 seconds left
 				mstime = 9;//set milliseconds to 9
 				sectime--;//subtract 1 from seconds time
 			}

@@ -43,7 +43,7 @@ public class Waste extends GameObject {
 			wasteName = random.nextInt(2);
 		else
 			wasteName = random.nextInt(4);
-		System.out.println(type + " " + wasteName);
+		//System.out.println(type + " " + wasteName);
 	}
 
 	/*
