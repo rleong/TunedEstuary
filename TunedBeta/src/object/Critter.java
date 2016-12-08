@@ -337,16 +337,13 @@ public class Critter extends GameObject {
 		} else {
 			switch (character) {
 			case 0:
-				if (right) {
-					g.drawImage(images.getBlueCrabImage(currentAnimation, 2), (int) x - 16, (int) y - 32, game);
-				} else {
-					g.drawImage(images.getBlueCrabImage(currentAnimation, 3), (int) x - 16, (int) y - 32, game);
-				}
+				g.setColor(Color.DARK_GRAY);
+				break;
 			case 1:
 				g.setColor(Color.DARK_GRAY);
 				break;
 			case 2:
-				g.setColor(Color.lightGray);
+				g.setColor(Color.DARK_GRAY);
 				break;
 			}
 		}
@@ -803,6 +800,27 @@ public class Critter extends GameObject {
 							break;
 						case 2:
 							health2 -= 5;
+							break;
+						}
+					}
+				}
+			}
+			if (temp.getId() == ObjectId.guardian) {
+				GuardianFish guardianfish = (GuardianFish) temp;
+				if (getBodyBounds().intersects(temp.getBounds())) {
+					if (!invulnerable) {
+						invulnerable = true;
+						clockInvincible = new Timer(3000, listener);
+						clockInvincible.start();
+						switch (character) {
+						case 0:
+							health0 -= 10;
+							break;
+						case 1:
+							health1 -= 10;
+							break;
+						case 2:
+							health2 -= 10;
 							break;
 						}
 					}
