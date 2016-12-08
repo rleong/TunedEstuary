@@ -3,6 +3,7 @@ package tests;
 import static org.junit.Assert.*;
 
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import org.junit.Test;
@@ -15,7 +16,7 @@ import object.Wood;
 
 public class RopeTest {
 
-	LinkedList<GameObject>test1 = new LinkedList<GameObject>();
+	ArrayList<GameObject>test1 = new ArrayList<GameObject>();
 	Rope tester = new Rope(50,50,ObjectId.rope,null);
 	
 	@Test

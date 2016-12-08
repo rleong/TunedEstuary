@@ -86,8 +86,8 @@ public class BarrierTest {
 	}
 	@Test
 	public void testCollision(){
-		LinkedList<GameObject>test1 = new LinkedList<GameObject>();
-		LinkedList<GameObject>testexpected = new LinkedList<GameObject>();
+		ArrayList<GameObject>test1 = new ArrayList<GameObject>();
+		ArrayList<GameObject>testexpected = new ArrayList<GameObject>();
 		test1.add(tester);
 		test1.add(new Waves(50.0,50.0,ObjectId.waves,null));
 		testexpected.add(tester);
