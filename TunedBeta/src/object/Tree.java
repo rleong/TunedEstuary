@@ -19,7 +19,6 @@ import window.Handler;
 public class Tree extends GameObject {
 	public int hp;
 	public int type;
-	Game game;
 	private int stage = 0;
 	Images images;
 	Timer buildStage;
@@ -28,7 +27,6 @@ public class Tree extends GameObject {
 		super(x, y, id, game);
 		hp = 3;
 		this.type = type;
-		this.game = game;
 		this.images = images;
 		buildStage = new Timer(1000, listener);
 		buildStage.start();
@@ -54,17 +52,16 @@ public class Tree extends GameObject {
 	}
 
 	private void collision(LinkedList<GameObject> object) {
-		Iterator<GameObject> itr = object.iterator();
 		GameObject temp;
-		for (; itr.hasNext();) {
-			temp = itr.next();
+		for (int i=0; i<object.size();i++) {
+			temp = object.get(i);
 			if (temp.getId() == ObjectId.runOff) {
 				Runoff rof = (Runoff) temp;
 				if (getBounds().intersects(temp.getBounds())) {
 					if (this.type == rof.type) {
 						game.setnRof(game.getnRof() - 1);
 						hp -= 1;
-						itr.remove();
+						object.remove(this);
 					}
 				}
 			}
@@ -83,6 +80,10 @@ public class Tree extends GameObject {
 		case 2:
 			g.drawImage(images.getPlant3(stage), (int) x - 16, (int) y - 32, game);
 			break;
+		case 3:
+			g.drawImage(images.getPlant4(stage), (int) x - 16, (int) y - 32, game);
+			break;
+			
 		}
 
 		g.setColor(Color.red);
