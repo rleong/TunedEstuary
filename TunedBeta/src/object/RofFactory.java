@@ -54,7 +54,7 @@ public class RofFactory extends GameObject {
 			}
 			if(game.g2stage==1){
 				if(game.nW1<5){
-					game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 0,game));
+					game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 0,game, images));
 					game.nW1++;
 					game.nWaste++;
 					return;
@@ -81,13 +81,13 @@ public class RofFactory extends GameObject {
 			}
 			if(game.g2stage==3){
 				if(game.nW1<5){
-					game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 0,game));
+					game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 0,game, images));
 					game.nW1++;
 					game.nWaste++;
 					return;
 				}
 				if(game.nW1==5){
-					game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 1,game));
+					game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 1,game, images));
 					game.nW2++;
 					if(game.nW2==2){
 						game.nW1++;
@@ -119,13 +119,13 @@ public class RofFactory extends GameObject {
 			
 			if(game.g2stage==5){
 				if(game.nW1<3){
-					game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 0,game));
+					game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 0,game, images));
 					game.nW1++;
 					game.nWaste++;
 					return;
 				}
 				if(game.nW1==3){
-					game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 1,game));
+					game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 1,game, images));
 					game.nW2++;
 					if(game.nW2==3){
 						game.nW1++;
@@ -134,7 +134,7 @@ public class RofFactory extends GameObject {
 					return;
 				}
 				if(game.nW2==3){
-					game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 2, game));
+					game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 2, game, images));
 					game.nW3++;
 					if(game.nW3==3){
 						game.nW2++;
@@ -163,7 +163,7 @@ public class RofFactory extends GameObject {
 			
 			if(game.g2stage==7){
 				if(game.nW4<1){
-					game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 3, game));
+					game.handler.object.add(new Runoff(x, y, game.dm, ObjectId.runOff, 3, game, images));
 					game.nW4++;
 					game.nWaste+=1;
 					return;

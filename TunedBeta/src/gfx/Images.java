@@ -15,6 +15,7 @@ public class Images {
 	
 	// Items
 	BufferedImage[][] hazardWaste;
+	BufferedImage bossWaste;
 
 	// Icons
 	BufferedImage gabionBuildIcon;
@@ -36,6 +37,7 @@ public class Images {
 	BufferedImage[] hornWort;
 	BufferedImage plantSeed;
 	BufferedImage[][] habitat;
+	BufferedImage wave;
 	
 	// Tiles
 	BufferedImage[] skyTile;
@@ -125,6 +127,7 @@ public class Images {
 				habitat[j][i] = img.getSubimage(64 * i, 64 * j, 64, 64);
 			}
 		}
+		wave = createImage("environment/Wave.png");
 		
 		// Items 
 		hazardWaste = new BufferedImage[4][4];
@@ -134,6 +137,7 @@ public class Images {
 				hazardWaste[j][i] = img.getSubimage(32 * i, 32 * j, 32, 32);
 			}
 		}
+		bossWaste = createImage("items/BigWaste.png");
 
 		// Entities
 		// There are no methods for generating these sprites, only because
@@ -516,11 +520,20 @@ public class Images {
 	/**
 	 * Method that returns the seed image
 	 * 
-	 * @param i - image at ith position in list
+	 * 
 	 * @return seed image image
 	 */
 	public BufferedImage getSeed() {
 		return plantSeed;
+	}
+	
+	/**
+	 * Method that returns a wave image
+	 * 
+	 * @return wave bufferedimage
+	 */
+	public BufferedImage getWave() {
+		return wave;
 	}
 	
 	/**
@@ -543,6 +556,16 @@ public class Images {
 	 */
 	public BufferedImage getWaste(int i, int j) {
 		return hazardWaste[i][j];
+	}
+	
+	/**
+	 * Method that returns the largest waste image
+	 *  
+	 * 
+	 * @return bossWaste image
+	 */
+	public BufferedImage getBossWaste() {
+		return bossWaste;
 	}
 
 	/**

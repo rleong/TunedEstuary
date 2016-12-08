@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
+import gfx.Images;
 import window.Handler;
 
 public class Runoff extends GameObject {
@@ -17,6 +18,7 @@ public class Runoff extends GameObject {
 	Dimension dm;
 	Game game;
 	public boolean inTer=false;
+	Images images;
 
 	/**
 	 * Constructor that creates run-off in game 2. The run-off will be trying to collide
@@ -30,7 +32,7 @@ public class Runoff extends GameObject {
 	 * @param type - type of run-off
 	 * @param game - game it is in
 	 */
-	public Runoff(double x, double y, Dimension dm, ObjectId id, int type, Game game) {
+	public Runoff(double x, double y, Dimension dm, ObjectId id, int type, Game game, Images images) {
 		super(x, y-64, id, game);
 		if (type == 0 || type == 1) {
 			setVelX(1.2);
@@ -43,6 +45,7 @@ public class Runoff extends GameObject {
 		this.type = type;
 		this.dm = dm;
 		this.game = game;
+		this.images = images;
 	}
 
 	/**
@@ -68,23 +71,17 @@ public class Runoff extends GameObject {
 	public void render(Graphics g) {
 		switch (type) {
 		case 0:
-			g.setColor(Color.green);
+			g.drawImage(images.getWaste(3, 0), (int) x, (int) y, game);
 			break;
 		case 1:
-			g.setColor(Color.darkGray);
+			g.drawImage(images.getWaste(3, 1), (int) x, (int) y, game);
 			break;
 		case 2:
-			g.setColor(Color.yellow);
+			g.drawImage(images.getWaste(3, 2), (int) x, (int) y, game);
 			break;
 		case 3:
-			g.setColor(Color.BLUE);
+			g.drawImage(images.getBossWaste(), (int) x, (int) y, game);
 			break;
-		}
-
-		if (type == 0 || type == 1 || type == 2) {
-			g.fillRect((int) x, (int) y, 32, 32);
-		} else if (type == 3) {
-			g.fillRect((int) x, (int) y, 75, 100);
 		}
 
 	}
