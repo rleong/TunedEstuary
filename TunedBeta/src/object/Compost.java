@@ -12,11 +12,24 @@ import gfx.Images;
 import window.Handler;
 
 public class Compost extends GameObject {
+	//Attributes
 	int type;
 	Images images;
 	Random random = new Random();
 	int imageType;
 	
+	/**
+	 * Constructor that constructs compost objects. This object is drop by the 
+	 * boat or water plants which is used to build plants that protect your estuary
+	 * form run off.
+	 * 
+	 * @param x - x position of compost
+	 * @param y - y position of compost
+	 * @param id - objcet id of game object
+	 * @param game - game object
+	 * @param type - type of compost
+	 * @param images - image of compost
+	 */
 	public Compost(double x, double y, ObjectId id, Game game, int type, Images images) {
 		super(x, y, id, game);
 		this.type=type;
@@ -24,6 +37,13 @@ public class Compost extends GameObject {
 		imageType = random.nextInt(2);
 	}
 
+	/**
+	 * Method that changes variables of compost per call
+	 * 	-add x velocity to x position to make compost move in x direction
+	 * 	-add y velocity to y position to make compost move in y direction
+	 * 	-if falling add graivty to y velocity to make compost drop
+	 * 	-call collision function
+	 */
 	@Override
 	public void tick(ArrayList<GameObject> object) {
 		// TODO Auto-generated method stub
@@ -34,6 +54,11 @@ public class Compost extends GameObject {
 		collision();
 	}
 
+	/**
+	 * Method that checks if compost is colliding with certain game object
+	 * and performs an action if so.
+	 * 	-if compost is colliding with sand: make y velocity 0 to prevent moving past sand
+	 */
 	private void collision() {
 		// TODO Auto-generated method stub
 		for (int i = 0; i < game.handler.object.size(); i++) {
@@ -47,6 +72,9 @@ public class Compost extends GameObject {
 		}
 	}
 
+	/**
+	 * Method to display compost images depending on type
+	 */
 	@Override
 	public void render(Graphics g) {
 		switch(type){
@@ -67,6 +95,10 @@ public class Compost extends GameObject {
 
 	}
 
+	/**
+	 * Method to get the boundaries of the compost object
+	 * Used to tell if compost is colliding with other object
+	 */
 	@Override
 	public Rectangle getBounds() {
 		
