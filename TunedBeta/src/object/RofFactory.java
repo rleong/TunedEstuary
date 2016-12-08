@@ -10,15 +10,19 @@ import java.util.Random;
 import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
+import gfx.Images;
 import window.Handler;
 
 public class RofFactory extends GameObject {
 	long timer;
 	int count=0;
-	public RofFactory(double x, double y, ObjectId id, Game game) {
+	Images images;
+	
+	public RofFactory(double x, double y, ObjectId id, Game game, Images images) {
 		super(x, y, id, game);
 		// TODO Auto-generated constructor stub
 		timer=System.currentTimeMillis();
+		this.images = images;
 	}
 
 	@Override
@@ -52,7 +56,7 @@ public class RofFactory extends GameObject {
 					count=0;
 					Random random=new Random();
 					int xx= random.nextInt(1000) % (int)(game.dm.getWidth()*1.5-game.dm.getWidth()*5/6-32);
-					game.handler.addObject(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, game, game.dm));
+					game.handler.addObject(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, game, game.dm, images));
 				}
 				count+=1;
 				
@@ -87,7 +91,7 @@ public class RofFactory extends GameObject {
 						count=0;
 						Random random=new Random();
 						int xx= random.nextInt(1000) % (int)(game.dm.getWidth()*1.5-game.dm.getWidth()*5/6-32);
-						game.handler.addObject(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, game, game.dm));
+						game.handler.addObject(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, game, game.dm, images));
 					}
 					count+=1;
 				}
@@ -152,7 +156,7 @@ public class RofFactory extends GameObject {
 		for(int i=0; i<3; i++){
 			Random random = new Random();
 			int xx= random.nextInt(1000) % (int)(game.dm.getWidth()*1.5-game.dm.getWidth()*5/6-32);
-			game.handler.object.add(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, game, game.dm));
+			game.handler.object.add(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, game, game.dm, images));
 		}
 	}
 

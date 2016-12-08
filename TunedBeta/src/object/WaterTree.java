@@ -10,6 +10,7 @@ import java.util.Random;
 import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
+import gfx.Images;
 import window.Handler;
 
 public class WaterTree extends GameObject {
@@ -20,13 +21,16 @@ public class WaterTree extends GameObject {
 	private long timer0=System.currentTimeMillis();
 	private long timer1=System.currentTimeMillis();
 	private long timer2=System.currentTimeMillis();
+	int stage = 0;
+	Images images;
 
-	public WaterTree(double x, double y, ObjectId id,int type, Game game, Dimension dm) {
+	public WaterTree(double x, double y, ObjectId id,int type, Game game, Dimension dm, Images images) {
 		super(x, y, id, game);
 		this.dm=dm;
 		hp=20;
 		canAttack=true;
 		this.type=type;
+		this.images = images;
 	}
 //	public void change(){
 //		type+=1;
@@ -54,7 +58,7 @@ public class WaterTree extends GameObject {
 		
 	}
 	public void dropSeed(){
-		game.handler.addObject(new Seed(x,y,ObjectId.seed, game, type));
+		game.handler.addObject(new Seed(x,y,ObjectId.seed, game, type, images));
 		
 	}
 	
@@ -71,13 +75,14 @@ public class WaterTree extends GameObject {
 		if (System.currentTimeMillis() - timer0 > 10000) {
 			timer0+=10000;
 			dropCompost();
-			
+			stage++;
 		}
 		
 		if(System.currentTimeMillis()-timer2>23000){
 			timer2+=23000;
 			
 			dead();
+			stage=0;
 		}
 	}
 
@@ -85,10 +90,7 @@ public class WaterTree extends GameObject {
 	public void render(Graphics g) {
 		switch(type){
 		case 0:
-			g.setColor(Color.blue);
-			g.fillRect((int)x, (int)y, 32, 32);
-			g.setColor(Color.BLACK);
-			g.fillRect((int)x, (int)y+32, 32, 64);
+			g.drawImage(images.getHornwort(stage),(int)x-16, (int)y+32, game);
 			break;
 		case 1:
 			g.setColor(Color.white);

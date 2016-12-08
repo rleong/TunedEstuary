@@ -11,6 +11,7 @@ import java.util.Random;
 import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
+import gfx.Images;
 
 public class Seed extends GameObject {
 	int type;
@@ -18,7 +19,8 @@ public class Seed extends GameObject {
 	Dimension dm;
 	boolean growing;
 	static Toolkit tk = Toolkit.getDefaultToolkit();
-	public Seed(double x, double y, ObjectId id, Game game, int type) {
+	Images images;
+	public Seed(double x, double y, ObjectId id, Game game, int type, Images images) {
 		super(x, y, id, game);
 		this.type=type;
 		setVelY(-3);
@@ -40,6 +42,7 @@ public class Seed extends GameObject {
 			break;
 		}
 		growing=true;
+		this.images = images;
 	}
 
 	@Override
@@ -63,7 +66,7 @@ public class Seed extends GameObject {
 					falling=false;
 //					if(growing){
 						
-						game.handler.object.add(new WaterTree(x, y-65, ObjectId.waterTree, type, game, dm));
+						game.handler.object.add(new WaterTree(x, y-65, ObjectId.waterTree, type, game, dm, images));
 						game.handler.object.remove(this);
 						return;
 //					}

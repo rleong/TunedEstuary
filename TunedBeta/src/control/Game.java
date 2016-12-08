@@ -55,7 +55,7 @@ public class Game extends Canvas implements Runnable {
 	boolean pause = false;
 	Timer clock;
 	public int nRof = 0;
-	public int g2stage = 8;
+	public int g2stage = 0;
 	Barrier barrier;
 	private Random rand = new Random();
 	// Object
@@ -111,7 +111,7 @@ public class Game extends Canvas implements Runnable {
 		// Height
 		handler.creatSurface(dm);
 		
-		factory = new RofFactory(0, dm.getHeight() * 3 / 5 - 32, ObjectId.RofFactory, this);
+		factory = new RofFactory(0, dm.getHeight() * 3 / 5 - 32, ObjectId.RofFactory, this, images);
 		school = new SchoolFish(dm.getWidth(), dm.getHeight()*4/5, ObjectId.school, this);
 		school2 = new SchoolFish(dm.getWidth()*1.2, dm.getHeight()*3.6/5, ObjectId.school, this);
 		school3 = new SchoolFish(dm.getWidth()*1.5, dm.getHeight()*3.2/5, ObjectId.school, this);
