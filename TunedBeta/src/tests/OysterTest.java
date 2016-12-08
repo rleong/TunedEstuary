@@ -94,14 +94,14 @@ public class OysterTest {
 	@Test
 	public void testCollision(){
 		test1.add(tester);
-		test1.add(new LandSurface(50.0,50.0,ObjectId.sand,null));
+		test1.add(new LandSurface(50.0,50.0,ObjectId.sand,null,null));
 		tester.testCollision(test1);
 		assertEquals(test1.get(0).getY(),01,18.0);	
 	}
 	@Test
 	public void testCollision2(){
 		test1.add(tester);
-		test1.add(new LandSurface(50.0,50.0,ObjectId.sand,null));
+		test1.add(new LandSurface(50.0,50.0,ObjectId.sand,null,null));
 		tester.testCollision(test1);
 		assertEquals(test1.get(0).getVelY(),1,1);	
 	}
