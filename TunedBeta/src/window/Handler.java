@@ -63,6 +63,8 @@ public class Handler {
 				boat.removeBoat();
 				object.remove(i);
 			}
+			if(temp.getId() == ObjectId.game3timer)
+				object.remove(i);
 		}
 	}
 	public void removeGame2(){

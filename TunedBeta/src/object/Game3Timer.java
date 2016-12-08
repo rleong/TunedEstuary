@@ -35,8 +35,8 @@ public class Game3Timer extends GameObject {
 	 */
 	public Game3Timer(double x, double y, ObjectId id, Game game, int g) {
 		super(x, y, id, game);
-		mintime = 0;
-		sectime = 3;
+		mintime = 1;
+		sectime = 30;
 		mstime = 0 ;
 		this.g = g;
 		clock1 = new Timer(100, l1);//calls listener l1 every millisecond
@@ -79,6 +79,7 @@ public class Game3Timer extends GameObject {
 		}
 		else if(g == 1){
 			if(mintime == 0 && sectime == 0 && mstime == 0){
+				mstime = -1;
 				clock1.stop();
 				System.out.println("Win");
 				win();
