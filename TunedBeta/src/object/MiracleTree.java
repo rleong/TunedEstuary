@@ -39,7 +39,7 @@ public class MiracleTree extends GameObject{
 	}
 	public void dropCompost() {
 	// TODO Auto-generated method stub
-		game.handler.addObject(new Compost(x, y, ObjectId.compost2, game, 1));
+		game.handler.addObject(new Compost(x, y, ObjectId.compost2, game, 1, images));
 		
 	}
 //	public void dropSeed(){
