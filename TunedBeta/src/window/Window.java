@@ -10,9 +10,17 @@ import control.Game;
 
 public class Window {
 	
+	//Attributes
 	private JFrame frame;
 	private static Dimension dm;
 	
+	/**
+	 * Constructor to construct a window jframe that will used to show our game on the screen
+	 * 
+	 * @param dm - dimensions
+	 * @param title - title of the window 
+	 * @param game - game 
+	 */
 	public Window(Dimension dm, String title, Game game) {
 		this.dm = dm;
 		game.setPreferredSize(dm);
@@ -31,6 +39,16 @@ public class Window {
 		game.start();
 	}
 	
+	/**
+	 * Method that will change the window. Every time this function is called
+	 * it changes the game by removing the odd objects of the previous game and 
+	 * add the objects of the new game.
+	 * 
+	 * @param w - width
+	 * @param h - height 
+	 * @param title - title of window 
+	 * @param gamec - game number
+	 */
 	public void changeWindow(int w, int h, String title, Game gamec){
 		//Dimension dm = new Dimension(w,h);
 		
@@ -46,6 +64,11 @@ public class Window {
 		gamec.start();
 		
 	}
+	
+	/**
+	 * Method that returns the dimensions
+	 * @return
+	 */
 	public static Dimension getDm(){
 		return dm;
 	}

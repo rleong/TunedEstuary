@@ -17,16 +17,32 @@ import object.Waste;
 
 public class Handler {
 
+	//Attributes
 	public ArrayList<GameObject> object = new ArrayList<GameObject>();
 
 	private GameObject temp;
 	Game game;
 	Images images;
 
+	
+	/**
+	 * Constructor that constructs a handler object. This class is responsible 
+	 * for calling every ojbect's render and tick method in the handler. This is 
+	 * prevent the main game's tick and render from being cluttered with multiple calls
+	 * 
+	 * @param game - game object
+	 */
 	public Handler(Game game) {
 		this.game = game;
 	}
 
+	/**
+	 * Method that changes variables per call
+	 * 	-Calls each individual objects tick  function 
+	 * 	-Removes waste is the waste is dead
+	 * 	-Removes bubble if bubble is dead
+	 * 
+	 */
 	public void tick() {
 
 		for (int i = 0; i < object.size(); i++) {
@@ -55,6 +71,9 @@ public class Handler {
 		}
 	}
 	
+	/**
+	 * Method that removes all the objects from game 1 
+	 */
 	public void removeGame1(){
 		for (int i = 0; i < object.size(); i++){
 			temp = object.get(i);
@@ -69,6 +88,9 @@ public class Handler {
 				object.remove(i);
 		}
 	}
+	/**
+	 * Method that removes all the object from game 2
+	 */
 	public void removeGame2(){
 		for (int i=0;i<object.size();i++){
 			temp = object.get(i);
@@ -106,6 +128,11 @@ public class Handler {
 		}
 	}
 
+	/**
+	 * Method that displays all the object's individual render functions
+	 * 
+	 * @param g - graphics object
+	 */
 	public void render(Graphics g) {
 		for (int i = 0; i < object.size(); i++) {
 			temp = object.get(i);
@@ -113,6 +140,11 @@ public class Handler {
 		}
 	}
 
+	/**
+	 * Method that adds an object to the object list
+	 * 
+	 * @param object - game object to add
+	 */
 	public void addObject(GameObject object) {
 		this.object.add(object);
 //		for (int i = 0; i < this.object.size(); i++) {
@@ -124,10 +156,20 @@ public class Handler {
 //		// CLASSCASTEXCEPTION ERRORS!!!!!!!!!!!
 	}
 
+	/**
+	 * Method that removes an Object from the handler
+	 * 
+	 * @param object - game object to remove
+	 */
 	public void removeObject(GameObject object) {
 		this.object.remove(object);
 	}
 
+	/**
+	 * Method that creates the world you move in
+	 * 
+	 * @param dm - dimensions 
+	 */
 	public void creatSurface(Dimension dm) {
 		int i = 0;
 		for (; i < ((double)dm.getWidth()) * 5/6; i += 32) {
@@ -165,10 +207,20 @@ public class Handler {
 		
 	}
 	
+	/**
+	 * Method that sets the images 
+	 * 
+	 * @param images - images to be
+	 */
 	public void setImages(Images images){
 		this.images = images;
 	}
 
+	/**
+	 * Method that gets the locations to spawn objects
+	 * @param dm
+	 * @return
+	 */
 	public double[] spawnLocations(Dimension dm) {
 		// 0 1 2 3 4
 		// Width, Height, Water Start Width, Water Bottom Height, Water Surface
