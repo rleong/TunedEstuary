@@ -123,7 +123,7 @@ public class Game extends Canvas implements Runnable {
 		school = new SchoolFish(dm.getWidth(), dm.getHeight() * 4 / 5, ObjectId.school, this);
 		school2 = new SchoolFish(dm.getWidth() * 1.2, dm.getHeight() * 3.6 / 5, ObjectId.school, this);
 		school3 = new SchoolFish(dm.getWidth() * 1.5, dm.getHeight() * 3.2 / 5, ObjectId.school, this);
-		gfish = new GuardianFish(dm.getWidth() * 1.517, dm.getHeight(), ObjectId.guardian, this);
+		gfish = new GuardianFish(dm.getWidth() * 1.517, dm.getHeight(), ObjectId.guardian, this, images);
 
 		trashBin = new WasteBin(dm.getWidth() * .84 - 128, dm.getHeight() * 3 / 5 - 64, ObjectId.wasteBin, 0, images,
 				this);

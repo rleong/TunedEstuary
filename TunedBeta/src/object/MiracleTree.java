@@ -79,9 +79,11 @@ public class MiracleTree extends GameObject{
 
 	@Override
 	public void render(Graphics g) {
-//		g.drawImage(images.getHornwort(stage),(int)x-16, (int)y+32, game);
+		g.drawImage(images.getWaterStarGrass(stage),(int)x-16, (int)y+32, game);
 		g.setColor(Color.red);
 		g.fillRect((int)x, (int)y, 32, 5);
+		g.setColor(Color.BLACK);
+		g.drawString("Water Stargrass", (int) x - 8, (int) y+108); 
 	}
 
 	@Override

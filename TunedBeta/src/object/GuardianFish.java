@@ -9,6 +9,7 @@ import java.util.Random;
 import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
+import gfx.Images;
 import window.Handler;
 
 public class GuardianFish extends GameObject {
@@ -17,15 +18,17 @@ public class GuardianFish extends GameObject {
 	boolean chasing;
 	MiracleTree mt;
 	boolean firstTime=true;
+	Images images;
 
-	public GuardianFish(double x, double y, ObjectId id, Game game) {
+	public GuardianFish(double x, double y, ObjectId id, Game game, Images images) {
 		super(x, y, id, game);
 		damage = 5;
 		this.game = game;
 		chasing = false;
 		velX = .5;
 		velY = .5;
-		this.mt=new MiracleTree(game.dm.getWidth()*7/4, game.dm.getHeight()*6/5-192, ObjectId.MiracleTree, game, null);
+		this.images = images;
+		this.mt=new MiracleTree(game.dm.getWidth()*7/4, game.dm.getHeight()*6/5-192, ObjectId.MiracleTree, game, images);
 	}
 
 	@Override
