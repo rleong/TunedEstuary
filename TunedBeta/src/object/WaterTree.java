@@ -90,6 +90,8 @@ public class WaterTree extends GameObject {
 		switch(type){
 		case 0:
 			g.drawImage(images.getHornwort(stage),(int)x-16, (int)y+32, game);
+			g.setColor(Color.BLACK);
+			g.drawString("Hornwort", (int) x - 8, (int) y+108); 
 			break;
 		case 1:
 			g.setColor(Color.white);
