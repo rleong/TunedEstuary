@@ -31,11 +31,14 @@ public class Runoff extends GameObject {
 	 * @param game - game it is in
 	 */
 	public Runoff(double x, double y, Dimension dm, ObjectId id, int type, Game game) {
-		super(x, y, id, game);
-		if (type == 0 || type == 1 || type == 2) {
+		super(x, y-64, id, game);
+		if (type == 0 || type == 1) {
 			setVelX(1.2);
 		} else if (type == 3) {
 			setVelX(.5);
+		}
+		else if(type==2){
+			setVelX(2);
 		}
 		this.type = type;
 		this.dm = dm;
@@ -113,7 +116,10 @@ public class Runoff extends GameObject {
 			if (temp.getId() == ObjectId.landSurface) {
 				if (getBounds().intersects(temp.getBounds())) {
 					falling = false;
-					velY = 0;
+					if(type==1){
+						setVelY(-3);
+						falling=true;
+					}
 					if (type == 3) {
 						setY(temp.getY() - 100);
 					} else {
@@ -126,7 +132,7 @@ public class Runoff extends GameObject {
 			if (temp.getId() == ObjectId.sand) {
 				if (getBounds().intersects(temp.getBounds())) {
 					falling = false;
-					velY = 0;
+					
 					setY(temp.getY() - 32);
 				} else {
 					falling = true;

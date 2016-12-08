@@ -159,6 +159,7 @@ public class Critter extends GameObject {
 		// Character Status
 		if (invulnerable) {
 			flicker++;
+			flicker=flicker%10;
 		} else {
 			flicker = 0;
 		}
@@ -192,8 +193,8 @@ public class Critter extends GameObject {
 		movementFrameNum2 = (movementFrameNum2 + 1) % images.getSwimFrames();
 		movementFrameNum3 = (movementFrameNum3 + 1) % images.getInteractFrames();
 
-		// Character Flickering & Normal 
-		if (flicker == 0 || flicker % 10 == 0) {
+		// Character Flickering & Normal
+		if (flicker == 0) {
 			switch (character) {
 			case 0:
 				switch (currentAnimation) {
@@ -787,7 +788,7 @@ public class Critter extends GameObject {
 					waste.canAttack = false;
 				}
 				if (getBodyBounds().intersects(temp.getBounds())) {
-					if (waste.canAttack && !invulnerable && waste.getType() != 2 && !waste.checkDeath()) {
+					if(!invulnerable && ! waste.isDead){
 						invulnerable = true;
 						clockInvincible = new Timer(3000, listener);
 						clockInvincible.start();
@@ -803,6 +804,33 @@ public class Critter extends GameObject {
 							break;
 						}
 					}
+					
+					
+					
+					
+//					if(invulnerable || waste.getType()==2|| waste.isDead){
+//						return;
+//					}
+//					else{
+//						invulnerable = true;
+//						clockInvincible = new Timer(3000, listener);
+//						clockInvincible.start();
+//						switch (character) {
+//						case 0:
+//							health0 -= 5;
+//							break;
+//						case 1:
+//							health1 -= 5;
+//							break;
+//						case 2:
+//							health2 -= 5;
+//							break;
+//						}
+//					}
+					return;
+					
+					
+					
 				}
 			}
 			if (temp.getId() == ObjectId.guardian) {

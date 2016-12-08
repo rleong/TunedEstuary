@@ -86,7 +86,6 @@ public class Waste extends GameObject {
 	 * when the health is equal to 0
 	 */
 	public void dead() {
-		if (health <= 0) {
 			switch (type) {
 			case 0: // TRASH
 				setVelX((trashBin.getX() - x) / 50);
@@ -105,7 +104,7 @@ public class Waste extends GameObject {
 			}
 			canAttack = false;
 			isDead = true;
-		}
+		
 	}
 
 	/**
@@ -126,43 +125,10 @@ public class Waste extends GameObject {
 	 */
 	@Override
 	public void tick(ArrayList<GameObject> object) {
-		if (!isTrapped) {
 			x += velX;
 			y += velY;
-		} else {
-			bubbleCollide();
-		}
-
-		if (!isDead)
-			collision(object);
-		else {
-			velY += gravity * 10;
-			switch (type) {
-			case 0: // TRASH
-				if (x >= trashBin.getX() && x <= trashBin.getX() + 32) {
-					velX = 0;
-					x = trashBin.getX()+16;
-					// System.out.println("Success" + x + " " +
-					// trashBin.getX());
-				}
-				break;
-			case 1: // RECYCLE
-				if (x >= recycleBin.getX() && x <= recycleBin.getX() + 32) {
-					velX = 0;
-					x = recycleBin.getX()+16;
-					// System.out.println("Success" + x + " " +
-					// recycleBin.getX());
-				}
-				break;
-			case 2: // COMPOST
-				break;
-			default: // ERROR
-				System.out.println("SOMETHING WENT WRONG YO");
-				break;
-			}
-		}
-		
 		if(isTrapped){
+			bubbleCollide();
 			if(bubble.getPop()){
 				isTrapped = false;
 				//x=recycleBin.getX();
@@ -170,6 +136,10 @@ public class Waste extends GameObject {
 				dead();
 			}
 		}
+
+		if (!isDead)
+			collision(object);
+		
 	}
 
 	/**

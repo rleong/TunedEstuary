@@ -81,6 +81,7 @@ public class GuardianFish extends GameObject {
 	 */
 	@Override
 	public void render(Graphics g) {
+
 		// g.setColor(Color.RED);
 		// g.fillRect((int) game.dm.getWidth() * 1517 / 1000, (int)
 		// game.dm.getHeight() * 73 / 100, 960, 420);
@@ -88,6 +89,7 @@ public class GuardianFish extends GameObject {
 		// g.fillRect((int) x, (int) y, 64, 32);
 
 		g.drawImage(images.getGuardianFish(stage), (int) x, (int) y, game);
+
 
 	}
 
@@ -107,7 +109,7 @@ public class GuardianFish extends GameObject {
 	 * @return guard bounds
 	 */
 	public Rectangle getGuardBounds() {
-		return new Rectangle((int) game.dm.getWidth() * 1517 / 1000, (int) game.dm.getHeight() * 73 / 100, 960, 420);
+		return new Rectangle((int) game.dm.getWidth() * 3/2+64, (int) game.dm.getHeight()*3/5, (int)game.dm.getWidth()/2,(int)game.dm.getHeight());
 
 	}
 

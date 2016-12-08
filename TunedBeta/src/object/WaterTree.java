@@ -53,19 +53,16 @@ public class WaterTree extends GameObject {
 		this.type = type;
 		this.images = images;
 	}
-	// public void change(){
-	// type+=1;
-	// type=type%2;
-	// }
 
 	/**
 	 * Method that drops three compost if the player attacks the tree and calls
 	 * the dead function
 	 */
-	public void chopDown() {
-		game.handler.addObject(new Compost(x - 64, y - 128, ObjectId.compost1, game, type, images));
-		game.handler.addObject(new Compost(x, y - 128, ObjectId.compost1, game, type, images));
-		game.handler.addObject(new Compost(x + 64, y - 128, ObjectId.compost1, game, type, images));
+		public void chopDown(){
+		game.handler.addObject(new Compost(x,y-32,ObjectId.compost1, game, type, images));
+		game.handler.addObject(new Compost(x,y-32,ObjectId.compost1, game, type, images));
+		game.handler.addObject(new Compost(x,y-32,ObjectId.compost1, game, type, images));
+
 		game.handler.object.remove(this);
 		return;
 	}

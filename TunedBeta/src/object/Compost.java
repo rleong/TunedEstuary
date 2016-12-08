@@ -17,6 +17,7 @@ public class Compost extends GameObject {
 	Images images;
 	Random random = new Random();
 	int imageType;
+	private int dir;
 	
 	/**
 	 * Constructor that constructs compost objects. This object is drop by the 
@@ -35,6 +36,30 @@ public class Compost extends GameObject {
 		this.type=type;
 		this.images = images;
 		imageType = random.nextInt(2);
+		Random random = new Random();
+		dir=random.nextInt(100)%5;
+		switch(dir){
+		case 0:
+			setVelX(-1);
+			setVelY(-2);
+			break;
+		case 1:
+			setVelX(1);
+			setVelY(-3);
+			break;
+		case 2:
+			setVelX(2);
+			setVelY(-4);
+			break;
+		case 3:
+			setVelX(-2);
+			setVelY(-1);
+			break;
+		default:
+			setVelX(0);
+			setVelY(-0.5);
+			break;
+		}
 	}
 
 	/**
@@ -48,6 +73,12 @@ public class Compost extends GameObject {
 	public void tick(ArrayList<GameObject> object) {
 		// TODO Auto-generated method stub
 		x+=velX;
+		if(x<game.dm.getWidth()*5/6){
+			velX*=-1;
+		}
+		if(x>game.dm.getWidth()*3/2-35){
+			velX*=-1;
+		}
 		y+=velY;
 		if(falling)
 			velY+=gravity;
@@ -67,6 +98,8 @@ public class Compost extends GameObject {
 				if(getBounds().intersects(temp.getBounds())){
 					falling=false;
 					setVelY(0);
+					setVelX(0);
+					return;
 				}
 			}
 		}
