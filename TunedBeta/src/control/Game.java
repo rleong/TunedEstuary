@@ -425,7 +425,10 @@ public class Game extends Canvas implements Runnable {
 	}
 	};
 		
-
+	/**
+	 * Main class that starts the game 
+	 * @param args
+	 */
 	public static void main(String args[]) {
 		Game game = new Game();
 		new Window(dm, "Estuary", game);
