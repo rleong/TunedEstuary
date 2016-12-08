@@ -76,6 +76,9 @@ public class Critter extends GameObject {
 
 	// Debugging
 	boolean debugging = false;
+	
+	WasteBin wasteBin;
+	WasteBin recycleBin;
 
 	/**
 	 * Constructor the constructs a critter object. This critter is what the
@@ -102,7 +105,7 @@ public class Critter extends GameObject {
 	 *            - images of the objects
 	 */
 	public Critter(double x, double y, ObjectId id, boolean xdir, boolean ydir, Dimension dm, Inventory inventory,
-			Game game, Images images) {
+			Game game, Images images, WasteBin wastebin, WasteBin recyclebin) {
 		// Basics
 		super(x, y, id, game);
 		this.xdir = xdir;
@@ -123,6 +126,9 @@ public class Critter extends GameObject {
 
 		// GFX & Animations
 		this.images = images;
+		
+		wasteBin = wastebin;
+		recycleBin = recyclebin;
 	}
 
 	/**
@@ -434,18 +440,7 @@ public class Critter extends GameObject {
 	public void drawBuildOptions(Graphics g) {
 		
 		
-		g.drawImage(images.getMenuBar(), buildXLocation - 32, buildYLocation - 26, game);
-
-		g.drawImage(images.getGabionBuildIcon(), buildXLocation, buildYLocation, game);
-
-		g.drawImage(images.getPlant1(2), buildXLocation + 64 + 32, buildYLocation, game);
-
-		g.drawImage(images.getPlant2(2), buildXLocation + 64 + 32 + 64 + 32, buildYLocation, game);
-
-		g.drawImage(images.getPlant3(2), buildXLocation + 64 + 32 + 64 + 32 + 64 + 32, buildYLocation, game);
-
-		g.setColor(Color.GREEN);
-		g.fillRect(buildXLocation + 64 + 32 + 64 + 32 + 64 + 32 + 64 + 32, buildYLocation, 64, 64);
+		g.drawImage(images.getMenuBar(), buildXLocation - 32, buildYLocation - 90, game);
 
 	}
 
@@ -677,6 +672,17 @@ public class Critter extends GameObject {
 	 * @param object
 	 *            - list of game objects
 	 */
+	
+	public void setTrash(){
+		if(wasteBin.highlight){
+			wasteBin.highlight = false;
+			recycleBin.highlight = true;
+		}
+		if(recycleBin.highlight){
+			recycleBin.highlight = false;
+			wasteBin.highlight = true;
+		}
+	}
 	public void attack(ArrayList<GameObject> object) {
 		for (int i = 0; i < object.size(); i++) {
 			GameObject temp = object.get(i);

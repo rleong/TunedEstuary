@@ -22,7 +22,7 @@ import window.Handler;
 public class Game3Timer extends GameObject {
 	private int mintime;//minute time
 	private int sectime;//seconds remaining
-	private int mstime;//milliseconds remaining
+	private int mstime;//milliseconds remaining	
 	private int g;
 	public static Timer clock1;//clock
 	//initializer to 1:30 seconds in game  
@@ -35,8 +35,8 @@ public class Game3Timer extends GameObject {
 	 */
 	public Game3Timer(double x, double y, ObjectId id, Game game, int g) {
 		super(x, y, id, game);
-		mintime = 0;
-		sectime = 50;
+		mintime = 1;
+		sectime = 30;
 		mstime = 0 ;
 		this.g = g;
 		clock1 = new Timer(100, l1);//calls listener l1 every millisecond

@@ -16,12 +16,13 @@ public class WasteBin extends GameObject {
 	int type = 0;
 	Images images;
 	Game gm;
+	boolean highlight;
 
-	public WasteBin(double x, double y, ObjectId id, int type, Images images, Game game) {
+	public WasteBin(double x, double y, ObjectId id, int type, Images images, Game game, boolean highlighting) {
 		super(x, y, id, game);
 		this.type = type;
 		this.images = images;
-		
+		highlight = highlighting;
 	}
 
 	@Override
@@ -40,6 +41,8 @@ public class WasteBin extends GameObject {
 			System.out.println("Something went wrong you baffoon!");
 		}
 		
+//		if(highlight)
+//			g.drawImage(images.getArrow(), (int) x, (int) y-64, gm);
 
 	}
 
@@ -65,6 +68,13 @@ public class WasteBin extends GameObject {
 	public ArrayList<GameObject> testCollision(ArrayList<GameObject> test) {
 		collision(test);
 		return test;
+	}
+	
+	public void setHighlight(){
+		if (highlight)
+			highlight = false;
+		else
+			highlight = true;
 	}
 
 

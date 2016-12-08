@@ -131,13 +131,13 @@ public class Game extends Canvas implements Runnable {
 		gfish = new GuardianFish(dm.getWidth() * 1.517, dm.getHeight(), ObjectId.guardian, this, images);
 
 		trashBin = new WasteBin(dm.getWidth() * .84 - 128, dm.getHeight() * 3 / 5 - 64, ObjectId.wasteBin, 0, images,
-				this);
+				this, true);
 		recyclebin = new WasteBin(dm.getWidth() * .84 - 192, dm.getHeight() * 3 / 5 - 64, ObjectId.wasteBin, 1, images,
-				this);
+				this, false);
 
 		inventory = new Inventory(10, 10, ObjectId.inventory, this, dm);
 		critter = new Critter(32, dm.getHeight() * 3 / 5 - 32, ObjectId.critter, true, true, dm, inventory, this,
-				images);
+				images, trashBin, recyclebin);
 
 		// Game 1 Objects 
 		handler.addObject(new Boat(dmBoundaries[2], dmBoundaries[4] - 60, ObjectId.boat, this, trashBin, recyclebin,

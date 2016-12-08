@@ -31,6 +31,7 @@ public class Images {
 
 	// Miscellaneous
 	BufferedImage[] wasteBins;
+	BufferedImage wasteBins2;
 	
 	// Barriers (Plant 1 = Panic Grass, Plant 2 = Little Bluestem, Plant 3 = Indiangrass)
 	BufferedImage[] panicGrass;
@@ -46,6 +47,7 @@ public class Images {
 	BufferedImage plantSeed;
 	BufferedImage[][] habitat;
 	BufferedImage wave;
+	BufferedImage arrow;
 	
 	// Tiles
 	BufferedImage[] skyTile;
@@ -55,6 +57,14 @@ public class Images {
 
 	// Test
 	BufferedImage testImg;
+	
+	// Tutorial
+	BufferedImage tutorialR;
+	BufferedImage tutorialRunoff;
+	BufferedImage tutorialSpace;
+	BufferedImage tutorialU;
+	BufferedImage tutorialStart;
+	BufferedImage tutorialCompost;
 
 	// Entities
 	final int walkFrameCount = 18;
@@ -71,6 +81,15 @@ public class Images {
 	 * Constructor that creates a images object which initializes all the attributes to have animations.  
 	 */
 	public Images() {
+		
+		// Tutorial
+		tutorialR = createImage("tutorial/TutorialR.png");
+		tutorialRunoff = createImage("tutorial/TutorialRunoff.png");
+		tutorialU = createImage("tutorial/TutorialU.png");
+		tutorialSpace = createImage("tutorial/TutorialSPACE.png");
+		tutorialStart = createImage("tutorial/TutorialStart.png");
+		tutorialCompost = createImage("tutorial/TutorialCompost.png");
+		arrow = createImage("misc/Arrow.png");
 
 		// Action Animations
 		wateringPlant = new BufferedImage[actionFrameCount];
@@ -334,10 +353,13 @@ public class Images {
 		testImg = createImage("test/Test.png");
 	}
 	
-//	private BufferedImage createCritterImage(){
+public BufferedImage getArrow() {
+		return arrow;
+	}
+
+	//	private BufferedImage createCritterImage(){
 //		return null;
 //	}
-
 	// Creates a Single Image
 	/**
 	 * Method that gets an image from a file
@@ -742,5 +764,30 @@ public class Images {
 	public int getInteractFrames() {
 		return 8;
 	}
+	
+	public BufferedImage getTutorialR() {
+		return tutorialR;
+	}
+
+	public BufferedImage getTutorialRunoff() {
+		return tutorialRunoff;
+	}
+
+	public BufferedImage getTutorialSpace() {
+		return tutorialSpace;
+	}
+
+	public BufferedImage getTutorialU() {
+		return tutorialU;
+	}
+	
+	public BufferedImage getTutorialStart() {
+		return tutorialStart;
+	}
+	
+	public BufferedImage getTutorialCompost() {
+		return tutorialCompost;
+	}
+
 
 }

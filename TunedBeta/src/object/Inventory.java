@@ -164,8 +164,8 @@ public class Inventory extends GameObject {
 		if (critter.getX() <= dm.getWidth() * .84 - 64 && !error) {
 			switch (type) {
 			case 0:
-				critter.plantGabion();
-				critter.setBuildAnimation(false);
+//				critter.plantGabion();
+//				critter.setBuildAnimation(false);
 				break;
 			case 1:
 				critter.planT(0);

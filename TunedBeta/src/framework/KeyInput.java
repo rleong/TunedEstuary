@@ -165,6 +165,10 @@ public class KeyInput extends KeyAdapter {
 					if (key == KeyEvent.VK_M) {
 						t.setDebug();
 					}
+					if (key == KeyEvent.VK_R) {
+						//inv.toggleMenu();
+						t.setTrash();
+					}
 				}
 			}
 			for (int i = 0; i < handler.object.size(); i++) {
@@ -173,9 +177,7 @@ public class KeyInput extends KeyAdapter {
 				if (temp.getId() == ObjectId.inventory) {
 					Inventory inv = (Inventory) temp;
 					// Menu Toggle
-					if (key == KeyEvent.VK_R) {
-						inv.toggleMenu();
-					}
+					
 					if (key == KeyEvent.VK_Y) {
 						inv.buildBarrier(gm, 0);
 					}

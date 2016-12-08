@@ -17,7 +17,7 @@ import object.Waves;
 
 public class WasteBinTest {
 
-	WasteBin tester = new WasteBin(50.0,50.0,ObjectId.wasteBin,0, null, null);
+	WasteBin tester = new WasteBin(50.0,50.0,ObjectId.wasteBin,0, null, null, false);
 	
 	@Test
 	public void getBoundsTest(){

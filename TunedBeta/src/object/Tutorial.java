@@ -22,10 +22,12 @@ public class Tutorial extends GameObject {
 	WasteBin wb1;
 	WasteBin wb2;
 	boolean lock = false;
+	Images img;
 	public Tutorial(double x, double y, ObjectId id, Game game,WasteBin wb1,WasteBin wb2, Inventory ivent, Images img) {
 		super(x, y, id, game);
 		this.wb1=wb1;
 		this.wb2=wb2;
+		this.img = img;
 		// TODO Auto-generated constructor stub
 		rof=new Runoff(0, game.dm.getHeight() * 3 / 5 - 32, game.dm, ObjectId.runOff, 0, game, img);
 		w1  = new Waste(128, game.dm.getHeight() * 3 / 5 -32, ObjectId.waste, game, wb1, wb2, ivent, 0, img);
@@ -89,7 +91,16 @@ public class Tutorial extends GameObject {
 	@Override
 	public void render(Graphics g) {
 		// TODO Auto-generated method stub
-		
+		if(!lock){
+			g.drawImage(img.getTutorialSpace(), 128, (int) game.dm.getHeight() * 3 / 5 -162, game);
+			//g.drawImage(img.getTutorialR(), 128+100, (int) game.dm.getHeight() * 3 / 5 -162, game);
+			g.drawImage(img.getTutorialU(), 448-35, (int) game.dm.getHeight() * 3 / 5-216, game);
+			g.drawImage(img.getTutorialCompost(), 448+135, (int) game.dm.getHeight() * 3 / 5-216, game);
+		}
+		if(lock){
+			g.drawImage(img.getTutorialRunoff(), 448-135, (int) game.dm.getHeight() * 3 / 5-216, game);
+			g.drawImage(img.getTutorialStart(), 448+135, (int) game.dm.getHeight() * 3 / 5-216, game);
+		}
 	}
 
 	@Override
