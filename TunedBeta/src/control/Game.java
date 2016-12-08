@@ -105,7 +105,7 @@ public class Game extends Canvas implements Runnable {
 		dmBoundaries = handler.spawnLocations(dm);
 		cam = new Camera(0, 0, dm);
 		g1t=new Game3Timer((int)(dm.getWidth() - dm.getWidth()/4),(int)(dm.getHeight()/8),ObjectId.game3timer,this,1);
-		habitat = new Habitat(dmBoundaries[2] + 16, dmBoundaries[1] - 96 - 64, ObjectId.habitat, this, dm);
+		habitat = new Habitat(dmBoundaries[2] + 16, dmBoundaries[1] - 96 - 64, ObjectId.habitat, this, dm, images);
 		barrier = new Barrier(dm.getWidth()*5/6-64,dm.getHeight()*3/5-64,ObjectId.barrier, this, images);
 		// 0 1 2 3 4
 		// Width, Height, Water Start Width, Water Bottom Height, Water Surface

@@ -34,7 +34,8 @@ public class Images {
 	BufferedImage[] waterStarGrass;
 	BufferedImage[] hornWort;
 	BufferedImage plantSeed;
-
+	BufferedImage[][] habitat;
+	
 	// Tiles
 	BufferedImage[] skyTile;
 
@@ -106,6 +107,13 @@ public class Images {
 			hornWort[i] = img.getSubimage(64 * i, 0, 64, 64);
 		}
 		plantSeed = createImage("environment/Seed.png");
+		habitat = new BufferedImage[3][4];
+		for (int i = 0; i < 4; i++) {  // i = horizontal frames, j = vertical frames
+			for (int j = 0; j < 3; j++){
+				BufferedImage img = createImage("environment/Habitat.png");
+				habitat[j][i] = img.getSubimage(64 * i, 64 * j, 64, 64);
+			}
+		}
 		
 		// Items 
 		hazardWaste = new BufferedImage[4][4];
@@ -340,6 +348,10 @@ public class Images {
 	
 	public BufferedImage getSeed() {
 		return plantSeed;
+	}
+	
+	public BufferedImage getHabitat(int i, int j) {
+		return habitat[i][j];
 	}
 	
 	// Item Getters
