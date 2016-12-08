@@ -68,7 +68,7 @@ public class Game3Timer extends GameObject {
 		if(g == 3){
 			if(mintime == 0 && sectime == 0 && mstime == 0){
 				clock1.stop();
-				System.out.println("Win");
+				//System.out.println("Win");
 				win();
 			}
 			//if 20 seconds are left, set game to hard mode
@@ -80,7 +80,8 @@ public class Game3Timer extends GameObject {
 		else if(g == 1){
 			if(mintime == 0 && sectime == 0 && mstime == 0){
 				clock1.stop();
-				System.out.println("Win");
+				
+				//System.out.println("Win");
 				win();
 			}
 			
