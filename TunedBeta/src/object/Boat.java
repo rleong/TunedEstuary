@@ -18,6 +18,7 @@ import window.Handler;
 
 public class Boat extends GameObject {
 
+	// Attributes
 	private int direction = 1;
 	private double initialY = 0;
 	private WasteBin trashBin;
@@ -38,11 +39,38 @@ public class Boat extends GameObject {
 	// Swing Timer
 	Timer clock;
 	Timer clock2;
-	
+
 	Images images;
 
-	public Boat(double x, double y, ObjectId id, Game game, WasteBin trashBin, WasteBin recyclebin,
-			Inventory counter, double boundary1, double boundary2, boolean g3, Images images) {
+	/**
+	 * Constructor that constructs a boat which will drop trash,recycle, and
+	 * compost on the habitat.
+	 * 
+	 * @param x
+	 *            - x position of the boat
+	 * @param y
+	 *            - y position of the boat
+	 * @param id
+	 *            - object id of object
+	 * @param game
+	 *            - game object
+	 * @param trashBin
+	 *            - trash bin object for trash
+	 * @param recyclebin
+	 *            - recycle bin object for recycle
+	 * @param counter
+	 *            - compost counter
+	 * @param boundary1
+	 *            - first boundary where the boat can't go past
+	 * @param boundary2
+	 *            - second boundary where the boat can't go past
+	 * @param g3
+	 *            - boolean if game 3
+	 * @param images
+	 *            - image of the boat
+	 */
+	public Boat(double x, double y, ObjectId id, Game game, WasteBin trashBin, WasteBin recyclebin, Inventory counter,
+			double boundary1, double boundary2, boolean g3, Images images) {
 		super(x, y, id, game);
 		initialY = y;
 		this.trashBin = trashBin;
@@ -57,7 +85,10 @@ public class Boat extends GameObject {
 		clock.start();
 		this.images = images;
 	}
-	
+
+	/**
+	 * Method that spawns waste at certain time intervals for game 1
+	 */
 	ActionListener listener = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -65,39 +96,53 @@ public class Boat extends GameObject {
 			clock.restart();
 		}
 	};
-	//called by clock2 to spawn oyster 
-		ActionListener listener2 = new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				spawnOyster();
-				clock2.restart();
-			}
-		};
+	
+	/**
+	 * Method that spawns oysters at certain time intervals for game 3
+	 */
+	ActionListener listener2 = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			spawnOyster();
+			clock2.restart();
+		}
+	};
 
+	/**
+	 * Method that changes variables of the boat per call.
+	 * 	- Adds direction to the x position which moves the boat in he x direction
+	 * 	- Adds fractions to the y direction to make the boat move up and down like in reality
+	 * 	- Starts drops starts clock 2 if you are on game 3
+	 * 	- spawns oysters 
+	 */
 	@Override
 	public void tick(ArrayList<GameObject> object) {
 		x += direction;
 		y += .25 * Math.sin(x / 25);
-		rand1 = rand.nextInt(200)+100;//sets new random value
-		if(game3 == true && count == 1){
+		rand1 = rand.nextInt(200) + 100;// sets new random value
+		if (game3 == true && count == 1) {
 			clock2.start();
 			clock.stop();
 			count = 0;
 		}
-		if(game3 == true){
-			if(oysterSpawn == rand1){
+		if (game3 == true) {
+			if (oysterSpawn == rand1) {
 				spawnOyster();
-				oysterSpawn = -300;//resets oyster spawn count
+				oysterSpawn = -300;// resets oyster spawn count
 			}
 			oysterSpawn++;
 		}
 		collide();
-		
-		//spawns oyster if the count is equal to the random value
-		//increments oyster spawn count
-				
+
+		// spawns oyster if the count is equal to the random value
+		// increments oyster spawn count
+
 	}
 
+	/**
+	 * Method that check if the boat is colliding with the bounds
+	 * 
+	 */
 	public void collide() {
 		if (x + 128 >= boundary2 || x <= boundary1) {
 			direction *= -1;
@@ -105,39 +150,51 @@ public class Boat extends GameObject {
 		}
 	}
 
+	/**
+	 * Method to display images of the boat 
+	 */
 	@Override
 	public void render(Graphics g) {
 		g.setColor(Color.MAGENTA);
 		g.fillRect((int) x, (int) y, 128, 48);
 	}
 
+	/**
+	 * Returns the boundary of the boat
+	 */
 	@Override
 	public Rectangle getBounds() {
 
 		return null;
 	}
-	
-	public void removeBoat(){
+
+	/**
+	 * Method to remove the boat from the game
+	 */
+	public void removeBoat() {
 		clock.stop();
 	}
 
+	/**
+	 * Method that will create trash , recycle, or compost into the game
+	 */
 	public void spawnWaste() {
 		amount = rand.nextInt(4);
-		//System.out.println(amount);
+		// System.out.println(amount);
 		switch (amount) {
 		case 0:
-			//Nothing
+			// Nothing
 			break;
 		case 1:
-			//1 Trash
+			// 1 Trash
 			game.handler.addObject(new Waste(x, y, ObjectId.waste, game, trashBin, recyclebin, counter, 0, images));
 			break;
 		case 2:
-			//1 Recycle
+			// 1 Recycle
 			game.handler.addObject(new Waste(x, y, ObjectId.waste, game, trashBin, recyclebin, counter, 1, images));
 			break;
 		case 3:
-			//1 Compost
+			// 1 Compost
 			game.handler.addObject(new Waste(x, y, ObjectId.waste, game, trashBin, recyclebin, counter, 2, images));
 			break;
 		default:
@@ -145,24 +202,31 @@ public class Boat extends GameObject {
 			break;
 		}
 	}
-	//spawns an oyster
-		public void spawnOyster() {
-			//amount = rand.nextInt(2);
-			//System.out.println(amount);
-			//switch (amount) {
-			//case 0:
-				//Nothing
-				//break;
-			//case 1:
-				//1 Oyster
-			game.handler.addObject(new Oyster(x, y, ObjectId.oyster, game));
-				//break;
-		
-			//}
-		
-		}
-		public void Game3(){
-			game3 = true;
-		}
+
+	/**
+	 * Method that creates oysters from the boat into the game
+	 */
+	public void spawnOyster() {
+		// amount = rand.nextInt(2);
+		// System.out.println(amount);
+		// switch (amount) {
+		// case 0:
+		// Nothing
+		// break;
+		// case 1:
+		// 1 Oyster
+		game.handler.addObject(new Oyster(x, y, ObjectId.oyster, game));
+		// break;
+
+		// }
+
+	}
+
+	/**
+	 * Method that makes game 3 equal to true
+	 */
+	public void Game3() {
+		game3 = true;
+	}
 
 }
