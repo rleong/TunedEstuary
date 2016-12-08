@@ -51,10 +51,10 @@ public class Compost extends GameObject {
 	public void render(Graphics g) {
 		switch(type){
 		case 0:
-			g.drawImage(images.getWaste(0, imageType), (int) x, (int) y, game);
+			g.drawImage(images.getWaste(2, imageType), (int) x, (int) y, game);
 			break;
 		case 1:
-			g.drawImage(images.getWaste(0, 2), (int) x, (int) y, game);
+			g.drawImage(images.getWaste(2, 2), (int) x, (int) y, game);
 			break;
 			
 		}

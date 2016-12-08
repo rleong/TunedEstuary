@@ -40,6 +40,8 @@ public class Images {
 	// Tiles
 	BufferedImage[] skyTile;
 	BufferedImage[] sandTile;
+	BufferedImage[] grassTile;
+	BufferedImage[][] waterTile;
 
 	// Test
 	BufferedImage testImg;
@@ -267,6 +269,18 @@ public class Images {
 			BufferedImage img = createImage("tiles/SandTiles.png");
 			sandTile[i] = img.getSubimage(32 * i, 0, 32, 32);
 		}
+		grassTile = new BufferedImage[4];
+		for (int i = 0; i < 4; i++) {
+			BufferedImage img = createImage("tiles/GrassTiles.png");
+			grassTile[i] = img.getSubimage(32 * i, 0, 32, 32);
+		}
+		waterTile = new BufferedImage[5][3];
+		for (int i = 0; i < 3; i++) {  // i = horizontal frames, j = vertical frames
+			for (int j = 0; j < 5; j++){
+				BufferedImage img = createImage("tiles/WaterTiles.png");
+				waterTile[j][i] = img.getSubimage(32 * i, 32 * j, 32, 32);
+			}
+		}
 
 		// Icons
 		gabionBuildIcon = createImage("icons/BuildGabionIcon.png");
@@ -367,6 +381,14 @@ public class Images {
 	
 	public BufferedImage getSandTiles(int i) {
 		return sandTile[i];
+	}
+	
+	public BufferedImage getGrassTiles(int i) {
+		return grassTile[i];
+	}
+	
+	public BufferedImage getWaterTiles(int i, int j) {
+		return waterTile[i][j];
 	}
 	
 	// Barrier Getters

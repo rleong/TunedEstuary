@@ -29,13 +29,11 @@ public class LandSurface extends GameObject {
 	@Override
 	public void render(Graphics g) {
 		if(id==ObjectId.landSurface){
-			g.drawImage(images.getSandTiles(0), (int)x, (int)y, game);
-			g.drawImage(images.getSandTiles(1), (int)x, (int)y+32, game);
-			g.drawImage(images.getSandTiles(2), (int)x, (int)y+64, game);
-			g.drawImage(images.getSandTiles(3), (int)x, (int)y+96, game);
-			g.drawImage(images.getSandTiles(4), (int)x, (int)y+128, game);
-			for(int i = (int) y + 160; i < game.dm.getHeight()*2; i += 32){
-				g.drawImage(images.getSandTiles(4), (int)x, (int)i, game);
+			g.drawImage(images.getGrassTiles(0), (int)x, (int)y, game);
+			g.drawImage(images.getGrassTiles(1), (int)x, (int)y+32, game);
+			g.drawImage(images.getGrassTiles(2), (int)x, (int)y+64, game);
+			for(int i = (int) y + 96; i < game.dm.getHeight()*2; i += 32){
+				g.drawImage(images.getGrassTiles(3), (int)x, (int)i, game);
 			}
 		}
 		if(id==ObjectId.seaLevel){
@@ -65,12 +63,16 @@ public class LandSurface extends GameObject {
 			
 		}
 		if(id==ObjectId.wall){
-			g.setColor(Color.gray);
-			g.fillRect((int)x, (int)y, 32, 32);
+			// Not visible
 		}
 		if(id==ObjectId.sand){
-			g.setColor(Color.ORANGE);
-			g.fillRect((int)x, (int)y, 32, 32);
+			g.drawImage(images.getSandTiles(0), (int)x, (int)y, game);
+			g.drawImage(images.getSandTiles(1), (int)x, (int)y+32, game);
+			g.drawImage(images.getSandTiles(2), (int)x, (int)y+64, game);
+			g.drawImage(images.getSandTiles(3), (int)x, (int)y+96, game);
+			for(int i = (int) y + 128; i < game.dm.getHeight()*2; i += 32){
+				g.drawImage(images.getSandTiles(4), (int)x, (int)i, game);
+			}
 		}
 		
 	}
