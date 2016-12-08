@@ -79,6 +79,7 @@ public class Game3Timer extends GameObject {
 		}
 		else if(g == 1){
 			if(mintime == 0 && sectime == 0 && mstime == 0){
+				g=2;
 				mstime = -1;
 				clock1.stop();
 				
