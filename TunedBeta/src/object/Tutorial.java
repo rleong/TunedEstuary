@@ -18,7 +18,7 @@ public class Tutorial extends GameObject {
 	Compost cp4;
 	Waste w1;
 	Waste w2;
-
+	WaterTree wt;
 	WasteBin wb1;
 	WasteBin wb2;
 	boolean lock = false;
@@ -34,13 +34,15 @@ public class Tutorial extends GameObject {
 		cp2 = new Compost(320, game.dm.getHeight() * 3 / 5-32, ObjectId.compost1, game, 0, img);
 		cp3 = new Compost(384, game.dm.getHeight() * 3 / 5-32, ObjectId.compost1, game, 0, img);
 		cp4 = new Compost(448, game.dm.getHeight() * 3 / 5-32, ObjectId.compost1, game, 0, img);
-		
-		game.handler.addObject(cp1);
-		game.handler.addObject(cp2);
-		game.handler.addObject(cp3);
-		game.handler.addObject(cp4);
+		wt = new WaterTree(448, game.dm.getHeight() * 3 / 5-96, ObjectId.waterTree, 0, game, img);
+//		game.handler.addObject(cp1);
+//		game.handler.addObject(cp2);
+//		game.handler.addObject(cp3);
+//		game.handler.addObject(cp4);
 		game.handler.addObject(w1);
 		game.handler.addObject(w2);
+		game.handler.addObject(wt);
+		wt.setFalling(false);
 		
 		
 	}
