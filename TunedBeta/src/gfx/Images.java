@@ -386,14 +386,33 @@ public class Images {
 		return skyTile[i];
 	}
 	
+	/**
+	 * Method that returns the sand tiles 
+	 * 
+	 * @param i - image at ith position in list
+	 * @return sand image
+	 */
 	public BufferedImage getSandTiles(int i) {
 		return sandTile[i];
 	}
 	
+	/**
+	 * Method that returns the grass tiles 
+	 * 
+	 * @param i - image at ith position in list
+	 * @return grass image
+	 */
 	public BufferedImage getGrassTiles(int i) {
 		return grassTile[i];
 	}
 	
+	/**
+	 * Method that returns the water tiles 
+	 * 
+	 * @param i - image at ith position in list
+	 * @param j - image at jth position in list
+	 * @return water image
+	 */
 	public BufferedImage getWaterTiles(int i, int j) {
 		return waterTile[i][j];
 	}
@@ -498,6 +517,10 @@ public class Images {
 		return 18;
 	}
 
+	/**
+	 * Method that used to get the number of frames per animation of interactions 
+	 * @return frame count 
+	 */
 	public int getInteractFrames() {
 		return 8;
 	}
