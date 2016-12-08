@@ -29,6 +29,7 @@ public class Images {
 	
 	// Environmental
 	BufferedImage[] waterStarGrass;
+	BufferedImage[] hornWort;
 
 	// Tiles
 	BufferedImage[] skyTile;
@@ -94,6 +95,11 @@ public class Images {
 		for (int i = 0; i < 3; i++) {
 			BufferedImage img = createImage("environment/WaterStarGrass.png");
 			waterStarGrass[i] = img.getSubimage(64 * i, 0, 64, 64);
+		}
+		hornWort = new BufferedImage[3];
+		for (int i = 0; i < 3; i++) {
+			BufferedImage img = createImage("environment/Hornwort.png");
+			hornWort[i] = img.getSubimage(64 * i, 0, 64, 64);
 		}
 
 		// Entities
@@ -312,6 +318,10 @@ public class Images {
 	
 	public BufferedImage getWaterStarGrass(int i) {
 		return waterStarGrass[i];
+	}
+	
+	public BufferedImage getHornwort(int i) {
+		return hornWort[i];
 	}
 
 	// Entity Getters
