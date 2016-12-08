@@ -114,9 +114,8 @@ public class Person extends GameObject {
 	 */
 	private void collision(ArrayList<GameObject> object) {
 		//iterate through object list
-		Iterator<GameObject> it = object.iterator();
-		for(;it.hasNext();){
-			GameObject temp = it.next();
+		for(int i=0;i<object.size();i++){
+			GameObject temp = object.get(i);
 			//if it collides with the land surface, stop falling by setting VelY to 0
 			if (temp.getId() == ObjectId.landSurface) {
 				if (getBoundsBottom().intersects(temp.getBounds())) {

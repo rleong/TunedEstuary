@@ -44,8 +44,8 @@ public class WasteBin extends GameObject {
 	}
 
 	private void collision(ArrayList<GameObject> object) {
-		for (int i = 0; i < game.handler.object.size(); i++) {
-			GameObject temp = game.handler.object.get(i);	
+		for (int i = 0; i < object.size(); i++) {
+			GameObject temp = object.get(i);	
 			if (temp.getId() == ObjectId.waste) {
 				if (getBounds().intersects(temp.getBounds()))
 					object.remove(temp);

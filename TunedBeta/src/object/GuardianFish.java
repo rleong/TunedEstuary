@@ -60,9 +60,9 @@ public class GuardianFish extends GameObject {
 	}
 
 	private void collision(ArrayList<GameObject> object) {
-		for (int i = 0; i < game.handler.object.size(); i++) {
-			GameObject temp = game.handler.object.get(i);
-			if (temp.getId() == ObjectId.critter) {
+		for (int i = 0; i < game.handler2.object.size(); i++) {
+			GameObject temp = game.handler2.object.get(i);
+			if (temp.getId()  == ObjectId.critter) {
 				if (getGuardBounds().intersects(temp.getBounds())) {
 					chasing = true;
 					if(this.x <= temp.getX()){
