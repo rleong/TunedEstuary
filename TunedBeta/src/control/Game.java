@@ -32,6 +32,7 @@ import object.RofFactory;
 import object.Rope;
 import object.SchoolFish;
 import object.Trash;
+import object.Tutorial;
 import object.WasteBin;
 import object.WaveClock;
 import object.Waves;
@@ -78,7 +79,7 @@ public class Game extends Canvas implements Runnable {
 	Game3Instructions game3inst;
 	// Game Conditions
 	public static boolean gameover = false;
-	static boolean game1 = true;
+	static boolean game1 = false;
 	public static boolean game2 = false;
 	public static boolean game3 = false;
 	Timer gameTime;
@@ -92,10 +93,14 @@ public class Game extends Canvas implements Runnable {
 	public double nW3 = 0;
 	public double nW4 = 0;
 
-	public int currency = 1000;
+	public int currency = 25;
 	KeyInput k;
 	// Camera
 	Camera cam;
+	
+	//tutorial
+	public boolean tutorial= true;
+	Tutorial tutor;
 
 	/**
 	 * Method that initializes the objects that are going to be in our game
@@ -468,10 +473,16 @@ public class Game extends Canvas implements Runnable {
 	 * happens or end when game when a certain condition is hit 
 	 */
 	ActionListener game3TimeListener = new ActionListener() {
+		private boolean tutorial;
+
 		@Override
 
 		public void actionPerformed(ActionEvent e) {
-			if (game1) {
+			if(tutorial){
+				
+			}
+			
+			else if (game1) {
 				game1 = false;
 				game2 = true;
 
@@ -494,16 +505,16 @@ public class Game extends Canvas implements Runnable {
 
 				// add game 3
 
-			} else if (game3) {
-				game3 = false;
-				gameTime.stop();
+//			} else if (game3) {
+//				game3 = false;
+//				gameTime.stop();
 
 			} else {
 				gameTime.stop();
 
 			}
-			gameTime.restart();
-			game3Create();
+//			gameTime.restart();
+//			game3Create();
 		}
 	};
 
