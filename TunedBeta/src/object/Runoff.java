@@ -102,7 +102,7 @@ public class Runoff extends GameObject {
 					game.count += 1;
 					
 					game.nWaste-=1.005;
-					game.handler.removeObject(this);
+					game.handler.object.remove(this);
 					
 					
 				}

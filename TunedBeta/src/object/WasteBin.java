@@ -44,12 +44,11 @@ public class WasteBin extends GameObject {
 	}
 
 	private void collision(LinkedList<GameObject> object) {
-		Iterator<GameObject> itr = object.iterator();
-		for (; itr.hasNext();) {
-			GameObject temp = itr.next();
+		for (int i = 0; i < game.handler.object.size(); i++) {
+			GameObject temp = game.handler.object.get(i);	
 			if (temp.getId() == ObjectId.waste) {
 				if (getBounds().intersects(temp.getBounds()))
-					itr.remove();
+					object.remove(temp);
 			}
 		}
 	}
