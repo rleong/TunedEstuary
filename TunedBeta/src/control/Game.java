@@ -173,7 +173,7 @@ public class Game extends Canvas implements Runnable {
 			delta += (now - lastTime) / ns;
 			lastTime = now;
 			while (delta >= 1) {
-				// System.out.println(temp++);
+				// System.out.println(temp++); 
 				tick();
 				updates++;
 				delta--;
