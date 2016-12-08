@@ -68,13 +68,15 @@ public class Oyster extends GameObject {
 	 */
 	private void collision(ArrayList<GameObject> object) {
 		//iterate through objects list
-		for (GameObject temp:object) {
+		for (int i=0; i<object.size();i++) {
+			GameObject temp=object.get(i);
 			//if it collides with sand, then stop falling
 			if (temp.getId() == ObjectId.sand) {
 				if (getBoundsBottom().intersects(temp.getBounds())) {
 					setY(temp.getY() - 32);
 					setVelY(0);
 				}
+				return;
 			}
 		}
 	}

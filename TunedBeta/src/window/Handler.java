@@ -68,37 +68,37 @@ public class Handler {
 		}
 	}
 	public void removeGame2(){
-		for (Iterator<GameObject> it = object.iterator(); it.hasNext();){
-			temp = it.next();
+		for (int i=0;i<object.size();i++){
+			temp = object.get(i);
 			if (temp.getId() == ObjectId.waste){
-				it.remove();
+				object.remove(temp);
 			} 
 			else if (temp.getId() == ObjectId.compost){
-				it.remove();
+				object.remove(temp);
 			}
 			else if (temp.getId() == ObjectId.runOff){
-				it.remove();
+				object.remove(temp);
 			}
 			else if (temp.getId() == ObjectId.RofFactory){
-				it.remove();
+				object.remove(temp);
 			}
 			else if (temp.getId() == ObjectId.recycle){
-				it.remove();
+				object.remove(temp);
 			}
 			else if (temp.getId() == ObjectId.trash){
-				it.remove();
+				object.remove(temp);
 			}
 			else if (temp.getId() == ObjectId.recycleBin){
-				it.remove();
+				object.remove(temp);
 			}
 			else if (temp.getId() == ObjectId.trashBin){
-				it.remove();
+				object.remove(temp);
 			}
 			else if (temp.getId() == ObjectId.waterTree){
-				it.remove();
+				object.remove(temp);
 			}
 			else if (temp.getId() == ObjectId.tree){
-				it.remove();
+				object.remove(temp);
 			}
 			
 		}

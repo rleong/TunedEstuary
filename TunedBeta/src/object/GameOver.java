@@ -52,10 +52,10 @@ public class GameOver extends GameObject {
 	 */
 	public void tick(ArrayList<GameObject> object) {
 		//removes game3 related objects
-		for(Iterator<GameObject> it = object.iterator();it.hasNext();){
-			GameObject temp = it.next();
+		for(int i=0;i<object.size();i++){
+			GameObject temp = object.get(i);
 			if(temp.getId() == ObjectId.wclock || temp.getId() == ObjectId.person || temp.getId() == ObjectId.waves)
-				it.remove();
+				object.remove(temp);
 		}
 		//exit game when count is 0 and stop timer
 		if(count == -1){

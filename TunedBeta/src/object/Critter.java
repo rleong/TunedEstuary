@@ -674,14 +674,8 @@ public class Critter extends GameObject {
 			if (temp.getId() == ObjectId.compost1) {
 				Compost comp = (Compost) temp;
 				if (getBoundsSelf().intersects(temp.getBounds())) {
-					switch (comp.type) {
-					case 0:
-						// inventory.addSmallSeed();
-						break;
-					case 1:
-						// inventory.addBigSeed();
-						break;
-					}
+					game.currency+=25;
+					System.out.println(game.currency);
 					object.remove(temp);
 				}
 			}

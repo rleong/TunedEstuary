@@ -91,7 +91,8 @@ public class Game extends Canvas implements Runnable {
 	public double nW2 = 0;
 	public double nW3 = 0;
 	public double nW4 = 0;
-
+	
+	public int currency=0;
 	KeyInput k;
 	// Camera
 	Camera cam;
