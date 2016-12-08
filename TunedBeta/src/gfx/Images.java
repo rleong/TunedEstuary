@@ -30,6 +30,7 @@ public class Images {
 	// Environmental
 	BufferedImage[] waterStarGrass;
 	BufferedImage[] hornWort;
+	BufferedImage plantSeed;
 
 	// Tiles
 	BufferedImage[] skyTile;
@@ -101,6 +102,7 @@ public class Images {
 			BufferedImage img = createImage("environment/Hornwort.png");
 			hornWort[i] = img.getSubimage(64 * i, 0, 64, 64);
 		}
+		plantSeed = createImage("environment/Seed.png");
 
 		// Entities
 		// There are no methods for generating these sprites, only because
@@ -322,6 +324,10 @@ public class Images {
 	
 	public BufferedImage getHornwort(int i) {
 		return hornWort[i];
+	}
+	
+	public BufferedImage getSeed() {
+		return plantSeed;
 	}
 
 	// Entity Getters

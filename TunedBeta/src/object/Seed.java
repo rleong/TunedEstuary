@@ -77,17 +77,7 @@ public class Seed extends GameObject {
 
 	@Override
 	public void render(Graphics g) {
-		switch(type){
-		case 0:
-			g.setColor(Color.green);
-			break;
-		case 1:
-			g.setColor(Color.PINK);
-			break;
-		}
-		g.fillOval((int)x, (int)y, 32, 32);
-		
-
+		g.drawImage(images.getSeed(), (int)x, (int)y, game);
 	}
 
 	@Override
