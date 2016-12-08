@@ -103,7 +103,7 @@ public class Game extends Canvas implements Runnable {
 		handler = new Handler(this);
 		handler2 = new Handler(this);
 		dmBoundaries = handler.spawnLocations(dm);
-		cam = new Camera(0, 0, dm);
+		cam = new Camera(0,0, dm);
 		g1t=new Game3Timer((int)(dm.getWidth() - dm.getWidth()/4),(int)(dm.getHeight()/8),ObjectId.game3timer,this,1);
 		habitat = new Habitat(dmBoundaries[2] + 16, dmBoundaries[1] - 96 - 64, ObjectId.habitat, this, dm);
 		barrier = new Barrier(dm.getWidth()*5/6-64,dm.getHeight()*3/5-64,ObjectId.barrier, this, images);
@@ -293,10 +293,11 @@ public class Game extends Canvas implements Runnable {
 				g.drawImage(images.getSkyTiles(3), i, j, this);
 			}
 		}
-
+		
 		g2d.translate(cam.getX(), cam.getY());
 		handler.render(g);
 		handler2.render(g);
+		
 		g2d.translate(-cam.getX(), -cam.getY());
 		//
 		g.dispose();
@@ -401,9 +402,7 @@ public class Game extends Canvas implements Runnable {
 				
 			} else if (game2) {
 				game2 = false;
-				if(g2stage>7){
-					game3 = true;
-				}
+				
 				// Remove Game 2 Objects
 				handler.removeGame2();
 				

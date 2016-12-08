@@ -106,6 +106,12 @@ public class Critter extends GameObject {
 
 		// Character Physics
 		x += velX;
+		if(x<10){
+			x=10;
+		}
+		if(x>dm.getWidth()*2-10){
+			x=dm.getWidth()*2-10;
+		}
 		if (!game.isPause())
 			y += velY;
 
