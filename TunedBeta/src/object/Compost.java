@@ -7,13 +7,17 @@ import java.util.ArrayList;
 import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
+import gfx.Images;
 import window.Handler;
 
 public class Compost extends GameObject {
 	int type;
-	public Compost(double x, double y, ObjectId id, Game game, int type) {
+	Images images;
+	
+	public Compost(double x, double y, ObjectId id, Game game, int type, Images images) {
 		super(x, y, id, game);
 		this.type=type;
+		this.images = images;
 	}
 
 	@Override
