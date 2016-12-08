@@ -55,7 +55,7 @@ public class Game extends Canvas implements Runnable {
 	boolean pause = false;
 	Timer clock;
 	public int nRof = 0;
-	public int g2stage = 0;
+	public int g2stage = 8;
 	Barrier barrier;
 	private Random rand = new Random();
 	// Object
@@ -105,7 +105,7 @@ public class Game extends Canvas implements Runnable {
 		cam = new Camera(0, 0, dm);
 		g1t=new Game3Timer((int)(dm.getWidth() - dm.getWidth()/4),(int)(dm.getHeight()/8),ObjectId.game3timer,this,1);
 		habitat = new Habitat(dmBoundaries[2] + 16, dmBoundaries[1] - 96 - 64, ObjectId.habitat, this, dm);
-		barrier = new Barrier((int)(dm.getWidth()/2 + dm.getWidth()/4),(int)(dm.height/2 + (dm.getHeight()/15)),ObjectId.barrier, this, images);
+		barrier = new Barrier(dm.getWidth()*5/6-64,dm.getHeight()*3/5-64,ObjectId.barrier, this, images);
 		// 0 1 2 3 4
 		// Width, Height, Water Start Width, Water Bottom Height, Water Surface
 		// Height
