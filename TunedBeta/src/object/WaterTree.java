@@ -14,7 +14,7 @@ import gfx.Images;
 import window.Handler;
 
 public class WaterTree extends GameObject {
-	Dimension dm;
+	
 	public boolean canAttack;
 	public int hp;
 	int type;
@@ -24,9 +24,8 @@ public class WaterTree extends GameObject {
 	int stage = 0;
 	Images images;
 
-	public WaterTree(double x, double y, ObjectId id,int type, Game game, Dimension dm, Images images) {
+	public WaterTree(double x, double y, ObjectId id,int type, Game game, Images images) {
 		super(x, y, id, game);
-		this.dm=dm;
 		hp=20;
 		canAttack=true;
 		this.type=type;

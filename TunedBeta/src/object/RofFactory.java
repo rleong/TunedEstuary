@@ -56,7 +56,7 @@ public class RofFactory extends GameObject {
 					count=0;
 					Random random=new Random();
 					int xx= random.nextInt(1000) % (int)(game.dm.getWidth()*1.5-game.dm.getWidth()*5/6-32);
-					game.handler.addObject(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, game, game.dm, images));
+					game.handler.addObject(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, game, images));
 				}
 				count+=1;
 				
@@ -91,7 +91,7 @@ public class RofFactory extends GameObject {
 						count=0;
 						Random random=new Random();
 						int xx= random.nextInt(1000) % (int)(game.dm.getWidth()*1.5-game.dm.getWidth()*5/6-32);
-						game.handler.addObject(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, game, game.dm, images));
+						game.handler.addObject(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, game, images));
 					}
 					count+=1;
 				}
@@ -156,7 +156,7 @@ public class RofFactory extends GameObject {
 		for(int i=0; i<3; i++){
 			Random random = new Random();
 			int xx= random.nextInt(1000) % (int)(game.dm.getWidth()*1.5-game.dm.getWidth()*5/6-32);
-			game.handler.object.add(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, game, game.dm, images));
+			game.handler.object.add(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, game, images));
 		}
 	}
 

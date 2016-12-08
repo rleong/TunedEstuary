@@ -17,7 +17,7 @@ import object.Waste;
 public class Handler {
 
 	public ArrayList<GameObject> object = new ArrayList<GameObject>();
-//--
+
 	private GameObject temp;
 	Game game;
 
