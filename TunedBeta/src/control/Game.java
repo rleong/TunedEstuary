@@ -139,7 +139,7 @@ public class Game extends Canvas implements Runnable {
 		critter = new Critter(600, dm.getHeight() * 3 / 5 - 32, ObjectId.critter, true, true, dm, inventory, this,
 				images);
 
-		// Game 1 Objects
+		// Game 1 Objects 
 		handler.addObject(new Boat(dmBoundaries[2], dmBoundaries[4] - 60, ObjectId.boat, this, trashBin, recyclebin,
 				inventory, dmBoundaries[2], dm.getWidth() * 3 / 2, false, images));
 		handler.addObject(trashBin);
