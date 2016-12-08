@@ -54,6 +54,7 @@ public class Images {
 	BufferedImage[][] horseshoeCrab;
 	BufferedImage[] guardianFish;
 	BufferedImage[] trashBoat;
+	BufferedImage[][] schoolFish;
 	
 	
 	/**
@@ -263,6 +264,14 @@ public class Images {
 		for (int i = 0; i < 2; i++) {
 			BufferedImage img = createImage("entities/TrashBoat.png");
 			trashBoat[i] = img.getSubimage(128 * i, 0, 128, 64);
+		}
+		
+		schoolFish = new BufferedImage[5][2];
+		for (int i = 0; i < 2; i++) {  // i = horizontal frames, j = vertical frames
+			for (int j = 0; j < 5; j++){
+				BufferedImage img = createImage("entities/SchoolFish.png");
+				schoolFish[j][i] = img.getSubimage(64 * i, 64 * j, 64, 64);
+			}
 		}
 
 		// Miscellaneous
@@ -577,6 +586,17 @@ public class Images {
 	 */
 	public BufferedImage getGuardianFish(int i) {
 		return guardianFish[i];
+	}
+	
+	/**
+	 * Method that returns the schoolfish image
+	 *  
+	 * @param i - image at ith position in list
+	 * @param j - image at jth position in list
+	 * @return getSchoolFish image
+	 */
+	public BufferedImage getSchoolFish(int i, int j) {
+		return schoolFish[i][j];
 	}
 	
 	/**

@@ -162,6 +162,7 @@ public class Boat extends GameObject {
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(images.getTrashBoat(stage), (int) x, (int) y, game);
+		g.drawString("Trash Boat", (int) x + 24, (int) y - 24);
 	}
 
 	/**

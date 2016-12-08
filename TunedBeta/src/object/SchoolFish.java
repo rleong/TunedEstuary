@@ -12,6 +12,7 @@ import java.util.Random;
 import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
+import gfx.Images;
 import window.Handler;
 
 public class SchoolFish extends GameObject {
@@ -20,6 +21,8 @@ public class SchoolFish extends GameObject {
 	int speed = 2;
 	boolean isDead;
 	List<Fish> school = new ArrayList<Fish>();
+	Images images;
+	private int stage = 0;
 	
 	/**
 	 * Constructor that creates a school of fish containing multiple fish objects.
@@ -32,10 +35,11 @@ public class SchoolFish extends GameObject {
 	 * @param id - the id of the object to be read in the handler
 	 * @param game - the game that it is in
 	 */
-	public SchoolFish(double x, double y, ObjectId id, Game game) {
+	public SchoolFish(double x, double y, ObjectId id, Game game, Images images) {
 		super(x, y, id, game);
 		this.game = game;
 		velX = speed;
+		this.images = images;
 		school.add(new Fish(1));
 		school.add(new Fish(1));
 		school.add(new Fish(1));
@@ -90,6 +94,11 @@ public class SchoolFish extends GameObject {
 		if (x < game.dm.getWidth() || x > game.dm.getWidth()*3/2 ) {
 			velX *= -1;
 		}
+		
+		if (velX > 0)
+			stage = 1;
+		else
+			stage = 0;
 
 	}
 
@@ -101,22 +110,21 @@ public class SchoolFish extends GameObject {
 	public void render(Graphics g) {
 		switch (school.size()) {
 		case 7:
-			g.setColor(Color.YELLOW);
+			g.drawImage(images.getSchoolFish(0, stage), (int) x, (int) y, game);
 			break;
 		case 4:
-			g.setColor(Color.ORANGE);
+			g.drawImage(images.getSchoolFish(1, stage), (int) x, (int) y, game);
 			break;
 		case 2:
-			g.setColor(Color.RED);
+			g.drawImage(images.getSchoolFish(2, stage), (int) x, (int) y, game);
 			break;
 		case 1:
-			g.setColor(Color.LIGHT_GRAY);
+			g.drawImage(images.getSchoolFish(3, stage), (int) x, (int) y, game);
 			break;
 		case 0:
-			g.setColor(Color.PINK);
+			g.drawImage(images.getSchoolFish(4, stage), (int) x, (int) y, game);
 			break;
 		}
-		g.fillRect((int) x, (int) y, 32, 32);
 	}
 
 	/**
