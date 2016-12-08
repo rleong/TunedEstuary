@@ -128,6 +128,8 @@ public class Inventory extends GameObject {
 				critter.setBuildAnimation(true);
 				break;
 			case 4:
+				critter.planT(3);
+				critter.setBuildAnimation(true);
 				break;
 			}
 			gm.setPause(3000);

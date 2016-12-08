@@ -150,7 +150,7 @@ public class KeyInput extends KeyAdapter {
 						inv.buildBarrier(gm, 3);
 					}
 					if (key == KeyEvent.VK_P) {
-
+						inv.buildBarrier(gm, 4);
 					}
 				}
 			}
