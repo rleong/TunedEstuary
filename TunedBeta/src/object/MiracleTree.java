@@ -59,10 +59,10 @@ public class MiracleTree extends GameObject{
 		
 		if (System.currentTimeMillis() - timer0 > 5000) {
 			timer0+=5000;
-			stage++;
+			if(stage < 2)
+				stage++;
 		}
 		if(System.currentTimeMillis()-timer1>20000){
-			stage=0;
 			game.handler.object.remove(this);
 		}
 		if(!lock){
@@ -70,7 +70,6 @@ public class MiracleTree extends GameObject{
 		}
 		if(System.currentTimeMillis()-timer2>15000){
 			timer2+=15000;
-			stage=0;
 			dead();
 			
 		}
@@ -83,7 +82,7 @@ public class MiracleTree extends GameObject{
 		g.setColor(Color.red);
 		g.fillRect((int)x, (int)y, 32, 5);
 		g.setColor(Color.BLACK);
-		g.drawString("Water Stargrass", (int) x - 8, (int) y+108); 
+		g.drawString("Water Stargrass", (int) x - 24, (int) y+108); 
 	}
 
 	@Override

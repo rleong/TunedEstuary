@@ -274,11 +274,11 @@ public class Images {
 			BufferedImage img = createImage("tiles/GrassTiles.png");
 			grassTile[i] = img.getSubimage(32 * i, 0, 32, 32);
 		}
-		waterTile = new BufferedImage[5][3];
-		for (int i = 0; i < 3; i++) {  // i = horizontal frames, j = vertical frames
-			for (int j = 0; j < 5; j++){
+		waterTile = new BufferedImage[6][3];
+		for (int i = 0; i < 6; i++) {  // i = horizontal frames, j = vertical frames
+			for (int j = 0; j < 3; j++){
 				BufferedImage img = createImage("tiles/WaterTiles.png");
-				waterTile[j][i] = img.getSubimage(32 * i, 32 * j, 32, 32);
+				waterTile[i][j] = img.getSubimage(32 * i, 32 * j, 32, 32);
 			}
 		}
 

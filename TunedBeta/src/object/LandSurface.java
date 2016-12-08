@@ -14,10 +14,12 @@ import window.Handler;
 
 public class LandSurface extends GameObject {
 	Images images;
+	private int stage = 0;
 	
 	public LandSurface(double x, double y, ObjectId id, Game game, Images images) {
 		super(x, y, id, game);
 		this.images = images;
+		stage = game.getCount();
 	}
 
 	@Override
@@ -37,33 +39,26 @@ public class LandSurface extends GameObject {
 			}
 		}
 		if(id==ObjectId.seaLevel){
-			switch(game.getCount()){
-			case 0:
-				g.setColor(Color.CYAN);
-				g.fillRect((int)x, (int)y, 32, 32);
-				break;
-			case 1:
-				g.setColor(Color.blue);
-				g.fillRect((int)x, (int)y, 32, 32);
-				break;
-			case 2:
-				g.setColor(Color.green);
-				g.fillRect((int)x, (int)y, 32, 32);
-				break;
-			case 3:
-				g.setColor(Color.darkGray);
-				g.fillRect((int)x, (int)y, 32, 32);
-				break;
-			default:
-				g.setColor(Color.black);
-				g.fillRect((int)x, (int)y, 32, 32);
-				break;
-			}
-			
-			
+			// Not visible
 		}
 		if(id==ObjectId.wall){
 			// Not visible
+		}
+		if(id==ObjectId.waterImageMarker){
+			stage = game.getCount();
+			g.drawImage(images.getWaterTiles(stage, 0), (int)x, (int)y, game);
+			g.drawImage(images.getWaterTiles(stage, 1), (int)x, (int)y+32, game);
+			for(int i = (int) y + 64; i < game.dm.getHeight() - 64; i += 32){
+				g.drawImage(images.getWaterTiles(stage, 2), (int)x, (int)i, game);
+			}
+		}
+		if(id==ObjectId.waterImageMarker2){
+			stage = game.getCount();
+			g.drawImage(images.getWaterTiles(stage, 0), (int)x, (int)y, game);
+			g.drawImage(images.getWaterTiles(stage, 1), (int)x, (int)y+32, game);
+			for(int i = (int) y + 64; i < game.dm.getHeight() * 6/5; i += 32){
+				g.drawImage(images.getWaterTiles(stage, 2), (int)x, (int)i, game);
+			}
 		}
 		if(id==ObjectId.sand){
 			g.drawImage(images.getSandTiles(0), (int)x, (int)y, game);

@@ -20,7 +20,7 @@ public enum ObjectId {
 	// Environment
 	land(), landSurface(), habitat(), seaLevel(), sand(),
 
-	water(), waterSurface(), waterTree(), 
+	water(), waterSurface(), waterTree(), waterImageMarker(), waterImageMarker2(),
 
 	// Hazards
 	waves(), runOff(), waste(), bubble(),

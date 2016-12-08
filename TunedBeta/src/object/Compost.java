@@ -86,6 +86,7 @@ public class Compost extends GameObject {
 			break;
 		case 1:
 			g.drawImage(images.getWaste(2, 2), (int) x, (int) y, game);
+			g.setColor(Color.WHITE);
 			g.drawString("Compost", (int)x-8, (int)y-10);
 			g.drawString("Fertile", (int)x-4, (int)y-22);
 			break;

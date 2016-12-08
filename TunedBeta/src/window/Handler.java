@@ -143,9 +143,11 @@ public class Handler {
 			for (double j = ((double)dm.getHeight()) * 3 / 5; j < ((double)dm.getHeight()) - 64; j += 32) {
 				addObject(new LandSurface(i, j, ObjectId.seaLevel, game, images));
 			}
+			addObject(new LandSurface(i, (double) dm.getHeight() * 3 / 5, ObjectId.waterImageMarker, game, images));
 //			for (double j = dm.getHeight() - 96; j < dm.getHeight(); j += 32) {
 				addObject(new LandSurface(i, dm.getHeight() - 96, ObjectId.sand, game, images));
 //			}
+				
 		}
 		for (double j = ((double)dm.getHeight())-96; j <((double) dm.getHeight())*6/5; j += 32) {
 			addObject(new LandSurface(i-32, j, ObjectId.wall, game, images));
@@ -154,9 +156,11 @@ public class Handler {
 			for (double j = ((double)dm.getHeight()) * 3 / 5; j <((double) dm.getHeight())*6/5; j += 32) {
 				addObject(new LandSurface(i, j, ObjectId.seaLevel, game, images));
 			}
+			addObject(new LandSurface(i, (double) dm.getHeight() * 3 / 5, ObjectId.waterImageMarker2, game, images));
 //			for (double j = dm.getHeight()*6/5 - 96; j < dm.getHeight()*6/5; j += 32) {
 				addObject(new LandSurface(i, dm.getHeight()*6/5 - 96, ObjectId.sand, game, images));
 //			}
+				
 		}
 		
 	}
