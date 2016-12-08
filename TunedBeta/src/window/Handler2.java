@@ -11,15 +11,28 @@ import object.Bubble;
 import object.Waste;
 
 public class Handler2 {
+	//Attributes
 	public ArrayList<GameObject> object = new ArrayList<GameObject>();
 
 	private GameObject temp;
 	Game game;
 
+	/**
+	 * Constructor that constructs a handler object. This class is responsible 
+	 * for calling every ojbect's render and tick method in the handler. This is 
+	 * prevent the main game's tick and render from being cluttered with multiple calls
+	 * 
+	 * @param game - game object
+	 */
 	public Handler2(Game game) {
 		this.game = game;
 	}
 	
+	/**
+	 * Method that changes variables per call
+	 * 	-Calls each individual objects tick  function 
+	 * 
+	 */
 	public void tick() {
 
 		for (int i = 0; i < object.size(); i++) {
@@ -29,6 +42,11 @@ public class Handler2 {
 		}
 	}
 
+	/**
+	 * Method that displays all the object's individual render functions
+	 * 
+	 * @param g - graphics object
+	 */
 	public void render(Graphics g) {
 		for (int i = 0; i < object.size(); i++) {
 			temp = object.get(i);
@@ -36,6 +54,11 @@ public class Handler2 {
 		}
 	}
 
+	/**
+	 * Method that adds an object to the object list
+	 * 
+	 * @param object - game object to add
+	 */
 	public void addObject(GameObject object) {
 		this.object.add(object);
 //		for (int i = 0; i < this.object.size(); i++) {
@@ -47,6 +70,11 @@ public class Handler2 {
 //		// CLASSCASTEXCEPTION ERRORS!!!!!!!!!!!
 	}
 
+	/**
+	 * Method that removes an Object from the handler
+	 * 
+	 * @param object - game object to remove
+	 */
 	public void removeObject(GameObject object) {
 		this.object.remove(object);
 	}
