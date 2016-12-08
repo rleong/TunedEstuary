@@ -15,11 +15,23 @@ import framework.ObjectId;
 import window.Handler;
 
 public class SchoolFish extends GameObject {
+	//Attributes
 	Game game;
 	int speed = 2;
 	boolean isDead;
 	List<Fish> school = new ArrayList<Fish>();
-
+	
+	/**
+	 * Constructor that creates a school of fish containing multiple fish objects.
+	 * SchoolFish will be placed in the water in game 2 swimming around. In the Game
+	 * as the water gets more polluted more fish will die. Showing how the environment
+	 * is being affected by waste and pollutants
+	 * 
+	 * @param x - the x position where the school will spawn
+	 * @param y - the y position where the school will spawn
+	 * @param id - the id of the object to be read in the handler
+	 * @param game - the game that it is in
+	 */
 	public SchoolFish(double x, double y, ObjectId id, Game game) {
 		super(x, y, id, game);
 		this.game = game;
@@ -34,13 +46,32 @@ public class SchoolFish extends GameObject {
 
 	}
 
+	/**
+	 * Method to get the speed at which the school of fishes will travel
+	 * 
+	 * @return the speed of the school
+	 */
 	public int schoolSize() {
 		return school.size();
 	}
+	
+	/**
+	 * Method to set the speed of the school of fishes
+	 * 
+	 * @param speed - the speed of the school
+	 */
 	public boolean isDead(){
 		return isDead;
 	}
 
+	/**
+	 * Method that changes multiple variables of the school per call.
+	 * 	-The first part sets the velocity for the x position to the speed.
+	 *  -X position is set to x plus the velocity causing the school to move in the x direction
+	 * 	-Next depending on the water level fishes will be removed from the school
+	 *  -Then checks to see if the school is empty and if so change alive to false
+	 *  -Last the x position is set to certain bounds so that it can only move in a certain location
+	 */
 	@Override
 	public void tick(ArrayList<GameObject> object) {
 		Iterator<Fish> it = school.iterator();
@@ -62,6 +93,10 @@ public class SchoolFish extends GameObject {
 
 	}
 
+	/**
+	 * Method that will change the image of the school depending on how many
+	 * fishes are still in the school
+	 */
 	@Override
 	public void render(Graphics g) {
 		switch (school.size()) {
@@ -84,6 +119,9 @@ public class SchoolFish extends GameObject {
 		g.fillRect((int) x, (int) y, 32, 32);
 	}
 
+	/**
+	 * Method that gets the boundary of the school 
+	 */
 	@Override
 	public Rectangle getBounds() {
 
