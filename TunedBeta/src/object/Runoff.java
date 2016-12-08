@@ -12,11 +12,24 @@ import framework.ObjectId;
 import window.Handler;
 
 public class Runoff extends GameObject {
+	//Attribute
 	public int type;
 	Dimension dm;
 	Game game;
 	public boolean inTer=false;
 
+	/**
+	 * Constructor that creates run-off in game 2. The run-off will be trying to collide
+	 * with the water, polluting the water if it touches it. Each run-off has different attributes
+	 * depending on its type.
+	 * 
+	 * @param x - x position of run-off
+	 * @param y - y position of run-off
+	 * @param dm - dimensions on the game
+	 * @param id - object id to be read by the handler
+	 * @param type - type of run-off
+	 * @param game - game it is in
+	 */
 	public Runoff(double x, double y, Dimension dm, ObjectId id, int type, Game game) {
 		super(x, y, id, game);
 		if (type == 0 || type == 1 || type == 2) {
@@ -29,6 +42,13 @@ public class Runoff extends GameObject {
 		this.game = game;
 	}
 
+	/**
+	 * Method that changes multiple variables per call
+	 * 	- Adds gravity to the y velocity causing the object to fall
+	 * 	- Adds x velocity to the x position causing it to move in the x direction
+	 * 	- Adds y velocity to the y position causing it to move in the y direction
+	 * 	- Calls the collision function
+	 */
 	@Override
 	public void tick(ArrayList<GameObject> object) {
 		if (falling)
@@ -38,6 +58,9 @@ public class Runoff extends GameObject {
 		collision(game.handler.object);
 	}
 
+	/**
+	 * Method that displays images of run-off depending on the run-off type
+	 */
 	@Override
 	public void render(Graphics g) {
 		switch (type) {
@@ -63,6 +86,10 @@ public class Runoff extends GameObject {
 
 	}
 
+	/**
+	 * Returns boundaries of the run-off depending on its type.
+	 * Used to check if the object is colliding with another object
+	 */
 	@Override
 	public Rectangle getBounds() {
 		if (type == 3) {
@@ -72,6 +99,14 @@ public class Runoff extends GameObject {
 		}
 	}
 
+	/**
+	 * Method that checks if certain object intersect run-off and do 
+	 * certain actions when so
+	 * 	- When run-off touches the land, make run-off stop falling and stop moving in the y position
+	 * 	- When run-off touches the water, remove the waste from the game and increase the water count
+	 * 
+	 * @param object - list of game objects
+	 */
 	private void collision(ArrayList<GameObject> object) {
 		for (int i = 0; i < game.handler.object.size(); i++) {
 			GameObject temp = game.handler.object.get(i);
