@@ -154,7 +154,7 @@ public class Game extends Canvas implements Runnable {
 		inventory.setCritter(critter);
 		k = new KeyInput(handler, handler2, this);
 		this.addKeyListener(new KeyInput(handler, handler2, this));
-		tutor = new Tutorial(0, 0, ObjectId.tutorial, this, trashBin, recyclebin, inventory, images);
+		tutor = new Tutorial(0, 0, ObjectId.tutorial, this, trashBin, recyclebin, inventory, images, critter);
 		handler.addObject(tutor);
 		
 		
