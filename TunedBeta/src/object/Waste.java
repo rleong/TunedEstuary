@@ -234,7 +234,7 @@ public class Waste extends GameObject {
 			case 1:
 				return "Regular";
 			case 2:
-				return "Nutritious";
+				return "Fertile";
 			}
 			break;
 		}

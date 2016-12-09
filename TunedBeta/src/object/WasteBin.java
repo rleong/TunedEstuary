@@ -17,12 +17,17 @@ public class WasteBin extends GameObject {
 	Images images;
 	Game gm;
 	boolean highlight;
+	Critter critter;
 
 	public WasteBin(double x, double y, ObjectId id, int type, Images images, Game game, boolean highlighting) {
 		super(x, y, id, game);
 		this.type = type;
 		this.images = images;
 		highlight = highlighting;
+	}
+	
+	public void setCritter(Critter critter){
+		this.critter = critter;
 	}
 
 	@Override
@@ -69,13 +74,5 @@ public class WasteBin extends GameObject {
 		collision(test);
 		return test;
 	}
-	
-	public void setHighlight(){
-		if (highlight)
-			highlight = false;
-		else
-			highlight = true;
-	}
-
 
 }

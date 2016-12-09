@@ -159,8 +159,7 @@ public class KeyInput extends KeyAdapter {
 						t.setDebug();
 					}
 					if (key == KeyEvent.VK_R) {
-						//inv.toggleMenu();
-						t.setTrash();
+
 					}
 				}
 			}

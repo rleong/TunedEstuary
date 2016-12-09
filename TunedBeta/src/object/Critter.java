@@ -30,7 +30,8 @@ public class Critter extends GameObject {
 	int health0;
 	int health1;
 	int health2;
-	int flicker = 0;
+	int flickerTime = 0;
+	boolean flicker = false;
 	boolean invulnerable;
 	Timer clockInvincible;
 
@@ -170,14 +171,6 @@ public class Critter extends GameObject {
 			jump = true;
 		}
 
-		// Character Status
-		if (invulnerable) {
-			flicker++;
-			flicker = flicker % 10;
-		} else {
-			flicker = 0;
-		}
-
 		if (sp0 < SPRECHARGE)
 			sp0++;
 		if (sp1 < SPRECHARGE)
@@ -208,7 +201,7 @@ public class Critter extends GameObject {
 		movementFrameNum3 = (movementFrameNum3 + 1) % images.getInteractFrames();
 
 		// Character Flickering & Normal
-		if (flicker == 0) {
+		if (!flicker) {
 			switch (character) {
 			case 0:
 				switch (currentAnimation) {
@@ -357,29 +350,28 @@ public class Critter extends GameObject {
 		} else {
 			switch (character) {
 			case 0:
-				g.setColor(Color.DARK_GRAY);
+				if (right) {
+					g.drawImage(images.getBlueCrabImage(0, 2), (int) x - 16, (int) y - 32, game);
+				} else {
+					g.drawImage(images.getBlueCrabImage(0, 3), (int) x - 16, (int) y - 32, game);
+				}
 				break;
 			case 1:
-				g.setColor(Color.DARK_GRAY);
+				if (right) {
+					g.drawImage(images.getOysterImage(0, 2), (int) x - 16, (int) y - 32, game);
+				} else {
+					g.drawImage(images.getOysterImage(0, 3), (int) x - 16, (int) y - 32, game);
+				}
 				break;
 			case 2:
-				g.setColor(Color.DARK_GRAY);
+				if (right) {
+					g.drawImage(images.getHorseshoeCrabImage(0, 2), (int) x - 16, (int) y - 32, game);
+				} else {
+					g.drawImage(images.getHorseshoeCrabImage(0, 3), (int) x - 16, (int) y - 32, game);
+				}
 				break;
 			}
 		}
-		// g.fillRect((int) x, (int) y, 32, 32);
-
-		// Character Inner Bounds
-		// Graphics2D g2d = (Graphics2D) g;
-		// g.setColor(Color.green);
-		// g2d.draw(getBoundsTop());
-		// g2d.draw(getBoundsBottom());
-		// g2d.draw(getBoundsLeft());
-		// g2d.draw(getBoundsRight());
-
-		// Character Attack Range Bounds
-		// g.setColor(Color.gray);
-		// g2d.draw(getBounds());
 
 		// Character Name
 		g.setColor(Color.WHITE);
@@ -403,6 +395,9 @@ public class Critter extends GameObject {
 
 		// Build Options
 		drawBuildOptions(g);
+		
+		// Trash Option
+		drawTrashCans(g);
 
 		// Animations
 		if (plantAction)
@@ -430,6 +425,10 @@ public class Critter extends GameObject {
 			// test(g);
 		}
 
+	}
+	
+	public void drawTrashCans(Graphics g){
+		g.drawImage(images.getWasteIcon(), healthBarXLocation+240, healthBarYLocation-20, game);
 	}
 
 	/**
@@ -616,8 +615,22 @@ public class Critter extends GameObject {
 	ActionListener listener = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			invulnerable = false;
-			clockInvincible.stop();
+
+			if(flickerTime >= 35){
+				invulnerable = false;
+				flickerTime = 0;
+				flicker = false;
+				clockInvincible.stop();
+			}else{
+				if(flicker)
+					flicker = false;
+				else
+					flicker = true;
+				flickerTime++;
+				System.out.println(flickerTime);
+				clockInvincible.restart();
+			}
+			
 		}
 	};
 
@@ -676,17 +689,6 @@ public class Critter extends GameObject {
 	 * @param object
 	 *            - list of game objects
 	 */
-
-	public void setTrash() {
-		if (wasteBin.highlight) {
-			wasteBin.highlight = false;
-			recycleBin.highlight = true;
-		}
-		if (recycleBin.highlight) {
-			recycleBin.highlight = false;
-			wasteBin.highlight = true;
-		}
-	}
 
 	public void attack(ArrayList<GameObject> object) {
 		for (int i = 0; i < object.size(); i++) {
@@ -783,20 +785,6 @@ public class Critter extends GameObject {
 					setVelX(0);
 				}
 			}
-			// if (temp.getId() == ObjectId.seed) {
-			// Seed seed = (Seed) temp;
-			// if (getBoundsSelf().intersects(temp.getBounds())) {
-			// switch (seed.type) {
-			// case 0:
-			// inventory.addSmallSeed();
-			// break;
-			// case 1:
-			// inventory.addBigSeed();
-			// break;
-			// }
-			// object.remove(temp);
-			// }
-			// }
 			if (temp.getId() == ObjectId.compost1) {
 				Compost comp = (Compost) temp;
 				if (getBoundsSelf().intersects(temp.getBounds())) {
@@ -807,7 +795,7 @@ public class Critter extends GameObject {
 			if (temp.getId() == ObjectId.compost2) {
 				Compost comp = (Compost) temp;
 				if (getBoundsSelf().intersects(temp.getBounds())) {
-					inventory.setFertileCompost(1000);
+					inventory.setFertileCompost(1);
 					object.remove(temp);
 				}
 			}
@@ -819,10 +807,10 @@ public class Critter extends GameObject {
 				if (!getBounds().intersects(temp.getBounds())) {
 					waste.canAttack = false;
 				}
-				if (getBodyBounds().intersects(temp.getBounds())) {
+				if (getBodyBounds().intersects(temp.getBounds()) && waste.getType() != 2) {
 					if (!invulnerable && !waste.isDead) {
 						invulnerable = true;
-						clockInvincible = new Timer(3000, listener);
+						clockInvincible = new Timer(50, listener);
 						clockInvincible.start();
 						switch (character) {
 						case 0:
@@ -836,36 +824,19 @@ public class Critter extends GameObject {
 							break;
 						}
 					}
-
-					// if(invulnerable || waste.getType()==2|| waste.isDead){
-					// return;
-					// }
-					// else{
-					// invulnerable = true;
-					// clockInvincible = new Timer(3000, listener);
-					// clockInvincible.start();
-					// switch (character) {
-					// case 0:
-					// health0 -= 5;
-					// break;
-					// case 1:
-					// health1 -= 5;
-					// break;
-					// case 2:
-					// health2 -= 5;
-					// break;
-					// }
-					// }
 					return;
-
+				} else if (waste.getType() == 2 && getBodyBounds().intersects(temp.getBounds())){
+					inventory.setRegularCompost(5);
+					object.remove(temp);
 				}
+				
 			}
 			if (temp.getId() == ObjectId.guardian) {
 				GuardianFish guardianfish = (GuardianFish) temp;
 				if (getBodyBounds().intersects(temp.getBounds())) {
 					if (!invulnerable) {
 						invulnerable = true;
-						clockInvincible = new Timer(3000, listener);
+						clockInvincible = new Timer(50, listener);
 						clockInvincible.start();
 						switch (character) {
 						case 0:
