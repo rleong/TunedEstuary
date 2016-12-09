@@ -96,7 +96,7 @@ public class Waste extends GameObject {
 				setVelY(-25);
 				break;
 			case 2: // COMPOST
-				counter.addPlant1();
+				counter.setRegularCompost(5);
 				break;
 			default: // ERROR
 				System.out.println("SOMETHING WENT WRONG YO");

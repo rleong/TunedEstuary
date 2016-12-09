@@ -150,10 +150,7 @@ public class KeyInput extends KeyAdapter {
 					if (key == KeyEvent.VK_E) {
 						t.changeCharacter();
 					}
-					// Plant
-					if (key == KeyEvent.VK_P) {
-						t.planT(0);
-					}
+					// Plant or Build
 					if (key == KeyEvent.VK_G) {
 						t.plantGabion();
 					}

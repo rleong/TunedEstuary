@@ -24,6 +24,7 @@ public class Critter extends GameObject {
 	int character;
 	int damage;
 	Inventory inventory;
+	String compostInventory;
 
 	// Character Health
 	int health0;
@@ -76,7 +77,7 @@ public class Critter extends GameObject {
 
 	// Debugging
 	boolean debugging = false;
-	
+
 	WasteBin wasteBin;
 	WasteBin recycleBin;
 
@@ -126,7 +127,7 @@ public class Critter extends GameObject {
 
 		// GFX & Animations
 		this.images = images;
-		
+
 		wasteBin = wastebin;
 		recycleBin = recyclebin;
 	}
@@ -155,7 +156,7 @@ public class Critter extends GameObject {
 		if (!game.isPause())
 			y += velY;
 
-		if (x > dm.getWidth() * 5 / 6+32) {
+		if (x > dm.getWidth() * 5 / 6 + 32) {
 			onLand = false;
 		}
 
@@ -438,9 +439,11 @@ public class Critter extends GameObject {
 	 *            - graphics variable
 	 */
 	public void drawBuildOptions(Graphics g) {
+		compostInventory = " " + inventory.getRegularCompost();
 		
-		
+		g.setColor(Color.BLACK);
 		g.drawImage(images.getMenuBar(), buildXLocation - 32, buildYLocation - 90, game);
+		g.drawString(compostInventory, buildXLocation - 32, buildYLocation - 90);
 
 	}
 
@@ -672,17 +675,18 @@ public class Critter extends GameObject {
 	 * @param object
 	 *            - list of game objects
 	 */
-	
-	public void setTrash(){
-		if(wasteBin.highlight){
+
+	public void setTrash() {
+		if (wasteBin.highlight) {
 			wasteBin.highlight = false;
 			recycleBin.highlight = true;
 		}
-		if(recycleBin.highlight){
+		if (recycleBin.highlight) {
 			recycleBin.highlight = false;
 			wasteBin.highlight = true;
 		}
 	}
+
 	public void attack(ArrayList<GameObject> object) {
 		for (int i = 0; i < object.size(); i++) {
 			GameObject temp = object.get(i);
@@ -698,12 +702,13 @@ public class Critter extends GameObject {
 				}
 			}
 
-			// if object is an oyster and in range, collect the oyster
-			if (temp.getId() == ObjectId.oyster && temp.getBounds().intersects(this.getBounds())) {
-				Oyster oyster = (Oyster) temp;
-				game.handler.removeObject(oyster);
-				inventory.addOyster();
-			}
+			// // if object is an oyster and in range, collect the oyster
+			// if (temp.getId() == ObjectId.oyster &&
+			// temp.getBounds().intersects(this.getBounds())) {
+			// Oyster oyster = (Oyster) temp;
+			// game.handler.removeObject(oyster);
+			// inventory.setRegularCompost();
+			// }
 			// if object is a rope and in range, collect the rope
 			if (temp.getId() == ObjectId.rope && temp.getBounds().intersects(this.getBounds())) {
 				Rope rope = (Rope) temp;
@@ -746,10 +751,7 @@ public class Critter extends GameObject {
 	 *            - type of plant
 	 */
 	public void planT(int type) {
-		if (game.currency >= 50) {
-			game.handler.addObject(new Tree(x, dm.getHeight() * 3 / 5 - 32, ObjectId.tree, type, game, images));
-			game.currency -= 50;
-		}
+		game.handler.addObject(new Tree(x, dm.getHeight() * 3 / 5 - 32, ObjectId.tree, type, game, images));
 	}
 
 	/**
@@ -823,16 +825,14 @@ public class Critter extends GameObject {
 			if (temp.getId() == ObjectId.compost1) {
 				Compost comp = (Compost) temp;
 				if (getBoundsSelf().intersects(temp.getBounds())) {
-					game.currency += 25;
-					System.out.println(game.currency);
+					inventory.setRegularCompost(25);
 					object.remove(temp);
 				}
 			}
 			if (temp.getId() == ObjectId.compost2) {
 				Compost comp = (Compost) temp;
 				if (getBoundsSelf().intersects(temp.getBounds())) {
-					game.currency += 1000;
-					System.out.println(game.currency);
+					inventory.setFertileCompost(1000);
 					object.remove(temp);
 				}
 			}
