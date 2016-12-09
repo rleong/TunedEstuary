@@ -1,7 +1,7 @@
 package object;
 
 import java.awt.Color;
-
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -95,7 +95,8 @@ public class Game3Timer extends GameObject {
 	@Override
 	//print time remaining
 	public void render(Graphics g) {
-		g.setColor(Color.white);
+		g.setFont(new Font("Times",20,20));
+		g.setColor(Color.black);
 		g.drawString("Time Remaining: "+mintime + ":"+ sectime + ":" + mstime, (int)x, (int)y);
 
 	}
