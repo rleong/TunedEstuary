@@ -24,6 +24,7 @@ import object.Estuary;
 import object.Game3Instructions;
 import object.Game3Timer;
 import object.GameOver;
+import object.GameWin;
 import object.GuardianFish;
 import object.Habitat;
 import object.Inventory;
@@ -264,6 +265,7 @@ public class Game extends Canvas implements Runnable {
 		}
 		// check game 2 win condition
 		if (g2stage > 7) {
+			handler.addObject(new GameWin(1,1,ObjectId.gamewin,this));
 			game3 = true;
 		}
 		// start game 3
