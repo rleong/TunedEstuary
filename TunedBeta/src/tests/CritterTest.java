@@ -11,7 +11,7 @@ import framework.GameObject;
 import framework.ObjectId;
 import object.Critter;
 import object.LandSurface;
-//---
+//--- 
 public class CritterTest {
 
 	
