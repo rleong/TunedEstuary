@@ -961,5 +961,9 @@ public class Critter extends GameObject {
 	public void setAnimation(int currentAnimation) {
 		this.currentAnimation = currentAnimation;
 	}
+	public ArrayList<GameObject> testCollision(ArrayList<GameObject> list){
+		collision(list);
+		return list;
+	}
 
 }
