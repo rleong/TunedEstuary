@@ -69,18 +69,27 @@ public class Runoff extends GameObject {
 	 */
 	@Override
 	public void render(Graphics g) {
+		g.setColor(Color.WHITE);
 		switch (type) {
 		case 0:
+			g.drawImage(images.getUButton(), (int) x, (int) y-32, game);
 			g.drawImage(images.getWaste(3, 0), (int) x, (int) y, game);
+			g.drawString("Chemical Runoff", (int) x-22, (int) y+48);
 			break;
 		case 1:
+			g.drawImage(images.getIButton(), (int) x, (int) y-32, game);
 			g.drawImage(images.getWaste(3, 1), (int) x, (int) y, game);
+			g.drawString("Sediment Runoff", (int) x-22, (int) y+48);
 			break;
 		case 2:
+			g.drawImage(images.getOButton(), (int) x, (int) y-32, game);
 			g.drawImage(images.getWaste(3, 2), (int) x, (int) y, game);
+			g.drawString("Solid Waste Runoff", (int) x-36, (int) y+48);
 			break;
 		case 3:
+			g.drawImage(images.getPButton(), (int) x, (int) y-100, game);
 			g.drawImage(images.getBossWaste(), (int) x, (int) y, game);
+			g.drawString("Mixed Runoff", (int) x, (int) y+148);
 			break;
 		}
 

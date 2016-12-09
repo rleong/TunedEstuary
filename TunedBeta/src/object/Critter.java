@@ -438,12 +438,13 @@ public class Critter extends GameObject {
 	 * @param g
 	 *            - graphics variable
 	 */
-	public void drawBuildOptions(Graphics g) {
-		compostInventory = " " + inventory.getRegularCompost();
-		
+	public void drawBuildOptions(Graphics g) {	
 		g.setColor(Color.BLACK);
 		g.drawImage(images.getMenuBar(), buildXLocation - 32, buildYLocation - 90, game);
-		g.drawString(compostInventory, buildXLocation - 32, buildYLocation - 90);
+		compostInventory = "x " + inventory.getRegularCompost();
+		g.drawString(compostInventory, buildXLocation + 6, buildYLocation + 30);
+		compostInventory = "x " + inventory.getFertileCompost();
+		g.drawString(compostInventory, buildXLocation + 8, buildYLocation + 82);
 
 	}
 
@@ -701,32 +702,6 @@ public class Critter extends GameObject {
 					}
 				}
 			}
-
-			// // if object is an oyster and in range, collect the oyster
-			// if (temp.getId() == ObjectId.oyster &&
-			// temp.getBounds().intersects(this.getBounds())) {
-			// Oyster oyster = (Oyster) temp;
-			// game.handler.removeObject(oyster);
-			// inventory.setRegularCompost();
-			// }
-			// if object is a rope and in range, collect the rope
-			if (temp.getId() == ObjectId.rope && temp.getBounds().intersects(this.getBounds())) {
-				Rope rope = (Rope) temp;
-				game.handler.removeObject(rope);
-				inventory.addRope();
-			}
-			// if object is wood and in range, collect the wood
-			if (temp.getId() == ObjectId.wood && temp.getBounds().intersects(this.getBounds())) {
-				Wood wood = (Wood) temp;
-				game.handler.removeObject(wood);
-				inventory.addWood();
-			}
-			// if object is trash and in range, remove it
-			if (temp.getId() == ObjectId.ptrash && temp.getBounds().intersects(this.getBounds())) {
-				Trash trash = (Trash) temp;
-				game.handler.removeObject(trash);
-			}
-
 			if (temp.getId() == ObjectId.waterTree) {
 				WaterTree wt = (WaterTree) temp;
 				if (wt.canAttack) {
@@ -1014,24 +989,6 @@ public class Critter extends GameObject {
 	 */
 	public void setAnimation(int currentAnimation) {
 		this.currentAnimation = currentAnimation;
-	}
-
-	/**
-	 * Method to constructs a gabion if you have the needed materials in your
-	 * inventory
-	 */
-	public void plantGabion() {
-		// builds gabion if inventory method returns true, and you are on the
-		// sand behind initial barrier
-		if (inventory.buildGabion() && this.x < dm.getWidth() / 2 + dm.getWidth() / 4) {
-			game.handler.addObject(new Gabion(x, dm.getHeight() * 3 / 5 - 32, ObjectId.gabion, game, images));
-			inventory.removeOysters();
-			inventory.removeRope();
-			inventory.removeWood();
-		} else {
-			System.out.println("Failed");
-		}
-
 	}
 
 }

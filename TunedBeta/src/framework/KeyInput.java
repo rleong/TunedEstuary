@@ -48,14 +48,14 @@ public class KeyInput extends KeyAdapter {
 				if (temp.getId() == ObjectId.critter) {
 					Critter t = (Critter) temp;
 					if (key == KeyEvent.VK_A) {
-						t.setVelX(-2);
+						t.setVelX(-3);
 						if(t.getInWater())
 							t.setAnimation(5);
 						else
 							t.setAnimation(1);
 					}
 					if (key == KeyEvent.VK_D) {
-						t.setVelX(2);
+						t.setVelX(3);
 						if(t.getInWater())
 							t.setAnimation(6);
 						else
@@ -149,10 +149,6 @@ public class KeyInput extends KeyAdapter {
 					// Change Characters
 					if (key == KeyEvent.VK_E) {
 						t.changeCharacter();
-					}
-					// Plant or Build
-					if (key == KeyEvent.VK_G) {
-						t.plantGabion();
 					}
 					// Ability 
 					if (key == KeyEvent.VK_Q) {
