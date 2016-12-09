@@ -3,6 +3,7 @@ package object;
 
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -78,7 +79,8 @@ public class GameWin extends GameObject {
 	 * prints game win method
 	 */
 	public void render(Graphics g) {
-		g.setColor(Color.white);
+		g.setFont(new Font("Times",20,20));
+		g.setColor(Color.black);
 		g.drawString("Congratulations!",(int) (game.dm.getWidth()/2.5),(int) (game.dm.getHeight()/3));
 		g.drawString("You have successfully protected the estuary!!",(int) (game.dm.getWidth()/2.5),(int) (game.dm.getHeight()/3 + 20));
 		g.drawString("Returning to menu in: " + count, (int) (game.dm.getWidth()/2.5),(int) (game.dm.getHeight()/3+40));
