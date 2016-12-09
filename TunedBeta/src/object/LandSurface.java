@@ -16,6 +16,7 @@ public class LandSurface extends GameObject {
 	//Attributes
 	Images images;
 	private int stage = 0;
+	private int init = 0;
 	
 	/**
 	 * Constructor used to construct game object that are used to build the 
@@ -29,7 +30,7 @@ public class LandSurface extends GameObject {
 	public LandSurface(double x, double y, ObjectId id, Game game, Images images) {
 		super(x, y, id, game);
 		this.images = images;
-		stage = game.getCount();
+		
 	}
 
 	/**
@@ -37,7 +38,11 @@ public class LandSurface extends GameObject {
 	 */
 	@Override
 	public void tick(ArrayList<GameObject> object) {
-		
+		if(init == 0){
+			stage = game.getCount();
+			init = 1;
+		}
+			
 		
 	}
 
