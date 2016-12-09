@@ -65,7 +65,7 @@ public class Runoff extends GameObject {
 	}
 
 	/**
-	 * Method that displays images of run-off depending on the run-off type
+	 * Method that displays images of run-off depending on the run-off type 
 	 */
 	@Override
 	public void render(Graphics g) {
