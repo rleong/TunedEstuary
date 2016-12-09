@@ -21,66 +21,81 @@ public class Tutorial extends GameObject {
 	WaterTree wt;
 	WasteBin wb1;
 	WasteBin wb2;
-	boolean lock = false;
+	boolean secondStage = false;
+	boolean firstStage = false;
 	Images img;
-	public Tutorial(double x, double y, ObjectId id, Game game,WasteBin wb1,WasteBin wb2, Inventory ivent, Images img) {
+	Critter critter;
+
+	public Tutorial(double x, double y, ObjectId id, Game game, WasteBin wb1, WasteBin wb2, Inventory ivent, Images img,
+			Critter critter) {
 		super(x, y, id, game);
-		this.wb1=wb1;
-		this.wb2=wb2;
+		this.wb1 = wb1;
+		this.wb2 = wb2;
 		this.img = img;
 		// TODO Auto-generated constructor stub
-		rof=new Runoff(0, game.dm.getHeight() * 3 / 5 - 32, game.dm, ObjectId.runOff, 0, game, img);
-		w1  = new Waste(128, game.dm.getHeight() * 3 / 5 -32, ObjectId.waste, game, wb1, wb2, ivent, 0, img);
-		w2 = new Waste(192, game.dm.getHeight() * 3 / 5-32, ObjectId.waste, game, wb1, wb2, ivent, 1, img);
-		cp1 = new Compost(256, game.dm.getHeight() * 3 / 5-32, ObjectId.compost1, game, 0, img);
-		cp2 = new Compost(320, game.dm.getHeight() * 3 / 5-32, ObjectId.compost1, game, 0, img);
-		cp3 = new Compost(384, game.dm.getHeight() * 3 / 5-32, ObjectId.compost1, game, 0, img);
-		cp4 = new Compost(448, game.dm.getHeight() * 3 / 5-32, ObjectId.compost1, game, 0, img);
-		wt = new WaterTree(448, game.dm.getHeight() * 3 / 5-96, ObjectId.waterTree, 0, game, img);
-//		game.handler.addObject(cp1);
-//		game.handler.addObject(cp2);
-//		game.handler.addObject(cp3);
-//		game.handler.addObject(cp4);
-		game.handler.addObject(w1);
-		game.handler.addObject(w2);
-		game.handler.addObject(wt);
+		rof = new Runoff(0, game.dm.getHeight() * 3 / 5 - 32, game.dm, ObjectId.runOff, 0, game, img);
+		w1 = new Waste(128 + 400, game.dm.getHeight() * 3 / 5 - 32, ObjectId.waste, game, wb1, wb2, ivent, 0, img);
+		w2 = new Waste(192 + 400, game.dm.getHeight() * 3 / 5 - 32, ObjectId.waste, game, wb1, wb2, ivent, 1, img);
+		cp1 = new Compost(256 + 400, game.dm.getHeight() * 3 / 5 - 32, ObjectId.compost1, game, 0, img);
+		cp2 = new Compost(320 + 400, game.dm.getHeight() * 3 / 5 - 32, ObjectId.compost1, game, 0, img);
+		cp3 = new Compost(384 + 400, game.dm.getHeight() * 3 / 5 - 32, ObjectId.compost1, game, 0, img);
+		cp4 = new Compost(448 + 400, game.dm.getHeight() * 3 / 5 - 32, ObjectId.compost1, game, 0, img);
+		wt = new WaterTree(448 + 400, game.dm.getHeight() * 3 / 5 - 96, ObjectId.waterTree, 0, game, img);
+		// game.handler.addObject(cp1);
+		// game.handler.addObject(cp2);
+		// game.handler.addObject(cp3);
+		// game.handler.addObject(cp4);
 		wt.setFalling(false);
-		
-		
+		this.critter = critter;
 	}
-	public void check(){
-		for(int i=0; i<game.handler.object.size(); i++){
-			GameObject temp= game.handler.object.get(i);
-			if(temp.getId()==ObjectId.tree){
-				
-//				if(System.currentTimeMillis()-timer>3000)
-				if(!lock){
+
+	public void check() {
+
+		if (!firstStage && critter.getX() >= 448 + 135) {
+			firstStage = true;
+			firstStageAdditions();
+		}
+		
+		for (int i = 0; i < game.handler.object.size(); i++) {
+			GameObject temp = game.handler.object.get(i);
+			if (temp.getId() == ObjectId.tree) {
+
+				// if(System.currentTimeMillis()-timer>3000)
+				if (!secondStage) {
 					game.handler.object.add(rof);
-					lock=true;
+					secondStage = true;
 				}
 			}
 		}
 	}
-	public void remove(){
-		for(int i=0; i<game.handler.object.size(); i++){
-			GameObject temp= game.handler.object.get(i);
-			
-			if(temp.getId()==ObjectId.tree){
-				Tree tree= (Tree)temp;
-				if(tree.hp<3)
-					if(System.currentTimeMillis()-timer>20000){
+
+	public void remove() {
+		for (int i = 0; i < game.handler.object.size(); i++) {
+			GameObject temp = game.handler.object.get(i);
+
+			if (temp.getId() == ObjectId.tree) {
+				Tree tree = (Tree) temp;
+				if (tree.hp < 3)
+					if (System.currentTimeMillis() - timer > 20000) {
 						game.handler.object.remove(temp);
-						game.currency=25;
-						game.tutorial=false;
-						game.game1=true;
+						game.currency = 25;
+						game.tutorial = false;
+						game.game1 = true;
 						game.handler.object.remove(this);
 						return;
 					}
-					
+
 			}
 		}
-		
+
 	}
+	
+	public void firstStageAdditions(){
+		game.handler.addObject(w1);
+		game.handler.addObject(w2);
+		game.handler.addObject(wt);
+	}
+
 	@Override
 	public void tick(ArrayList<GameObject> object) {
 		// TODO Auto-generated method stub
@@ -91,15 +106,21 @@ public class Tutorial extends GameObject {
 	@Override
 	public void render(Graphics g) {
 		// TODO Auto-generated method stub
-		if(!lock){
-			g.drawImage(img.getTutorialSpace(), 128, (int) game.dm.getHeight() * 3 / 5 -162, game);
-			//g.drawImage(img.getTutorialR(), 128+100, (int) game.dm.getHeight() * 3 / 5 -162, game);
-			g.drawImage(img.getTutorialU(), 448-35, (int) game.dm.getHeight() * 3 / 5-216, game);
-			g.drawImage(img.getTutorialCompost(), 448+135, (int) game.dm.getHeight() * 3 / 5-216, game);
+		if (!firstStage) {
+			g.drawImage(img.getTutorialMove(), 128, (int) game.dm.getHeight() * 3 / 5 - 162, game);
+			g.drawImage(img.getTutorialE(), 448 - 150, (int) game.dm.getHeight() * 3 / 5 - 216, game);
+			g.drawImage(img.getTutorialQ(), 448, (int) game.dm.getHeight() * 3 / 5 - 216, game);
 		}
-		if(lock){
-			g.drawImage(img.getTutorialRunoff(), 448-135, (int) game.dm.getHeight() * 3 / 5-216, game);
-			g.drawImage(img.getTutorialStart(), 448+135, (int) game.dm.getHeight() * 3 / 5-216, game);
+		if (!secondStage && firstStage) {
+			g.drawImage(img.getTutorialSpace(), 128 + 400, (int) game.dm.getHeight() * 3 / 5 - 162, game);
+			// g.drawImage(img.getTutorialR(), 128+100 +400, (int)
+			// game.dm.getHeight() * 3 / 5 -162, game);
+			g.drawImage(img.getTutorialU(), 448 - 35 + 400, (int) game.dm.getHeight() * 3 / 5 - 216, game);
+			g.drawImage(img.getTutorialCompost(), 448 + 135 + 400, (int) game.dm.getHeight() * 3 / 5 - 216, game);
+		}
+		if (secondStage) {
+			g.drawImage(img.getTutorialRunoff(), 448 - 135 + 400, (int) game.dm.getHeight() * 3 / 5 - 216, game);
+			g.drawImage(img.getTutorialStart(), 448 + 135 + 400, (int) game.dm.getHeight() * 3 / 5 - 216, game);
 		}
 	}
 

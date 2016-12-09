@@ -65,6 +65,9 @@ public class Images {
 	BufferedImage tutorialU;
 	BufferedImage tutorialStart;
 	BufferedImage tutorialCompost;
+	BufferedImage tutorialE;
+	BufferedImage tutorialQ;
+	BufferedImage tutorialMove;
 
 	// Entities
 	final int walkFrameCount = 18;
@@ -89,6 +92,9 @@ public class Images {
 		tutorialSpace = createImage("tutorial/TutorialSPACE.png");
 		tutorialStart = createImage("tutorial/TutorialStart.png");
 		tutorialCompost = createImage("tutorial/TutorialCompost.png");
+		tutorialE = createImage("tutorial/TutorialE.png");
+		tutorialQ = createImage("tutorial/TutorialQ.png");
+		tutorialMove = createImage("tutorial/TutorialMove.png");
 		arrow = createImage("misc/Arrow.png");
 
 		// Action Animations
@@ -783,6 +789,18 @@ public BufferedImage getArrow() {
 	
 	public BufferedImage getTutorialStart() {
 		return tutorialStart;
+	}
+	
+	public BufferedImage getTutorialE() {
+		return tutorialE;
+	}
+
+	public BufferedImage getTutorialQ() {
+		return tutorialQ;
+	}
+	
+	public BufferedImage getTutorialMove() {
+		return tutorialMove;
 	}
 	
 	public BufferedImage getTutorialCompost() {
