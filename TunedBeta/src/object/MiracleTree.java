@@ -43,6 +43,24 @@ public class MiracleTree extends GameObject{
 		timer1=System.currentTimeMillis();
 		timer2=System.currentTimeMillis();
 	}
+	/**
+	 * Method that gets timers 
+	 */
+	public long getTimer0(){
+		return timer0;
+	}
+	/**
+	 * Method that gets timers 
+	 */
+	public long getTimer1(){
+		return timer1;
+	}
+	/**
+	 * Method that gets timers 
+	 */
+	public long getTimer2(){
+		return timer2;
+	}
 
 	/**
 	 * Method that drops compost and remove the miracle plant from the game

@@ -1,6 +1,7 @@
 package object;
 
 import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -14,6 +15,7 @@ import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
 import window.Handler;
+import window.Window;
 /**
  * 
  * @author justin said
@@ -65,6 +67,7 @@ public class Game3Timer extends GameObject {
 	public void tick(ArrayList<GameObject> object) {
 		//checks when to call win condition
 		//if timer runs out stop the clock and call win method
+		
 		if(g == 3){
 			if(mintime == 0 && sectime == 0 && mstime == 0){
 				clock1.stop();
