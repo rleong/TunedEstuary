@@ -20,7 +20,7 @@ public class CritterTest {
 	
 	@Test
 	public void getBoundsTest(){
-		assertEquals(tester.getBounds(), new Rectangle(50,50,32,32));
+		assertEquals(tester.getBounds(), new Rectangle(56,76,20,6));
 	}
 	@SuppressWarnings("deprecation")
 	@Test
@@ -82,6 +82,7 @@ public class CritterTest {
 	public void getFallingTest(){
 		assertEquals(tester.getFalling(), true);
 	}
+	/*@Test
 	public void collisionTest1(){
 		ArrayList<GameObject> test1 = new ArrayList<GameObject>();
 		test1.add(tester);
@@ -91,6 +92,7 @@ public class CritterTest {
 		
 	}
 	@SuppressWarnings("deprecation")
+	@Test
 	public void collisionTest2(){
 		ArrayList<GameObject> test1 = new ArrayList<GameObject>();
 		test1.add(tester);
@@ -98,6 +100,6 @@ public class CritterTest {
 		tester.testCollision(test1);
 		assertEquals(((Critter) test1.get(0)).getVelY(),01, 0);
 		
-	}
+	}*/
 
 }
