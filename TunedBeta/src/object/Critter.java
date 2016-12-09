@@ -610,7 +610,7 @@ public class Critter extends GameObject {
 
 	/**
 	 * Method that has a timer of when the critter can be hit again after being
-	 * hit
+	 * hit 
 	 */
 	ActionListener listener = new ActionListener() {
 		@Override
