@@ -74,7 +74,7 @@ public class Game3Timer extends GameObject {
 			//if 20 seconds are left, set game to hard mode
 			if(mintime == 0 && sectime == 15){
 				Waves.hard = true;
-				WaveClock.hard = true;
+				WaveClock.hard = true; 
 			}
 		}
 		else if(g == 1){
@@ -85,7 +85,7 @@ public class Game3Timer extends GameObject {
 				clock1.stop();
 				
 				//System.out.println("Win");
-				win();
+//				win();
 			}
 			
 		}
