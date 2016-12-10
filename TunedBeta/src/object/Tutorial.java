@@ -108,7 +108,7 @@ public class Tutorial extends GameObject {
 
 	@Override
 	public void pngSelector(Graphics g) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub 
 		if (!firstStage) {
 			g.drawImage(img.getTutorialMove(), 128, (int) game.dm.getHeight() * 3 / 5 - 162, game);
 			g.drawImage(img.getTutorialE(), 448 - 150, (int) game.dm.getHeight() * 3 / 5 - 216, game);
