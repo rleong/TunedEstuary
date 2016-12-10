@@ -41,9 +41,9 @@ public class KeyInput extends KeyAdapter {
 	 */
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
-		if (!gm.isPause()) {
-			for (int i = 0; i < handler2.object.size(); i++) {
-				GameObject temp = handler2.object.get(i);
+		if (!gm.isPlanting()) {
+			for (int i = 0; i < handler2.objectsList.size(); i++) {
+				GameObject temp = handler2.objectsList.get(i);
 
 				if (temp.getId() == ObjectId.critter) {
 					Critter t = (Critter) temp;
@@ -109,9 +109,9 @@ public class KeyInput extends KeyAdapter {
 	 */
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
-		if (!gm.isPause()) {
-			for (int i = 0; i < handler2.object.size(); i++) {
-				GameObject temp = handler2.object.get(i);
+		if (!gm.isPlanting()) {
+			for (int i = 0; i < handler2.objectsList.size(); i++) {
+				GameObject temp = handler2.objectsList.get(i);
 				if (temp.getId() == ObjectId.critter) {
 					Critter t = (Critter) temp;
 					// Movements
@@ -143,7 +143,7 @@ public class KeyInput extends KeyAdapter {
 					}
 					// Attack 
 					if (key == KeyEvent.VK_SPACE) {
-						t.attack(handler.object);
+						t.attack(handler.objectsList);
 						t.setAnimation(0);
 					}
 					// Change Characters
@@ -164,8 +164,8 @@ public class KeyInput extends KeyAdapter {
 					}
 				}
 			}
-			for (int i = 0; i < handler.object.size(); i++) {
-				GameObject temp = handler.object.get(i);
+			for (int i = 0; i < handler.objectsList.size(); i++) {
+				GameObject temp = handler.objectsList.get(i);
 				
 				if (temp.getId() == ObjectId.inventory) {
 					Inventory inv = (Inventory) temp;

@@ -92,8 +92,8 @@ public class Compost extends GameObject {
 	 */
 	private void collision() {
 		// TODO Auto-generated method stub
-		for (int i = 0; i < game.handler.object.size(); i++) {
-			GameObject temp = game.handler.object.get(i);
+		for (int i = 0; i < game.handler.objectsList.size(); i++) {
+			GameObject temp = game.handler.objectsList.get(i);
 			if (temp.getId() == ObjectId.sand) {
 				if(getBounds().intersects(temp.getBounds())){
 					falling=false;
@@ -118,7 +118,7 @@ public class Compost extends GameObject {
 	 * Method to display compost images depending on type
 	 */
 	@Override
-	public void render(Graphics g) {
+	public void pngSelector(Graphics g) {
 		switch(type){
 		case 0:
 			g.drawImage(images.getWaste(2, imageType), (int) x, (int) y, game);

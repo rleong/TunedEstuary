@@ -40,9 +40,7 @@ public class Window {
 	}
 	
 	/**
-	 * Method that will change the window. Every time this function is called
-	 * it changes the game by removing the odd objects of the previous game and 
-	 * add the objects of the new game.
+	 * Method that will resize the window. 
 	 * 
 	 * @param w - width
 	 * @param h - height 

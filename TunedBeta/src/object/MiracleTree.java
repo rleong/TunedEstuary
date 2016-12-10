@@ -68,7 +68,7 @@ public class MiracleTree extends GameObject{
 	public void dead(){
 //		dropSeed();
 		dropCompost();
-		game.handler.object.remove(this);
+		game.handler.objectsList.remove(this);
 		
 	}
 	/**
@@ -108,7 +108,7 @@ public class MiracleTree extends GameObject{
 				stage++;
 		}
 		if(System.currentTimeMillis()-timer1>20000){
-			game.handler.object.remove(this);
+			game.handler.objectsList.remove(this);
 		}
 		if(!lock){
 			timer2=System.currentTimeMillis();
@@ -125,7 +125,7 @@ public class MiracleTree extends GameObject{
 	 * Method that displays the miracle plant image
 	 */
 	@Override
-	public void render(Graphics g) {
+	public void pngSelector(Graphics g) {
 		g.drawImage(images.getWaterStarGrass(stage),(int)x-16, (int)y+32, game);
 		g.setColor(Color.red);
 		g.fillRect((int)x, (int)y, 32, 5);

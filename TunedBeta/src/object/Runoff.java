@@ -61,14 +61,14 @@ public class Runoff extends GameObject {
 			velY += gravity;
 		x += velX;
 		y += velY;
-		collision(game.handler.object);
+		collision(game.handler.objectsList);
 	}
 
 	/**
 	 * Method that displays images of run-off depending on the run-off type 
 	 */
 	@Override
-	public void render(Graphics g) {
+	public void pngSelector(Graphics g) {
 		g.setColor(Color.WHITE);
 		switch (type) {
 		case 0:
@@ -117,8 +117,8 @@ public class Runoff extends GameObject {
 	 * @param object - list of game objects
 	 */
 	private void collision(ArrayList<GameObject> object) {
-		for (int i = 0; i < game.handler.object.size(); i++) {
-			GameObject temp = game.handler.object.get(i);
+		for (int i = 0; i < game.handler.objectsList.size(); i++) {
+			GameObject temp = game.handler.objectsList.get(i);
 			if (temp.getId() == ObjectId.landSurface) {
 				if (getBounds().intersects(temp.getBounds())) {
 					falling = false;
@@ -151,9 +151,9 @@ public class Runoff extends GameObject {
 
 				if (getBounds().intersects(temp.getBounds())) {
 					if(!inTer){
-					game.count += 1;
-					if(game.count >= 5){
-						game.count = 5;
+					game.waterCondition += 1;
+					if(game.waterCondition >= 5){
+						game.waterCondition = 5;
 					}
 					game.nWaste-=1.005;
 					object.remove(this);

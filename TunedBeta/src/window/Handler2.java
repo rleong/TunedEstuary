@@ -12,7 +12,7 @@ import object.Waste;
 
 public class Handler2 {
 	//Attributes
-	public ArrayList<GameObject> object = new ArrayList<GameObject>();
+	public ArrayList<GameObject> objectsList2 = new ArrayList<GameObject>();
 
 	private GameObject temp;
 	Game game;
@@ -35,10 +35,10 @@ public class Handler2 {
 	 */
 	public void tick() {
 
-		for (int i = 0; i < object.size(); i++) {
-			temp = object.get(i);
+		for (int i = 0; i < objectsList2.size(); i++) {
+			temp = objectsList2.get(i);
 
-			temp.tick(object);
+			temp.tick(objectsList2);
 		}
 	}
 
@@ -48,9 +48,9 @@ public class Handler2 {
 	 * @param g - graphics object
 	 */
 	public void render(Graphics g) {
-		for (int i = 0; i < object.size(); i++) {
-			temp = object.get(i);
-			temp.render(g);
+		for (int i = 0; i < objectsList2.size(); i++) {
+			temp = objectsList2.get(i);
+			temp.pngSelector(g);
 		}
 	}
 
@@ -60,7 +60,7 @@ public class Handler2 {
 	 * @param object - game object to add
 	 */
 	public void addObject(GameObject object) {
-		this.object.add(object);
+		this.objectsList2.add(object);
 //		for (int i = 0; i < this.object.size(); i++) {
 //			temp = this.object.get(i);
 //			if (temp.getId() == ObjectId.critter && i != this.object.size()-1) {
@@ -76,6 +76,6 @@ public class Handler2 {
 	 * @param object - game object to remove
 	 */
 	public void removeObject(GameObject object) {
-		this.object.remove(object);
+		this.objectsList2.remove(object);
 	}
 }

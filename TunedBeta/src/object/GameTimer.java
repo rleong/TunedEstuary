@@ -21,7 +21,7 @@ import window.Window;
  * @author justin said
  *
  */
-public class Game3Timer extends GameObject {
+public class GameTimer extends GameObject {
 	private int mintime;//minute time
 	private int sectime;//seconds remaining
 	private int mstime;//milliseconds remaining	
@@ -36,7 +36,7 @@ public class Game3Timer extends GameObject {
 	 * @param id object's Id Enum value
 	 * @param game Game object
 	 */
-	public Game3Timer(double x, double y, ObjectId id, Game game, int g) {
+	public GameTimer(double x, double y, ObjectId id, Game game, int g) {
 		super(x, y, id, game);
 		mintime = 1;
 		sectime = 30;
@@ -102,7 +102,7 @@ public class Game3Timer extends GameObject {
 
 	@Override
 	//print time remaining
-	public void render(Graphics g) {
+	public void pngSelector(Graphics g) {
 		g.setFont(new Font("Times",20,20));
 		g.setColor(Color.black);
 		g.drawString("Time Remaining: "+mintime + ":"+ sectime + ":" + mstime, critter.getTimeXLocation(), critter.getTimeYLocation());

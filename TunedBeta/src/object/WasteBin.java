@@ -38,7 +38,7 @@ public class WasteBin extends GameObject {
 	}
 
 	@Override
-	public void render(Graphics g) {
+	public void pngSelector(Graphics g) {
 		if(highlight){
 			if (type == 0) {
 				g.drawImage(images.getWasteBins(0), (int)x, (int)y, gm);

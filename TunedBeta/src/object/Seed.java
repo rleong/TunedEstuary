@@ -84,15 +84,15 @@ public class Seed extends GameObject {
 	 */
 	private void collision() {
 		// TODO Auto-generated method stub
-		for (int i = 0; i < game.handler.object.size(); i++) {
-			GameObject temp = game.handler.object.get(i);
+		for (int i = 0; i < game.handler.objectsList.size(); i++) {
+			GameObject temp = game.handler.objectsList.get(i);
 			if (temp.getId() == ObjectId.sand) {
 				if(getBounds().intersects(temp.getBounds())){
 					falling=false;
 //					if(growing){
 						
-						game.handler.object.add(new WaterTree(x, y-65, ObjectId.waterTree, type, game, images));
-						game.handler.object.remove(this);
+						game.handler.objectsList.add(new WaterTree(x, y-65, ObjectId.waterTree, type, game, images));
+						game.handler.objectsList.remove(this);
 						return;
 //					}
 				}
@@ -104,7 +104,7 @@ public class Seed extends GameObject {
 	 * Method that creates images of the seed depending on what seed it is
 	 */
 	@Override
-	public void render(Graphics g) {
+	public void pngSelector(Graphics g) {
 		g.drawImage(images.getSeed(), (int)x, (int)y, game);
 	}
 

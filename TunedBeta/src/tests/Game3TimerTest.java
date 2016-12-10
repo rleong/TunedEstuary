@@ -5,11 +5,11 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import framework.ObjectId;
-import object.Game3Timer;
+import object.GameTimer;
 
 public class Game3TimerTest {
 
-	Game3Timer tester = new Game3Timer(1.0,1.0,ObjectId.game3timer,null,3);
+	GameTimer tester = new GameTimer(1.0,1.0,ObjectId.game3timer,null,3);
 	
 	@Test
 	public void getBoundsTest(){

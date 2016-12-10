@@ -81,7 +81,7 @@ public class SchoolFish extends GameObject {
 		Iterator<Fish> it = school.iterator();
 		while (it.hasNext()) {
 			Fish temp = it.next();
-			if (game.count == temp.gethType()) {
+			if (game.waterCondition == temp.gethType()) {
 				it.remove();
 			}
 		}
@@ -107,7 +107,7 @@ public class SchoolFish extends GameObject {
 	 * fishes are still in the school
 	 */
 	@Override
-	public void render(Graphics g) {
+	public void pngSelector(Graphics g) {
 		switch (school.size()) {
 		case 7:
 			g.drawImage(images.getSchoolFish(0, stage), (int) x, (int) y, game);

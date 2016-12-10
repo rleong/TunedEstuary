@@ -131,7 +131,7 @@ public class Inventory extends GameObject {
 	 * Method to display the inventory image
 	 */
 	@Override
-	public void render(Graphics g) {
+	public void pngSelector(Graphics g) {
 		
 		// Trash Bin Icon
 		g.drawImage(images.getWasteIcon(), critter.getWasteX(), critter.getWasteY(), game);
@@ -170,7 +170,7 @@ public class Inventory extends GameObject {
 					critter.planT(0);
 					critter.setBuildAnimation(true);
 					regularCompost -= 50;
-					gm.setPause(3000);
+					gm.setPlantingTime(3000);
 				} else {
 					setErrorMessage("You do not have enough compost!");
 					error = true;
@@ -182,7 +182,7 @@ public class Inventory extends GameObject {
 					critter.planT(1);
 					critter.setBuildAnimation(true);
 					regularCompost -= 75;
-					gm.setPause(3000);
+					gm.setPlantingTime(3000);
 				} else {
 					setErrorMessage("You do not have enough compost!");
 					error = true;
@@ -194,7 +194,7 @@ public class Inventory extends GameObject {
 					critter.planT(2);
 					critter.setBuildAnimation(true);
 					regularCompost -= 100;
-					gm.setPause(3000);
+					gm.setPlantingTime(3000);
 				} else {
 					setErrorMessage("You do not have enough compost!");
 					error = true;
@@ -206,7 +206,7 @@ public class Inventory extends GameObject {
 					critter.planT(3);
 					critter.setBuildAnimation(true);
 					fertileCompost -= 1;
-					gm.setPause(3000);
+					gm.setPlantingTime(3000);
 				} else {
 					setErrorMessage("You do not have enough compost!");
 					error = true;

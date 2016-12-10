@@ -101,7 +101,7 @@ public class Tree extends GameObject {
 	 * Method that displays images of the tree depending on what type of tree
 	 */
 	@Override
-	public void render(Graphics g) {
+	public void pngSelector(Graphics g) {
 		
 		g.setColor(Color.BLACK);
 		

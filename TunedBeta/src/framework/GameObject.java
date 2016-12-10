@@ -44,7 +44,7 @@ public abstract class GameObject {
 	 * 
 	 * @param g - graphic variable
 	 */
-	public abstract void render(Graphics g);
+	public abstract void pngSelector(Graphics g);
 	
 	/**
 	 * Abstract method that returns the bounds of an object

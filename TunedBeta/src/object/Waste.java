@@ -194,7 +194,7 @@ public class Waste extends GameObject {
 	 * Method to display the waste images depending on the type of waste
 	 */
 	@Override
-	public void render(Graphics g) {
+	public void pngSelector(Graphics g) {
 
 		// Waste Type
 		g.drawImage(images.getWaste(type, wasteName), (int) x, (int) y, game);
@@ -308,8 +308,8 @@ public class Waste extends GameObject {
 	 */
 	private void collision(ArrayList<GameObject> object) {
 		GameObject temp;
-		for (int i = 0; i < game.handler.object.size(); i++) {
-			temp = game.handler.object.get(i);
+		for (int i = 0; i < game.handler.objectsList.size(); i++) {
+			temp = game.handler.objectsList.get(i);
 			if (temp.getId() == ObjectId.sand) {
 				if (getBoundsBottom().intersects(temp.getBounds())) {
 					setY(temp.getY() - 32);

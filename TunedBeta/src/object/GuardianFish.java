@@ -72,7 +72,7 @@ public class GuardianFish extends GameObject {
 			else
 				stage = 0;
 		}
-		collision(game.handler.object);
+		collision(game.handler.objectsList);
 
 	}
 
@@ -80,7 +80,7 @@ public class GuardianFish extends GameObject {
 	 * Method that displays the guardian fish image
 	 */
 	@Override
-	public void render(Graphics g) {
+	public void pngSelector(Graphics g) {
 
 		// g.setColor(Color.RED);
 		// g.fillRect((int) game.dm.getWidth() * 1517 / 1000, (int)
@@ -121,8 +121,8 @@ public class GuardianFish extends GameObject {
 	 * @param object
 	 */
 	private void collision(ArrayList<GameObject> object) {
-		for (int i = 0; i < game.handler2.object.size(); i++) {
-			GameObject temp = game.handler2.object.get(i);
+		for (int i = 0; i < game.handler2.objectsList.size(); i++) {
+			GameObject temp = game.handler2.objectsList.get(i);
 			if (temp.getId() == ObjectId.critter) {
 				if (getGuardBounds().intersects(temp.getBounds())) {
 					chasing = true;

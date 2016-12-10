@@ -39,7 +39,7 @@ public class LandSurface extends GameObject {
 	@Override
 	public void tick(ArrayList<GameObject> object) {
 		if(init == 0){
-			stage = game.getCount();
+			stage = game.getWaterCondition();
 			init = 1;
 		}
 			
@@ -51,7 +51,7 @@ public class LandSurface extends GameObject {
 	 * you need
 	 */
 	@Override
-	public void render(Graphics g) {
+	public void pngSelector(Graphics g) {
 		if(id==ObjectId.landSurface){
 			g.drawImage(images.getGrassTiles(0), (int)x, (int)y, game);
 			g.drawImage(images.getGrassTiles(1), (int)x, (int)y+32, game);
@@ -67,7 +67,7 @@ public class LandSurface extends GameObject {
 			// Not visible
 		}
 		if(id==ObjectId.waterImageMarker){
-			stage = game.getCount();
+			stage = game.getWaterCondition();
 			g.drawImage(images.getWaterTiles(stage, 0), (int)x, (int)y, game);
 			g.drawImage(images.getWaterTiles(stage, 1), (int)x, (int)y+32, game);
 			for(int i = (int) y + 64; i < game.dm.getHeight() - 64; i += 32){
@@ -75,7 +75,7 @@ public class LandSurface extends GameObject {
 			}
 		}
 		if(id==ObjectId.waterImageMarker2){
-			stage = game.getCount();
+			stage = game.getWaterCondition();
 			g.drawImage(images.getWaterTiles(stage, 0), (int)x, (int)y, game);
 			g.drawImage(images.getWaterTiles(stage, 1), (int)x, (int)y+32, game);
 			for(int i = (int) y + 64; i < game.dm.getHeight() * 6/5; i += 32){

@@ -96,7 +96,7 @@ public class Habitat extends GameObject{
 	 * Method that display the habitat image
 	 */
 	@Override
-	public void render(Graphics g) {
+	public void pngSelector(Graphics g) {
 		int temporaryXValue = 0;
 		for(int i = 0; i < imageIndexStorage.size(); i++){
 			g.drawImage(images.getHabitat(stage, imageIndexStorage.get(i)), (int) x + temporaryXValue, (int) y, game);
@@ -123,8 +123,8 @@ public class Habitat extends GameObject{
 	private void collision(ArrayList<GameObject> object) {
 		numberOfHazards = 0;
 		numberOfCompost = 0;
-		for (int i = 0; i < game.handler.object.size(); i++) {
-			GameObject temp = game.handler.object.get(i);
+		for (int i = 0; i < game.handler.objectsList.size(); i++) {
+			GameObject temp = game.handler.objectsList.get(i);
 			if (temp.getId() == ObjectId.waste) {
 				Waste waste = (Waste) temp;
 				if (getBounds().intersects(temp.getBounds()) && !waste.checkDeath() && !waste.getIsTrapped()) {

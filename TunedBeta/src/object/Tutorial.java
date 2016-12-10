@@ -56,13 +56,13 @@ public class Tutorial extends GameObject {
 			firstStageAdditions();
 		}
 		
-		for (int i = 0; i < game.handler.object.size(); i++) {
-			GameObject temp = game.handler.object.get(i);
+		for (int i = 0; i < game.handler.objectsList.size(); i++) {
+			GameObject temp = game.handler.objectsList.get(i);
 			if (temp.getId() == ObjectId.tree) {
 
 				// if(System.currentTimeMillis()-timer>3000)
 				if (!secondStage) {
-					game.handler.object.add(rof);
+					game.handler.objectsList.add(rof);
 					secondStage = true;
 				}
 			}
@@ -70,17 +70,17 @@ public class Tutorial extends GameObject {
 	}
 
 	public void remove() {
-		for (int i = 0; i < game.handler.object.size(); i++) {
-			GameObject temp = game.handler.object.get(i);
+		for (int i = 0; i < game.handler.objectsList.size(); i++) {
+			GameObject temp = game.handler.objectsList.get(i);
 
 			if (temp.getId() == ObjectId.tree) {
 				Tree tree = (Tree) temp;
 				if (tree.hp < 3)
 					if (System.currentTimeMillis() - timer > 20000) {
-						game.handler.object.remove(temp);
+						game.handler.objectsList.remove(temp);
 						game.tutorial = false;
 						game.game1 = true;
-						game.handler.object.remove(this);
+						game.handler.objectsList.remove(this);
 						critter.setHealth(0, 100, true);
 						critter.setHealth(1, 100, true);
 						critter.setHealth(2, 100, true);
@@ -107,7 +107,7 @@ public class Tutorial extends GameObject {
 	}
 
 	@Override
-	public void render(Graphics g) {
+	public void pngSelector(Graphics g) {
 		// TODO Auto-generated method stub
 		if (!firstStage) {
 			g.drawImage(img.getTutorialMove(), 128, (int) game.dm.getHeight() * 3 / 5 - 162, game);

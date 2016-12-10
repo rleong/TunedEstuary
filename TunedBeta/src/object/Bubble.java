@@ -56,7 +56,7 @@ public class Bubble extends GameObject {
 	 * Method to display the bubble image
 	 */
 	@Override
-	public void render(Graphics g) {
+	public void pngSelector(Graphics g) {
 		g.setColor(new Color(006666));
 		g.drawOval((int) x, (int) y, 48, 48);
 		g.setColor(Color.WHITE);

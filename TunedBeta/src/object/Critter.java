@@ -186,7 +186,7 @@ public class Critter extends GameObject {
 		if (x > dm.getWidth() * 2 - 10) {
 			x = dm.getWidth() * 2 - 10;
 		}
-		if (!game.isPause())
+		if (!game.isPlanting())
 			y += velY;
 
 		if (x > dm.getWidth() * 5 / 6 + 32) {
@@ -211,7 +211,7 @@ public class Critter extends GameObject {
 			sp2++;
 
 		// Collisions
-		collision(game.handler.object);
+		collision(game.handler.objectsList);
 
 		// Health Bar & Name Locations
 		nameXLocation = (int) (x - (dm.getWidth() * 49 / 100));
@@ -245,7 +245,7 @@ public class Critter extends GameObject {
 	 * Method to display critter, health, and special ability images
 	 */
 	@Override
-	public void render(Graphics g) {
+	public void pngSelector(Graphics g) {
 
 		if (health0 <= 0) {
 			g.drawImage(images.getBlueCrabImage(9, 0), deathLocation[0][0], deathLocation[0][1], game);
@@ -615,7 +615,7 @@ public class Critter extends GameObject {
 	public void drawWateringPlantAction(Graphics g) {
 		actionFrameNum = (actionFrameNum + 1) % images.getActionFrames();
 
-		if (game.isPause()) {
+		if (game.isPlanting()) {
 			g.drawImage(images.getWateringPlant(actionFrameNum), (int) x, (int) y - 42, game);
 		}
 
@@ -630,7 +630,7 @@ public class Critter extends GameObject {
 	public void drawBuildingAction(Graphics g) {
 		actionFrameNum = (actionFrameNum + 1) % images.getActionFrames();
 
-		if (game.isPause()) {
+		if (game.isPlanting()) {
 			g.drawImage(images.getBuildingAction(actionFrameNum), (int) x, (int) y - 42, game);
 		}
 
@@ -826,8 +826,8 @@ public class Critter extends GameObject {
 	 */
 	// Collision
 	private void collision(ArrayList<GameObject> object) {
-		for (int i = 0; i < game.handler.object.size(); i++) {
-			GameObject temp = game.handler.object.get(i);
+		for (int i = 0; i < game.handler.objectsList.size(); i++) {
+			GameObject temp = game.handler.objectsList.get(i);
 			if (temp.getId() == ObjectId.landSurface) {
 				if (getBoundsBottom().intersects(temp.getBounds())) {
 					setY(temp.getY() - 31);

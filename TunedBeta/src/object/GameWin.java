@@ -40,7 +40,7 @@ public class GameWin extends GameObject {
 		time = new Timer(1000, listener);//call listener every second
 		time.start();
 		Game.gameover = true;//removes key listener in game class
-		Game3Timer.clock1.stop();
+		GameTimer.clock1.stop();
 		
 		
 		
@@ -78,7 +78,7 @@ public class GameWin extends GameObject {
 	/**
 	 * prints game win method
 	 */
-	public void render(Graphics g) {
+	public void pngSelector(Graphics g) {
 		g.setFont(new Font("Times",20,20));
 		g.setColor(Color.black);
 		g.drawString("Congratulations!",(int) (game.dm.getWidth()/2.5),(int) (game.dm.getHeight()/3));

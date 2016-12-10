@@ -19,7 +19,7 @@ import framework.ObjectId;
 import gfx.Images;
 import object.Boat;
 import object.Critter;
-import object.Game3Timer;
+import object.GameTimer;
 import object.GameOver;
 import object.GameWin;
 import object.GuardianFish;
@@ -40,17 +40,19 @@ public class Game extends Canvas implements Runnable {
 	 */
 	private static final long serialVersionUID = -6771508490304664935L;
 
+	//Start Game variables 
 	static Toolkit tk = Toolkit.getDefaultToolkit();
 	public static Dimension dm = new Dimension(tk.getScreenSize());
 	private boolean running = false;
 	public static long startTime;
 	private Thread thread;
-	public int count = 0;
-	boolean pause = false;
+	public int waterCondition = 0;
+	boolean planting = false;
 	Timer clock;
-	public int nRof = 0;
+	public int numRunoff = 0;
 	public int g2stage = 0;
 	private Random rand = new Random();
+	
 	// Object
 	public Handler handler;
 	public Handler handler2;
@@ -65,10 +67,10 @@ public class Game extends Canvas implements Runnable {
 	SchoolFish school2;
 	SchoolFish school3;
 	GuardianFish gfish;
-	Game3Timer g1t;
-
+	GameTimer gtime;
 	Habitat habitat;
 	int gmeval = 1;
+	
 	// Game Conditions
 	public static boolean gameover = false;
 	public static boolean game1 = false;
@@ -77,16 +79,16 @@ public class Game extends Canvas implements Runnable {
 	Timer gameTime;
 	Timer game3Time;
 	public static Boat test;
+	
 	// Game2 var
-
 	public double nWaste = 0;
 	public double nW1 = 0;
 	public double nW2 = 0;
 	public double nW3 = 0;
 	public double nW4 = 0;
-
 	public int currency = 25;
 	KeyInput k;
+	
 	// Camera
 	Camera cam;
 	
@@ -107,13 +109,9 @@ public class Game extends Canvas implements Runnable {
 		dmBoundaries = handler.spawnLocations(dm);
 
 		cam = new Camera(0, 0, dm);
-		g1t = new Game3Timer((int) (dm.getWidth() - dm.getWidth() / 4), (int) (dm.getHeight() / 8), ObjectId.game3timer,
+		gtime = new GameTimer((int) (dm.getWidth() - dm.getWidth() / 4), (int) (dm.getHeight() / 8), ObjectId.game3timer,
 				this, 1);
 		habitat = new Habitat(dmBoundaries[2] + 16, dmBoundaries[1] - 96 - 64, ObjectId.habitat, this, dm, images);
-
-		// 0 1 2 3 4
-		// Width, Height, Water Start Width, Water Bottom Height, Water Surface
-		// Height
 		handler.creatSurface(dm);
 		factory = new RofFactory(0, dm.getHeight() * 3 / 5 - 32, ObjectId.RofFactory, this, images);
 		school = new SchoolFish(dm.getWidth(), dm.getHeight() * 4 / 5, ObjectId.school, this, images);
@@ -137,14 +135,14 @@ public class Game extends Canvas implements Runnable {
 		handler.addObject(trashBin);
 		handler.addObject(recyclebin);
 		handler.addObject(habitat);
-		handler.addObject(g1t);
+		handler.addObject(gtime);
 
 		// Critter
 		handler2.addObject(critter);
 		trashBin.setCritter(critter);
 		recyclebin.setCritter(critter);
 		inventory.setCritter(critter);
-		g1t.setCritter(critter);
+		gtime.setCritter(critter);
 		k = new KeyInput(handler, handler2, this);
 		this.addKeyListener(new KeyInput(handler, handler2, this));
 		tutor = new Tutorial(0, 0, ObjectId.tutorial, this, trashBin, recyclebin, inventory, images, critter);
@@ -215,23 +213,23 @@ public class Game extends Canvas implements Runnable {
 	private void tick() {
 		handler.tick();
 		handler2.tick();
-		for (int i = 0; i < handler2.object.size(); i++) {
-			if (handler2.object.get(i).getId() == ObjectId.critter) {
-				cam.tick(handler2.object.get(i));
+		for (int i = 0; i < handler2.objectsList.size(); i++) {
+			if (handler2.objectsList.get(i).getId() == ObjectId.critter) {
+				cam.tick(handler2.objectsList.get(i));
 			}
 		}
 		// Lose conditions
-		for (int j = 0; j < handler.object.size(); j++) {
-			if (handler.object.get(j).getId() == ObjectId.habitat) {
-				Habitat temp = (Habitat) handler.object.get(j);
+		for (int j = 0; j < handler.objectsList.size(); j++) {
+			if (handler.objectsList.get(j).getId() == ObjectId.habitat) {
+				Habitat temp = (Habitat) handler.objectsList.get(j);
 				if (temp.getHealth() <= 0.0) {
 					gameover = true;
 					handler.addObject(new GameOver(1, 1, ObjectId.gameover, this));
 				}
 
 			}
-			if (handler.object.get(j).getId() == ObjectId.school) {
-				SchoolFish temp = (SchoolFish) handler.object.get(j);
+			if (handler.objectsList.get(j).getId() == ObjectId.school) {
+				SchoolFish temp = (SchoolFish) handler.objectsList.get(j);
 				if (temp.isDead() == true) {
 					gameover = true;
 					handler.addObject(new GameOver(1, 1, ObjectId.gameover, this));
@@ -307,22 +305,21 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	/**
-	 * Method that gets the count
+	 * Method that gets the condition of the water
 	 * 
-	 * @return count
+	 * @return condition number
 	 */
-	public int getCount() {
-		return count;
+	public int getWaterCondition() {
+		return waterCondition;
 	}
 
 	/**
 	 * Method that sets the count
 	 * 
-	 * @param count
-	 *            - count
+	 * @param count - condition number
 	 */
-	public void setCount(int count) {
-		this.count = count;
+	public void setWaterCondition(int count) {
+		this.waterCondition = count;
 	}
 
 	/**
@@ -330,8 +327,8 @@ public class Game extends Canvas implements Runnable {
 	 * 
 	 * @return number of run-off
 	 */
-	public int getnRof() {
-		return nRof;
+	public int getNumRunoff() {
+		return numRunoff;
 	}
 
 	/**
@@ -340,17 +337,17 @@ public class Game extends Canvas implements Runnable {
 	 * @param nRof
 	 *            - number of run-off to be
 	 */
-	public void setnRof(int nRof) {
-		this.nRof = nRof;
+	public void setNumRunoff(int nRof) {
+		this.numRunoff = nRof;
 	}
 
 	/**
-	 * Method that returns if pause is true or false
+	 * Method that returns if the character is planting or not
 	 * 
-	 * @return boolean if paused
+	 * @return boolean if planting
 	 */
-	public boolean isPause() {
-		return pause;
+	public boolean isPlanting() {
+		return planting;
 	}
 
 	/**
@@ -358,9 +355,9 @@ public class Game extends Canvas implements Runnable {
 	 * 
 	 * @param duration - time player is stopped 
 	 */
-	public void setPause(int duration) {
-		clock = new Timer(duration, listener);
-		pause = true;
+	public void setPlantingTime(int duration) {
+		clock = new Timer(duration, plantingEnder);
+		planting = true;
 		critter.setVelX(0);
 		critter.setVelY(0);
 		clock.start();
@@ -368,14 +365,15 @@ public class Game extends Canvas implements Runnable {
 
 	/**
 	 * Method that does a certain action at a certain time
-	 *	- make pause false
+	 *	- make planting false
 	 *	- end animation
 	 *	- stop the clock 
+	 *This method stops the animation after planting
 	 */
-	ActionListener listener = new ActionListener() {
+	ActionListener plantingEnder = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			pause = false;
+			planting = false;
 			critter.endAnimation();
 			clock.stop();
 		}
@@ -386,7 +384,7 @@ public class Game extends Canvas implements Runnable {
 	 * This method is used to change our games when a certain condition 
 	 * happens or end when game when a certain condition is hit 
 	 */
-	ActionListener game3TimeListener = new ActionListener() {
+	ActionListener gameChanger = new ActionListener() {
 		private boolean tutorial;
 
 		@Override
@@ -419,8 +417,8 @@ public class Game extends Canvas implements Runnable {
 		}
 	};
 	
-	public Game3Timer getGameTimer() {
-		return g1t;
+	public GameTimer getGameTimer() {
+		return gtime;
 	}
 
 	/**
@@ -432,5 +430,7 @@ public class Game extends Canvas implements Runnable {
 		Game game = new Game();
 		new Window(dm, "Estuary", game);
 	}
+
+	
 
 }

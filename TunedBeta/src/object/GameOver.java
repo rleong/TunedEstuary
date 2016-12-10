@@ -46,7 +46,7 @@ public class GameOver extends GameObject {
 		time = new Timer(1000, listener);//call listener every second
 		time.start();
 		Game.gameover = true;//removes key listener in game class
-		Game3Timer.clock1.stop();//stop game 3 timer	
+		GameTimer.clock1.stop();//stop game 3 timer	
 		//write();
 	}
 	ActionListener listener = new ActionListener() {
@@ -132,7 +132,7 @@ public class GameOver extends GameObject {
 	/**
 	 * prints game loss method
 	 */
-	public void render(Graphics g) {
+	public void pngSelector(Graphics g) {
 		g.setFont(new Font("Times",20,20));
 		g.setColor(Color.black);
 		g.drawString("Game Over",(int) (game.dm.getWidth()/2.5),(int) (game.dm.getHeight()/3));

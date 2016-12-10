@@ -28,7 +28,6 @@ public class Boat extends GameObject {
 	private double boundary2;
 	private int rand1;
 	private int count;
-	boolean waves;
 	public boolean game3;
 	public static boolean game1;
 	private int stage = 0;
@@ -137,7 +136,7 @@ public class Boat extends GameObject {
 	 * Method to display images of the boat 
 	 */
 	@Override
-	public void render(Graphics g) {
+	public void pngSelector(Graphics g) {
 		g.drawImage(images.getTrashBoat(stage), (int) x, (int) y, game);
 		g.drawString("Trash Boat", (int) x + 24, (int) y - 24);
 	}

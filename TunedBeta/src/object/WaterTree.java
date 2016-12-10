@@ -63,7 +63,7 @@ public class WaterTree extends GameObject {
 		game.handler.addObject(new Compost(x,y-32,ObjectId.compost1, game, type, images));
 		game.handler.addObject(new Compost(x,y-32,ObjectId.compost1, game, type, images));
 
-		game.handler.object.remove(this);
+		game.handler.objectsList.remove(this);
 		return;
 	}
 
@@ -83,7 +83,7 @@ public class WaterTree extends GameObject {
 	public void dead() {
 		dropSeed();
 		canAttack = false;
-		game.handler.object.remove(this);
+		game.handler.objectsList.remove(this);
 
 	}
 
@@ -139,7 +139,7 @@ public class WaterTree extends GameObject {
 	 * Method that displays images of the water tree depending on the type
 	 */
 	@Override
-	public void render(Graphics g) {
+	public void pngSelector(Graphics g) {
 		switch (type) {
 		case 0:
 			g.drawImage(images.getHornwort(stage), (int) x - 16, (int) y + 32, game);
