@@ -51,7 +51,7 @@ public class Tutorial extends GameObject {
 
 	public void check() {
 
-		if (!firstStage && critter.getX() >= 448 + 135) {
+		if (!firstStage && critter.getX() >= 448 + 165) {
 			firstStage = true;
 			firstStageAdditions();
 		}

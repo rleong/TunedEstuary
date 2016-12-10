@@ -768,13 +768,30 @@ public class Critter extends GameObject {
 			if (temp.getId() == ObjectId.waste) {
 				Waste waste = (Waste) temp;
 				if (!waste.checkDeath()) {
-					if (waste.canAttack && !waste.getIsTrapped() && waste.getType() == 1) {
-						waste.health -= damage;
+					if (waste.canAttack && !waste.getIsTrapped()) {
+						switch(waste.getType()){
+						case 0:
+							if(wasteBin.getHighlight())
+								waste.health -= damage;
+							break;
+						case 1:
+							if(recycleBin.getHighlight())
+								waste.health -= damage;
+							break;
+						}
 					}
 					if (waste.health <= 0) {
 						waste.dead();
 					}
 				}
+			}
+			if (temp.getId() == ObjectId.waterTree) {
+				WaterTree wt = (WaterTree) temp;
+				if (wt.canAttack) {
+					wt.hp -= damage;
+				}
+				if (wt.hp <= 0)
+					wt.chopDown();
 			}
 
 		}
