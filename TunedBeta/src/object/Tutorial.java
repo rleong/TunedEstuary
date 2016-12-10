@@ -103,7 +103,7 @@ public class Tutorial extends GameObject {
 
 	@Override
 	public void tick(ArrayList<GameObject> object) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub 
 		if(firstStage){
 			if(inventory.getRegularCompost() != 50){
 				inventory.setRegularCompost(50);
