@@ -130,7 +130,7 @@ public class GameTimer extends GameObject {
 			game.game2 = true;
 		}
 		else if(g==3)
-			game.handler.addObject(new GameWin(1,1,ObjectId.gamewin,game));
+			game.setGameWinLose(true);
 	}
 	
 }

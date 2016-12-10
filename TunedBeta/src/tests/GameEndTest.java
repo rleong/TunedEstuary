@@ -6,11 +6,11 @@ import org.junit.Test;
 
 import framework.ObjectId;
 import object.GameTimer;
-import object.GameOver;
+import object.GameEnd;
 
-public class GameOverTest {
+public class GameEndTest {
 	GameTimer test = new GameTimer(1,1,ObjectId.game3timer,null,3);
-	GameOver tester = new GameOver(1.0,1.0,ObjectId.gameover,null);
+	GameEnd tester = new GameEnd(1.0,1.0,ObjectId.gameover,null, false, null, null);
 	
 	@Test
 	public void getBoundsTest(){

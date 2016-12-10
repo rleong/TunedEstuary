@@ -20,8 +20,7 @@ import gfx.Images;
 import object.Boat;
 import object.Critter;
 import object.GameTimer;
-import object.GameOver;
-import object.GameWin;
+import object.GameEnd;
 import object.GuardianFish;
 import object.Habitat;
 import object.Inventory;
@@ -223,16 +222,14 @@ public class Game extends Canvas implements Runnable {
 			if (handler.objectsList.get(j).getId() == ObjectId.habitat) {
 				Habitat temp = (Habitat) handler.objectsList.get(j);
 				if (temp.getHealth() <= 0.0) {
-					gameover = true;
-					handler.addObject(new GameOver(1, 1, ObjectId.gameover, this));
+					setGameWinLose(false);
 				}
 
 			}
 			if (handler.objectsList.get(j).getId() == ObjectId.school) {
 				SchoolFish temp = (SchoolFish) handler.objectsList.get(j);
 				if (temp.isDead() == true) {
-					gameover = true;
-					handler.addObject(new GameOver(1, 1, ObjectId.gameover, this));
+					setGameWinLose(false);
 				}
 
 			}
@@ -253,11 +250,7 @@ public class Game extends Canvas implements Runnable {
 		}
 		// check game 2 win condition
 		if (g2stage > 7) {
-			handler.addObject(new GameWin(1,1,ObjectId.gamewin,this));
-		}
-
-		if (gameover == true) {
-			this.removeKeyListener(k);
+			
 		}
 
 	}
@@ -416,6 +409,14 @@ public class Game extends Canvas implements Runnable {
 			}
 		}
 	};
+	
+	public void setGameWinLose(boolean win) {
+		gameover = true;
+		if(win)
+			handler.addObject(new GameEnd(1, 1, ObjectId.gameover, this, true, critter, images));
+		else
+			handler.addObject(new GameEnd(1, 1, ObjectId.gameover, this, false, critter, images));
+	}
 	
 	public GameTimer getGameTimer() {
 		return gtime;

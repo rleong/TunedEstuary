@@ -32,6 +32,8 @@ public class Images {
 	// Miscellaneous
 	BufferedImage[] wasteBins;
 	BufferedImage wasteBins2;
+	BufferedImage winText;
+	BufferedImage loseText;
 	
 	// Barriers (Plant 1 = Panic Grass, Plant 2 = Little Bluestem, Plant 3 = Indiangrass)
 	BufferedImage[] panicGrass;
@@ -337,6 +339,8 @@ public class Images {
 			BufferedImage img = createImage("misc/WasteBins.png");
 			wasteBins[i] = img.getSubimage(64 * i, 0, 64, 64);
 		}
+		winText = createImage("misc/Win.png");
+		loseText = createImage("misc/Lose.png");
 
 		// Tiles
 		skyTile = new BufferedImage[4];
@@ -817,6 +821,14 @@ public BufferedImage getArrow() {
 	
 	public BufferedImage getTutorialCompost() {
 		return tutorialCompost;
+	}
+	
+	public BufferedImage getWinText() {
+		return winText;
+	}
+	
+	public BufferedImage getLoseText() {
+		return loseText;
 	}
 
 

@@ -21,6 +21,7 @@ import javax.swing.Timer;
 import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
+import gfx.Images;
 import window.Handler;
 import window.Window;
 /**
@@ -28,11 +29,14 @@ import window.Window;
  * @author justin said
  *
  */
-public class GameOver extends GameObject {
+public class GameEnd extends GameObject {
 	BufferedWriter bw = null;
 	FileWriter fw = null;
+	boolean win;
 	private int count;//remaining time until game exit in seconds
 	private Timer time;//timer to remove one from count
+	Critter critter;
+	Images images;
 	/**
 	 * creates gameover object to end game 3
 	 * @param x object's x position
@@ -40,14 +44,18 @@ public class GameOver extends GameObject {
 	 * @param id object's Id Enum value
 	 * @param game Game object
 	 */
-	public GameOver(double x, double y, ObjectId id, Game game) {
+	public GameEnd(double x, double y, ObjectId id, Game game, boolean win, Critter critter, Images images) {
 		super(x, y, id, game);
 		count = 4;
 		time = new Timer(1000, timer);//call listener every second
 		time.start();
 		Game.gameover = true;//removes key listener in game class
 		GameTimer.clock1.stop();//stop game 3 timer	
+		this.win = win;
+		this.critter = critter;
+		this.images = images;
 		//write();
+		game.setPlantingTime(999999999);
 	}
 	ActionListener timer = new ActionListener() {
 		@Override
@@ -117,7 +125,6 @@ public class GameOver extends GameObject {
 		//exit game when count is 0 and stop timer
 		if(count == -1){
 			time.stop();
-			System.exit(1);
 		}
 	}
 
@@ -127,12 +134,11 @@ public class GameOver extends GameObject {
 	 */
 	@Override
 	public void pngSelector(Graphics g) {
-		g.setFont(new Font("Times",20,20));
-		g.setColor(Color.black);
-		g.drawString("Game Over",(int) (game.dm.getWidth()/2.5),(int) (game.dm.getHeight()/3));
-		g.drawString("You failed to protect the Estuary",(int) (game.dm.getWidth()/2.5),(int) (game.dm.getHeight()/3 + 20));
-		g.drawString("Returning to menu in: " + count, (int) (game.dm.getWidth()/2.5),(int) (game.dm.getHeight()/3+40));
-		g.drawString("Time elapsed in previous game: " + read(), (int) (game.dm.getWidth()/2.5),(int) (game.dm.getHeight()/3+60));
+		
+		if (win)
+			g.drawImage(images.getWinText(), (int) critter.getX() - 250, (int) critter.getY() - 450, game);
+		else
+			g.drawImage(images.getLoseText(), (int) critter.getX() - 250, (int) critter.getY() - 450, game);
 	}
 	
 	@Override

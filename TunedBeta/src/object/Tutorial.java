@@ -51,7 +51,7 @@ public class Tutorial extends GameObject {
 
 	public void check() {
 
-		if (!firstStage && critter.getX() >= 448 + 165) {
+		if (!firstStage && critter.getX() >= 448 + 195) {
 			firstStage = true;
 			firstStageAdditions();
 		}
@@ -116,6 +116,7 @@ public class Tutorial extends GameObject {
 		}
 		if (!secondStage && firstStage) {
 			g.drawImage(img.getTutorialSpace(), 128 + 400, (int) game.dm.getHeight() * 3 / 5 - 162, game);
+			g.drawImage(img.getTutorialR(),  128 + 550, (int) game.dm.getHeight() * 3 / 5 - 162, game);
 			g.drawImage(img.getTutorialR(),  critter.getWasteX() - 350, critter.getWasteY(), game);
 			g.drawImage(img.getArrow(), critter.getWasteX() - 200, critter.getWasteY(), game);
 			g.drawImage(img.getTutorialU(), 448 - 35 + 400, (int) game.dm.getHeight() * 3 / 5 - 216, game);

@@ -681,7 +681,6 @@ public class Critter extends GameObject {
 				else
 					flicker = true;
 				flickerTime++;
-				System.out.println(flickerTime);
 				clockInvincible.restart();
 			}
 
@@ -701,6 +700,9 @@ public class Critter extends GameObject {
 			skip++;
 		if (health2 <= 0)
 			skip++;
+		
+		if (skip >= 3)
+			game.setGameWinLose(false);
 
 		character += 1;
 		character = character % 3;
@@ -891,13 +893,13 @@ public class Critter extends GameObject {
 						clockInvincible.start();
 						switch (character) {
 						case 0:
-							health0 -= 5;
+							health0 -= 50;
 							break;
 						case 1:
-							health1 -= 5;
+							health1 -= 50;
 							break;
 						case 2:
-							health2 -= 5;
+							health2 -= 50;
 							break;
 						}
 					}
