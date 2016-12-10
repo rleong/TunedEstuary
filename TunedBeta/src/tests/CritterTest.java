@@ -20,7 +20,45 @@ public class CritterTest {
 	
 	@Test
 	public void getBoundsTest(){
-		assertEquals(tester.getBounds(), new Rectangle(56,76,20,6));
+		assertEquals(tester.getBounds(), new Rectangle(30,30,72,72));
+	}
+	@Test
+	public void getBoundsSelfTest(){
+		assertEquals(tester.getBoundsSelf(), new Rectangle(50,50,32,32));
+	}
+	@Test
+	public void getBoundsBodyTest(){
+		assertEquals(tester.getBodyBounds(), new Rectangle(50,50,32,32));
+	}
+	@Test
+	public void getBoundsTopTest(){
+		assertEquals(tester.getBoundsTop(), new Rectangle(56,50,20,6));
+	}
+	@Test
+	public void getBoundsBotTest(){
+		assertEquals(tester.getBoundsBottom(), new Rectangle(56,76,20,6));
+	}
+	@Test
+	public void getBoundsLeftTest(){
+		assertEquals(tester.getBoundsLeft(), new Rectangle(50,56,6,20));
+	}
+	@Test
+	public void setRightTest(){
+		tester.setRight();
+		assertEquals(tester.getRight(), true);
+	}
+	@Test
+	public void setLeftTest(){
+		tester.setLeft();
+		assertEquals(tester.getRight(), false);
+	}
+	@Test
+	public void getRightTest(){
+		assertEquals(tester.getRight(), false);
+	}
+	@Test
+	public void getBoundsRightTest(){
+		assertEquals(tester.getBoundsRight(), new Rectangle(76,56,6,20));
 	}
 	@SuppressWarnings("deprecation")
 	@Test
