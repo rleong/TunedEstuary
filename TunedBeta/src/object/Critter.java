@@ -717,6 +717,13 @@ public class Critter extends GameObject {
 	public void setCharacter(int character) {
 		this.character = character;
 	}
+	/**
+	 * returns which character is currently active 
+	 * @return int character number
+	 */
+	public int getCharacter(){
+		return character;
+	}
 
 	/**
 	 * Crab has a huge swing that increases hitbox, and damage.
@@ -1009,6 +1016,13 @@ public class Critter extends GameObject {
 	public boolean getInWater() {
 		return inWater;
 	}
+	/**
+	 *returns boolean if right is true
+	 * @return boolean right
+	 */
+	public boolean getRight(){
+		return right;
+	}
 
 	/**
 	 * Method to set animations depending on what the player is doing
@@ -1018,6 +1032,10 @@ public class Critter extends GameObject {
 	 */
 	public void setAnimation(int currentAnimation) {
 		this.currentAnimation = currentAnimation;
+	}
+	public ArrayList<GameObject> testCollision(ArrayList<GameObject> list){
+		collision(list);
+		return list;
 	}
 
 	public void setHealth(int character, int amount, boolean set) {

@@ -7,6 +7,12 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.ArrayList;
 
@@ -23,6 +29,8 @@ import window.Window;
  *
  */
 public class GameOver extends GameObject {
+	BufferedWriter bw = null;
+	FileWriter fw = null;
 	private int count;//remaining time until game exit in seconds
 	private Timer time;//timer to remove one from count
 	/**
@@ -39,6 +47,7 @@ public class GameOver extends GameObject {
 		time.start();
 		Game.gameover = true;//removes key listener in game class
 		Game3Timer.clock1.stop();//stop game 3 timer	
+		write();
 	}
 	ActionListener listener = new ActionListener() {
 		@Override
@@ -47,6 +56,59 @@ public class GameOver extends GameObject {
 			count--;
 		}
 	};
+	/**
+	 * writes to file
+	 */
+	public void write(){
+		try {
+
+			long content = Game.startTime - System.currentTimeMillis();
+			fw = new FileWriter("test\timeElapsed.txt");
+			bw = new BufferedWriter(fw);
+			bw.write( Long.toString(content));
+
+			System.out.println("Done");
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		} finally {
+			try {
+				bw.close();
+				fw.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+	}
+	/**
+	 * reads from file
+	 */
+	public String read(){
+		String out = "";
+		try {
+		BufferedReader br = new BufferedReader(new FileReader("test\timeElapsed.txt"));
+		try {
+			out = br.readLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			br.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}	
+		return out;
+	}
 	@Override
 	/**
 	 * continuously called to remove game 3 objects and count down timer.
@@ -76,6 +138,7 @@ public class GameOver extends GameObject {
 		g.drawString("Game Over",(int) (game.dm.getWidth()/2.5),(int) (game.dm.getHeight()/3));
 		g.drawString("You failed to protect the Estuary",(int) (game.dm.getWidth()/2.5),(int) (game.dm.getHeight()/3 + 20));
 		g.drawString("Returning to menu in: " + count, (int) (game.dm.getWidth()/2.5),(int) (game.dm.getHeight()/3+40));
+		g.drawString("Time elapsed in previous game: " + read(), (int) (game.dm.getWidth()/2.5),(int) (game.dm.getHeight()/3+60));
 	}
 	@Override
 	//has no bounds
