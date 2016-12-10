@@ -653,7 +653,7 @@ public class Critter extends GameObject {
 		this.character = character;
 	}
 	/**
-	 * returns which character is currently active
+	 * returns which character is currently active 
 	 * @return int character number
 	 */
 	public int getCharacter(){

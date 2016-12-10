@@ -52,7 +52,7 @@ public class CritterTest {
 		tester.setLeft();
 		assertEquals(tester.getRight(), false);
 	}
-	@Test
+	@Test 
 	public void setDamageTest(){
 		tester.setDamage();
 		assertEquals(tester.getDamage(), 10);
