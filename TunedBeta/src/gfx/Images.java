@@ -34,6 +34,8 @@ public class Images {
 	BufferedImage wasteBins2;
 	BufferedImage winText;
 	BufferedImage loseText;
+	BufferedImage heart;
+	BufferedImage angry;
 	
 	// Barriers (Plant 1 = Panic Grass, Plant 2 = Little Bluestem, Plant 3 = Indiangrass)
 	BufferedImage[] panicGrass;
@@ -343,6 +345,8 @@ public class Images {
 		}
 		winText = createImage("misc/Win.png");
 		loseText = createImage("misc/Lose.png");
+		heart = createImage("misc/Heart.png");
+		angry = createImage("misc/Angry.png");
 
 		// Tiles
 		skyTile = new BufferedImage[4];
@@ -837,5 +841,12 @@ public BufferedImage getArrow() {
 		return loseText;
 	}
 
+	public BufferedImage getHeart() {
+		return heart;
+	}
+	
+	public BufferedImage getAngry() {
+		return angry;
+	}
 
 }

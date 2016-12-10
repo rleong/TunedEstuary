@@ -46,7 +46,7 @@ public class CritterTest {
 	}
 	@Test 
 	public void setDamageTest(){
-		tester.setDamage();
+		tester.setDamage(10);
 		assertEquals(tester.getDamage(), 10);
 	}
 	@Test

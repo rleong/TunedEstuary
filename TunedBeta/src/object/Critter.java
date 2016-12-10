@@ -49,6 +49,10 @@ public class Critter extends GameObject {
 	int sp0 = SPRECHARGE;
 	int sp1 = SPRECHARGE;
 	int sp2 = SPRECHARGE;
+	Timer crabSpecialPowerTimer;
+	boolean crabPowerActivated = false;
+	Timer hcrabSpecialPowerTimer;
+	boolean hcrabPowerActivated = false;
 
 	// Location on Screen
 	Dimension dm;
@@ -118,12 +122,14 @@ public class Critter extends GameObject {
 		this.xdir = xdir;
 		this.ydir = ydir;
 		character = 0;
-		setDamage();
+		setDamage(10);
 		health0 = 100;
 		health1 = 100;
 		health2 = 100;
 		this.inventory = inventory;
-
+		crabSpecialPowerTimer = new Timer(5000, crabPower);
+		hcrabSpecialPowerTimer = new Timer(3000, hcrabPower);
+		
 		// Physics
 		jump = false;
 		inWater = false;
@@ -246,6 +252,12 @@ public class Critter extends GameObject {
 	 */
 	@Override
 	public void pngSelector(Graphics g) {
+		
+		if (hcrabPowerActivated)
+			g.drawImage(images.getHeart(), (int) x + 6, (int) y - 48, game);
+			
+		if (crabPowerActivated)
+			g.drawImage(images.getAngry(), (int) x + 6, (int) y - 48, game);
 
 		if (health0 <= 0) {
 			g.drawImage(images.getBlueCrabImage(9, 0), deathLocation[0][0], deathLocation[0][1], game);
@@ -639,16 +651,16 @@ public class Critter extends GameObject {
 	/**
 	 * Method to set the damage for each critter depending on its type
 	 */
-	public void setDamage() {
+	public void setDamage(int tempDamage) {
 		switch (character) {
 		case 0:
-			damage = 10;
+			damage = tempDamage;
 			break;
 		case 1:
-			damage = 10;
+			damage = tempDamage;
 			break;
 		case 2:
-			damage = 10;
+			damage = tempDamage;
 			break;
 		}
 	}
@@ -686,28 +698,52 @@ public class Critter extends GameObject {
 
 		}
 	};
+	
+	ActionListener crabPower = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+			setDamage(10);
+			crabPowerActivated = false;
+			crabSpecialPowerTimer.stop();
+
+		}
+	};
+	
+	ActionListener hcrabPower = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+			hcrabPowerActivated = false;
+			hcrabSpecialPowerTimer.stop();
+
+		}
+	};
 
 	/**
 	 * Method to change the critter you are to one of three different kinds
 	 */
 	public void changeCharacter() {
-
-		int skip = 0;
-
-		if (health0 <= 0)
-			skip++;
-		if (health1 <= 0)
-			skip++;
-		if (health2 <= 0)
-			skip++;
 		
-		if (skip >= 3)
-			game.setGameWinLose(false);
+		if(!crabPowerActivated){
+			int skip = 0;
 
-		character += 1;
-		character = character % 3;
+			if (health0 <= 0)
+				skip++;
+			if (health1 <= 0)
+				skip++;
+			if (health2 <= 0)
+				skip++;
+			
+			if (skip >= 3)
+				game.setGameWinLose(false);
 
-		setDamage();
+			character += 1;
+			character = character % 3;
+
+			setDamage(10);
+		}
+		
 	}
 
 	/**
@@ -740,6 +776,9 @@ public class Critter extends GameObject {
 		case 0: // CRAB
 			if (sp0 == SPRECHARGE) {
 				sp0 = 0;
+				setDamage(20);
+				crabPowerActivated = true;
+				crabSpecialPowerTimer.start();
 			}
 			break;
 		case 1: // OYSTER
@@ -751,6 +790,26 @@ public class Critter extends GameObject {
 		case 2: // HORSESHOE CRAB
 			if (sp2 == SPRECHARGE) {
 				sp2 = 0;
+				if(health2 >= 20){
+					if(health0 + 10 > 100){
+						health0 += 100-health0;
+						health2 -= 100-health0;
+					}
+					else{
+						health0 += 10;
+						health2 -= 10;
+					}
+					if(health1 + 10 > 100){
+						health1 += 100-health1;
+						health2 -= 100-health1;
+					}
+					else{
+						health1 += 10;
+						health2 -= 10;
+					}
+					hcrabPowerActivated = true;
+					hcrabSpecialPowerTimer.start();
+				}
 			}
 			break;
 		}

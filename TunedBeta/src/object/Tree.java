@@ -91,6 +91,9 @@ public class Tree extends GameObject {
 						object.remove(temp);
 						if(hp<=0)
 							object.remove(this);
+						if(this.type == 3 && rof.type == 3){
+							game.setGameWinLose(true);
+						}
 					}
 				}
 			}
