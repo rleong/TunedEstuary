@@ -652,6 +652,13 @@ public class Critter extends GameObject {
 	public void setCharacter(int character) {
 		this.character = character;
 	}
+	/**
+	 * returns which character is currently active
+	 * @return int character number
+	 */
+	public int getCharacter(){
+		return character;
+	}
 
 	/**
 	 * Crab has a huge swing that increases hitbox, and damage.

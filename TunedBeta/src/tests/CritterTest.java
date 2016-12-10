@@ -53,8 +53,35 @@ public class CritterTest {
 		assertEquals(tester.getRight(), false);
 	}
 	@Test
-	public void getRightTest(){
-		assertEquals(tester.getRight(), false);
+	public void setDamageTest(){
+		tester.setDamage();
+		assertEquals(tester.getDamage(), 10);
+	}
+	@Test
+	public void getDamageTest(){
+		assertEquals(tester.getDamage(), 10);
+	}
+	@Test
+	public void changeCharacterTest(){
+		tester.changeCharacter();
+		assertEquals(tester.getCharacter(), 1);
+	}
+	@Test
+	public void changeCharacter2Test(){
+		tester.setCharacter(1);
+		tester.changeCharacter();
+		assertEquals(tester.getCharacter(), 2);
+	}
+	@Test
+	public void changeCharacter3Test(){
+		tester.setCharacter(2);
+		tester.changeCharacter();
+		assertEquals(tester.getCharacter(), 0);
+	}
+	@Test
+	public void setCharacterTest(){
+		tester.setCharacter(1);
+		assertEquals(tester.getCharacter(), 1);
 	}
 	@Test
 	public void getBoundsRightTest(){
