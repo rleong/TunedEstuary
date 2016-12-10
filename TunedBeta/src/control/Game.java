@@ -245,7 +245,7 @@ public class Game extends Canvas implements Runnable {
 			handler.addObject(school2);
 			handler.addObject(school3);
 			handler.addObject(gfish);
-			factory.iniTree();
+			factory.startPlants();
 
 		}
 		// check game 2 win condition
@@ -398,7 +398,7 @@ public class Game extends Canvas implements Runnable {
 				handler.addObject(school2);
 				handler.addObject(school3);
 				handler.addObject(gfish);
-				factory.iniTree();
+				factory.startPlants();
 
 			} else if (game2) {
 				game2 = false;

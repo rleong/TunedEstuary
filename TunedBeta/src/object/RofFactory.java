@@ -184,7 +184,7 @@ public class RofFactory extends GameObject {
 	/**
 	 * Method that creates the three trees when the game runs 
 	 */
-	public void iniTree(){
+	public void startPlants(){
 		for(int i=0; i<3; i++){
 			Random random = new Random();
 			int xx= random.nextInt(1000) % (int)(game.dm.getWidth()*1.5-game.dm.getWidth()*5/6-32);
