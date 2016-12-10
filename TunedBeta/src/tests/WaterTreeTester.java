@@ -22,15 +22,15 @@ public class WaterTreeTester {
 	}
 	@Test
 	public void getAttackTest(){
-		assertEquals(tester.getAttack(),false);
+		assertEquals(tester.getAttack(),true);
 	}
 	@Test
 	public void chopDownTest(){
-		assertEquals(tester.getAttack(),false);
+		assertEquals(tester.getAttack(),true);
 	}
 	@Test
 	public void deadTest(){
-		assertEquals(tester.getAttack(),false);
+		assertEquals(tester.getAttack(),true);
 	}
 	
 	@SuppressWarnings("deprecation")

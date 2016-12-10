@@ -59,18 +59,9 @@ public class MiracleTreeTest {
 	public void getIdTest() {
 		assertEquals(tester.getId(),ObjectId.MiracleTree);
 	}
-	@Test
-	public void getTimer0Test() {
-		assertEquals(tester.getTimer0(),System.currentTimeMillis());
-	}
-	@Test
-	public void getTimer1Test() {
-		assertEquals(tester.getTimer1(),System.currentTimeMillis());
-	}
-	@Test
-	public void getTimer2Test() {
-		assertEquals(tester.getTimer2(),System.currentTimeMillis());
-	}
+	
+
+	
 	@Test
 	public void setGravityTest(){
 		tester.setGravity(65.0);
