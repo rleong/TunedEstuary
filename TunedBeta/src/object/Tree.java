@@ -103,9 +103,12 @@ public class Tree extends GameObject {
 	@Override
 	public void render(Graphics g) {
 		
+		g.setColor(Color.BLACK);
+		
 		switch (type) {
 		case 0:
 			g.drawImage(images.getPlant1(stage), (int) x - 16, (int) y - 32, game);
+			g.drawString("Panic Grass", (int) x - 8, (int) y + 108);
 			break;
 		case 1:
 			g.drawImage(images.getPlant2(stage), (int) x - 16, (int) y - 32, game);

@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import framework.ObjectId;
-import object.Game3Instructions;
 import object.Game3Timer;
 
 public class Game3TimerTest {

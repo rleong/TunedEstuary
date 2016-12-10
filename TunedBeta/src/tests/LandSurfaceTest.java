@@ -9,9 +9,7 @@ import org.junit.Test;
 
 import framework.GameObject;
 import framework.ObjectId;
-import object.Barrier;
 import object.LandSurface;
-import object.Waves;
 
 public class LandSurfaceTest {
 

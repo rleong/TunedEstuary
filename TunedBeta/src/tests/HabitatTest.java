@@ -10,10 +10,8 @@ import org.junit.Test;
 import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
-import object.Barrier;
 import object.Habitat;
 import object.Waste;
-import object.Waves;
 
 public class HabitatTest {
 

@@ -82,7 +82,6 @@ public class Boat extends GameObject {
 		this.game3 = g3;
 		count = 1;
 		clock = new Timer(2000, listener);
-		clock2 = new Timer(2000, listener2);
 		clock.start();
 		this.images = images;
 	}
@@ -99,17 +98,6 @@ public class Boat extends GameObject {
 	};
 	
 	/**
-	 * Method that spawns oysters at certain time intervals for game 3
-	 */
-	ActionListener listener2 = new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			spawnOyster();
-			clock2.restart();
-		}
-	};
-
-	/**
 	 * Method that changes variables of the boat per call.
 	 * 	- Adds direction to the x position which moves the boat in he x direction
 	 * 	- Adds fractions to the y direction to make the boat move up and down like in reality
@@ -121,18 +109,7 @@ public class Boat extends GameObject {
 		x += direction;
 		y += .25 * Math.sin(x / 25);
 		rand1 = rand.nextInt(200) + 100;// sets new random value
-		if (game3 == true && count == 1) {
-			clock2.start();
-			clock.stop();
-			count = 0;
-		}
-		if (game3 == true) {
-			if (oysterSpawn == rand1) {
-				spawnOyster();
-				oysterSpawn = -300;// resets oyster spawn count
-			}
-			oysterSpawn++;
-		}
+		
 		collide();
 		
 		if( direction > 0)
@@ -209,32 +186,6 @@ public class Boat extends GameObject {
 			break;
 		}
 		}
-	}
-
-	/**
-	 * Method that creates oysters from the boat into the game
-	 */
-	public void spawnOyster() {
-		// amount = rand.nextInt(2);
-		// System.out.println(amount);
-		// switch (amount) {
-		// case 0:
-		// Nothing
-		// break;
-		// case 1:
-		// 1 Oyster
-		game.handler.addObject(new Oyster(x, y, ObjectId.oyster, game));
-		// break;
-
-		// }
-
-	}
-
-	/**
-	 * Method that makes game 3 equal to true
-	 */
-	public void Game3() {
-		game3 = true;
 	}
 
 }
