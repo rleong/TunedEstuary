@@ -81,7 +81,7 @@ public class SchoolFish extends GameObject {
 		Iterator<Fish> it = school.iterator();
 		while (it.hasNext()) {
 			Fish temp = it.next();
-			if (game.waterCondition == temp.gethType()) {
+			if (game.waterCondition == temp.getHazNum()) {
 				it.remove();
 			}
 		}

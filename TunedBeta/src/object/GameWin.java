@@ -1,7 +1,5 @@
 package object;
 
-
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -18,11 +16,7 @@ import framework.GameObject;
 import framework.ObjectId;
 import window.Handler;
 import window.Window;
-/**
- * 
- * @author justin said
- *
- */
+
 public class GameWin extends GameObject {
 	//private BufferedImage waveImg;
 	private int count;//remaining time until game exit in seconds
@@ -37,7 +31,7 @@ public class GameWin extends GameObject {
 	public GameWin(double x, double y, ObjectId id, Game game) {
 		super(x, y, id, game);
 		count = 4;
-		time = new Timer(1000, listener);//call listener every second
+		time = new Timer(1000, counterDown);//call listener every second
 		time.start();
 		Game.gameover = true;//removes key listener in game class
 		GameTimer.clock1.stop();
@@ -47,7 +41,7 @@ public class GameWin extends GameObject {
 		
 	}
 
-	ActionListener listener = new ActionListener() {
+	ActionListener counterDown = new ActionListener() {
 		@Override
 		//called by time every second
 		public void actionPerformed(ActionEvent e) {

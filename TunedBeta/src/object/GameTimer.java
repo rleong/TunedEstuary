@@ -42,7 +42,7 @@ public class GameTimer extends GameObject {
 		sectime = 30;
 		mstime = 0 ;
 		this.g = g;
-		clock1 = new Timer(100, l1);//calls listener l1 every millisecond
+		clock1 = new Timer(100, clockCountDown);//calls listener l1 every millisecond
 	}
 	
 	public void startTimer(){
@@ -54,7 +54,7 @@ public class GameTimer extends GameObject {
 	}
 	
 	//called by clock1 every millisecond
-	ActionListener l1 = new ActionListener() {
+	ActionListener clockCountDown = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(sectime <= 0 && mintime > 0){//if seconds is 0 and there at least a minute left

@@ -2,7 +2,7 @@ package object;
 
 public class Fish {
 	//Attributes
-	int hType;
+	int hazardNum;
 	
 	/**
 	  * Constructor to create a fish object that will be placed in a school. 
@@ -12,7 +12,7 @@ public class Fish {
 	  * @param htype - the pollution number in which the fish cannot survive
 	  */ 
 	public Fish(int hType){
-		this.hType = hType;
+		this.hazardNum = hType;
 	}
 
 	/**
@@ -20,8 +20,8 @@ public class Fish {
 	 * 
 	 * @return the hazard number in an integer
 	 */
-	public int gethType() {
-		return hType;
+	public int getHazNum() {
+		return hazardNum;
 	}
 
 	/**
@@ -29,7 +29,7 @@ public class Fish {
 	 * 
 	 * @param htype - the pollution number in which the fish cannot survive
 	 */
-	public void sethType(int hType) {
-		this.hType = hType;
+	public void setHazType(int hType) {
+		this.hazardNum = hType;
 	}
 }

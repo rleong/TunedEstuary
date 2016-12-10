@@ -43,13 +43,13 @@ public class GameOver extends GameObject {
 	public GameOver(double x, double y, ObjectId id, Game game) {
 		super(x, y, id, game);
 		count = 4;
-		time = new Timer(1000, listener);//call listener every second
+		time = new Timer(1000, timer);//call listener every second
 		time.start();
 		Game.gameover = true;//removes key listener in game class
 		GameTimer.clock1.stop();//stop game 3 timer	
 		//write();
 	}
-	ActionListener listener = new ActionListener() {
+	ActionListener timer = new ActionListener() {
 		@Override
 		//called by time every second
 		public void actionPerformed(ActionEvent e) {
@@ -111,15 +111,9 @@ public class GameOver extends GameObject {
 	}
 	@Override
 	/**
-	 * continuously called to remove game 3 objects and count down timer.
+	 * count down timer.
 	 */
 	public void tick(ArrayList<GameObject> object) {
-		//removes game3 related objects
-		for(int i=0;i<object.size();i++){
-			GameObject temp = object.get(i);
-			if(temp.getId() == ObjectId.wclock || temp.getId() == ObjectId.person || temp.getId() == ObjectId.waves)
-				object.remove(temp);
-		}
 		//exit game when count is 0 and stop timer
 		if(count == -1){
 			time.stop();
@@ -127,11 +121,11 @@ public class GameOver extends GameObject {
 		}
 	}
 
-	@Override
-	//prints game loss message
+	
 	/**
 	 * prints game loss method
 	 */
+	@Override
 	public void pngSelector(Graphics g) {
 		g.setFont(new Font("Times",20,20));
 		g.setColor(Color.black);
@@ -140,6 +134,7 @@ public class GameOver extends GameObject {
 		g.drawString("Returning to menu in: " + count, (int) (game.dm.getWidth()/2.5),(int) (game.dm.getHeight()/3+40));
 		g.drawString("Time elapsed in previous game: " + read(), (int) (game.dm.getWidth()/2.5),(int) (game.dm.getHeight()/3+60));
 	}
+	
 	@Override
 	//has no bounds
 	/**
