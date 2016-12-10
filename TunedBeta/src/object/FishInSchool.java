@@ -1,6 +1,6 @@
 package object;
 
-public class Fish {
+public class FishInSchool {
 	//Attributes
 	int hazardNum;
 	
@@ -11,7 +11,7 @@ public class Fish {
 	  * 
 	  * @param htype - the pollution number in which the fish cannot survive
 	  */ 
-	public Fish(int hType){
+	public FishInSchool(int hType){
 		this.hazardNum = hType;
 	}
 

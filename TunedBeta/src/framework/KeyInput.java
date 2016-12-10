@@ -169,19 +169,19 @@ public class KeyInput extends KeyAdapter {
 					// Menu Toggle
 					
 					if (key == KeyEvent.VK_Y) {
-						inv.buildBarrier(gm, 0);
+						inv.buildPlants(gm, 0);
 					}
 					if (key == KeyEvent.VK_U) {
-						inv.buildBarrier(gm, 1);
+						inv.buildPlants(gm, 1);
 					}
 					if (key == KeyEvent.VK_I) {
-						inv.buildBarrier(gm, 2);
+						inv.buildPlants(gm, 2);
 					}
 					if (key == KeyEvent.VK_O) {
-						inv.buildBarrier(gm, 3);
+						inv.buildPlants(gm, 3);
 					}
 					if (key == KeyEvent.VK_P) {
-						inv.buildBarrier(gm, 4);
+						inv.buildPlants(gm, 4);
 					}
 				}
 			}
