@@ -47,7 +47,7 @@ public class GameOver extends GameObject {
 		time.start();
 		Game.gameover = true;//removes key listener in game class
 		Game3Timer.clock1.stop();//stop game 3 timer	
-		write();
+		//write();
 	}
 	ActionListener listener = new ActionListener() {
 		@Override
