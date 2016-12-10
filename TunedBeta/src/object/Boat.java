@@ -35,10 +35,10 @@ public class Boat extends GameObject {
 	// Random Droppings
 	int amount = 0;
 	Random rand = new Random();
-	int oysterSpawn;
+	
 	// Swing Timer
 	Timer clock;
-	Timer clock2;
+	
 
 	Images images;
 
@@ -80,7 +80,7 @@ public class Boat extends GameObject {
 		this.boundary2 = boundary2;
 		this.game3 = g3;
 		count = 1;
-		clock = new Timer(2000, listener);
+		clock = new Timer(2000, wasteSpawnTimer);
 		clock.start();
 		this.images = images;
 	}
@@ -88,7 +88,7 @@ public class Boat extends GameObject {
 	/**
 	 * Method that spawns waste at certain time intervals for game 1
 	 */
-	ActionListener listener = new ActionListener() {
+	ActionListener wasteSpawnTimer = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			spawnWaste();
