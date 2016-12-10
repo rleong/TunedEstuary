@@ -103,24 +103,24 @@ public class Tree extends GameObject {
 	@Override
 	public void pngSelector(Graphics g) {
 		
-		g.setColor(Color.BLACK);
+		g.setColor(Color.WHITE);
 		
 		switch (type) {
 		case 0:
 			g.drawImage(images.getPlant1(stage), (int) x - 16, (int) y - 32, game);
-			g.drawString("Panic Grass", (int) x - 8, (int) y + 32 + 8);
+			g.drawString("Panic Grass", (int) x - 16, (int) y + 32 + 12);
 			break;
 		case 1:
 			g.drawImage(images.getPlant2(stage), (int) x - 16, (int) y - 32, game);
-			g.drawString("Little Bluestem", (int) x - 16, (int) y + 32 + 8);
+			g.drawString("Little Bluestem", (int) x - 20, (int) y + 32 + 12);
 			break;
 		case 2:
 			g.drawImage(images.getPlant3(stage), (int) x - 16, (int) y - 32, game);
-			g.drawString("Indiangrass", (int) x - 8, (int) y + 32 + 8);
+			g.drawString("Indiangrass", (int) x - 12, (int) y + 32 + 12);
 			break;
 		case 3:
 			g.drawImage(images.getGoldenrod(stage), (int) x - 16, (int) y - 32, game);
-			g.drawString("Wrinkled Leaf Goldenrod", (int) x - 24, (int) y + 32 + 8);
+			g.drawString("Wrinkled Leaf Goldenrod", (int) x - 28, (int) y + 32 + 12);
 			break;
 			
 		}

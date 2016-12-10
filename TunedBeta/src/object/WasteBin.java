@@ -40,10 +40,13 @@ public class WasteBin extends GameObject {
 	@Override
 	public void pngSelector(Graphics g) {
 		if(highlight){
+			g.setColor(Color.BLACK);
 			if (type == 0) {
 				g.drawImage(images.getWasteBins(0), (int)x, (int)y, gm);
+				g.drawString("Trash Bin", (int)x + 2, (int)y+94);
 			} else if (type == 1) {
 				g.drawImage(images.getWasteBins(1), (int)x, (int)y, gm);
+				g.drawString("Recycle Bin", (int)x - 4, (int)y+94);
 			} else {
 				System.out.println("Something went wrong you baffoon!");
 			}
