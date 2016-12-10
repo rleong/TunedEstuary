@@ -15,8 +15,7 @@ import window.Handler;
 public class LandSurface extends GameObject {
 	//Attributes
 	Images images;
-	private int stage = 0;
-	private int init = 0;
+	private int waterCondition = 0;
 	
 	/**
 	 * Constructor used to construct game object that are used to build the 
@@ -38,10 +37,9 @@ public class LandSurface extends GameObject {
 	 */
 	@Override
 	public void tick(ArrayList<GameObject> object) {
-		if(init == 0){
-			stage = game.getWaterCondition();
-			init = 1;
-		}
+		
+			waterCondition = game.getWaterCondition();
+	
 			
 		
 	}
@@ -67,19 +65,19 @@ public class LandSurface extends GameObject {
 			// Not visible
 		}
 		if(id==ObjectId.waterImageMarker){
-			stage = game.getWaterCondition();
-			g.drawImage(images.getWaterTiles(stage, 0), (int)x, (int)y, game);
-			g.drawImage(images.getWaterTiles(stage, 1), (int)x, (int)y+32, game);
+			waterCondition = game.getWaterCondition();
+			g.drawImage(images.getWaterTiles(waterCondition, 0), (int)x, (int)y, game);
+			g.drawImage(images.getWaterTiles(waterCondition, 1), (int)x, (int)y+32, game);
 			for(int i = (int) y + 64; i < game.dm.getHeight() - 64; i += 32){
-				g.drawImage(images.getWaterTiles(stage, 2), (int)x, (int)i, game);
+				g.drawImage(images.getWaterTiles(waterCondition, 2), (int)x, (int)i, game);
 			}
 		}
 		if(id==ObjectId.waterImageMarker2){
-			stage = game.getWaterCondition();
-			g.drawImage(images.getWaterTiles(stage, 0), (int)x, (int)y, game);
-			g.drawImage(images.getWaterTiles(stage, 1), (int)x, (int)y+32, game);
+			waterCondition = game.getWaterCondition();
+			g.drawImage(images.getWaterTiles(waterCondition, 0), (int)x, (int)y, game);
+			g.drawImage(images.getWaterTiles(waterCondition, 1), (int)x, (int)y+32, game);
 			for(int i = (int) y + 64; i < game.dm.getHeight() * 6/5; i += 32){
-				g.drawImage(images.getWaterTiles(stage, 2), (int)x, (int)i, game);
+				g.drawImage(images.getWaterTiles(waterCondition, 2), (int)x, (int)i, game);
 			}
 		}
 		if(id==ObjectId.sand){

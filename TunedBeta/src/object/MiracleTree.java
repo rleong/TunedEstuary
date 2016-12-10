@@ -17,7 +17,7 @@ public class MiracleTree extends GameObject{
 	private long timer1=System.currentTimeMillis();
 	private long timer2=System.currentTimeMillis();
 	public boolean lock;
-	int stage = 0;
+	int visualStage = 0;
 	Images images;
 
 	/**
@@ -66,7 +66,7 @@ public class MiracleTree extends GameObject{
 	 * Method that drops compost and remove the miracle plant from the game
 	 */
 	public void dead(){
-//		dropSeed();
+
 		dropCompost();
 		game.handler.objectsList.remove(this);
 		
@@ -75,14 +75,11 @@ public class MiracleTree extends GameObject{
 	 * Method that drops compost 
 	 */
 	public void dropCompost() {
-	// TODO Auto-generated method stub
+	
 		game.handler.addObject(new Compost(x, y, ObjectId.compost2, game, 1, images));
 		
 	}
-//	public void dropSeed(){
-//		game.handler.addObject(new Seed(x,y,ObjectId.seed, game, type, images));
-//		
-//	}
+
 	
 
 	/**
@@ -104,8 +101,8 @@ public class MiracleTree extends GameObject{
 		
 		if (System.currentTimeMillis() - timer0 > 5000) {
 			timer0+=5000;
-			if(stage < 2)
-				stage++;
+			if(visualStage < 2)
+				visualStage++;
 		}
 		if(System.currentTimeMillis()-timer1>20000){
 			game.handler.objectsList.remove(this);
@@ -126,7 +123,7 @@ public class MiracleTree extends GameObject{
 	 */
 	@Override
 	public void pngSelector(Graphics g) {
-		g.drawImage(images.getWaterStarGrass(stage),(int)x-16, (int)y+32, game);
+		g.drawImage(images.getWaterStarGrass(visualStage),(int)x-16, (int)y+32, game);
 		g.setColor(Color.red);
 		g.fillRect((int)x, (int)y, 32, 5);
 		g.setColor(Color.BLACK);
