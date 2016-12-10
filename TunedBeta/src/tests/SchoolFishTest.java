@@ -10,7 +10,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import framework.ObjectId;
-import object.Fish;
+import object.FishInSchool;
 import object.SchoolFish;
 
 import static org.hamcrest.CoreMatchers.*;

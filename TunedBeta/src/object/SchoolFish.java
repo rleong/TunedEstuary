@@ -20,7 +20,7 @@ public class SchoolFish extends GameObject {
 	Game game;
 	int speed = 2;
 	boolean isDead;
-	List<Fish> school = new ArrayList<Fish>();
+	List<FishInSchool> school = new ArrayList<FishInSchool>();
 	Images images;
 	private int stage = 0;
 	
@@ -40,13 +40,13 @@ public class SchoolFish extends GameObject {
 		this.game = game;
 		velX = speed;
 		this.images = images;
-		school.add(new Fish(1));
-		school.add(new Fish(1));
-		school.add(new Fish(1));
-		school.add(new Fish(2));
-		school.add(new Fish(2));
-		school.add(new Fish(3));
-		school.add(new Fish(4));
+		school.add(new FishInSchool(1));
+		school.add(new FishInSchool(1));
+		school.add(new FishInSchool(1));
+		school.add(new FishInSchool(2));
+		school.add(new FishInSchool(2));
+		school.add(new FishInSchool(3));
+		school.add(new FishInSchool(4));
 
 	}
 
@@ -78,9 +78,9 @@ public class SchoolFish extends GameObject {
 	 */
 	@Override
 	public void tick(ArrayList<GameObject> object) {
-		Iterator<Fish> it = school.iterator();
+		Iterator<FishInSchool> it = school.iterator();
 		while (it.hasNext()) {
-			Fish temp = it.next();
+			FishInSchool temp = it.next();
 			if (game.waterCondition == temp.getHazNum()) {
 				it.remove();
 			}

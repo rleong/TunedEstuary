@@ -58,14 +58,14 @@ public class Inventory extends GameObject {
 	public Inventory(double x, double y, ObjectId id, Game game, Dimension dm, Images images) {
 		super(x, y, id, game);
 		this.dm = dm;
-		errorTimer = new Timer(5000, listener);
+		errorTimer = new Timer(5000, buildError);
 		this.images = images;
 	}
 
 	/**
 	 * Method that prevents the user from building inside the water
 	 */
-	ActionListener listener = new ActionListener() {
+	ActionListener buildError = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			error = false;
@@ -77,8 +77,7 @@ public class Inventory extends GameObject {
 	 * Method the sets the x and y positions of the inventory according to the
 	 * critters x and y
 	 * 
-	 * @param critter
-	 *            - critter object
+	 * @param critter - critter object
 	 */
 	public void setCritter(Critter critter) {
 		this.critter = critter;
@@ -153,17 +152,13 @@ public class Inventory extends GameObject {
 	/**
 	 * Method that builds objects based on the number of inventory objects
 	 * 
-	 * @param gm-
-	 *            game
-	 * @param type
-	 *            - type of object to construct
+	 * @param gm- game
+	 * @param type - type of object to construct
 	 */
-	public void buildBarrier(Game gm, int type) {
+	public void buildPlants(Game gm, int type) {
 		if (critter.getX() <= dm.getWidth() * .84 - 64 && !error) {
 			switch (type) {
 			case 0:
-				// critter.plantGabion();
-				// critter.setBuildAnimation(false);
 				break;
 			case 1:
 				if (regularCompost >= 50) {
@@ -288,15 +283,6 @@ public class Inventory extends GameObject {
 		errorMessage = message;
 	}
 
-	/**
-	 * Method is display the menu when you press a key and get rid of it when
-	 * you press the key again
-	 */
-	public void toggleMenu() {
-		if (menuActivation)
-			menuActivation = false;
-		else
-			menuActivation = true;
-	}
+	
 
 }

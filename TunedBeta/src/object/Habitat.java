@@ -50,7 +50,7 @@ public class Habitat extends GameObject{
 	public Habitat(double x, double y, ObjectId id, Game game, Dimension dm, Images images) {
 		super(x, y, id,game);
 		width = dm.getWidth()*3/2-dm.getWidth()*.84;
-		clock = new Timer(7000, listener);
+		clock = new Timer(7000, dmgOverTime);
 		clock.start();
 		this.images = images;
 		int temporaryIndexSize = (int) width / 64;
@@ -64,10 +64,9 @@ public class Habitat extends GameObject{
 	 * Method that performs a certain action at a certain time
 	 * 	- subtract the health of the habitat per waste inside every 7 seconds  
 	 */
-	ActionListener listener = new ActionListener() {
+	ActionListener dmgOverTime = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//collision(object);
 			health -= (numberOfHazards * TRASHDAMAGE) + (numberOfCompost * COMPOSTDAMAGE);
 			clock.restart();
 		}
@@ -102,11 +101,6 @@ public class Habitat extends GameObject{
 			g.drawImage(images.getHabitat(stage, imageIndexStorage.get(i)), (int) x + temporaryXValue, (int) y, game);
 			temporaryXValue += 64;
 		}
-//		if(health<=0)
-//			g.setColor(Color.RED);
-//		else
-//			g.setColor(Color.GRAY);
-//		g.fillRect((int) x, (int) y, (int)width, 64);
 		g.setColor(Color.red);
 		g.fillRect((int) x, (int) y-8, (int) ((health / 30) * width), 6);
 	}
