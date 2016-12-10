@@ -17,7 +17,7 @@ public class Runoff extends GameObject {
 	public int type;
 	Dimension dm;
 	Game game;
-	public boolean inTer=false;
+	public boolean lock=false;
 	Images images;
 
 	/**
@@ -150,14 +150,14 @@ public class Runoff extends GameObject {
 			if (temp.getId() == ObjectId.seaLevel) {
 
 				if (getBounds().intersects(temp.getBounds())) {
-					if(!inTer){
+					if(!lock){
 					game.waterCondition += 1;
 					if(game.waterCondition >= 5){
 						game.waterCondition = 5;
 					}
 					game.nWaste-=1.005;
 					object.remove(this);
-					inTer=true;
+					lock=true;
 					}
 					
 				}
