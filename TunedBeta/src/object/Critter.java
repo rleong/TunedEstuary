@@ -951,6 +951,13 @@ public class Critter extends GameObject {
 	public boolean getInWater() {
 		return inWater;
 	}
+	/**
+	 *returns boolean if right is true
+	 * @return boolean right
+	 */
+	public boolean getRight(){
+		return right;
+	}
 
 	/**
 	 * Method to set animations depending on what the player is doing
