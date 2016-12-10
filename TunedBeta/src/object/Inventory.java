@@ -167,7 +167,7 @@ public class Inventory extends GameObject {
 				break;
 			case 1:
 				if (regularCompost >= 50) {
-					critter.planT(0);
+					critter.growPlant(0);
 					critter.setBuildAnimation(true);
 					regularCompost -= 50;
 					gm.setPlantingTime(3000);
@@ -179,7 +179,7 @@ public class Inventory extends GameObject {
 				break;
 			case 2:
 				if (regularCompost >= 75) {
-					critter.planT(1);
+					critter.growPlant(1);
 					critter.setBuildAnimation(true);
 					regularCompost -= 75;
 					gm.setPlantingTime(3000);
@@ -191,7 +191,7 @@ public class Inventory extends GameObject {
 				break;
 			case 3:
 				if (regularCompost >= 100) {
-					critter.planT(2);
+					critter.growPlant(2);
 					critter.setBuildAnimation(true);
 					regularCompost -= 100;
 					gm.setPlantingTime(3000);
@@ -203,7 +203,7 @@ public class Inventory extends GameObject {
 				break;
 			case 4:
 				if (fertileCompost >= 1) {
-					critter.planT(3);
+					critter.growPlant(3);
 					critter.setBuildAnimation(true);
 					fertileCompost -= 1;
 					gm.setPlantingTime(3000);

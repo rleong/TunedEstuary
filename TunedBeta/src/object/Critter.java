@@ -798,18 +798,13 @@ public class Critter extends GameObject {
 
 	}
 
-	// Collects Items
-	public void collect() {
-
-	}
-
 	/**
 	 * Method that allows a critter to plant a plant depending on its type
 	 * 
 	 * @param type
 	 *            - type of plant
 	 */
-	public void planT(int type) {
+	public void growPlant(int type) {
 		game.handler.addObject(new Tree(x, dm.getHeight() * 3 / 5 - 32, ObjectId.tree, type, game, images));
 	}
 
@@ -839,7 +834,7 @@ public class Critter extends GameObject {
 				}
 			}
 			if (temp.getId() == ObjectId.seaLevel) {
-				if (getBoundsSelf().intersects(temp.getBounds())) {
+				if (getBodyBounds().intersects(temp.getBounds())) {
 					falling = true;
 					jump = false;
 					inWater = true;
@@ -869,14 +864,14 @@ public class Critter extends GameObject {
 			}
 			if (temp.getId() == ObjectId.compost1) {
 				Compost comp = (Compost) temp;
-				if (getBoundsSelf().intersects(temp.getBounds())) {
+				if (getBodyBounds().intersects(temp.getBounds())) {
 					inventory.setRegularCompost(25);
 					object.remove(temp);
 				}
 			}
 			if (temp.getId() == ObjectId.compost2) {
 				Compost comp = (Compost) temp;
-				if (getBoundsSelf().intersects(temp.getBounds())) {
+				if (getBodyBounds().intersects(temp.getBounds())) {
 					inventory.setFertileCompost(1);
 					object.remove(temp);
 				}
@@ -937,17 +932,6 @@ public class Critter extends GameObject {
 		}
 	}
 
-	// Debug Mode
-	public void setDebug() {
-		if (debugging)
-			debugging = false;
-		else
-			debugging = true;
-	}
-
-	public void test(Graphics g) {
-		g.drawString("haha", (int) dm.getWidth() / 2, (int) dm.getHeight() / 2);
-	}
 
 	/**
 	 * Returns attack boundaries of the critter object. Used to see if critter
@@ -965,18 +949,12 @@ public class Critter extends GameObject {
 	 * 
 	 * @return
 	 */
-	public Rectangle getBoundsSelf() {
-		return new Rectangle((int) x, (int) y, 32, 32);
-	}
 
 	public Rectangle getBodyBounds() {
 		return new Rectangle((int) x, (int) y, 32, 32);
 	}
 
-	public Rectangle getBoundsTop() {
-
-		return new Rectangle((int) x + 6, (int) y, 20, 6);
-	}
+	
 
 	/**
 	 * Returns boundaries of the bottom of the critter object. Used to check if
