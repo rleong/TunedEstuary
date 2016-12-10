@@ -25,9 +25,10 @@ public class Tutorial extends GameObject {
 	boolean firstStage = false;
 	Images img;
 	Critter critter;
+	Inventory inventory;
 
 	public Tutorial(double x, double y, ObjectId id, Game game, WasteBin wb1, WasteBin wb2, Inventory ivent, Images img,
-			Critter critter) {
+			Critter critter, Inventory inventory) {
 		super(x, y, id, game);
 		this.wb1 = wb1;
 		this.wb2 = wb2;
@@ -47,6 +48,7 @@ public class Tutorial extends GameObject {
 		// game.handler.addObject(cp4);
 		wt.setFalling(false);
 		this.critter = critter;
+		this.inventory = inventory;
 	}
 
 	public void check() {
@@ -102,6 +104,11 @@ public class Tutorial extends GameObject {
 	@Override
 	public void tick(ArrayList<GameObject> object) {
 		// TODO Auto-generated method stub
+		if(firstStage){
+			if(inventory.getRegularCompost() != 50){
+				inventory.setRegularCompost(50);
+			}
+		}
 		check();
 		remove();
 	}

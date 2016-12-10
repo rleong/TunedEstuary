@@ -103,7 +103,7 @@ public class Waste extends GameObject {
 			setVelY(-5);
 			break;
 		case 2: // COMPOST
-			counter.setRegularCompost(5);
+			counter.changeRegularCompost(5);
 			break;
 		default: // ERROR
 			System.out.println("SOMETHING WENT WRONG YO");

@@ -144,7 +144,7 @@ public class Game extends Canvas implements Runnable {
 		gtime.setCritter(critter);
 		k = new KeyInput(handler, handler2, this);
 		this.addKeyListener(new KeyInput(handler, handler2, this));
-		tutor = new Tutorial(0, 0, ObjectId.tutorial, this, trashBin, recyclebin, inventory, images, critter);
+		tutor = new Tutorial(0, 0, ObjectId.tutorial, this, trashBin, recyclebin, inventory, images, critter, inventory);
 		handler.addObject(tutor);
 
 	}

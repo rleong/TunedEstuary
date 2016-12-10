@@ -101,14 +101,21 @@ public class Inventory extends GameObject {
 	/**
 	 * Method that increases the regular compost count in the inventory
 	 */
-	public void setRegularCompost(int amount) {
+	public void changeRegularCompost(int amount) {
 		regularCompost += amount;
+	}
+	
+	/**
+	 * Method that sets the regular compost count in the inventory
+	 */
+	public void setRegularCompost(int amount) {
+		regularCompost = amount;
 	}
 
 	/**
 	 * Method that increases the fertile compost count in the inventory
 	 */
-	public void setFertileCompost(int amount) {
+	public void changeFertileCompost(int amount) {
 		fertileCompost += amount;
 	}
 

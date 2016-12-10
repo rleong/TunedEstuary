@@ -867,14 +867,14 @@ public class Critter extends GameObject {
 			if (temp.getId() == ObjectId.compost1) {
 				Compost comp = (Compost) temp;
 				if (getBodyBounds().intersects(temp.getBounds())) {
-					inventory.setRegularCompost(25);
+					inventory.changeRegularCompost(25);
 					object.remove(temp);
 				}
 			}
 			if (temp.getId() == ObjectId.compost2) {
 				Compost comp = (Compost) temp;
 				if (getBodyBounds().intersects(temp.getBounds())) {
-					inventory.setFertileCompost(1);
+					inventory.changeFertileCompost(1);
 					object.remove(temp);
 				}
 			}
@@ -905,7 +905,7 @@ public class Critter extends GameObject {
 					}
 					return;
 				} else if (waste.getType() == 2 && getBodyBounds().intersects(temp.getBounds())) {
-					inventory.setRegularCompost(5);
+					inventory.changeRegularCompost(5);
 					object.remove(temp);
 				}
 
