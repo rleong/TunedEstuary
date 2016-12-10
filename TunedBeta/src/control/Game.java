@@ -52,6 +52,7 @@ public class Game extends Canvas implements Runnable {
 	static Toolkit tk = Toolkit.getDefaultToolkit();
 	public static Dimension dm = new Dimension(tk.getScreenSize());
 	private boolean running = false;
+	public static long startTime;
 	private Thread thread;
 	public int count = 0;
 	boolean pause = false;
@@ -109,7 +110,7 @@ public class Game extends Canvas implements Runnable {
 	 */
 	private void init() {
 		// Default Objects
-
+		startTime = System.currentTimeMillis();
 		handler = new Handler(this);
 		handler.setImages(images);
 		handler2 = new Handler(this);
