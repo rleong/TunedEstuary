@@ -1,6 +1,7 @@
 package window;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -134,6 +135,8 @@ public class Handler {
 	 * @param g - graphics object
 	 */
 	public void render(Graphics g) {
+		g.setFont(new Font("Calibri", Font.BOLD, 16));
+		
 		for (int i = 0; i < object.size(); i++) {
 			temp = object.get(i);
 			temp.render(g);

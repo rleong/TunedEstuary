@@ -78,10 +78,13 @@ public class Tutorial extends GameObject {
 				if (tree.hp < 3)
 					if (System.currentTimeMillis() - timer > 20000) {
 						game.handler.object.remove(temp);
-						game.currency = 25;
 						game.tutorial = false;
 						game.game1 = true;
 						game.handler.object.remove(this);
+						critter.setHealth(0, 100, true);
+						critter.setHealth(1, 100, true);
+						critter.setHealth(2, 100, true);
+						game.getGameTimer().startTimer();
 						return;
 					}
 
@@ -113,8 +116,8 @@ public class Tutorial extends GameObject {
 		}
 		if (!secondStage && firstStage) {
 			g.drawImage(img.getTutorialSpace(), 128 + 400, (int) game.dm.getHeight() * 3 / 5 - 162, game);
-			// g.drawImage(img.getTutorialR(), 128+100 +400, (int)
-			// game.dm.getHeight() * 3 / 5 -162, game);
+			g.drawImage(img.getTutorialR(),  critter.getWasteX() - 350, critter.getWasteY(), game);
+			g.drawImage(img.getArrow(), critter.getWasteX() - 200, critter.getWasteY(), game);
 			g.drawImage(img.getTutorialU(), 448 - 35 + 400, (int) game.dm.getHeight() * 3 / 5 - 216, game);
 			g.drawImage(img.getTutorialCompost(), 448 + 135 + 400, (int) game.dm.getHeight() * 3 / 5 - 216, game);
 		}

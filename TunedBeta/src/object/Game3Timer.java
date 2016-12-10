@@ -27,6 +27,7 @@ public class Game3Timer extends GameObject {
 	private int mstime;//milliseconds remaining	
 	private int g;
 	public static Timer clock1;//clock
+	Critter critter;
 	//initializer to 1:30 seconds in game  
 	/**
 	 * creates the game 3 timer(if you protect the estuary the whole time you win)
@@ -42,8 +43,16 @@ public class Game3Timer extends GameObject {
 		mstime = 0 ;
 		this.g = g;
 		clock1 = new Timer(100, l1);//calls listener l1 every millisecond
+	}
+	
+	public void startTimer(){
 		clock1.start();
 	}
+	
+	public void setCritter(Critter critter){
+		this.critter = critter;
+	}
+	
 	//called by clock1 every millisecond
 	ActionListener l1 = new ActionListener() {
 		@Override
@@ -100,8 +109,8 @@ public class Game3Timer extends GameObject {
 	public void render(Graphics g) {
 		g.setFont(new Font("Times",20,20));
 		g.setColor(Color.black);
-		g.drawString("Time Remaining: "+mintime + ":"+ sectime + ":" + mstime, (int)x, (int)y);
-
+		g.drawString("Time Remaining: "+mintime + ":"+ sectime + ":" + mstime, critter.getTimeXLocation(), critter.getTimeYLocation());
+		g.setFont(new Font("Calibri", Font.BOLD, 16));
 	}
 	
 

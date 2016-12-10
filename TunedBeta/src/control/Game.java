@@ -75,6 +75,7 @@ public class Game extends Canvas implements Runnable {
 	SchoolFish school3;
 	GuardianFish gfish;
 	Game3Timer g1t;
+
 	Habitat habitat;
 	int gmeval = 1;
 	Game3Instructions game3inst;
@@ -136,22 +137,25 @@ public class Game extends Canvas implements Runnable {
 		recyclebin = new WasteBin(dm.getWidth() * .84 - 192, dm.getHeight() * 3 / 5 - 64, ObjectId.wasteBin, 1, images,
 				this, false);
 
-		inventory = new Inventory(10, 10, ObjectId.inventory, this, dm);
+		inventory = new Inventory(10, 10, ObjectId.inventory, this, dm, images);
 		critter = new Critter(32, dm.getHeight() * 3 / 5 - 32, ObjectId.critter, true, true, dm, inventory, this,
 				images, trashBin, recyclebin);
 
 		// Game 1 Objects 
 		handler.addObject(new Boat(dmBoundaries[2], dmBoundaries[4] - 60, ObjectId.boat, this, trashBin, recyclebin,
 				inventory, dmBoundaries[2], dm.getWidth() * 3 / 2, false, images));
+		handler.addObject(inventory);
 		handler.addObject(trashBin);
 		handler.addObject(recyclebin);
-		handler.addObject(inventory);
 		handler.addObject(habitat);
 		handler.addObject(g1t);
 
 		// Critter
 		handler2.addObject(critter);
+		trashBin.setCritter(critter);
+		recyclebin.setCritter(critter);
 		inventory.setCritter(critter);
+		g1t.setCritter(critter);
 		k = new KeyInput(handler, handler2, this);
 		this.addKeyListener(new KeyInput(handler, handler2, this));
 		tutor = new Tutorial(0, 0, ObjectId.tutorial, this, trashBin, recyclebin, inventory, images, critter);
@@ -522,6 +526,10 @@ public class Game extends Canvas implements Runnable {
 //			game3Create();
 		}
 	};
+	
+	public Game3Timer getGameTimer() {
+		return g1t;
+	}
 
 	/**
 	 * Main class that starts the game

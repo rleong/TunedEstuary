@@ -32,23 +32,23 @@ public class WasteBin extends GameObject {
 
 	@Override
 	public void tick(ArrayList<GameObject> object) {
-
+		x = critter.getWasteX();
+		y = critter.getWasteY() - 16 ;
 		collision(object);
 	}
 
 	@Override
 	public void render(Graphics g) {
-		if (type == 0) {
-			g.drawImage(images.getWasteBins(0), (int)x, (int)y, gm);
-		} else if (type == 1) {
-			g.drawImage(images.getWasteBins(1), (int)x, (int)y, gm);
-		} else {
-			System.out.println("Something went wrong you baffoon!");
+		if(highlight){
+			if (type == 0) {
+				g.drawImage(images.getWasteBins(0), (int)x, (int)y, gm);
+			} else if (type == 1) {
+				g.drawImage(images.getWasteBins(1), (int)x, (int)y, gm);
+			} else {
+				System.out.println("Something went wrong you baffoon!");
+			}
 		}
 		
-//		if(highlight)
-//			g.drawImage(images.getArrow(), (int) x, (int) y-64, gm);
-
 	}
 
 	private void collision(ArrayList<GameObject> object) {
@@ -73,6 +73,17 @@ public class WasteBin extends GameObject {
 	public ArrayList<GameObject> testCollision(ArrayList<GameObject> test) {
 		collision(test);
 		return test;
+	}
+	
+	public void setHighlight(){
+		if (highlight)
+			highlight = false;
+		else
+			highlight = true;
+	}
+	
+	public boolean getHighlight(){
+		return highlight;
 	}
 
 }

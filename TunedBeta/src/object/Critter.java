@@ -2,6 +2,7 @@ package object;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -34,6 +35,7 @@ public class Critter extends GameObject {
 	boolean flicker = false;
 	boolean invulnerable;
 	Timer clockInvincible;
+	int[][] deathLocation = new int[3][3];
 
 	// Character Physics
 	int landCo = 1;
@@ -61,6 +63,9 @@ public class Critter extends GameObject {
 	int nameYLocation;
 	int buildXLocation;
 	int buildYLocation;
+	int wasteIconLocation;
+	int timeXLocation;
+	int timeYLocation;
 
 	// GFX & Animations
 	int actionFrameNum = 0;
@@ -146,6 +151,33 @@ public class Critter extends GameObject {
 	@Override
 	public void tick(ArrayList<GameObject> object) {
 
+		switch (character) {
+		case 0:
+			if (health0 <= 0 && deathLocation[0][2] != 1) {
+				deathLocation[0][0] = (int) x;
+				deathLocation[0][1] = (int) y - 32;
+				deathLocation[0][2] = 1;
+				changeCharacter();
+			}
+			break;
+		case 1:
+			if (health1 <= 0 && deathLocation[1][2] != 1) {
+				deathLocation[1][0] = (int) x;
+				deathLocation[1][1] = (int) y - 32;
+				deathLocation[1][2] = 1;
+				changeCharacter();
+			}
+			break;
+		case 2:
+			if (health2 <= 0 && deathLocation[2][2] != 1) {
+				deathLocation[2][0] = (int) x;
+				deathLocation[2][1] = (int) y - 32;
+				deathLocation[2][2] = 1;
+				changeCharacter();
+			}
+			break;
+		}
+
 		// Character Physics
 		x += velX;
 		if (x < 10) {
@@ -188,6 +220,25 @@ public class Critter extends GameObject {
 		healthBarYLocation = (int) (y - (dm.getHeight() * 47 / 100));
 		buildXLocation = (int) (x - (dm.getWidth() * 11 / 100));
 		buildYLocation = (int) (y + (dm.getHeight() * 35 / 100));
+		wasteIconLocation = (int) (x + dm.getWidth() / 2 - 100);
+		timeXLocation = (int) x - 50;
+		timeYLocation = nameYLocation;
+	}
+
+	public int getTimeXLocation() {
+		return timeXLocation;
+	}
+
+	public int getTimeYLocation() {
+		return timeYLocation;
+	}
+
+	public int getWasteX() {
+		return wasteIconLocation;
+	}
+
+	public int getWasteY() {
+		return healthBarYLocation - 20;
 	}
 
 	/**
@@ -195,6 +246,16 @@ public class Critter extends GameObject {
 	 */
 	@Override
 	public void render(Graphics g) {
+
+		if (health0 <= 0) {
+			g.drawImage(images.getBlueCrabImage(9, 0), deathLocation[0][0], deathLocation[0][1], game);
+		}
+		if (health1 <= 0) {
+			g.drawImage(images.getOysterImage(9, 0), deathLocation[1][0], deathLocation[1][1], game);
+		}
+		if (health2 <= 0) {
+			g.drawImage(images.getHorseshoeCrabImage(9, 0), deathLocation[2][0], deathLocation[2][1], game);
+		}
 
 		movementFrameNum = (movementFrameNum + 1) % images.getMoveFrames();
 		movementFrameNum2 = (movementFrameNum2 + 1) % images.getSwimFrames();
@@ -395,9 +456,6 @@ public class Critter extends GameObject {
 
 		// Build Options
 		drawBuildOptions(g);
-		
-		// Trash Option
-		drawTrashCans(g);
 
 		// Animations
 		if (plantAction)
@@ -426,10 +484,6 @@ public class Critter extends GameObject {
 		}
 
 	}
-	
-	public void drawTrashCans(Graphics g){
-		g.drawImage(images.getWasteIcon(), healthBarXLocation+240, healthBarYLocation-20, game);
-	}
 
 	/**
 	 * Method that shows the different items your critter can collect
@@ -437,7 +491,7 @@ public class Critter extends GameObject {
 	 * @param g
 	 *            - graphics variable
 	 */
-	public void drawBuildOptions(Graphics g) {	
+	public void drawBuildOptions(Graphics g) {
 		g.setColor(Color.BLACK);
 		g.drawImage(images.getMenuBar(), buildXLocation - 32, buildYLocation - 90, game);
 		compostInventory = "x " + inventory.getRegularCompost();
@@ -610,19 +664,19 @@ public class Critter extends GameObject {
 
 	/**
 	 * Method that has a timer of when the critter can be hit again after being
-	 * hit 
+	 * hit
 	 */
 	ActionListener listener = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			if(flickerTime >= 35){
+			if (flickerTime >= 35) {
 				invulnerable = false;
 				flickerTime = 0;
 				flicker = false;
 				clockInvincible.stop();
-			}else{
-				if(flicker)
+			} else {
+				if (flicker)
 					flicker = false;
 				else
 					flicker = true;
@@ -630,7 +684,7 @@ public class Critter extends GameObject {
 				System.out.println(flickerTime);
 				clockInvincible.restart();
 			}
-			
+
 		}
 	};
 
@@ -638,8 +692,19 @@ public class Critter extends GameObject {
 	 * Method to change the critter you are to one of three different kinds
 	 */
 	public void changeCharacter() {
+
+		int skip = 0;
+
+		if (health0 <= 0)
+			skip++;
+		if (health1 <= 0)
+			skip++;
+		if (health2 <= 0)
+			skip++;
+
 		character += 1;
 		character = character % 3;
+
 		setDamage();
 	}
 
@@ -696,7 +761,7 @@ public class Critter extends GameObject {
 			if (temp.getId() == ObjectId.waste) {
 				Waste waste = (Waste) temp;
 				if (!waste.checkDeath()) {
-					if (waste.canAttack && !waste.getIsTrapped()) {
+					if (waste.canAttack && !waste.getIsTrapped() && waste.getType() == 1) {
 						waste.health -= damage;
 					}
 					if (waste.health <= 0) {
@@ -704,16 +769,9 @@ public class Critter extends GameObject {
 					}
 				}
 			}
-			if (temp.getId() == ObjectId.waterTree) {
-				WaterTree wt = (WaterTree) temp;
-				if (wt.canAttack) {
-					wt.hp -= damage;
-				}
-				if (wt.hp <= 0)
-					wt.chopDown();
-			}
 
 		}
+
 	}
 
 	// Collects Items
@@ -825,11 +883,11 @@ public class Critter extends GameObject {
 						}
 					}
 					return;
-				} else if (waste.getType() == 2 && getBodyBounds().intersects(temp.getBounds())){
+				} else if (waste.getType() == 2 && getBodyBounds().intersects(temp.getBounds())) {
 					inventory.setRegularCompost(5);
 					object.remove(temp);
 				}
-				
+
 			}
 			if (temp.getId() == ObjectId.guardian) {
 				GuardianFish guardianfish = (GuardianFish) temp;
@@ -960,6 +1018,40 @@ public class Critter extends GameObject {
 	 */
 	public void setAnimation(int currentAnimation) {
 		this.currentAnimation = currentAnimation;
+	}
+
+	public void setHealth(int character, int amount, boolean set) {
+		if (set) {
+			switch (character) {
+			case 0:
+				health0 = amount;
+				break;
+			case 1:
+				health1 = amount;
+				break;
+			case 2:
+				health2 = amount;
+				break;
+			}
+		} else {
+			switch (character) {
+			case 0:
+				health0 += amount;
+				break;
+			case 1:
+				health1 += amount;
+				break;
+			case 2:
+				health2 += amount;
+				break;
+			}
+		}
+
+	}
+
+	public void toggleHighlight() {
+		wasteBin.setHighlight();
+		recycleBin.setHighlight();
 	}
 
 }

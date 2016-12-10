@@ -14,6 +14,7 @@ import javax.swing.Timer;
 import control.Game;
 import framework.GameObject;
 import framework.ObjectId;
+import gfx.Images;
 import window.Handler;
 
 //
@@ -31,6 +32,7 @@ public class Inventory extends GameObject {
 
 	Critter critter;
 	Dimension dm;
+	Images images;
 
 	// Menu
 	boolean menuActivation = false;
@@ -53,10 +55,11 @@ public class Inventory extends GameObject {
 	 * @param dm
 	 *            - dimensions of the game
 	 */
-	public Inventory(double x, double y, ObjectId id, Game game, Dimension dm) {
+	public Inventory(double x, double y, ObjectId id, Game game, Dimension dm, Images images) {
 		super(x, y, id, game);
 		this.dm = dm;
 		errorTimer = new Timer(5000, listener);
+		this.images = images;
 	}
 
 	/**
@@ -129,6 +132,9 @@ public class Inventory extends GameObject {
 	 */
 	@Override
 	public void render(Graphics g) {
+		
+		// Trash Bin Icon
+		g.drawImage(images.getWasteIcon(), critter.getWasteX(), critter.getWasteY(), game);
 
 		// Menu
 		if (menuActivation) {

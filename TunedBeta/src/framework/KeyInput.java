@@ -153,13 +153,14 @@ public class KeyInput extends KeyAdapter {
 					// Ability 
 					if (key == KeyEvent.VK_Q) {
 						t.ability();
+						t.setAnimation(8);
 					}
 					// Debug Toggle
 					if (key == KeyEvent.VK_M) {
 						t.setDebug();
 					}
 					if (key == KeyEvent.VK_R) {
-
+						t.toggleHighlight();
 					}
 				}
 			}

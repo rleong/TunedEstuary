@@ -1,6 +1,7 @@
 package object;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -101,6 +102,7 @@ public class Tree extends GameObject {
 	 */
 	@Override
 	public void render(Graphics g) {
+		
 		switch (type) {
 		case 0:
 			g.drawImage(images.getPlant1(stage), (int) x - 16, (int) y - 32, game);

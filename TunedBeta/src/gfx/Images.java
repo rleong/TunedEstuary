@@ -185,7 +185,7 @@ public class Images {
 		// These critters are unique compared to the rest of the game sprites,
 		// And thus they have some parts that are larger, smaller, or require
 		// more frames than usual. 
-		blueCrab = new BufferedImage[9][walkFrameCount];
+		blueCrab = new BufferedImage[10][walkFrameCount];
 		for (int i = 0; i < 4; i++) {
 			BufferedImage img = createImage("entities/BlueCrab.png");
 			blueCrab[0][i] = img.getSubimage(64 * i, 0, 64, 64);
@@ -222,8 +222,12 @@ public class Images {
 			BufferedImage img = createImage("entities/BlueCrab.png");
 			blueCrab[8][i] = img.getSubimage(128 * i, 512, 128, 64);
 		}
-
-		easternOyster = new BufferedImage[9][walkFrameCount];
+		for (int i = 0; i < 1; i++) {
+			BufferedImage img = createImage("entities/BlueCrab.png");
+			blueCrab[9][i] = img.getSubimage(64 * i, 512 + 64, 64, 64);
+		}
+		
+		easternOyster = new BufferedImage[10][walkFrameCount];
 		for (int i = 0; i < 4; i++) {
 			BufferedImage img = createImage("entities/EasternOyster.png");
 			easternOyster[0][i] = img.getSubimage(64 * i, 0, 64, 64);
@@ -260,8 +264,12 @@ public class Images {
 			BufferedImage img = createImage("entities/EasternOyster.png");
 			easternOyster[8][i] = img.getSubimage(64 * i, 512, 64, 64);
 		}
+		for (int i = 0; i < 1; i++) {
+			BufferedImage img = createImage("entities/EasternOyster.png");
+			easternOyster[9][i] = img.getSubimage(64 * i, 512 + 64, 64, 64);
+		}
 
-		horseshoeCrab = new BufferedImage[9][walkFrameCount];
+		horseshoeCrab = new BufferedImage[10][walkFrameCount];
 		for (int i = 0; i < 4; i++) {
 			BufferedImage img = createImage("entities/HorseshoeCrab.png");
 			horseshoeCrab[0][i] = img.getSubimage(64 * i, 0, 64, 64);
@@ -297,6 +305,10 @@ public class Images {
 		for (int i = 0; i < 2; i++) {
 			BufferedImage img = createImage("entities/HorseshoeCrab.png");
 			horseshoeCrab[8][i] = img.getSubimage(64 * i, 512, 64, 64);
+		}
+		for (int i = 0; i < 1; i++) {
+			BufferedImage img = createImage("entities/HorseshoeCrab.png");
+			horseshoeCrab[9][i] = img.getSubimage(64 * i, 512 + 64, 64, 64);
 		}
 		
 		guardianFish = new BufferedImage[2];
