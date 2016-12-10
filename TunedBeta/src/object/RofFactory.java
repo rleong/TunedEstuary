@@ -16,7 +16,7 @@ import window.Handler;
 public class RofFactory extends GameObject {
 	//Attributes
 	long timer;
-	int count=0;
+	int waitingTime=0;
 	Images images;
 	
 	/**
@@ -44,12 +44,12 @@ public class RofFactory extends GameObject {
 		if(System.currentTimeMillis()-timer>2500){
 			timer=System.currentTimeMillis();
 			if(game.g2stage==0){
-				if(count>3){
+				if(waitingTime>3){
 					game.g2stage+=1;
-					count=0;
+					waitingTime=0;
 					return;
 				}
-				count+=1;
+				waitingTime+=1;
 				return;
 			}
 			if(game.g2stage==1){
@@ -67,15 +67,15 @@ public class RofFactory extends GameObject {
 				}
 			}
 			if(game.g2stage==2){
-				if(count>3){
+				if(waitingTime>3){
 					game.g2stage+=1;
-					count=0;
+					waitingTime=0;
 					Random random=new Random();
 					int xx= random.nextInt(1000) % (int)(game.dm.getWidth()*1.5-game.dm.getWidth()*5/6-32);
 					game.handler.addObject(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, game, images));
 					return;
 				}
-				count+=1;
+				waitingTime+=1;
 				return;
 				
 			}
@@ -105,15 +105,15 @@ public class RofFactory extends GameObject {
 			}
 			
 				if(game.g2stage==4){
-					if(count>5){
+					if(waitingTime>5){
 						game.g2stage+=1;
-						count=0;
+						waitingTime=0;
 						Random random=new Random();
 						int xx= random.nextInt(1000) % (int)(game.dm.getWidth()*1.5-game.dm.getWidth()*5/6-32);
 						game.handler.addObject(new WaterTree(game.dm.getWidth()*5/6+xx+32, game.dm.getHeight()-192, ObjectId.waterTree, 0, game, images));
 						return;
 					}
-					count+=1;
+					waitingTime+=1;
 					return;
 				}
 			
@@ -153,11 +153,11 @@ public class RofFactory extends GameObject {
 			}
 			
 				if(game.g2stage==6){
-					if(count>7){
+					if(waitingTime>7){
 						game.g2stage+=1;
-						count=0;
+						waitingTime=0;
 					}
-					count+=1;
+					waitingTime+=1;
 					return;
 				}
 			
