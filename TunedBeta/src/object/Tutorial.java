@@ -121,6 +121,7 @@ public class Tutorial extends GameObject {
 			g.drawImage(img.getArrow(), critter.getWasteX() - 200, critter.getWasteY(), game);
 			g.drawImage(img.getTutorialU(), 448 - 35 + 400, (int) game.dm.getHeight() * 3 / 5 - 216, game);
 			g.drawImage(img.getTutorialCompost(), 448 + 135 + 400, (int) game.dm.getHeight() * 3 / 5 - 216, game);
+			g.drawImage(img.getTutorialChopping(), 448 + 135 + 400 + 170, (int) game.dm.getHeight() * 3 / 5 - 216, game);
 		}
 		if (secondStage) {
 			g.drawImage(img.getTutorialRunoff(), 448 - 135 + 400, (int) game.dm.getHeight() * 3 / 5 - 216, game);
