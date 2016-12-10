@@ -893,13 +893,13 @@ public class Critter extends GameObject {
 						clockInvincible.start();
 						switch (character) {
 						case 0:
-							health0 -= 50;
+							health0 -= 5;
 							break;
 						case 1:
-							health1 -= 50;
+							health1 -= 5;
 							break;
 						case 2:
-							health2 -= 50;
+							health2 -= 5;
 							break;
 						}
 					}
