@@ -10,6 +10,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import framework.ObjectId;
+import object.Fish;
 import object.SchoolFish;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -51,22 +52,6 @@ public class SchoolFishTest {
 		SchoolFish school = new SchoolFish(1371, 423, ObjectId.school, null, null);
 		assertEquals(false, school.isDead());
 	}
-
-	
-//	@Test
-//	public void testGetSchool(){
-//		SchoolFish school = new SchoolFish(536, 853, ObjectId.school, null);
-//		List<Fish> fishList = new ArrayList<Fish>();
-//		fishList.add(new Fish(1));
-//		fishList.add(new Fish(1));
-//		fishList.add(new Fish(1));
-//		fishList.add(new Fish(2));
-//		fishList.add(new Fish(2));
-//		fishList.add(new Fish(3));
-//		fishList.add(new Fish(4));
-//		
-//	}
-	
 	@Test
 	public void testGetBounds(){
 		SchoolFish school = new SchoolFish(132, 645, ObjectId.school, null, null);
